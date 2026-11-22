@@ -1,0 +1,103 @@
+rules_version = '2';
+
+// Security rules (spec 9.2). Default deny; each path below is opened deliberately and covered by
+// the role x path x operation matrix in tests/emulator/rules.test.ts. All other server writes go
+// through route handlers with the Admin SDK, which these rules do not apply to.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+    function familyDoc(fid) {
+      return get(/databases/$(database)/documents/families/$(fid));
+    }
+    function isMember(fid) {
+      return signedIn() && exists(/databases/$(database)/documents/families/$(fid))
+        && request.auth.uid in familyDoc(fid).data.memberUids;
+    }
+    function isAdmin(fid) {
+      return isMember(fid) && familyDoc(fid).data.adminUid == request.auth.uid;
+    }
+    function isDependent(fid, id) {
+      return exists(/databases/$(database)/documents/families/$(fid)/dependents/$(id));
+    }
+    function onlyKeys(keys) {
+      return request.resource.data.keys().hasOnly(keys);
+    }
+
+    // users/{uid}: the owner reads; every write goes through the server (PUT /api/profile,
+    // PUT /api/aliases), which validates the name's characters and each alias value. Stage 7 fix
+    // (AUTH-3): rules cannot check a name's characters reliably or every value of the aliases map,
+    // and an unchecked name was copied into the family on join.
+    match /users/{uid} {
+      allow read: if signedIn() && request.auth.uid == uid;
+
+      // Private health: owner reads and writes; the admin or the family read only as shared.
+      match /private/health {
+        allow read: if signedIn() && (request.auth.uid == uid
+          || (resource.data.shareWith == 'family' && exists(/databases/$(database)/documents/users/$(uid))
+            && isMember(get(/databases/$(database)/documents/users/$(uid)).data.familyId))
+          || (resource.data.shareWith == 'admin' && exists(/databases/$(database)/documents/users/$(uid))
+            && isAdmin(get(/databases/$(database)/documents/users/$(uid)).data.familyId)));
+        allow write: if signedIn() && request.auth.uid == uid
+          && onlyKeys(['conditions', 'shareWith', 'updatedAt'])
+          && request.resource.data.shareWith in ['self', 'admin', 'family']
+          && request.resource.data.conditions is list && request.resource.data.conditions.size() <= 7
+          && request.resource.data.conditions.toSet().difference(['asthma', 'copd', 'heart', 'allergies',
+            'pregnant', 'none', 'prefer_not'].toSet()).size() == 0;
+      }
+    }
+
+    match /families/{fid} {
+      // Members read the family; every write goes through /api/family (server).
+      allow read: if isMember(fid);
+
+      match /private/home {
+        allow read: if isMember(fid);
+      }
+
+      // Members read; every write (profile edits, joins, removal) goes through the server
+      // (PUT /api/profile, /api/join, /api/members), which validates every nested field, recomputes
+      // careTag, syncs users/{uid} and marks the plan stale. Review fix (slice 3): client writes
+      // could store malformed activities or travel and drop the member from Today.
+      match /members/{uid} {
+        allow read: if isMember(fid);
+      }
+
+      // Dependents: members read; every write goes through /api/dependent.
+      match /dependents/{did} {
+        allow read: if isMember(fid);
+      }
+
+      match /plans/{date} {
+        allow read: if isMember(fid);
+        match /members/{id} {
+          allow read: if isMember(fid);
+        }
+      }
+
+      // Items: members read; done/doneAt only, by the target member or by anyone for a
+      // dependent; delete by the target, the adder, the dependent's guardian or the admin.
+      match /items/{itemId} {
+        allow read: if isMember(fid);
+        allow update: if isMember(fid)
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['done', 'doneAt'])
+          && request.resource.data.done is bool
+          && (resource.data.forId == request.auth.uid || isDependent(fid, resource.data.forId));
+        allow delete: if isMember(fid) && (resource.data.forId == request.auth.uid
+          || resource.data.addedBy == request.auth.uid
+          || isAdmin(fid)
+          || (isDependent(fid, resource.data.forId)
+            && get(/databases/$(database)/documents/families/$(fid)/dependents/$(resource.data.forId)).data.guardianUid == request.auth.uid));
+      }
+
+      // Progress: members read; written only by /api/progress.
+      match /progress/{id} {
+        allow read: if isMember(fid);
+      }
+    }
+
+    // joinCodes, airCache, communityCache, rateLimits, quota and stats: server only. Nothing else
+    // matches, so every other path stays denied.
+  }
+}

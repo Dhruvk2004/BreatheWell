@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 288 64" width="288" height="64" role="img" aria-labelledby="t" color="#15232B">
+  <title id="t">BreatheWell</title>
+  <g fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="3" width="58" height="58" rx="14"/>
+    <path d="M30 30a8 8 0 0 0 0-16H16V51H32a10.5 10.5 0 0 0 0-21M24 30H49"/>
+  </g>
+  <text x="80" y="43" font-family="'Atkinson Hyperlegible Next','Atkinson Hyperlegible',system-ui,sans-serif" font-size="31" font-weight="700" letter-spacing="-0.4" fill="currentColor">BreatheWell</text>
+</svg>

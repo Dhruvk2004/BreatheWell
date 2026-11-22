@@ -1,0 +1,111 @@
+{
+ "latitude": 28.56,
+ "lookupSource": "coordinates",
+ "longitude": 77.21,
+ "localityLanguageRequested": "en",
+ "continent": "Asia",
+ "continentCode": "AS",
+ "countryName": "India",
+ "countryCode": "IN",
+ "principalSubdivision": "Delhi",
+ "principalSubdivisionCode": "IN-DL",
+ "city": "Delhi",
+ "locality": "South Delhi",
+ "postcode": "",
+ "plusCode": "7JWVH666+22",
+ "localityInfo": {
+  "administrative": [
+   {
+    "name": "India",
+    "description": "country in South Asia",
+    "isoName": "India",
+    "order": 4,
+    "adminLevel": 2,
+    "isoCode": "IN",
+    "wikidataId": "Q668",
+    "geonameId": 1269750
+   },
+   {
+    "name": "National Capital Region",
+    "description": "region in India",
+    "order": 8,
+    "adminLevel": 7,
+    "wikidataId": "Q1249481"
+   },
+   {
+    "name": "Delhi",
+    "description": "megacity and union territory of India",
+    "isoName": "Delhi",
+    "order": 9,
+    "adminLevel": 4,
+    "isoCode": "IN-DL",
+    "wikidataId": "Q1353",
+    "geonameId": 1273294
+   },
+   {
+    "name": "National Capital Territory of Delhi",
+    "description": "union territory of India",
+    "order": 10,
+    "adminLevel": 4,
+    "wikidataId": "Q9357528",
+    "geonameId": 1273293
+   },
+   {
+    "name": "Delhi",
+    "description": "megacity and union territory of India",
+    "order": 11,
+    "adminLevel": 8,
+    "wikidataId": "Q1353",
+    "geonameId": 1273294
+   },
+   {
+    "name": "South Delhi",
+    "description": "district of Delhi, India",
+    "order": 12,
+    "adminLevel": 5,
+    "wikidataId": "Q2061938",
+    "geonameId": 8335423
+   },
+   {
+    "name": "South",
+    "order": 13,
+    "adminLevel": 9
+   }
+  ],
+  "informative": [
+   {
+    "name": "Asia",
+    "description": "part of terrestrial continent, mainly in the northeastern quadrant",
+    "isoName": "Asia",
+    "order": 1,
+    "isoCode": "AS",
+    "wikidataId": "Q48",
+    "geonameId": 6255147
+   },
+   {
+    "name": "Asia/Kolkata",
+    "description": "time zone",
+    "order": 2
+   },
+   {
+    "name": "Indian subcontinent",
+    "description": "physiographical region in South Asia",
+    "order": 3,
+    "wikidataId": "Q60140",
+    "geonameId": 6269134
+   },
+   {
+    "name": "Mainland India",
+    "order": 5
+   },
+   {
+    "name": "Northern Zonal Council",
+    "order": 6
+   },
+   {
+    "name": "Northern Railway",
+    "order": 7
+   }
+  ]
+ }
+}

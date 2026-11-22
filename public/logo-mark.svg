@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-labelledby="t">
+  <title id="t">BreatheWell</title>
+  <rect width="64" height="64" rx="16" fill="#0B5E7A"/>
+  <path d="M24 30H53" fill="none" stroke="#8ED1E3" stroke-width="6" stroke-linecap="round"/>
+  <path d="M30 30a8 8 0 0 0 0-16H16V51H32a10.5 10.5 0 0 0 0-21" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

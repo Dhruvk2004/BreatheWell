@@ -1,0 +1,11 @@
+node_modules
+.next
+coverage
+test-results
+playwright-report
+playwright-report-emulators
+package-lock.json
+next-env.d.ts
+*.md
+src/data/recorded
+tests/fixtures/api

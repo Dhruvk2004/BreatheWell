@@ -1,0 +1,436 @@
+@import "tailwindcss";
+
+/* BreatheWell design tokens v1.2, copied verbatim from design/tokens.css below this header.
+   App additions follow the tokens: next/font family variables, base element styles and the skip link. */
+
+/* BreatheWell design tokens v1.2 (20 Nov 2026, round 1 and round 2 audit fixes)
+   Copy into app/globals.css (Tailwind v4: keep the @theme block; the :root blocks drive light/dark).
+   Rules:
+   - Brand colours live in the cool half of the wheel. Every green, yellow, orange, red and maroon
+     is reserved for the six CPCB bands and the three verdicts. Never use a band colour for a
+     button, link, brand accent or decoration.
+   - Every band and verdict is shown with colour + word + icon (spec 11.5).
+   - All sizes are rem so the large-text mode (html[data-text="lg"|"xl"]) scales everything.
+   Contrast ratios (WCAG 2.x) are listed in design.html section B and in design-notes.md. */
+
+:root {
+  /* ---------- Brand palette (8 named colours) ---------- */
+  --bw-deep-breath: #0b5e7a; /* primary: actions, links, logo tile */
+  --bw-fresh-air: #8ed1e3; /* logo breath strokes; dark-theme primary */
+  --bw-monsoon: #3a4e9c; /* AI-written only: Breezy, plan badge, "Made by BreatheWell assistant" */
+  --bw-night-ink: #15232b; /* text, headings */
+  --bw-slate: #4e5e68; /* secondary text */
+  --bw-haze: #d3dde2; /* dividers (decorative only, never a control boundary) */
+  --bw-mist: #e4f1f5; /* primary tint: selected, your Breezy bubble, info notes */
+  --bw-paper: #f4f7f8; /* page background */
+
+  /* ---------- Semantic colours: light (default) ---------- */
+  --color-bg: var(--bw-paper);
+  --color-surface: #ffffff;
+  --color-surface-2: #edf2f4; /* inset, skeleton blocks */
+  --color-text: var(--bw-night-ink); /* 14.92:1 on bg, 16.0:1 on surface */
+  --color-text-muted: var(--bw-slate); /* 6.24:1 on bg, 6.72:1 on surface */
+  --color-line: var(--bw-haze);
+  --color-line-strong: #7c8b94; /* inputs, checkboxes: 3.51:1 on surface, 3.26:1 on bg */
+  --color-primary: var(--bw-deep-breath); /* 7.25:1 on white */
+  --color-primary-hover: #084a61;
+  --color-on-primary: #ffffff;
+  --color-primary-tint: var(--bw-mist); /* primary text on it 6.28:1 */
+  --color-accent: var(--bw-monsoon); /* AI-written text: 7.64:1 on white, 7.09:1 on bg */
+  --color-accent-tint: #e8ecf8; /* AI badge / suggestion label: 6.47:1 */
+  /* Functional colours (not brand, not air) */
+  --color-focus: #1673c6; /* focus ring only, 2px + 2px offset; 4.88:1 on white */
+  --color-error: var(--verdict-avoid-fg); /* form error text, always with an icon; never a fill */
+  --color-scrim: rgba(13, 24, 30, 0.55);
+  --color-inverse-bg: var(--bw-night-ink); /* toast, demo banner */
+  --color-on-inverse: var(--bw-paper); /* 14.92:1 */
+  --color-inverse-action: var(--bw-fresh-air); /* toast action, 9.47:1 on night ink */
+  --band-severe-edge: transparent; /* dark theme: 1px outline, maroon is close to the page */
+  --band-edge: var(--color-line-strong); /* 1px edge on Satisfactory/Moderate fills on white: 3.51:1 */
+
+  /* Verdict chips (tinted pill + icon + word; never solid, so they never look like a band) */
+  --verdict-go-fg: #1b6b3a;
+  --verdict-go-bg: #e3f3e8; /* 5.68:1 */
+  --verdict-care-fg: #7a4b00;
+  --verdict-care-bg: #fdf0d5; /* 6.56:1 */
+  --verdict-avoid-fg: #a3222b;
+  --verdict-avoid-bg: #fce6e7; /* 6.24:1 */
+
+  /* ---------- CPCB bands (same in both themes: the meaning never changes) ---------- */
+  --band-good: #1e8240;
+  --on-band-good: #ffffff; /* 4.86:1 */
+  --band-satisfactory: #9bcb4f;
+  --on-band-satisfactory: var(--bw-night-ink); /* 8.45:1 */
+  --band-moderate: #f2d21b;
+  --on-band-moderate: var(--bw-night-ink); /* 10.72:1 */
+  --band-poor: #ee8a1d;
+  --on-band-poor: var(--bw-night-ink); /* 6.34:1 */
+  --band-very-poor: #d3242a;
+  --on-band-very-poor: #ffffff; /* 5.18:1 */
+  --band-severe: #7e1430;
+  --on-band-severe: #ffffff; /* 10.35:1 */
+
+  /* ---------- Type ---------- */
+  --font-latin: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-hindi: "Noto Sans Devanagari", "Atkinson Hyperlegible Next", system-ui, sans-serif;
+  /* scale (base 16px; 1.2 minor-third, rounded) */
+  --text-xs: 0.875rem; /* 14  meta, source lines (minimum size in the app) */
+  --text-sm: 0.9375rem; /* 15  secondary lines */
+  --text-md: 1rem; /* 16  body */
+  --text-lg: 1.125rem; /* 18  plan lines, member names */
+  --text-xl: 1.375rem; /* 22  h2 */
+  --text-2xl: 1.75rem; /* 28  h1 */
+  --text-3xl: 2.25rem; /* 36  landing hero */
+  --font-size-aqi: 3.5rem; /* 56  band card number, tabular figures (utility: text-aqi) */
+  --leading-tight: 1.2;
+  --leading-normal: 1.5;
+  --leading-hindi: 1.7; /* Devanagari needs room for matras */
+  --weight-regular: 400;
+  --weight-bold: 700; /* Hindi: 600 (Noto Sans Devanagari looks heavy at 700). Load only 400/700 Latin, 400/600 Devanagari. */
+
+  /* ---------- Space (4px grid) ---------- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --target-min: 2.75rem; /* 44px; becomes 55px/66px with large text because it is rem */
+  --content-max: 60rem; /* 960px desktop */
+
+  /* ---------- Radius (varied on purpose: not every box is a rounded card) ---------- */
+  --radius-xs: 6px; /* inputs, checkboxes */
+  --radius-sm: 10px; /* buttons, chips' inner */
+  --radius-md: 14px; /* cards, sheets on desktop */
+  --radius-lg: 22px; /* kid card, bottom sheet top corners */
+  --radius-pill: 999px;
+
+  /* ---------- Elevation ---------- */
+  --shadow-1: 0 1px 2px rgba(21, 35, 43, 0.06), 0 1px 1px rgba(21, 35, 43, 0.04);
+  --shadow-2: 0 6px 20px rgba(21, 35, 43, 0.1), 0 2px 6px rgba(21, 35, 43, 0.06);
+  --shadow-3: 0 -8px 32px rgba(21, 35, 43, 0.16); /* bottom sheet */
+
+  /* ---------- Motion ---------- */
+  --dur-instant: 80ms; /* press feedback */
+  --dur-fast: 150ms; /* fades, toast exit */
+  --dur-base: 200ms; /* step change, text swap, cards in */
+  --dur-slow: 280ms; /* sheets, full-screen kid card */
+  --dur-colour: 320ms; /* band colour change */
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1); /* things entering */
+  --ease-in: cubic-bezier(0.4, 0, 1, 1); /* things leaving */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1); /* things changing in place */
+
+  color-scheme: light;
+}
+
+/* ---------- Dark theme: follows the OS unless the user picked a theme ---------- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-bg: #0e171c;
+    --color-surface: #16222a;
+    --color-surface-2: #1d2b34;
+    --color-text: #e6eef1; /* 15.43:1 on bg, 13.6:1 on surface */
+    --color-text-muted: #a3b3bc; /* 7.51:1 on surface */
+    --color-line: #2b3b45;
+    --color-line-strong: #5e7480; /* 3.31:1 on surface */
+    --color-primary: var(--bw-fresh-air); /* 9.55:1 on surface */
+    --color-primary-hover: #b3e2ee;
+    --color-on-primary: #0b2731; /* 9.18:1 on fresh air */
+    --color-primary-tint: #15323c;
+    --color-accent: #a9b7f0; /* 8.27:1 on surface */
+    --color-accent-tint: #1e2747;
+    --color-focus: #7db8f0;
+    --color-scrim: rgba(0, 0, 0, 0.6);
+    --color-inverse-bg: #e6eef1;
+    --color-on-inverse: #0e171c;
+    --color-inverse-action: var(--bw-deep-breath);
+    --band-severe-edge: #e6eef1;
+    --verdict-go-fg: #8edba8;
+    --verdict-go-bg: #15301f;
+    --verdict-care-fg: #f5c46b;
+    --verdict-care-bg: #33270f;
+    --verdict-avoid-fg: #ff9da2;
+    --verdict-avoid-bg: #3a1719;
+    --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow-2: 0 6px 20px rgba(0, 0, 0, 0.45);
+    --shadow-3: 0 -8px 32px rgba(0, 0, 0, 0.5);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --color-bg: #0e171c;
+  --color-surface: #16222a;
+  --color-surface-2: #1d2b34;
+  --color-text: #e6eef1;
+  --color-text-muted: #a3b3bc;
+  --color-line: #2b3b45;
+  --color-line-strong: #5e7480;
+  --color-primary: var(--bw-fresh-air);
+  --color-primary-hover: #b3e2ee;
+  --color-on-primary: #0b2731;
+  --color-primary-tint: #15323c;
+  --color-accent: #a9b7f0;
+  --color-accent-tint: #1e2747;
+  --color-focus: #7db8f0;
+  --color-scrim: rgba(0, 0, 0, 0.6);
+  --color-inverse-bg: #e6eef1;
+  --color-on-inverse: #0e171c;
+  --color-inverse-action: var(--bw-deep-breath);
+  --band-severe-edge: #e6eef1;
+  --verdict-go-fg: #8edba8;
+  --verdict-go-bg: #15301f;
+  --verdict-care-fg: #f5c46b;
+  --verdict-care-bg: #33270f;
+  --verdict-avoid-fg: #ff9da2;
+  --verdict-avoid-bg: #3a1719;
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-2: 0 6px 20px rgba(0, 0, 0, 0.45);
+  --shadow-3: 0 -8px 32px rgba(0, 0, 0, 0.5);
+  color-scheme: dark;
+}
+
+/* ---------- Large-text mode (spec 11.5): rem-based, so layout, targets and type all scale ---------- */
+html {
+  font-size: 100%;
+}
+html[data-text="lg"] {
+  font-size: 125%;
+} /* Large: 20px base */
+html[data-text="xl"] {
+  font-size: 150%;
+} /* Extra large: 24px base; 60+ quick path default */
+
+/* Hindi content: set lang="hi" on the element */
+:lang(hi) {
+  font-family: var(--font-hindi);
+  line-height: var(--leading-hindi);
+}
+
+/* ---------- Reduced motion: keep fades that carry meaning short, drop all movement ---------- */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur-base: 0ms;
+    --dur-slow: 0ms;
+    --dur-colour: 0ms;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  /* Breezy typing dots: the rule above would freeze each dot on a keyframe; show them static at 70%
+     (component classes: motion-reduce:animate-none motion-reduce:opacity-70) */
+  .typing-dot {
+    animation: none !important;
+    opacity: 0.7;
+  }
+}
+
+/* ---------- Tailwind v4 bridge ----------
+   Utility names differ from the semantic variable names on purpose (a theme key that points at a
+   variable of the same name would be a cycle). Examples: bg-canvas, bg-card, text-ink,
+   text-ink-muted, border-rule, bg-brand, text-on-brand, bg-band-poor, text-on-band-poor, font-hindi.
+   --radius-xs/sm/md/lg, --ease-in/--ease-out and --text-xs/sm/lg/xl/2xl/3xl above use Tailwind's own
+   names, so rounded-md, ease-out and text-xs pick up our values (our unlayered :root wins over the
+   theme layer). Our shadows are --shadow-1/2/3, so they are bridged below as shadow-card,
+   shadow-raised and shadow-sheet; --ease-standard as ease-std; the AQI size as text-aqi. */
+@theme inline {
+  --color-canvas: var(--color-bg);
+  --color-card: var(--color-surface);
+  --color-card-2: var(--color-surface-2);
+  --color-ink: var(--color-text);
+  --color-ink-muted: var(--color-text-muted);
+  --color-rule: var(--color-line);
+  --color-rule-strong: var(--color-line-strong);
+  --color-brand: var(--color-primary);
+  --color-brand-hover: var(--color-primary-hover);
+  --color-on-brand: var(--color-on-primary);
+  --color-brand-tint: var(--color-primary-tint);
+  --color-breezy: var(--color-accent);
+  --color-breezy-tint: var(--color-accent-tint);
+  --color-ring: var(--color-focus);
+  --color-go: var(--verdict-go-fg);
+  --color-go-tint: var(--verdict-go-bg);
+  --color-care: var(--verdict-care-fg);
+  --color-care-tint: var(--verdict-care-bg);
+  --color-avoid: var(--verdict-avoid-fg);
+  --color-avoid-tint: var(--verdict-avoid-bg);
+  --color-band-good: var(--band-good);
+  --color-band-satisfactory: var(--band-satisfactory);
+  --color-band-moderate: var(--band-moderate);
+  --color-band-poor: var(--band-poor);
+  --color-band-very-poor: var(--band-very-poor);
+  --color-band-severe: var(--band-severe);
+  --color-on-band-good: var(--on-band-good);
+  --color-on-band-satisfactory: var(--on-band-satisfactory);
+  --color-on-band-moderate: var(--on-band-moderate);
+  --color-on-band-poor: var(--on-band-poor);
+  --color-on-band-very-poor: var(--on-band-very-poor);
+  --color-on-band-severe: var(--on-band-severe);
+  --color-ai: var(--color-accent);
+  --color-ai-tint: var(--color-accent-tint);
+  --color-err: var(--color-error); /* text-err (a self-named key would be a cycle) */
+  --shadow-card: var(--shadow-1);
+  --shadow-raised: var(--shadow-2);
+  --shadow-sheet: var(--shadow-3);
+  --ease-std: var(--ease-standard);
+  --text-aqi: var(--font-size-aqi);
+  --text-md: 1rem;
+  --font-sans: var(--font-latin);
+  --font-devanagari: var(--font-hindi);
+}
+
+/* ---------- App additions ---------- */
+
+/* next/font self-hosts the two families under generated names; point the token stacks at them. */
+:root {
+  --font-latin: var(--font-atkinson), "Atkinson Hyperlegible Next", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-hindi: var(--font-noto-deva), "Noto Sans Devanagari", var(--font-atkinson), system-ui, sans-serif;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-latin);
+  font-size: var(--text-md);
+  line-height: var(--leading-normal);
+}
+
+h1,
+h2,
+h3 {
+  line-height: var(--leading-tight);
+}
+
+/* Focus ring: 2px focus colour + 2px offset on every interactive element; outlines are never removed. */
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* At Extra large text the header keeps only the logo mark, so the controls still fit on a phone. */
+html[data-text="xl"] .wordmark {
+  display: none;
+}
+
+/* Extra large for one part of the page ("View as Dadaji", journey 5.1): the same 150% as
+   html[data-text="xl"], applied by re-scaling the rem tokens the utilities read. */
+.text-scope-xl {
+  --spacing: calc(0.25rem * 1.5);
+  --text-xs: calc(0.875rem * 1.5);
+  --text-sm: calc(0.9375rem * 1.5);
+  --text-md: calc(1rem * 1.5);
+  --text-lg: calc(1.125rem * 1.5);
+  --text-xl: calc(1.375rem * 1.5);
+  --text-2xl: calc(1.75rem * 1.5);
+  --text-3xl: calc(2.25rem * 1.5);
+  --font-size-aqi: calc(3.5rem * 1.5);
+  font-size: var(--text-md);
+}
+
+/* The plan slot (design F motion table): the badge fades in after 300 ms, so a fast plan never
+   flashes it, and out in 150 ms; then the source line fades in (150 ms) in the same grid cell.
+   Gemini's wording replaces the template with a ~300 ms cross-fade. No movement, and no fades
+   under reduced motion. */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.plan-fade {
+  grid-area: 1 / 1;
+  transition: opacity 150ms var(--ease-in);
+}
+
+.plan-fade[data-shown="false"] {
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 150ms var(--ease-in),
+    visibility 0s linear 150ms;
+}
+
+.plan-fade[data-shown="true"] {
+  transition-delay: 150ms;
+}
+
+.plan-badge[data-shown="true"] {
+  animation: fade-in 150ms var(--ease-in) 300ms both;
+}
+
+.plan-text-in {
+  animation: fade-in 200ms var(--ease-standard) 100ms both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .plan-badge[data-shown="true"],
+  .plan-text-in {
+    animation: none;
+  }
+  .plan-fade,
+  .plan-fade[data-shown="true"],
+  .plan-fade[data-shown="false"] {
+    transition: none;
+  }
+}
+
+/* Breezy (design F motion table): the typing dots are the only loop in the app; replies and cards
+   rise 8 px in 200 ms, cards 60 ms apart. Reduced motion: static dots at 70%, no rise. */
+@keyframes typing {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+}
+
+.typing-dot {
+  animation: typing 1.2s var(--ease-standard) infinite;
+}
+
+@keyframes message-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.m-in {
+  animation: message-in 200ms var(--ease-out) both;
+  animation-delay: calc(var(--i, 0) * 60ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typing-dot {
+    animation: none;
+    opacity: 0.7;
+  }
+  .m-in {
+    animation: none;
+  }
+}
