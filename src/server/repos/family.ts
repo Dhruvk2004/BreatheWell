@@ -52,8 +52,8 @@ export async function loadFamily(db: Db, fid: string): Promise<FamilyBundle | nu
 /** The family's calendar date (India time; the app's families are in Indian cities). */
 export const familyToday = (now: Date): string => localTime({ now, timeZone: INDIA_TIME_ZONE }).date;
 
-/** Plans, member plans, items and progress are kept 30 days after their date (spec 9.4); the TTL
- * policy on `expireAt` deletes them. */
+/** Plans, member plans, items and progress are kept 30 days after their date (spec 9.4); the daily
+ * clean-up (src/server/cleanup) deletes them after `expireAt`. */
 export const retainedUntil = (date: string): string => `${addDays(date, 30)}T00:00:00.000Z`;
 
 /**

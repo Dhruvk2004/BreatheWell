@@ -97,5 +97,11 @@ function localTestBase(env: Env, key: string): string | null {
 /** Both Open-Meteo hosts' stand-in (`playwright.config.ts` sets it). */
 export const openMeteoTestBase = (env: Env): string | null => localTestBase(env, "OPEN_METEO_TEST_BASE");
 
+/**
+ * `CRON_SECRET`, the shared secret Vercel Cron sends to `/api/cron/cleanup`. Set it on Vercel only
+ * (any long random string); without it the clean-up route refuses every call.
+ */
+export const cronSecret = (env: Env): string | null => value(env, "CRON_SECRET");
+
 /** The optional data.gov.in key for CPCB station readings (spec S1). */
 export const dataGovKey = (env: Env): string | null => value(env, "DATA_GOV_IN_KEY");

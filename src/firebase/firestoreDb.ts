@@ -1,5 +1,6 @@
 import { Timestamp, type DocumentData, type Firestore, type Query } from "firebase-admin/firestore";
 import { decodeTimestamps, encodeTimestamps, type TimestampCodec } from "@/server/db/timestamps";
+import type { ExpiredSweeper } from "@/server/cleanup/sweep";
 import type { Db, DocData, DocEntry, Tx, Where } from "@/server/db/types";
 
 /**
@@ -41,5 +42,23 @@ export function firestoreDb(firestore: Firestore): Db {
         return fn(tx);
       }),
     deleteTree: (path) => firestore.recursiveDelete(firestore.doc(path)),
+  };
+}
+
+/**
+ * The daily clean-up's deletes (src/server/cleanup/sweep.ts): a collection-group query on
+ * `expireAt` (its index is in firestore.indexes.json) and one batched delete. Only documents that
+ * carry `expireAt` can match, so a family's own `members` docs are never touched.
+ */
+export function firestoreSweeper(firestore: Firestore): ExpiredSweeper {
+  return {
+    deleteExpired: async (group, before, limit) => {
+      const expired = await firestore.collectionGroup(group).where("expireAt", "<", Timestamp.fromDate(before)).limit(limit).get();
+      if (expired.empty) return 0;
+      const batch = firestore.batch();
+      for (const doc of expired.docs) batch.delete(doc.ref);
+      await batch.commit();
+      return expired.size;
+    },
   };
 }

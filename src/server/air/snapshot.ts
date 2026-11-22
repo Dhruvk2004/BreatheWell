@@ -15,7 +15,7 @@ export interface AirSnapshot {
   readonly weather: HourlyWeather;
 }
 
-/** The air cache keeps a cell for 48 hours (spec 9.4); Firestore TTL deletes it after `expireAt`. */
+/** The air cache keeps a cell for 48 hours (spec 9.4); the daily clean-up deletes it after `expireAt`. */
 export const AIR_CACHE_TTL_MS = 48 * 3_600_000;
 
 /** "2026112106": the UTC hour an air reading belongs to. */
