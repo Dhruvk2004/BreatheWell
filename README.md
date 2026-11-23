@@ -2,7 +2,7 @@
 
 **Know when your family can breathe easy.** BreatheWell is a family air coach for winter smog in Indian cities. It reads the air where you live, hour by hour, and tells each person, in English or Hindi, whether to go out today, the best time to go, and one simple change that helps them and the air.
 
-**Live app:** _link coming soon_ · Try **Air now** and the **demo family** with no sign-in.
+**Live app:** [breathe-well-theta.vercel.app](https://breathe-well-theta.vercel.app/) · Try **Air now** and the **demo family** with no sign-in.
 
 <!-- Screenshots: Air now · Today · kid card · Breezy -->
 
