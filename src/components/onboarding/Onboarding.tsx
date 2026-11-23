@@ -11,9 +11,6 @@ import { useOnboarding } from "./useOnboarding";
 
 const NUMBERED: Partial<Record<Step, number>> = {
   about: 1,
-  aboutLanguage: 1,
-  aboutSize: 1,
-  aboutName: 1,
   age: 2,
   health: 3,
   activities: 4,
@@ -22,9 +19,6 @@ const NUMBERED: Partial<Record<Step, number>> = {
 const TITLE: Partial<Record<Step, "onb.summary" | "onb.about">> = {
   summary: "onb.summary",
   about: "onb.about",
-  aboutLanguage: "onb.about",
-  aboutSize: "onb.about",
-  aboutName: "onb.about",
 };
 const QUICK: Partial<Record<Step, number>> = { quickHealth: 1, quickWalk: 2, quickTravel: 3 };
 
@@ -53,7 +47,12 @@ function Progress({ step, lang }: { step: Step; lang: Lang }) {
 export function Onboarding({ page, lang }: { page: OnboardingPage; lang: Lang }) {
   const t = translator(lang);
   const { heading, draft, set, intent, setIntent, index, step, last, showErrors, status, back, next } = useOnboarding(page, lang);
-  const title = step === "start" ? t("onb.welcome", { name: draft.name }) : t(TITLE[step] ?? "onb.metaTitle");
+  const title =
+    step === "start"
+      ? draft.name.trim()
+        ? t("onb.welcome", { name: draft.name })
+        : t("onb.welcomeAnon")
+      : t(TITLE[step] ?? "onb.metaTitle");
   const action = status === "saving" ? "common.saving" : step === "summary" ? "onb.looksGood" : last ? "quick.done" : "common.next";
   return (
     <div className="mx-auto grid w-full max-w-[34rem] gap-5">

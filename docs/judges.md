@@ -77,7 +77,7 @@ The rules engine is the guardrail: `domain/` decides every verdict and time, `ai
 
 ## Languages
 
-Every page is prerendered twice, under `app/[lang]` (`/en`, `/hi`). `src/proxy.ts` rewrites each request to the variant in the viewer's language (the `bw-lang` cookie, else the browser's language), so Hindi is server-rendered with `<html lang="hi">` and no flash. The text size (`bw-text` cookie: 100 %, 125 %, 150 %) is applied before paint.
+Every page is prerendered twice, under `app/[lang]` (`/en`, `/hi`). `src/proxy.ts` rewrites each request to the variant in the viewer's language (the `bw-lang` cookie, else the browser's language), so Hindi is server-rendered with `<html lang="hi">` and no flash.
 
 ## Gemini API terms
 

@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { DependentForm } from "@/components/dependent/DependentForm";
 import { HomePicker } from "@/components/family/HomePicker";
-import { BLANK_HOME, homeSetupSummary } from "@/components/family/HomeSetupFields";
+import { BLANK_HOME, homeSetupSummary } from "@/components/family/homeSetup";
 import { InvitePreviewView } from "@/components/family/InvitePreviewView";
 import { KidCardView } from "@/components/kid/KidCardView";
 import { MemberView } from "@/components/member/MemberView";
@@ -35,11 +35,10 @@ const geolocation = (ok: boolean) =>
   });
 
 describe("form edges", () => {
-  it("about step: language, text size and the name hint", async () => {
+  it("about step: language and the name hint, with no text-size question", async () => {
     render(<Onboarding page={{ googleName: "Neha", input: null, hasFamily: true, familyName: "F", removedFrom: null }} lang="en" />);
     await userEvent.click(screen.getByRole("radio", { name: "हिंदी" }));
-    await userEvent.click(screen.getByRole("radio", { name: "Extra large" }));
-    expect(document.documentElement.getAttribute("data-text")).toBe("xl");
+    expect(screen.queryByRole("radio", { name: "Extra large" })).toBeNull();
     expect(screen.getByText('This name goes into your plan: "Add to Neha\'s plan".')).toBeInTheDocument();
     await userEvent.click(screen.getByRole("button", { name: "Next" }));
     await userEvent.click(screen.getByRole("radio", { name: "18–59" }));

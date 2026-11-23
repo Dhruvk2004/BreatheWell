@@ -12,7 +12,6 @@ export type QuickTravel = (typeof QUICK_TRAVEL)[number];
 export interface QuickAnswers {
   readonly name: string;
   readonly language: Lang;
-  readonly textSize: ProfileInput["textSize"];
   readonly conditions: readonly ProfileInput["conditions"][number][];
   readonly shareWith: ProfileInput["shareWith"];
   readonly walk: QuickWalk;
@@ -21,8 +20,7 @@ export interface QuickAnswers {
 
 /**
  * The 60+ quick path (spec 5.6): three questions, then defaults: a 45-minute walk that can move to
- * any time today, trips under 15 minutes. The text size is the one on screen (Large is pre-selected
- * for 60+, spec 6.1 item 2). Everything can be changed in Profile.
+ * any time today, trips under 15 minutes. Everything can be changed in Profile.
  */
 export function quickProfile(answers: QuickAnswers): ProfileInput {
   const walk =
@@ -39,7 +37,6 @@ export function quickProfile(answers: QuickAnswers): ProfileInput {
   return {
     name: answers.name,
     language: answers.language,
-    textSize: answers.textSize,
     ageGroup: "60plus",
     conditions: [...answers.conditions],
     shareWith: answers.shareWith,

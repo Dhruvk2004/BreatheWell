@@ -3,7 +3,10 @@ import { authorize } from "../auth/guard";
 import type { AppDeps } from "../deps";
 import { errorResponse, forbidden, notFoundError, privateJson } from "../http";
 import { callerFamily } from "../repos/family";
+import { familyCodes } from "../repos/joinCodes";
 import { takeOut } from "../repos/membership";
+import { paths } from "../repos/paths";
+import { joinCodeRecord, parsed } from "../repos/records";
 
 /**
  * `POST /api/family/leave` (spec 5.10) and `DELETE /api/family/members/{uid}` (admin removes a
@@ -36,7 +39,18 @@ export async function removeMember(request: Request, deps: AppDeps, target: stri
     const found = await callerFamily(tx, uid);
     if (!found || !isAdmin(found.family, uid)) return "forbidden" as const;
     if (!found.family.memberUids.includes(target)) return "not_found" as const;
+    // Every code that exists now stops working for them; the admin can make a new one (stage 8 QA8-2).
+    const codes = await Promise.all(
+      (await familyCodes(tx, found.fid)).map(async (code) => ({
+        code,
+        record: parsed(joinCodeRecord, await tx.get(paths.joinCode(code))),
+      })),
+    );
     await takeOut(tx, found.fid, found.family, target, deps.now(), "removed");
+    for (const { code, record } of codes) {
+      if (record && !record.removedUids.includes(target))
+        tx.set(paths.joinCode(code), { removedUids: [...record.removedUids, target] }, { merge: true });
+    }
     return "removed" as const;
   });
   if (result === "forbidden") return forbidden("Only the family admin can remove members.");

@@ -14,8 +14,6 @@ const params = vi.hoisted(() => ({ lang: "hi" as string | undefined }));
 vi.mock("next/navigation", () => ({ useParams: () => params }));
 
 afterEach(() => {
-  document.documentElement.setAttribute("data-text", "md");
-  document.cookie = "bw-text=; Max-Age=0; Path=/";
   document.cookie = "bw-lang=; Max-Age=0; Path=/";
 });
 
@@ -37,28 +35,11 @@ describe("header (design header pattern)", () => {
     expect(within(screen.getByRole("button", { name: /^अंग्रेज़ी में देखें/ })).getByText("English")).toHaveAttribute("lang", "en");
   });
 
-  it("cycles text size on <html data-text>, saves it and says its state", async () => {
+  it("has no text-size control; the wordmark and the language switch are the only header items", () => {
     render(<SiteHeader lang="en" />);
     expect(screen.getByRole("link", { name: "BreatheWell home" }).querySelector(".wordmark")).toHaveTextContent("BreatheWell");
-    await userEvent.click(screen.getByRole("button", { name: "Text size: Normal" }));
-    expect(document.documentElement.dataset.text).toBe("lg");
-    expect(document.cookie).toContain("bw-text=lg");
-    await userEvent.click(screen.getByRole("button", { name: "Text size: Large" }));
-    await userEvent.click(screen.getByRole("button", { name: "Text size: Extra large" }));
-    expect(screen.getByRole("button", { name: "Text size: Normal" })).toBeInTheDocument();
-  });
-
-  it("server-renders Normal text size; the head script and hydration take it from there", () => {
-    expect(renderToString(<SiteHeader lang="en" />)).toContain('aria-label="Text size: Normal"');
-  });
-
-  it("starts from the text size the head script applied", () => {
-    document.documentElement.setAttribute("data-text", "xl");
-    render(<SiteHeader lang="en" />);
-    expect(screen.getByRole("button", { name: "Text size: Extra large" })).toBeInTheDocument();
-    document.documentElement.setAttribute("data-text", "junk");
-    render(<SiteHeader lang="hi" />);
-    expect(screen.getByRole("button", { name: "अक्षरों का आकार: सामान्य" })).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /Text size/ })).toBeNull();
+    expect(screen.queryByText("Aa")).toBeNull();
   });
 });
 

@@ -1,8 +1,8 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
-/** Slice 1 smoke test: the shell renders with no keys set, switches language and text size, and passes axe. */
-test("landing renders, switches to Hindi and large text, with no axe violations", async ({ page }) => {
+/** Slice 1 smoke test: the shell renders with no keys set, switches language, and passes axe. */
+test("landing renders and switches to Hindi with no axe violations; there is no text-size button", async ({ page }) => {
   await page.goto("/");
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Can your family go out today?");
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
@@ -10,25 +10,16 @@ test("landing renders, switches to Hindi and large text, with no axe violations"
   await page.getByRole("button", { name: "Switch to Hindi" }).click();
   await expect(page.locator("html")).toHaveAttribute("lang", "hi");
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("क्या आज आपका परिवार बाहर जा सकता है?");
-  await page.getByRole("button", { name: /अक्षरों का आकार/ }).click();
-  await expect(page.locator("html")).toHaveAttribute("data-text", "lg");
+  await expect(page.getByText("Aa", { exact: true })).toHaveCount(0);
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
 });
 
-test("the server renders the saved language and text size on the next visit, with no switch after load", async ({
-  page,
-  context,
-  baseURL,
-}) => {
-  await context.addCookies([
-    { name: "bw-lang", value: "hi", url: baseURL },
-    { name: "bw-text", value: "xl", url: baseURL },
-  ]);
+test("the server renders the saved language on the next visit, with no switch after load", async ({ page, context, baseURL }) => {
+  await context.addCookies([{ name: "bw-lang", value: "hi", url: baseURL }]);
   const response = await page.goto("/");
   const html = (await response?.text()) ?? "";
   expect(html).toContain('<html lang="hi"');
   expect(html).toContain("क्या आज आपका परिवार बाहर जा सकता है?");
-  await expect(page.locator("html")).toHaveAttribute("data-text", "xl");
 });
 
 test("a Hindi browser gets Hindi by default", async ({ browser, baseURL }) => {

@@ -88,7 +88,6 @@ describe("own profile (spec 9.2; stage 7 AUTH-3: every write goes through the se
     const write = updateDoc(doc(dbAs(env, role), "users/member"), {
       name: "Neha",
       language: "hi",
-      textSize: "lg",
       aliases: { papa: "admin" },
     });
     await assertFails(write);
@@ -106,7 +105,6 @@ describe("own profile (spec 9.2; stage 7 AUTH-3: every write goes through the se
       { name: "x".repeat(31) },
       { name: "" },
       { language: "fr" },
-      { textSize: "huge" },
     ])
       await assertFails(updateDoc(doc(db, "users/member"), change));
     const aliases = Object.fromEntries(Array.from({ length: 13 }, (_, i) => [`k${i}`, "admin"]));

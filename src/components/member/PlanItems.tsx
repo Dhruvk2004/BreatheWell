@@ -52,7 +52,7 @@ export function PlanItems({ plan, ticked, words = {}, lang }: PlanItemsProps) {
             <p className="m-0 text-sm font-bold text-ink-muted">{formatTime(hour, minute, lang)}</p>
             <h3 className="m-0 text-lg font-bold">{label}</h3>
             <VerdictChip verdict={item.plan.verdictAtUsual} lang={lang} />
-            <p className="m-0 min-h-[3lh] text-lg [html[data-text=lg]_&]:min-h-[4lh] [html[data-text=xl]_&]:min-h-[6lh]">
+            <p className="m-0 min-h-[3lh] text-lg">
               <FadeText text={doThis} />
               {later && ` ${later}`}
             </p>

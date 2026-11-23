@@ -4,7 +4,7 @@ import { formatCode } from "@/domain/family/joinCode";
 import { translator, type Lang } from "@/i18n/t";
 import type { PersonView, SettingsPage } from "@/view/app";
 import { DeleteDependent } from "../dependent/DeleteDependent";
-import { homeSetupSummary } from "../family/HomeSetupFields";
+import { homeSetupSummary } from "../family/homeSetup";
 import { RemoveMember } from "../today/JoinCard";
 import { removalOf } from "../today/removal";
 import { btn, h2, noteInfo } from "../ui/styles";

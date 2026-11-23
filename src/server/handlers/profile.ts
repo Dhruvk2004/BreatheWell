@@ -29,7 +29,7 @@ export async function saveProfile(request: Request, deps: AppDeps): Promise<Resp
     if (!user) return false;
     const family = user.familyId ? await familyFor(tx, user.familyId, uid) : null;
     const own = { name: p.name, language: p.language };
-    tx.set(paths.user(uid), { ...own, textSize: p.textSize, profile, onboarded: true, updatedAt: at }, { merge: true });
+    tx.set(paths.user(uid), { ...own, profile, onboarded: true, updatedAt: at }, { merge: true });
     tx.set(paths.health(uid), { conditions: p.conditions, shareWith: p.shareWith, updatedAt: at });
     if (family && user.familyId) {
       tx.set(paths.member(user.familyId, uid), { ...own, ...profile, onboarded: true }, { merge: true });
@@ -42,6 +42,5 @@ export async function saveProfile(request: Request, deps: AppDeps): Promise<Resp
   return privateJson({ ok: true }, 200, [
     accountCookieHeader(initialsOf(p.name), secure),
     prefCookie(PREF_COOKIES.lang, p.language, secure),
-    prefCookie(PREF_COOKIES.textSize, p.textSize, secure),
   ]);
 }

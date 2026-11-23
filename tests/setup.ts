@@ -10,6 +10,5 @@ afterEach(() => {
   if (typeof window === "undefined") return;
   cleanup();
   sessionStorage.clear();
-  document.documentElement.removeAttribute("data-text");
   document.documentElement.setAttribute("lang", "en");
 });

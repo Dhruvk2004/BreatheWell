@@ -21,7 +21,6 @@ export async function rulesEnv(): Promise<RulesTestEnvironment> {
 const profile = (familyId: string | null, role: string | null) => ({
   name: "Asha",
   language: "en",
-  textSize: "md",
   familyId,
   role,
   onboarded: true,

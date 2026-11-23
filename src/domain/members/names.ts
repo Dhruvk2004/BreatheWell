@@ -11,7 +11,8 @@ export const nameSchema = (max: number) =>
     .min(1)
     .max(max)
     .regex(NAME_CHARS)
-    .refine((name) => !/[\p{L}\p{N}]\.[\p{L}\p{N}]/u.test(name));
+    // No domains ("site.com", "a.co"): a dot may only follow an initial, as in "R.K. Laxman" (stage 8 QA8-5).
+    .refine((name) => !/[\p{L}\p{N}]\.[\p{L}\p{N}]{2,}/u.test(name));
 
 /**
  * A name that came from outside a validated form (the Google display name, a stored profile):
@@ -22,3 +23,6 @@ export function safeName(raw: string, max = 30): string {
   const result = nameSchema(max).safeParse(raw);
   return result.success ? result.data : "";
 }
+
+/** Shown for an adult whose Google name could not be used, until they type one in onboarding (QA8-6). */
+export const UNNAMED_MEMBER = "New member · नया सदस्य";

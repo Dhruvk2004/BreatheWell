@@ -9,7 +9,9 @@ import { tickProgress } from "@/server/handlers/progress";
 import { deleteSession } from "@/server/handlers/session";
 import { ensureUser } from "@/server/repos/users";
 import type { Tx } from "@/server/db/types";
-import { nameSchema } from "@/domain/members/names";
+import { nameSchema, UNNAMED_MEMBER } from "@/domain/members/names";
+import { familyView } from "@/server/app/familyView";
+import { loadFamily } from "@/server/repos/family";
 import { FakeAuth, json, request, testApp } from "../../helpers/appDeps";
 import { NOW } from "../../helpers/airDeps";
 import { HOME, HOME_SETUP, joins, sharmaFamily, signUp } from "../../helpers/family";
@@ -112,6 +114,25 @@ describe("names copied into the family pass nameSchema (AUTH-3, WEB-6)", () => {
       expect(user.name).toBe("");
     },
   );
+
+  it.each(["R.K. Laxman", "R.K.", "A. K. Singh", "Dr. Mehta", "दादाजी"])("accepts the Indian name %s (stage 8 QA8-5)", (name) => {
+    expect(nameSchema(30).safeParse(name).success).toBe(true);
+  });
+
+  it.each(["evil.com", "a.co", "Visit site.in", "x.yz Smith"])("still refuses the domain-like name %s", (name) => {
+    expect(nameSchema(30).safeParse(name).success).toBe(false);
+  });
+
+  it("keeps an initialled Google name, and shows the family a fallback for an unusable one (QA8-5, QA8-6)", async () => {
+    expect((await ensureUser(new MemoryDb(), "u1", "R.K. Laxman", NOW)).name).toBe("R.K.");
+    const app = testApp();
+    const { fid, code } = await sharmaFamily(app);
+    await signUp(app, "eve", "Eve");
+    app.db.docs.set("users/eve", { ...app.db.docs.get("users/eve"), name: "😀" });
+    expect((await joinFamily(request("/api/join", { uid: "eve", body: { code } }), app.deps)).status).toBe(200);
+    const bundle = await loadFamily(app.db, fid);
+    expect(familyView(bundle!, "neha").people.find((p) => p.id === "eve")?.name).toBe(UNNAMED_MEMBER);
+  });
 
   it("keeps a plain Google first name", async () => {
     expect((await ensureUser(new MemoryDb(), "u1", "Neha Sharma", NOW)).name).toBe("Neha");

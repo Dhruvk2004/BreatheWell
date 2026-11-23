@@ -13,7 +13,7 @@
 - **Family accounts**: adults join with a code or QR. Children are added by a parent and get a simple kid card to show or share on WhatsApp.
 - **Breezy**, an air assistant that answers questions and adds reminders to a family member's checklist.
 - **A community message** for your housing society or school group, in English and Hindi, ready to share.
-- **Built for everyone**: English and Hindi, large text, phone-first screens, and a saved plan when you're offline.
+- **Built for everyone**: English and Hindi, phone-first screens, and a saved plan when you're offline.
 
 ## How it works
 

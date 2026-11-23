@@ -11,7 +11,6 @@ import { json, request, type TestApp } from "./appDeps";
 export const PROFILE: ProfileInput = {
   name: "Neha",
   language: "en",
-  textSize: "md",
   ageGroup: "18to59",
   conditions: ["none"],
   shareWith: "self",

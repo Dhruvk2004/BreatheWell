@@ -2,15 +2,12 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test, type Page } from "@playwright/test";
 import { FALLBACK_PORT } from "../playwright.config";
 
-/** Slice 2: the public pages work with no keys, pass axe in EN, HI and large text, and the demo tells the smog story. */
+/** Slice 2: the public pages work with no keys, pass axe in EN and HI, and the demo tells the smog story. */
 
 const noViolations = async (page: Page) => expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
 
-const withText = async (page: Page, baseURL: string | undefined, lang: "en" | "hi", text: "lg" | "xl") => {
-  await page.context().addCookies([
-    { name: "bw-lang", value: lang, url: baseURL },
-    { name: "bw-text", value: text, url: baseURL },
-  ]);
+const withLang = async (page: Page, baseURL: string | undefined, lang: "en" | "hi") => {
+  await page.context().addCookies([{ name: "bw-lang", value: lang, url: baseURL }]);
 };
 
 const PUNE = {
@@ -99,11 +96,11 @@ test("Live today falls back to the saved 20 Nov reading when Open-Meteo fails", 
   ).toBeVisible();
 });
 
-test("Dadaji's view is a large Hindi card; Riya's kid card has no numbers but times 🔒", async ({ page }) => {
+test("Dadaji's view is a Hindi card; Riya's kid card has no numbers but times 🔒", async ({ page }) => {
   await page.goto("/demo?view=dadaji");
-  await expect(page.getByText("What Dadaji sees: Hindi, extra large text.")).toBeVisible();
+  await expect(page.getByText("What Dadaji sees: Hindi.")).toBeVisible();
   await expect(page.getByRole("heading", { name: "नमस्ते, दादाजी" })).toBeVisible();
-  await expect(page.locator(".text-scope-xl")).toHaveAttribute("lang", "hi");
+  await expect(page.getByRole("heading", { name: "नमस्ते, दादाजी" }).locator("xpath=ancestor::*[@lang='hi'][1]")).toBeVisible();
   await noViolations(page);
   await page.goto("/demo");
   await page.getByRole("link", { name: "Kid card: Riya" }).click();
@@ -129,13 +126,9 @@ for (const path of [
   "/privacy",
   "/nowhere",
 ]) {
-  // Large text at 150 % (xl, in Hindi) and 125 % (lg, in English) on every public page (spec 11.5).
-  for (const [lang, text] of [
-    ["hi", "xl"],
-    ["en", "lg"],
-  ] as const) {
-    test(`${path} has no axe violations or sideways scroll (${lang}, ${text})`, async ({ page, baseURL }) => {
-      await withText(page, baseURL, lang, text);
+  for (const lang of ["hi", "en"] as const) {
+    test(`${path} has no axe violations or sideways scroll (${lang})`, async ({ page, baseURL }) => {
+      await withLang(page, baseURL, lang);
       await page.goto(path);
       await expect(page.locator("html")).toHaveAttribute("lang", lang);
       await expect(page.getByRole("heading", { level: 1 })).toBeVisible();

@@ -73,12 +73,24 @@ export interface KidCard {
   readonly ideas: readonly string[];
 }
 
+/**
+ * One label per activity. Two of the same kind (school there and back) get their usual clock time,
+ * "School · 7 am" and "School · 1 pm", so a child can tell the rows apart (stage 8 QA8-4).
+ */
+export function kidLabels(items: readonly KidItem[], lang: Lang): string[] {
+  const label = (item: KidItem) => KID_LABEL[item.type][lang];
+  return items.map((item) => {
+    const twin = items.filter((other) => label(other) === label(item)).length > 1;
+    return twin ? `${label(item)} · ${formatHour(item.plan.usualHour, lang)}` : label(item);
+  });
+}
+
 /** The kid card's content (spec 10.12): headline, one line per activity, a kid "Why?" and 3 inside ideas. */
 export function kidCard(input: KidCardInput): KidCard {
   const { lang } = input;
   return {
     headline: fillSlots(KID_HEADLINE[input.band][lang], { part: partOfDay(input.hour, lang) }),
-    lines: input.items.map((item) => ({ label: KID_LABEL[item.type][lang], text: kidLine(item, input.tone, lang) })),
+    lines: kidLabels(input.items, lang).map((label, i) => ({ label, text: kidLine(input.items[i], input.tone, lang) })),
     why: kidWhy(input.factId, lang),
     ideas: insideIdeas(input.date, lang),
   };

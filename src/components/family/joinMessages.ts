@@ -15,6 +15,8 @@ export function joinMessage(problem: JoinProblem, lang: Lang): string {
   switch (problem.code) {
     case "expired":
       return admin ? t("join.err.expired", { admin }) : t("join.err.expiredAnon");
+    case "removed":
+      return admin ? t("join.err.removed", { admin }) : t("join.err.removedAnon");
     case "full":
       return t("join.err.full", { family, admin });
     case "in_other_family":

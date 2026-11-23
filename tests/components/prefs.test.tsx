@@ -1,32 +1,14 @@
 import { describe, expect, it, vi } from "vitest";
-import { isTextSize, nextTextSize, prefCookie, TEXT_SIZE_SCRIPT } from "@/components/prefs/cookies";
+import { prefCookie } from "@/components/prefs/cookies";
 import { siteMetadata } from "@/i18n/metadata";
 import { localisedPath, pickLang } from "@/server/lang";
 
 vi.mock("next/root-params", () => ({ lang: vi.fn(async () => "hi") }));
 
 describe("preference cookies", () => {
-  it("cycles Normal → Large → Extra large → Normal and checks values", () => {
-    expect([nextTextSize("md"), nextTextSize("lg"), nextTextSize("xl")]).toEqual(["lg", "xl", "md"]);
-    expect([isTextSize("lg"), isTextSize("huge"), isTextSize(null)]).toEqual([true, false, false]);
-  });
-
   it("writes a year-long, site-wide, Lax cookie, Secure on HTTPS", () => {
     expect(prefCookie("bw-lang", "hi", true)).toBe("bw-lang=hi; Path=/; Max-Age=31536000; SameSite=Lax; Secure");
-    expect(prefCookie("bw-text", "lg", false)).toBe("bw-text=lg; Path=/; Max-Age=31536000; SameSite=Lax");
-  });
-
-  it("applies the saved text size before paint, and ignores junk or a missing cookie", () => {
-    const root = document.documentElement;
-    root.setAttribute("data-text", "md");
-    document.cookie = "bw-text=xl; Path=/";
-    new Function(TEXT_SIZE_SCRIPT)();
-    expect(root.dataset.text).toBe("xl");
-    document.cookie = "bw-text=huge; Path=/";
-    root.setAttribute("data-text", "md");
-    new Function(TEXT_SIZE_SCRIPT)();
-    expect(root.dataset.text).toBe("md");
-    document.cookie = "bw-text=; Max-Age=0; Path=/";
+    expect(prefCookie("bw-lang", "en", false)).toBe("bw-lang=en; Path=/; Max-Age=31536000; SameSite=Lax");
   });
 });
 

@@ -44,7 +44,8 @@ describe("daily clean-up", () => {
     await seed();
     const result = await sweepExpired(firestoreSweeper(db!), () => NOW);
     expect(result.complete).toBe(true);
-    expect(result.total).toBe(6);
+    // Other emulator files run alongside and may add expired docs of their own: at least these 6.
+    expect(result.total).toBeGreaterThanOrEqual(6);
     for (const gone of [
       "airCache/old",
       "joinCodes/OLD123",

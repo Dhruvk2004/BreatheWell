@@ -45,7 +45,6 @@ export const ADULT_CONDITIONS = [
   "prefer_not",
 ] as const satisfies readonly Condition[];
 export const SHARE_WITH = ["self", "admin", "family"] as const;
-export const TEXT_SIZES = ["md", "lg", "xl"] as const;
 const TRIPS = ["under15", "15to45", "over45"] as const satisfies readonly TripLength[];
 
 const activityInput = z.strictObject({
@@ -66,7 +65,6 @@ export const profileInput = z
   .strictObject({
     name: nameSchema(30),
     language: z.enum(LANGS),
-    textSize: z.enum(TEXT_SIZES),
     ageGroup: z.enum(["18to59", "60plus"]),
     conditions: z.array(z.enum(ADULT_CONDITIONS)).max(ADULT_CONDITIONS.length),
     shareWith: z.enum(SHARE_WITH),

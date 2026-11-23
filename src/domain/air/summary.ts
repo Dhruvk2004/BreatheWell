@@ -52,6 +52,7 @@ export function airSummary(series: HourlyPm, clock: Clock): AirSummary {
   const local = localTime(clock);
   const enoughForecast = hasEnoughForecast(points, clock);
   const span = windowDay(local.date, local.hour);
+  const best = enoughForecast ? bestWindow(index, span.date, span.fromHour) : null;
   return {
     index,
     date: local.date,
@@ -60,8 +61,8 @@ export function airSummary(series: HourlyPm, clock: Clock): AirSummary {
     avg24: average24Aqi(series, clock),
     enoughForecast,
     windowDay: span.day,
-    best: enoughForecast ? bestWindow(index, span.date, span.fromHour) : null,
-    worst: enoughForecast ? worstWindow(index, span.date, span.fromHour) : null,
+    best,
+    worst: enoughForecast ? worstWindow(index, span.date, span.fromHour, best) : null,
     today: Array.from({ length: 24 }, (_, h) => pointAt(index, local.date, h) ?? null),
     outlook: outlook(points, clock),
   };

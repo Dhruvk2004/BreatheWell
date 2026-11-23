@@ -31,12 +31,12 @@ describe("Demo family (spec 10.3)", () => {
     expect(screen.queryByText(/Made by BreatheWell assistant/)).toBeNull();
   });
 
-  it("the Severe day shows the GRAP note; Dadaji's view is all Hindi at extra large below an English caption", () => {
+  it("the Severe day shows the GRAP note; Dadaji's view is all Hindi below an English caption", () => {
     render(<DemoFamily data={recordedDemo("severe-day", 6, "dadaji")} lang="en" />);
-    expect(screen.getByText("What Dadaji sees: Hindi, extra large text.")).toBeInTheDocument();
+    expect(screen.getByText("What Dadaji sees: Hindi.")).toBeInTheDocument();
     expect(screen.getByRole("heading", { level: 1, name: "The Sharma family, Green Park, Delhi" })).toBeInTheDocument();
     expect(screen.getByRole("navigation", { name: "View as" })).toBeInTheDocument();
-    const scope = screen.getByRole("heading", { name: "नमस्ते, दादाजी" }).closest(".text-scope-xl");
+    const scope = screen.getByRole("heading", { name: "नमस्ते, दादाजी" }).closest("[lang=hi]");
     expect(scope).toHaveAttribute("lang", "hi");
     expect(scope?.textContent).toContain("कल दोपहर 3 बजे बेहतर लगता है।");
     expect(scope?.textContent).toContain("इनहेलर");
@@ -50,11 +50,11 @@ describe("Demo family (spec 10.3)", () => {
   it("in Hindi, Dadaji's caption is in Hindi; an unknown viewer falls back to the family view", () => {
     const data = recordedDemo("smog-morning", 6, "dadaji");
     const { unmount } = render(<DemoFamily data={data} lang="hi" />);
-    expect(screen.getByText("दादाजी को यह दिखता है: हिंदी, बहुत बड़े अक्षर।")).toBeInTheDocument();
+    expect(screen.getByText("दादाजी को यह दिखता है: हिंदी।")).toBeInTheDocument();
     unmount();
     const odd = { ...data, query: { ...data.query, view: "nobody" as "dadaji" } };
     const { container } = render(<DemoFamily data={odd} lang="en" />);
-    expect(container.querySelector(".text-scope-xl")).toBeNull();
+    expect(container.querySelector("[lang=hi]")).toBeNull();
     expect(screen.getByRole("heading", { name: "Your family today" })).toBeInTheDocument();
   });
 

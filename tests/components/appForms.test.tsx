@@ -56,6 +56,11 @@ async function healthRoutineTravel(): Promise<void> {
 }
 
 describe("Onboarding (spec 10.5)", () => {
+  it("greets without a name when the Google name could not be used (stage 8 QA8-5)", () => {
+    render(<Onboarding page={{ ...FRESH, googleName: "" }} lang="en" />);
+    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(/^Hi! Are you starting/);
+  });
+
   it("walks the five steps with Back keeping answers, then saves and goes to Create family", async () => {
     const fetcher = stubFetch();
     render(<Onboarding page={FRESH} lang="en" />);
@@ -95,7 +100,6 @@ describe("Onboarding (spec 10.5)", () => {
     expect(bodyOf(fetcher)).toMatchObject({
       name: "Ramesh",
       ageGroup: "60plus",
-      textSize: "lg",
       activities: [{ type: "evening_walk" }],
       travel: { main: "metro" },
     });

@@ -42,7 +42,7 @@ export function KidCardView({ kid, lang, pageLang }: { kid: KidCardData; lang: L
   return (
     <article aria-labelledby="kid-h" className="overflow-hidden rounded-[22px] border border-rule bg-card shadow-card">
       <div lang={lang}>
-        <header className="grid grid-cols-[5em_1fr] items-center gap-4 px-5 pt-5 pb-4">
+        <header className="grid grid-cols-[5em_minmax(0,1fr)] items-center gap-4 px-5 pt-5 pb-4 [overflow-wrap:anywhere]">
           <KidFace band={kid.band} label={faceLabel} />
           <div>
             <h1 id="kid-h" className="m-0 text-[0.9375em] font-bold text-ink-muted">
@@ -83,15 +83,14 @@ function KidLines({ kid, lang }: { kid: KidCardData; lang: Lang }) {
         return (
           <li
             key={`${line.label}-${i}`}
-            className="grid grid-cols-[2.5em_1fr] items-center gap-3 rounded-[14px] bg-canvas p-3 text-[1.0625em]"
+            className="grid grid-cols-[2.5em_minmax(0,1fr)] items-center gap-3 rounded-[14px] bg-canvas p-3 text-[1.0625em] [overflow-wrap:anywhere]"
           >
             <span className="grid size-10 place-items-center rounded-[12px] bg-brand-tint text-brand" aria-hidden="true">
               <Icon className="size-5" />
             </span>
-            <span className="grid gap-1">
+            <span className="grid min-w-0 gap-1">
               <span>
-                <b className="block text-sm text-ink-muted">{line.label}</b>
-                {line.text}
+                <b className="block text-sm text-ink-muted">{line.label}</b> {line.text}
               </span>
               {kid.ticks && item && (
                 <TickBox
@@ -137,7 +136,7 @@ interface KidActionsProps {
 
 function KidActions({ kid, name, faceLabel, lang, ui }: KidActionsProps) {
   return (
-    <div className="grid grid-cols-2 gap-2 bg-card-2 px-5 pt-4 pb-5">
+    <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,9em),1fr))] gap-2 bg-card-2 px-5 pt-4 pb-5">
       <KidFullScreen openLabel={ui("kid.fullScreen")} closeLabel={ui("kid.close")} title={ui("kid.fullTitle", { name })} lang={lang}>
         <KidFace band={kid.band} label={faceLabel} className="size-36" />
         <p className="m-0 text-[2em] leading-tight font-bold">{`${name}: ${kid.card.headline}`}</p>

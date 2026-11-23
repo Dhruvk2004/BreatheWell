@@ -14,9 +14,6 @@ import { Summary } from "./Summary";
 /** The answer screen for one onboarding step. */
 export function StepBody({ step, onEdit, ...props }: StepProps & { step: Exclude<Step, "start">; onEdit?: () => void }) {
   if (step === "about") return <AboutStep {...props} />;
-  if (step === "aboutLanguage") return <AboutStep {...props} part="language" />;
-  if (step === "aboutSize") return <AboutStep {...props} part="size" />;
-  if (step === "aboutName") return <AboutStep {...props} part="name" />;
   if (step === "age") return <AgeStep {...props} />;
   if (step === "health" || step === "quickHealth") return <HealthStep {...props} quick={step === "quickHealth"} />;
   if (step === "activities") return <ActivitiesStep {...props} />;

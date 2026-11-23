@@ -23,7 +23,7 @@ export const JOIN_MIN_MS = 600;
 type Outcome =
   | { kind: "joined" | "already_member"; familyName: string }
   | { kind: "not_found" | "not_adult" }
-  | { kind: "expired"; adminName: string }
+  | { kind: "expired" | "removed"; adminName: string }
   | { kind: "full"; familyName: string; adminName: string }
   | { kind: "in_other_family"; familyName: string };
 
@@ -58,6 +58,8 @@ async function join(tx: Tx, uid: string, code: string, now: Date): Promise<Outco
   // A familyId whose family is gone, or no longer lists the user, is "no family" (stage 7 AUTH-2).
   if (other?.memberUids.includes(uid)) return { kind: "in_other_family", familyName: other.name };
   const admin = await adminName(tx, family);
+  // Removed while this code existed: only a code made after the removal lets them back (stage 8 QA8-2).
+  if (record.removedUids.includes(uid)) return { kind: "removed", adminName: admin };
   if (codeState(record, now) === "expired") return { kind: "expired", adminName: admin };
   if (family.memberUids.length >= MAX_ADULTS) return { kind: "full", familyName: family.name, adminName: admin };
   addMember(tx, record.familyId, family, user, uid, code, now);
@@ -71,6 +73,7 @@ const STATUS: Readonly<Record<Outcome["kind"], number>> = {
   not_found: 404,
   not_adult: 403,
   expired: 410,
+  removed: 403,
   full: 409,
   in_other_family: 409,
 };

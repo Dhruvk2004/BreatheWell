@@ -51,14 +51,13 @@ test("delete my account removes the Auth user and the profile", async ({ page })
   expect([await countWhere("users", "name", name), await authUserExists(email)]).toEqual([0, false]);
 });
 
-test("60+ in Hindi takes the quick path with Large text", async ({ page, baseURL }) => {
+test("60+ in Hindi takes the quick path", async ({ page, baseURL }) => {
   await page.context().addCookies([{ name: "bw-lang", value: "hi", url: baseURL }]);
   await signIn(page, "Ramesh");
   await page.goto("/onboarding");
   await page.getByRole("button", { name: "आगे" }).click();
   await page.getByRole("button", { name: "आगे" }).click();
   await page.getByRole("radio", { name: /60 या उससे ज़्यादा/ }).check();
-  await expect(page.locator("html")).toHaveAttribute("data-text", "lg");
   await page.getByRole("button", { name: "आगे" }).click();
   await expect(page.getByText("3 में से 1")).toBeVisible();
   await noViolations(page);

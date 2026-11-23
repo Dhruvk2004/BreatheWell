@@ -2,18 +2,11 @@ import { expect, test } from "@playwright/test";
 import { noViolations } from "./auth";
 import { addChild, family } from "./flows";
 
-// Axe on the signed-in pages in English, Hindi and large text at 125 % and 150 % (spec 11.5), desktop and phone.
+// Axe on the signed-in pages in English and Hindi, desktop and phone.
 
-for (const [lang, text] of [
-  ["en", "md"],
-  ["en", "lg"],
-  ["hi", "xl"],
-] as const) {
-  test(`Today, profile and family settings pass axe (${lang}, ${text})`, async ({ page, baseURL }) => {
-    await page.context().addCookies([
-      { name: "bw-lang", value: lang, url: baseURL },
-      { name: "bw-text", value: text, url: baseURL },
-    ]);
+for (const lang of ["en", "hi"] as const) {
+  test(`Today, profile and family settings pass axe (${lang})`, async ({ page, baseURL }) => {
+    await page.context().addCookies([{ name: "bw-lang", value: lang, url: baseURL }]);
     await family(page);
     for (const path of ["/today", "/ask", "/learn", "/profile", "/family/settings", "/dependent/new", "/join"]) {
       await page.goto(path);

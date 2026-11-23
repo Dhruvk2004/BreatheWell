@@ -10,7 +10,7 @@
      is reserved for the six CPCB bands and the three verdicts. Never use a band colour for a
      button, link, brand accent or decoration.
    - Every band and verdict is shown with colour + word + icon (spec 11.5).
-   - All sizes are rem so the large-text mode (html[data-text="lg"|"xl"]) scales everything.
+   - All sizes are rem, so the browser's own text size setting scales everything.
    Contrast ratios (WCAG 2.x) are listed in design.html section B and in design-notes.md. */
 
 :root {
@@ -192,16 +192,10 @@
   color-scheme: dark;
 }
 
-/* ---------- Large-text mode (spec 11.5): rem-based, so layout, targets and type all scale ---------- */
+/* rem-based, so the browser's own text size setting scales layout, targets and type alike. */
 html {
   font-size: 100%;
 }
-html[data-text="lg"] {
-  font-size: 125%;
-} /* Large: 20px base */
-html[data-text="xl"] {
-  font-size: 150%;
-} /* Extra large: 24px base; 60+ quick path default */
 
 /* Hindi content: set lang="hi" on the element */
 :lang(hi) {
@@ -319,26 +313,6 @@ h3 {
 :focus-visible {
   outline: 2px solid var(--color-focus);
   outline-offset: 2px;
-}
-
-/* At Extra large text the header keeps only the logo mark, so the controls still fit on a phone. */
-html[data-text="xl"] .wordmark {
-  display: none;
-}
-
-/* Extra large for one part of the page ("View as Dadaji", journey 5.1): the same 150% as
-   html[data-text="xl"], applied by re-scaling the rem tokens the utilities read. */
-.text-scope-xl {
-  --spacing: calc(0.25rem * 1.5);
-  --text-xs: calc(0.875rem * 1.5);
-  --text-sm: calc(0.9375rem * 1.5);
-  --text-md: calc(1rem * 1.5);
-  --text-lg: calc(1.125rem * 1.5);
-  --text-xl: calc(1.375rem * 1.5);
-  --text-2xl: calc(1.75rem * 1.5);
-  --text-3xl: calc(2.25rem * 1.5);
-  --font-size-aqi: calc(3.5rem * 1.5);
-  font-size: var(--text-md);
 }
 
 /* The plan slot (design F motion table): the badge fades in after 300 ms, so a fast plan never

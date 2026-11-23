@@ -1,7 +1,6 @@
 import { toggleConditionTicks } from "@/domain/rules/conditionTicks";
 import { CHOICE_DEFAULTS, profileInput, type ActivityInput, type AdultChoice, type ProfileInput } from "@/domain/members/profile";
 import { quickProfile, type QuickTravel, type QuickWalk } from "@/domain/members/quickPath";
-import type { TextSize } from "@/components/prefs/cookies";
 import type { Lang } from "@/domain/time/format";
 
 /**
@@ -11,8 +10,6 @@ import type { Lang } from "@/domain/time/format";
 export interface Draft {
   readonly name: string;
   readonly language: Lang;
-  /** The size picked in onboarding; null until picked, then the size on screen is saved. */
-  readonly textSize: TextSize | null;
   readonly ageGroup: ProfileInput["ageGroup"] | null;
   readonly conditions: readonly ProfileInput["conditions"][number][];
   readonly shareWith: ProfileInput["shareWith"];
@@ -27,14 +24,12 @@ export interface Draft {
   readonly quickTravel: QuickTravel | null;
 }
 
-export type Step =
-  "start" | "about" | AboutPart | "age" | "health" | "activities" | "travel" | "summary" | "quickHealth" | "quickWalk" | "quickTravel";
+export type Step = "start" | "about" | "age" | "health" | "activities" | "travel" | "summary" | "quickHealth" | "quickWalk" | "quickTravel";
 
 export function initialDraft(saved: ProfileInput | null, googleName: string, lang: Lang): Draft {
   return {
     name: saved?.name ?? googleName,
     language: saved?.language ?? lang,
-    textSize: saved?.textSize ?? null,
     ageGroup: saved?.ageGroup ?? null,
     conditions: saved?.conditions ?? [],
     shareWith: saved?.shareWith ?? "self",
@@ -46,27 +41,18 @@ export function initialDraft(saved: ProfileInput | null, googleName: string, lan
   };
 }
 
-/** Step 1 split one question per screen in large-text mode (spec 6.1 "one question per screen"). */
-export type AboutPart = "aboutLanguage" | "aboutSize" | "aboutName";
-export const ABOUT_PARTS: readonly AboutPart[] = ["aboutLanguage", "aboutSize", "aboutName"];
-
 /**
  * The screens in order: the standard five, or the 60+ quick path after the age step (spec 5.6).
- * With `large` text, step 1 is three screens (language, text size, name).
  */
-export function stepsFor(draft: Draft, askStart: boolean, large = false): Step[] {
-  const about: Step[] = large ? [...ABOUT_PARTS] : ["about"];
-  const first: Step[] = [...(askStart ? (["start"] as const) : []), ...about, "age"];
+export function stepsFor(draft: Draft, askStart: boolean): Step[] {
+  const first: Step[] = [...(askStart ? (["start"] as const) : []), "about", "age"];
   if (draft.ageGroup === "60plus") return [...first, "quickHealth", "quickWalk", "quickTravel"];
   return [...first, "health", "activities", "travel", "summary"];
 }
 
-/** The same place in the other layout when the text size changes mid-way (by step name, not index). */
+/** The current step's place in the list (by name, so a change of path keeps the place). */
 export function sameStep(steps: readonly Step[], current: Step): number {
-  const found = steps.indexOf(current);
-  if (found >= 0) return found;
-  const about = current === "about" ? "aboutName" : "about";
-  return Math.max(0, steps.indexOf(about));
+  return Math.max(0, steps.indexOf(current));
 }
 
 /** Picking an activity fills its defaults (spec 6.1 6a–6c); unpicking drops it. */
@@ -97,7 +83,7 @@ export const toggleConditions = (
 function quickCandidate(draft: Draft): unknown {
   if (!draft.quickTravel) return null;
   const { name, language, conditions, shareWith, quickWalk: walk, quickTravel: travel } = draft;
-  return quickProfile({ name, language, textSize: draft.textSize ?? "md", conditions, shareWith, walk, travel });
+  return quickProfile({ name, language, conditions, shareWith, walk, travel });
 }
 
 function standardCandidate(draft: Draft): unknown {
@@ -108,7 +94,6 @@ function standardCandidate(draft: Draft): unknown {
   return {
     name,
     language,
-    textSize: draft.textSize ?? "md",
     ageGroup,
     conditions: [...draft.conditions],
     shareWith,
@@ -130,7 +115,7 @@ export function toInput(draft: Draft, full = false): ProfileInput | null {
 
 /** Whether Next may leave a step (inline errors explain the rest). */
 export function stepReady(step: Step, draft: Draft): boolean {
-  if (step === "about" || step === "aboutName") return profileInput.shape.name.safeParse(draft.name).success;
+  if (step === "about") return profileInput.shape.name.safeParse(draft.name).success;
   if (step === "age") return draft.ageGroup !== null;
   if (step === "activities") return draft.stayIn || draft.activities.length > 0;
   if (step === "travel") return draft.travel.main !== null;

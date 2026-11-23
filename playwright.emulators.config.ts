@@ -1,4 +1,5 @@
 import { defineConfig, devices } from "@playwright/test";
+import { NO_SERVER_KEYS } from "./playwright.config";
 
 /**
  * Signed-in E2E (spec 11.4, as in Utsav): the production build against the Firebase Auth and
@@ -18,6 +19,7 @@ process.env.E2E_BASE_URL = BASE_URL;
 /** The app server's environment: emulators, placeholder web config, Open-Meteo stand-in. */
 function serverEnv(origin: string, extra: Record<string, string>): Record<string, string> {
   return {
+    ...NO_SERVER_KEYS,
     FIRESTORE_EMULATOR_HOST: process.env.FIRESTORE_EMULATOR_HOST ?? "127.0.0.1:3480",
     FIREBASE_AUTH_EMULATOR_HOST: process.env.FIREBASE_AUTH_EMULATOR_HOST ?? "127.0.0.1:3481",
     FIREBASE_PROJECT_ID: "demo-breathewell",

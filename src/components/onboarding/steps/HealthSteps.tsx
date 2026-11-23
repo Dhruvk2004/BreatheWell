@@ -1,21 +1,15 @@
 "use client";
 
 import { ADULT_CONDITIONS, SHARE_WITH } from "@/domain/members/profile";
-import { setTextSize, useTextSize } from "@/components/prefs/textSize";
 import { translator } from "@/i18n/t";
 import { CheckGroup, RadioGroup } from "../../form/Choice";
 import { toggleConditions } from "../draft";
 import type { StepProps } from "./types";
 
-/** Step 2 (spec 6.1 item 4): only the two adult groups; 60+ pre-selects Large text and starts the quick path. */
+/** Step 2 (spec 6.1 item 4): only the two adult groups; 60+ starts the quick path. */
 export function AgeStep({ draft, set, lang }: StepProps) {
   const t = translator(lang);
-  const onScreen = useTextSize();
-  const choose = (ageGroup: NonNullable<StepProps["draft"]["ageGroup"]>) => {
-    const larger = ageGroup === "60plus" && (draft.textSize ?? onScreen) === "md";
-    if (larger) setTextSize("lg");
-    set({ ageGroup, ...(larger ? { textSize: "lg" as const } : {}) });
-  };
+  const choose = (ageGroup: NonNullable<StepProps["draft"]["ageGroup"]>) => set({ ageGroup });
   return (
     <div className="grid gap-3">
       <RadioGroup

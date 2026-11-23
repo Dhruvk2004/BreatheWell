@@ -58,8 +58,8 @@ describe("i18n (spec F17)", () => {
   });
 
   it("fills placeholders and leaves unknown ones visible", () => {
-    expect(t("en", "shell.textSize.label", { size: "Large" })).toBe("Text size: Large");
-    expect(t("hi", "shell.textSize.label")).toBe("अक्षरों का आकार: {size}");
+    expect(t("en", "join.err.expired", { admin: "Neha" })).toBe("This code has expired. Ask Neha for a new one.");
+    expect(t("hi", "join.err.expired")).toBe("इस कोड की मियाद खत्म हो गई है। {admin} से नया कोड माँगें।");
     expect(translator("hi")("verdict.avoid")).toBe("न जाएँ");
     expect([isLang("en"), isLang("hi"), isLang("fr"), isLang(undefined)]).toEqual([true, true, false, false]);
     expect([langOf("hi"), langOf("fr"), langOf(["hi"])]).toEqual(["hi", "en", "en"]);

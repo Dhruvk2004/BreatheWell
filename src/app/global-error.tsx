@@ -12,7 +12,7 @@ import "./globals.css";
 export default function GlobalError({ retry }: { error: unknown; retry: () => void }) {
   const lang = langOf(useParams()?.lang);
   return (
-    <html lang={lang} data-text="md">
+    <html lang={lang}>
       <body className="flex min-h-dvh flex-col">
         <title>{t(lang, "error.title")}</title>
         <main className="mx-auto w-full max-w-[60rem] px-4 py-8">

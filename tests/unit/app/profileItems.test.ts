@@ -13,14 +13,13 @@ describe("PUT /api/profile (spec 6.1, 6.5, 10.5)", () => {
       ...PROFILE,
       name: "Dadaji",
       language: "hi",
-      textSize: "xl",
       ageGroup: "60plus",
       conditions: ["asthma"],
       shareWith: "admin",
     };
     const response = await saveProfile(request("/api/profile", { method: "PUT", uid: "neha", body }), app.deps);
     expect(response.status).toBe(200);
-    expect(response.headers.getSetCookie().join(";")).toMatch(/bw-acct=D;.*bw-lang=hi;.*bw-text=xl/);
+    expect(response.headers.getSetCookie().join(";")).toMatch(/bw-acct=D;.*bw-lang=hi/);
     expect(app.db.docs.get("users/neha/private/health")).toMatchObject({ conditions: ["asthma"], shareWith: "admin" });
     const member = app.db.docs.get(`families/${fid}/members/neha`);
     expect(member).toMatchObject({

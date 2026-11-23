@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { deleteAccount, deleteFamily } from "@/server/handlers/account";
+import { regenerateCode } from "@/server/handlers/code";
 import { leaveFamily, removeMember } from "@/server/handlers/members";
+import { joinMessage } from "@/components/family/joinMessages";
 import { json, request, testApp } from "../../helpers/appDeps";
 import { addRiya, joins, sharmaFamily, signUp } from "../../helpers/family";
 
@@ -48,6 +50,25 @@ describe("leave and remove (spec 5.9, 5.10)", () => {
     expect((await remove(app, "neha", "rahul")).status).toBe(200);
     expect(app.db.docs.get(`families/${fid}`)?.memberUids).toEqual(["neha", "dadaji"]);
     expect(app.db.docs.get("users/rahul")).toMatchObject({ familyId: null, removedFrom: "Sharma family" });
+  });
+
+  it("a removed member cannot rejoin with a code made before the removal, only with a new one (QA8-2)", async () => {
+    const app = testApp();
+    const { fid, code } = await sharmaFamily(app);
+    await joins(app, "rahul", "Rahul", code);
+    expect((await remove(app, "neha", "rahul")).status).toBe(200);
+    expect(app.db.docs.get(`joinCodes/${code}`)?.removedUids).toEqual(["rahul"]);
+    const again = await joins(app, "rahul", "Rahul", code);
+    expect(again.status).toBe(403);
+    const body = await json<{ kind: string; adminName: string }>(again);
+    expect(body).toEqual({ kind: "removed", adminName: "Neha" });
+    expect(joinMessage({ code: body.kind, adminName: body.adminName }, "en")).toContain("Ask Neha for a new one");
+    expect(joinMessage({ code: "removed" }, "hi")).toContain("नया कोड");
+    expect(app.db.docs.get(`families/${fid}`)?.memberUids).toEqual(["neha"]);
+    // Someone else can still use the old code.
+    expect((await joins(app, "dadaji", "Dadaji", code)).status).toBe(200);
+    const fresh = await json<{ code: string }>(await regenerateCode(request("/api/family/code", { uid: "neha" }), app.deps));
+    expect((await joins(app, "rahul", "Rahul", fresh.code)).status).toBe(200);
   });
 });
 

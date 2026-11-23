@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Atkinson_Hyperlegible_Next, Noto_Sans_Devanagari } from "next/font/google";
-import { TEXT_SIZE_SCRIPT } from "@/components/prefs/cookies";
 import { Main } from "@/components/shell/Main";
 import { SiteFooter } from "@/components/shell/SiteFooter";
 import { SiteHeader } from "@/components/shell/SiteHeader";
@@ -35,12 +34,8 @@ export const viewport: Viewport = {
 
 export default async function RootLayout({ children }: LayoutProps<"/[lang]">) {
   const lang = await currentLang();
-  // data-text is set before paint by the inline script (saved text size), hence suppressHydrationWarning.
   return (
-    <html lang={lang} data-text="md" className={`${atkinson.variable} ${notoDeva.variable}`} suppressHydrationWarning>
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: TEXT_SIZE_SCRIPT }} />
-      </head>
+    <html lang={lang} className={`${atkinson.variable} ${notoDeva.variable}`}>
       <body className="flex min-h-dvh flex-col">
         <SkipLink lang={lang} />
         <SiteHeader lang={lang} />

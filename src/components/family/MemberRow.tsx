@@ -57,9 +57,7 @@ export function MemberRow({
         </span>
         <VerdictChip verdict={verdict} lang={lang} />
         {/* Reserved for two lines (design F), so Gemini's wording swaps in without moving the rows. */}
-        <span className="min-h-[2lh] text-lg leading-snug [html[data-text=lg]_&]:min-h-[3lh] [html[data-text=xl]_&]:min-h-[5lh]">
-          {line}
-        </span>
+        <span className="min-h-[2lh] text-lg leading-snug">{line}</span>
         {action}
       </span>
     </li>

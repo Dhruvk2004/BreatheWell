@@ -1,6 +1,7 @@
 import { isAdmin } from "@/domain/family/permissions";
 import { verdictsAllowed } from "@/domain/air/freshness";
 import { initialsOf } from "@/domain/family/caps";
+import { UNNAMED_MEMBER } from "@/domain/members/names";
 import { settingUpVerdict } from "@/domain/family/tags";
 import { ruleContext } from "@/domain/rules/context";
 import { INDIA_TIME_ZONE } from "@/domain/time/clock";
@@ -12,7 +13,9 @@ type Member = FamilyBundle["members"][number];
 type Dependent = FamilyBundle["dependents"][number];
 
 function memberView({ uid, record }: Member, adminUid: string): PersonView {
-  const { name, ageGroup, careTag, onboarded, language } = record;
+  const { ageGroup, careTag, onboarded, language } = record;
+  // A Google name that failed the name rules is stored empty; the family still needs to see someone.
+  const name = record.name || UNNAMED_MEMBER;
   const base = { id: uid, name, initials: initialsOf(name), kind: "adult" as const, ageGroup, careTag, onboarded, language };
   return {
     ...base,
@@ -42,7 +45,10 @@ function dependentView({ id, record }: Dependent, guardianName: string | null): 
 /** The family's members and dependents as the pages show them (names stay on the server and screen). */
 export function familyView(bundle: FamilyBundle, viewerUid: string): FamilyView {
   const { family } = bundle;
-  const nameOf = (uid: string) => bundle.members.find((m) => m.uid === uid)?.record.name ?? null;
+  const nameOf = (uid: string) => {
+    const member = bundle.members.find((m) => m.uid === uid);
+    return member ? member.record.name || UNNAMED_MEMBER : null;
+  };
   return {
     id: bundle.id,
     name: family.name,

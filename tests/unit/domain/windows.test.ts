@@ -44,6 +44,33 @@ describe("family best and worst windows (spec 8.4 step 7)", () => {
     expect(worstWindow(indexOf(single), "2024-11-18")).toEqual({ start: 11, end: 13 });
   });
 
+  it("keeps the worst window apart from the best one and worse than it (stage 8)", () => {
+    // Lucknow at 6 pm: only 18–22 left, so best and worst came from the same hours.
+    const evening = daySeries(
+      "2024-11-18",
+      Array.from({ length: 24 }, (_, h) => (h === 18 ? 249 : h === 19 ? 260 : h === 20 ? 262 : h === 21 ? 215 : 300)),
+    );
+    const index = indexOf(evening);
+    const best = bestWindow(index, "2024-11-18", 18);
+    expect(best).toEqual({ start: 18, end: 20 });
+    // Without the best window it overlaps it: the bug.
+    const old = worstWindow(index, "2024-11-18", 18);
+    expect(old && old.start < best!.end).toBe(true);
+    // 20–22 is the only block left, and it is the same band (poor) as the best one: no worst to name.
+    expect(worstWindow(index, "2024-11-18", 18, best)).toBeNull();
+    // A truly worse block that doesn't touch the best window is still named, and never grows into it.
+    const worse = daySeries(
+      "2024-11-18",
+      Array.from({ length: 24 }, (_, h) => (h === 18 || h === 19 ? 320 : h === 20 || h === 21 ? 215 : 100)),
+    );
+    const i2 = indexOf(worse);
+    expect(worstWindow(i2, "2024-11-18", 18, bestWindow(i2, "2024-11-18", 18))).toEqual({ start: 18, end: 20 });
+    // Morning: smog 6–9 am, clean afternoon, as before.
+    const day = indexOf(smogDay("2024-11-18"));
+    const w = worstWindow(day, "2024-11-18", 6, bestWindow(day, "2024-11-18"));
+    expect(w && (w.end <= 14 || w.start >= 16)).toBe(true);
+  });
+
   it("returns null without data", () => {
     const empty = daySeries("2024-11-18", Array(24).fill(null));
     expect(worstWindow(indexOf(empty), "2024-11-18")).toBeNull();

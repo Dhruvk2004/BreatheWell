@@ -98,14 +98,12 @@ describe("names, home and profiles (spec 6.1, 6.5)", () => {
     const quick = quickProfile({
       name: "दादाजी",
       language: "hi",
-      textSize: "xl",
       conditions: ["asthma"],
       shareWith: "self",
       walk: "evening",
       travel: "home",
     });
     expect(quick).toMatchObject({
-      textSize: "xl",
       ageGroup: "60plus",
       activities: [{ type: "evening_walk", band: "evening", flex: "any" }],
       travel: { main: "home", tripLength: "under15" },

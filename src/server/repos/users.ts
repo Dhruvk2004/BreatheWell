@@ -14,7 +14,6 @@ function newUserDoc(googleName: string, now: string): DocData {
   return {
     name: safeName(firstName(googleName).slice(0, 30)),
     language: "en",
-    textSize: "md",
     familyId: null,
     role: null,
     onboarded: false,

@@ -10,7 +10,6 @@ const write = async (page: Page, method: "post" | "put", path: string, data: unk
 
 export const PROFILE = {
   language: "en",
-  textSize: "md",
   ageGroup: "18to59",
   conditions: [],
   shareWith: "self",

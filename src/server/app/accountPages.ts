@@ -24,7 +24,6 @@ async function savedInput(user: UserRecord, uid: string, deps: AppDeps): Promise
   return {
     name: user.name,
     language: user.language,
-    textSize: user.textSize,
     ageGroup,
     conditions: (health?.conditions ?? []).filter((c) => c !== "not_sure"),
     shareWith: health?.shareWith ?? "self",

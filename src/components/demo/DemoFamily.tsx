@@ -34,7 +34,7 @@ export function DemoFamily({ data, lang }: { data: DemoData; lang: Lang }) {
 }
 
 /**
- * "View as Dadaji" (journey 5.1, design 10.3 "as Dadaji in Hindi, extra large"): everything below
+ * "View as Dadaji" (journey 5.1, design 10.3 "as Dadaji in Hindi"): everything below
  * the controls in the viewer's language at 150%, with one line in the page language saying so.
  */
 function ViewerScope({ data, pageLang }: { data: DemoData; pageLang: Lang }) {
@@ -45,7 +45,7 @@ function ViewerScope({ data, pageLang }: { data: DemoData; pageLang: Lang }) {
   return (
     <>
       <p className="m-0 text-sm text-ink-muted">{translator(pageLang)(`demo.viewerCaption.${lang}`, { name: person.name[pageLang] })}</p>
-      <div lang={lang} className="text-scope-xl grid gap-5">
+      <div lang={lang} className="grid gap-5">
         {plan && <ViewerCard plan={plan} name={person.name[lang]} mainMode={person.travel.main} lang={lang} />}
         <DemoBody data={data} lang={lang} />
       </div>

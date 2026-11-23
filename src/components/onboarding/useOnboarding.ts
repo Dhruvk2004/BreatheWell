@@ -3,7 +3,6 @@
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import { saveProfile } from "@/client/actions";
-import { useTextSize } from "@/components/prefs/textSize";
 import type { Lang } from "@/i18n/t";
 import type { OnboardingPage } from "@/view/app";
 import { initialDraft, sameStep, stepReady, stepsFor, toInput, type Draft, type Step } from "./draft";
@@ -16,14 +15,12 @@ import type { Intent } from "./StartStep";
 export function useOnboarding(page: OnboardingPage, lang: Lang) {
   const router = useRouter();
   const heading = useRef<HTMLHeadingElement>(null);
-  const textSize = useTextSize();
   const [draft, setDraft] = useState<Draft>(() => initialDraft(page.input, page.googleName, lang));
   const [intent, setIntent] = useState<Intent>("start");
   const [current, setCurrent] = useState<Step | null>(null);
   const [showErrors, setShowErrors] = useState(false);
   const [status, setStatus] = useState<"idle" | "saving" | "failed">("idle");
-  // One question per screen in large-text mode; the place is kept by step name across a size change.
-  const steps = stepsFor(draft, !page.hasFamily, (draft.textSize ?? textSize) !== "md");
+  const steps = stepsFor(draft, !page.hasFamily);
   const index = current ? sameStep(steps, current) : 0;
   const step = steps[index];
   const last = index >= steps.length - 1;
@@ -33,8 +30,7 @@ export function useOnboarding(page: OnboardingPage, lang: Lang) {
     requestAnimationFrame(() => heading.current?.focus());
   };
   const save = async () => {
-    // Not picked in onboarding: save the size the person sees now (set in the header or by 60+).
-    const input = toInput({ ...draft, textSize: draft.textSize ?? textSize });
+    const input = toInput(draft);
     if (!input) return setShowErrors(true);
     setStatus("saving");
     try {
@@ -46,7 +42,7 @@ export function useOnboarding(page: OnboardingPage, lang: Lang) {
   };
   const next = () => (!stepReady(step, draft) ? setShowErrors(true) : last ? void save() : go(index + 1));
   const set = (patch: Partial<Draft>) => {
-    if (!current) setCurrent(step); // pin the place before a text-size change can re-split the steps
+    if (!current) setCurrent(step); // pin the place before the age answer changes the path
     setDraft((d) => ({ ...d, ...patch }));
   };
   return { heading, draft, set, intent, setIntent, index, step, last, showErrors, status, back: () => go(index - 1), next };

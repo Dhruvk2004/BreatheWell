@@ -23,7 +23,6 @@ export const storedProfile = z.object({ ageGroup: z.enum(["18to59", "60plus"]), 
 export const userRecord = z.object({
   name: z.string(),
   language: z.enum(LANGS),
-  textSize: z.enum(["md", "lg", "xl"]),
   familyId: z.string().nullable(),
   role: z.enum(["admin", "member"]).nullable(),
   onboarded: z.boolean(),
@@ -108,6 +107,8 @@ export const joinCodeRecord = z.object({
   uses: z.number(),
   maxUses: z.number(),
   active: z.boolean(),
+  /** People the admin removed while this code existed: it no longer lets them back in (stage 8 QA8-2). */
+  removedUids: z.array(z.string()).default([]),
 });
 
 export type UserRecord = z.infer<typeof userRecord>;

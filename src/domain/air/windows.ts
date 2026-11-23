@@ -1,4 +1,4 @@
-import { bandOfAqi } from "./bands";
+import { bandOfAqi, bandRank } from "./bands";
 import { pointAt, type HourIndex } from "./hourly";
 
 /** Whole-hour window, `end` exclusive: { start: 14, end: 16 } is "2–4 pm". */
@@ -40,17 +40,42 @@ export function bestWindow(index: HourIndex, date: string, fromHour = DAY_FIRST_
 /** The worst window grows over neighbouring hours in the same band, up to 3 hours ("Worst: 6–9 am"). */
 const MAX_WORST_HOURS = 3;
 
+const overlaps = (a: HourWindow, start: number, end: number) => start < a.end && end > a.start;
+
+/** The highest AQI inside a window, or null when an hour has no data. */
+function peakOf(index: HourIndex, date: string, w: HourWindow): number | null {
+  let peak = -1;
+  for (let h = w.start; h < w.end; h++) {
+    const p = pointAt(index, date, h);
+    if (!p) return null;
+    peak = Math.max(peak, p.aqi);
+  }
+  return peak;
+}
+
 /**
  * Worst window (spec 8.4 step 7): the 2-hour block with the highest worst-hour AQI, extended to an
  * adjacent hour (later first) while that hour is in the same band, up to 3 hours. `fromHour` drops
  * past hours, so a 4 pm view says "Worst: 7–9 pm" rather than a morning already gone.
+ *
+ * With `best`, it never touches the best window and must be a worse band than it, or it is null:
+ * late in the day only a few hours are left, and "Best 8–10 pm · Worst: 7–10 pm" contradicted
+ * itself (stage 8).
  */
-export function worstWindow(index: HourIndex, date: string, fromHour = DAY_FIRST_HOUR): HourWindow | null {
+export function worstWindow(index: HourIndex, date: string, fromHour = DAY_FIRST_HOUR, best: HourWindow | null = null): HourWindow | null {
   const first = Math.max(DAY_FIRST_HOUR, fromHour);
-  const sorted = blocks(index, date, first).sort((x, y) => y.worst - x.worst || y.sum - x.sum || x.start - y.start);
+  const bestPeak = best ? peakOf(index, date, best) : null;
+  const sorted = blocks(index, date, first)
+    .filter(
+      (b) =>
+        !best ||
+        (!overlaps(best, b.start, b.start + 2) && (bestPeak === null || bandRank(bandOfAqi(b.worst)) > bandRank(bandOfAqi(bestPeak)))),
+    )
+    .sort((x, y) => y.worst - x.worst || y.sum - x.sum || x.start - y.start);
   if (!sorted.length) return null;
   const band = bandOfAqi(sorted[0].worst);
   const sameBand = (hour: number) => {
+    if (best && overlaps(best, hour, hour + 1)) return false;
     const p = hour >= first && hour <= DAY_LAST_HOUR ? pointAt(index, date, hour) : undefined;
     return p !== undefined && p.band === band;
   };

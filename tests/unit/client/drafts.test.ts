@@ -68,14 +68,10 @@ describe("onboarding draft (spec 10.5, 5.6)", () => {
     };
     expect(toInput(quick)).toMatchObject({
       ageGroup: "60plus",
-      textSize: "xl",
       activities: [{ type: "morning_walk" }],
       travel: { main: "auto_bus" },
     });
     expect(toInput({ ...quick, quickTravel: null })).toBeNull();
-    expect(toInput({ ...quick, textSize: null })?.textSize).toBe("md");
-    expect(toInput({ ...standard, textSize: null })?.textSize).toBe("md");
-    expect(blank.textSize).toBeNull();
     expect(toInput({ ...quick, travel: { main: "metro", tripLength: "under15", others: [] } }, true)).toMatchObject({
       ageGroup: "60plus",
       activities: [],
