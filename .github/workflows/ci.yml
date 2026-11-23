@@ -41,10 +41,11 @@ jobs:
           path: ~/.cache/firebase/emulators
           key: firebase-emulators-15.17.0
       - run: npm run test:emulator
-      # Signed-in journeys against the Auth and Firestore emulators (spec 11.4), on the same build.
+      # Signed-in journeys against the Auth and Firestore emulators (spec 11.4). This needs its own
+      # build: Next.js bakes NEXT_PUBLIC_* (the emulator host, the placeholder web config) into the
+      # browser code at build time, and the keyless build above has none, so the Google button's
+      # popup never opened and three tests timed out on every run.
       - run: npm run test:e2e:emulators
-        env:
-          E2E_SKIP_BUILD: "1"
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: failure()
         with:
