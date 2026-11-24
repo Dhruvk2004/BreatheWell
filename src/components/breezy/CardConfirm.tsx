@@ -25,7 +25,7 @@ interface CardConfirmProps {
 }
 
 /**
- * The confirm sheet before any write (spec 7.7.4, design 10.10): it names the person, says where
+ * The confirm sheet before any write: it names the person, says where
  * the item will show (and when a dependent's item stays off the kid card), and only then sends it.
  */
 export function CardConfirm({ card, action, target, time, lang, onAdded }: CardConfirmProps) {

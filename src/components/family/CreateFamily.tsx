@@ -13,7 +13,7 @@ import { BLANK_HOME, HomeSetupFields } from "./HomeSetupFields";
 import { HomePicker } from "./HomePicker";
 import { failureText } from "../ui/failure";
 
-/** The place as `/api/family` takes it; the server rounds and grids it (spec 9.1). */
+/** The place as `/api/family` takes it; the server rounds and grids it. */
 export const placeBody = (place: ChosenPlace): PlaceInput => ({
   name: place.name.slice(0, 80),
   lat: place.lat,

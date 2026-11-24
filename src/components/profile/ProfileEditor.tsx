@@ -35,7 +35,7 @@ function useProfileEditor(input: ProfileInput, lang: Lang) {
 }
 
 /**
- * Profile settings items 1–3 (spec 10.15): the onboarding editors on one page, saved together
+ * Profile settings items 1–3: the onboarding editors on one page, saved together
  * through `PUT /api/profile` (the same validation; the family plan is marked stale).
  */
 export function ProfileEditor({ input, lang }: { input: ProfileInput; lang: Lang }) {

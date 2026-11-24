@@ -12,9 +12,9 @@ export { insideIdeas, kidForAir, kidWhy, INSIDE_IDEAS } from "./kid/extras";
 export type { KidActivity, KidLineKind, Tone } from "./kid/lines";
 
 /**
- * The kid library (`domain/libraries/kid.ts`, spec 7.2): every word on a kid card comes from here
+ * The kid library (`domain/libraries/kid.ts`): every word on a kid card comes from here
  * (plus adult-confirmed Breezy items that pass the kid-card checks). Times come from the rule's
- * `bestTime` / `tomorrowBest`, never typed by hand (design G).
+ * `bestTime` / `tomorrowBest`, never typed by hand.
  */
 export interface KidItem {
   readonly type: ActivityType;
@@ -23,7 +23,7 @@ export interface KidItem {
   readonly mainMode: Mode;
 }
 
-/** Under 13 → kid tone; 13–17 → teen tone (spec 6.2). */
+/** Under 13 → kid tone; 13–17 → teen tone. */
 export const toneOf = (ageGroup: "under13" | "13to17"): Tone => (ageGroup === "under13" ? "kid" : "teen");
 
 /** The line variant for a rule result. */
@@ -75,7 +75,7 @@ export interface KidCard {
 
 /**
  * One label per activity. Two of the same kind (school there and back) get their usual clock time,
- * "School · 7 am" and "School · 1 pm", so a child can tell the rows apart (stage 8 QA8-4).
+ * "School · 7 am" and "School · 1 pm", so a child can tell the rows apart.
  */
 export function kidLabels(items: readonly KidItem[], lang: Lang): string[] {
   const label = (item: KidItem) => KID_LABEL[item.type][lang];
@@ -85,7 +85,7 @@ export function kidLabels(items: readonly KidItem[], lang: Lang): string[] {
   });
 }
 
-/** The kid card's content (spec 10.12): headline, one line per activity, a kid "Why?" and 3 inside ideas. */
+/** The kid card's content: headline, one line per activity, a kid "Why?" and 3 inside ideas. */
 export function kidCard(input: KidCardInput): KidCard {
   const { lang } = input;
   return {
@@ -97,7 +97,7 @@ export function kidCard(input: KidCardInput): KidCard {
 }
 
 /**
- * The WhatsApp share text (spec 5.5 step 6, design 10.12): first name, band word, the lines and the
+ * The WhatsApp share text: first name, band word, the lines and the
  * "when", with the band emoji. Never numbers other than clock times, never cigarettes.
  */
 export function kidShareText(name: string, band: Band, card: KidCard, lang: Lang): string {

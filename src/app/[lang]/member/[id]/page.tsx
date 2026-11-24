@@ -12,7 +12,7 @@ import { appDeps } from "@/server/runtime";
 
 export const generateMetadata = async (): Promise<Metadata> => ({ title: t(await currentLang(), "member.metaTitle") });
 
-/** Member plan (spec 10.9). */
+/** Member plan. */
 export default function MemberPage(props: PageProps<"/[lang]/member/[id]">) {
   return (
     <Suspense fallback={<PageLoading />}>

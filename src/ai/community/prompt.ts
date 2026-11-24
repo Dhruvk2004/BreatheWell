@@ -2,12 +2,10 @@ import type { CommunityPromptInput } from "./schema";
 import { COMMUNITY_CAPS } from "./schema";
 
 /**
- * The community message prompt (spec 7.6): one bilingual, WhatsApp-ready text for a housing
+ * The community message prompt: one bilingual, WhatsApp-ready text for a housing
  * society, from code inputs only. The rules' band and windows are final; numbers are slotted in
  * by code in the header, so the words carry none.
  */
-export const COMMUNITY_PROMPT_VERSION = 1;
-
 export const COMMUNITY_SYSTEM = [
   "You write today's air message for a housing society WhatsApp group in an Indian city during winter smog, for BreatheWell.",
   "The input JSON comes from fixed safety rules: the band and the best and worst windows are final. Never change them.",

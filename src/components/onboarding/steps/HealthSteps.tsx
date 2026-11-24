@@ -6,7 +6,7 @@ import { CheckGroup, RadioGroup } from "../../form/Choice";
 import { toggleConditions } from "../draft";
 import type { StepProps } from "./types";
 
-/** Step 2 (spec 6.1 item 4): only the two adult groups; 60+ starts the quick path. */
+/** Step 2: only the two adult groups; 60+ starts the quick path. */
 export function AgeStep({ draft, set, lang }: StepProps) {
   const t = translator(lang);
   const choose = (ageGroup: NonNullable<StepProps["draft"]["ageGroup"]>) => set({ ageGroup });
@@ -28,7 +28,7 @@ export function AgeStep({ draft, set, lang }: StepProps) {
 }
 
 /**
- * Step 3 and quick-path Q1 (spec 6.1 items 5–5a): optional ticks, then who can see them, shown
+ * Step 3 and quick-path Q1: optional ticks, then who can see them, shown
  * only once something is ticked. The family only ever sees the tag.
  */
 export function HealthStep({ draft, set, lang, quick = false }: StepProps & { quick?: boolean }) {

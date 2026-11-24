@@ -1,10 +1,17 @@
 # BreatheWell
 
+[![CI](https://github.com/Dhruvk2004/BreatheWell/actions/workflows/ci.yml/badge.svg)](https://github.com/Dhruvk2004/BreatheWell/actions/workflows/ci.yml)
+
 **Know when your family can breathe easy.** BreatheWell is a family air coach for winter smog in Indian cities. It reads the air where you live, hour by hour, and tells each person, in English or Hindi, whether to go out today, the best time to go, and one simple change that helps them and the air.
 
 **Live app:** [breathe-well-theta.vercel.app](https://breathe-well-theta.vercel.app/) · Try **Air now** and the **demo family** with no sign-in.
 
-<!-- Screenshots: Air now · Today · kid card · Breezy -->
+<p>
+  <img src="docs/screenshots/air-now.png" alt="Air now for Green Park, Delhi: the band, the best time and the next 24 hours" width="200">
+  <img src="docs/screenshots/family-today.png" alt="The sample family's day: a plan for each person" width="200">
+  <img src="docs/screenshots/kid-card.png" alt="Riya's kid card: a face, three lines and no numbers" width="200">
+  <img src="docs/screenshots/breezy.png" alt="Breezy answering when Dadaji should visit the temple, with a suggestion card" width="200">
+</p>
 
 ## Features
 

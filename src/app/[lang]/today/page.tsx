@@ -13,7 +13,7 @@ import { appDeps } from "@/server/runtime";
 
 export const generateMetadata = async (): Promise<Metadata> => ({ title: t(await currentLang(), "today.metaTitle") });
 
-/** Today (spec 10.8): the answer first, from code. */
+/** Today: the answer first, from code. */
 export default function TodayPage() {
   return (
     <Suspense fallback={<PageLoading />}>

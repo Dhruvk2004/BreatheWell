@@ -6,7 +6,7 @@ import { langOf, t } from "@/i18n/t";
 import "./globals.css";
 
 /**
- * Last-resort boundary for errors in the root layout itself (spec 10.17): it replaces the layout, so
+ * Last-resort boundary for errors in the root layout itself: it replaces the layout, so
  * it brings its own document, and keeps the bilingual "Your data is safe." panel.
  */
 export default function GlobalError({ retry }: { error: unknown; retry: () => void }) {

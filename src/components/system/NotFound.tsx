@@ -2,7 +2,7 @@ import Link from "next/link";
 import { t, type Lang } from "@/i18n/t";
 import { btn } from "../ui/styles";
 
-/** 404 (spec 10.17, design 10.17): bilingual, the page language first, with two ways out. */
+/** 404: bilingual, the page language first, with two ways out. */
 export function NotFound({ lang }: { lang: Lang }) {
   const other: Lang = lang === "en" ? "hi" : "en";
   return (

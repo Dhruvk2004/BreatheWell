@@ -36,7 +36,7 @@ function RowsTable({ id, title, rows }: RowsTableProps) {
   );
 }
 
-/** "Who sees what" (spec 6.4) and "How long we keep it" (spec 9.4), simplified, as real tables. */
+/** "Who sees what" and "How long we keep it", simplified, as real tables. */
 export function PrivacyTables({ lang }: { lang: Lang }) {
   const t = translator(lang);
   const who = WHO.map((k) => ({ head: t(`privacy.who.${k}` satisfies MessageKey), body: t(`privacy.who.${k}.what` satisfies MessageKey) }));

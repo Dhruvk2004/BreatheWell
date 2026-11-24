@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 
 /**
- * Fixed-window rate limiter kept in memory (spec 7.8, 11.2): public per-IP limits never write to
+ * Fixed-window rate limiter kept in memory: public per-IP limits never write to
  * Firestore, so a crawler cannot spend the Spark write quota. Per instance, so best effort.
  */
 export class RateLimiter {
@@ -34,7 +34,7 @@ export class RateLimiter {
   }
 }
 
-/** Which client-address headers this deployment may believe (stage 7 WEB-3, PT-6). */
+/** Which client-address headers this deployment may believe. */
 export interface ProxyTrust {
   /** On Vercel: the platform sets `x-vercel-forwarded-for` / `x-real-ip` and overwrites X-Forwarded-For. */
   readonly vercel: boolean;
@@ -83,7 +83,7 @@ export function addressKey(ip: string): string {
 /**
  * The client key for per-IP limits: the address the platform vouches for (Vercel's own header, or
  * the rightmost X-Forwarded-For hop behind a trusted proxy), an IPv6 address by its /64, hashed so no
- * IP address is kept even in memory (spec 11.2). Null when no trusted address exists: a client-set
+ * IP address is kept even in memory. Null when no trusted address exists: a client-set
  * X-Forwarded-For on a plain `next start` never picks its own bucket.
  */
 export function clientKey(headers: Headers, trust: ProxyTrust = proxyTrust()): string | null {

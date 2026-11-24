@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import { joinQr } from "./qrPath";
 
 /**
- * The join QR (design 10.7): at least 240 px, a 4-module quiet zone, white behind it in both
- * themes, and one accessible name. The generator is loaded only on this screen (spec 11.3).
+ * The join QR: at least 240 px, a 4-module quiet zone, white behind it in both
+ * themes, and one accessible name. The generator is loaded only on this screen.
  */
 export function QrCode({ link, label, className = "w-60" }: { link: string; label: string; className?: string }) {
   const [qr, setQr] = useState<{ link: string; size: number; d: string } | null>(null);

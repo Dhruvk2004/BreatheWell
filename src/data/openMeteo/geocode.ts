@@ -1,21 +1,11 @@
 import { fetchJson, query, type DataResult, type FetchOptions } from "../http";
 import { geocodeResponse, type GeocodeResponse } from "./schemas";
+import { MIN_SEARCH_LENGTH, type PlaceSuggestion } from "./suggestion";
+
+export { MIN_SEARCH_LENGTH, suggestionLabel, type PlaceSuggestion } from "./suggestion";
 
 const GEOCODE_URL = "https://geocoding-api.open-meteo.com/v1/search";
 
-/** A city search suggestion ("Pune, Maharashtra, India"). */
-export interface PlaceSuggestion {
-  readonly id: number;
-  readonly name: string;
-  readonly region: string | null;
-  readonly country: string | null;
-  readonly countryCode: string | null;
-  readonly lat: number;
-  readonly lon: number;
-}
-
-/** Suggestions start after 3 letters (design 10.1). */
-export const MIN_SEARCH_LENGTH = 3;
 export const MAX_SUGGESTIONS = 5;
 
 export const geocodeUrl = (name: string, lang: "en" | "hi"): string =>
@@ -33,9 +23,6 @@ export function toSuggestions(response: GeocodeResponse): PlaceSuggestion[] {
     lon: r.longitude,
   }));
 }
-
-/** "Pune, Maharashtra, India". */
-export const suggestionLabel = (s: PlaceSuggestion): string => [s.name, s.region, s.country].filter(Boolean).join(", ");
 
 /** Typed city search (F1 fallback). Short queries return no suggestions without a request. */
 export async function searchPlaces(name: string, lang: "en" | "hi", options: FetchOptions = {}): Promise<DataResult<PlaceSuggestion[]>> {

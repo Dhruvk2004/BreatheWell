@@ -15,7 +15,7 @@ import { FamilyRows } from "./FamilyRows";
 import { ViewerCard } from "./ViewerCard";
 
 /**
- * Demo family (spec 10.3): the Sharma family's day from code, at the scenario clock. Verdicts and
+ * Demo family: the Sharma family's day from code, at the scenario clock. Verdicts and
  * times always come from the rules. At 6 am on a recorded scenario the lines are the stored Gemini
  * plan where one was recorded (labelled so); everything else is the template, labelled "Simple
  * plan" (never hand-written text presented as Gemini output).

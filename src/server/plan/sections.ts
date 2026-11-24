@@ -3,7 +3,7 @@ import type { PersonPlan } from "@/domain/family/people";
 import type { ActivityPlan } from "@/domain/rules/plan";
 import type { RuleSnapshot, SectionRecord } from "../repos/planRecords";
 
-/** The rule facts an item's words were written for (spec 7.2: a changed rule shows the template). */
+/** The rule facts an item's words were written for (a changed rule shows the template). */
 export const snapshotOf = (plan: ActivityPlan): RuleSnapshot => ({
   verdictAtUsual: plan.verdictAtUsual,
   suggestion: plan.suggestion,
@@ -15,7 +15,7 @@ export const snapshotOf = (plan: ActivityPlan): RuleSnapshot => ({
 export const sameRule = (a: RuleSnapshot, b: RuleSnapshot): boolean =>
   a.verdictAtUsual === b.verdictAtUsual && a.suggestion === b.suggestion && a.bestTime === b.bestTime && a.switchTo === b.switchTo;
 
-/** One stored section per planned person, each item with its rule snapshot (spec 9.1). */
+/** One stored section per planned person, each item with its rule snapshot. */
 export function sectionsOf(plan: ValidPlan, rows: readonly PersonPlan[]): Record<string, SectionRecord> {
   const sections: Record<string, SectionRecord> = {};
   for (const row of rows) {

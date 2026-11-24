@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState, type FormEvent, type KeyboardEvent } from "react";
-import { suggestionLabel, type PlaceSuggestion } from "@/data/openMeteo/geocode";
+import { suggestionLabel, type PlaceSuggestion } from "@/data/openMeteo/suggestion";
 import type { Lang } from "@/i18n/t";
 import { airHref, type ChosenPlace } from "./airHref";
 import { usePlaceSearch } from "./usePlaceSearch";

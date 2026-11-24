@@ -6,7 +6,7 @@ import { LogoMark } from "./Logo";
 
 const NAV = "inline-flex min-h-11 items-center rounded-sm px-2.5 font-bold text-brand underline-offset-4 hover:underline";
 
-/** Header on every page: logo, language, text size and Sign in or the avatar menu (spec 10, design 10.1). */
+/** Header on every page: logo, language and Sign in or the avatar menu. */
 export function SiteHeader({ lang }: { lang: Lang }) {
   const t = translator(lang);
   return (
@@ -14,8 +14,7 @@ export function SiteHeader({ lang }: { lang: Lang }) {
       <div className="mx-auto flex w-full max-w-[60rem] items-center justify-between gap-2 px-4 py-2">
         <Link href="/" className="inline-flex min-h-11 items-center gap-2 rounded-sm" aria-label={t("shell.home")}>
           <LogoMark />
-          {/* Hidden at Extra large text (globals.css), so the controls still fit on a phone. */}
-          <span className="wordmark text-lg font-bold" aria-hidden="true" lang="en">
+          <span className="text-lg font-bold" aria-hidden="true" lang="en">
             <span className="text-ink">Breathe</span>
             <span className="text-brand">Well</span>
           </span>

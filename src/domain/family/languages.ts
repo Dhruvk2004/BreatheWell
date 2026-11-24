@@ -9,7 +9,7 @@ export interface LanguageUser {
 }
 
 /**
- * The languages a family's plan is written in (spec 7.2): each planned adult's plus the admin's,
+ * The languages a family's plan is written in: each planned adult's plus the admin's,
  * in a fixed order. Dependents' card languages never count (they are not sent to Gemini).
  */
 export function familyLanguages(adults: readonly LanguageUser[]): Lang[] {

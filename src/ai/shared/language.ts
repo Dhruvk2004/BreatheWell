@@ -10,7 +10,7 @@ export function devanagariShare(text: string): number {
   return letters.filter((l) => /\p{Script=Devanagari}/u.test(l)).length / letters.length;
 }
 
-/** `hi` fields need at least 60% Devanagari letters (spec 7.1). */
+/** `hi` fields need at least 60% Devanagari letters. */
 export const MIN_HINDI_SHARE = 0.6;
 /** `en` fields are Latin: at most 10% Devanagari letters. */
 export const MAX_HINDI_IN_ENGLISH = 0.1;

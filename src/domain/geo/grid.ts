@@ -1,5 +1,5 @@
 /**
- * Location rounding (spec 6.5, 9.1): homes are stored to 2 decimals (about 1 km); the air cache uses
+ * Location rounding: homes are stored to 2 decimals (about 1 km); the air cache uses
  * a 0.1° grid (about 11 km). Exact coordinates are never stored.
  */
 const round = (value: number, places: number): number => {

@@ -7,7 +7,7 @@ import { CheckGroup, RadioGroup } from "../../form/Choice";
 import { pickActivities, STAY_IN } from "../draft";
 import type { StepProps } from "./types";
 
-/** Step 4 (spec 6.1 items 6–6c): pick up to 4, then one card per activity: time → can it move → how long. */
+/** Step 4: pick up to 4, then one card per activity: time → can it move → how long. */
 export function ActivitiesStep({ draft, set, lang, showErrors }: StepProps) {
   const t = translator(lang);
   const picked = draft.stayIn ? [STAY_IN] : draft.activities.map((a) => a.type);
@@ -48,7 +48,7 @@ const DURATIONS = ["under15", "15to60", "over60"] as const;
 
 type Change = (patch: Partial<ActivityInput>) => void;
 
-/** One card per activity (design 10.5): usual time → can it move → how long, each saying why it matters. */
+/** One card per activity: usual time → can it move → how long, each saying why it matters. */
 function ActivityCard({ activity, lang, onChange }: { activity: ActivityInput; lang: Lang; onChange: Change }) {
   const t = translator(lang);
   const id = activity.type;

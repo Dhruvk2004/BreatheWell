@@ -13,14 +13,14 @@ import type { PlanResult } from "../repos/plans";
 import { planWords } from "../plan/words";
 import { PLAN_PROMPT_VERSION } from "@/ai/plan/prompt";
 
-/** The Sharma family lives in Green Park (spec 2, 10.3). */
+/** The Sharma family lives in Green Park. */
 export const DEMO_PLACE = "Green Park, New Delhi";
 
-/** The stored plan was written for the 6 am stepper position only (design 10.3). */
+/** The stored plan was written for the 6 am stepper position only. */
 export const STORED_PLAN_HOUR = 6;
 
 /**
- * The demo family's plan request, exactly as a real family's (spec 7.2): used by the recorder
+ * The demo family's plan request, exactly as a real family's: used by the recorder
  * script to write the stored 6 am plans and by the tests that re-check every stored line.
  */
 export function demoPlanCheck(day: FamilyDay, weather: HourlyWeather): PlanCheck | null {
@@ -42,7 +42,7 @@ export function demoPlanCheck(day: FamilyDay, weather: HourlyWeather): PlanCheck
 
 /**
  * The demo's words: the stored Gemini plan at 6 am on a recorded scenario, the template otherwise
- * (Live today and the later stepper times never call Gemini, spec 7.8). Never generates.
+ * (Live today and the later stepper times never call Gemini). Never generates.
  */
 export function demoWords(query: DemoQuery, day: FamilyDay, lang: Lang): PlanWords {
   const stored = query.time === STORED_PLAN_HOUR ? storedDemoPlanFor(query.scenario) : null;

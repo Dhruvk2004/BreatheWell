@@ -28,7 +28,7 @@ const stopSpeaking = () => {
 };
 
 /**
- * सुनें / Listen (F18, spec 11.5): reads the text aloud with the browser's speechSynthesis, no
+ * सुनें / Listen: reads the text aloud with the browser's speechSynthesis, no
  * permission and no network. Rendered only when a matching voice exists; shows Stop while speaking.
  */
 export function ListenButton({ text, lang, label }: { text: string; lang: Lang; label: string }) {

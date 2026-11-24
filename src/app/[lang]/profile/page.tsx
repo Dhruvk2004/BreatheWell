@@ -12,7 +12,7 @@ import { appDeps } from "@/server/runtime";
 
 export const generateMetadata = async (): Promise<Metadata> => ({ title: t(await currentLang(), "prof.metaTitle") });
 
-/** Profile settings (spec 10.15); before onboarding has saved anything, onboarding. */
+/** Profile settings; before onboarding has saved anything, onboarding. */
 export default function ProfilePage() {
   return (
     <Suspense fallback={<PageLoading />}>

@@ -8,7 +8,7 @@ import { requireAccount } from "@/server/app/guards";
 
 export const generateMetadata = async (): Promise<Metadata> => ({ title: t(await currentLang(), "join.metaTitle") });
 
-/** Join with a typed code (spec 10.7). */
+/** Join with a typed code. */
 export default function JoinPage() {
   return (
     <Suspense fallback={<PageLoading />}>

@@ -53,7 +53,7 @@ for (const [hour, label] of [
 }
 
 test("the time stepper moves the scenario clock; the Severe day shows the GRAP note", async ({ page }) => {
-  // The band colour fades over 320 ms when the reading changes (design F); axe checks the settled colours.
+  // The band colour fades over 320 ms when the reading changes; axe checks the settled colours.
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/demo");
   await page.getByRole("link", { name: "4 pm" }).click();

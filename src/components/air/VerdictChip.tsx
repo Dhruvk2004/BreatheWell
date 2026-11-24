@@ -4,7 +4,7 @@ import { translator, type Lang } from "@/i18n/t";
 import { VERDICT_STYLE } from "../ui/bandStyle";
 import { VerdictGlyph } from "../ui/icons";
 
-/** Go / Go with care / Avoid: icon + word in a tinted pill (design D). The rules decide it; this only shows it. */
+/** Go / Go with care / Avoid: icon + word in a tinted pill. The rules decide it; this only shows it. */
 export function VerdictChip({ verdict, lang }: { verdict: Verdict; lang: Lang }) {
   return (
     <span

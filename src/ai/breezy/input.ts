@@ -9,7 +9,7 @@ import type { HourAllowed } from "./timeCheck";
 import type { BreezyCheck } from "./validate";
 
 /**
- * Breezy's context from the family plan request (spec 7.7.8): the same pseudonymised people (tokens,
+ * Breezy's context from the family plan request: the same pseudonymised people (tokens,
  * roles, care tags, activities with their rule results), the air as band words, today's hourly bands
  * and the 5-day outlook. Built from `PlanCheck`, so a name can never reach Breezy by another path.
  */

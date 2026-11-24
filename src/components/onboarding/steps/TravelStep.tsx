@@ -9,7 +9,7 @@ import type { StepProps } from "./types";
 
 const modeLabel = (mode: (typeof ADULT_MODES)[number], lang: Lang) => translator(lang)(mode === "home" ? "onb.fromHome" : modeKey(mode));
 
-/** Step 5 (spec 6.1 items 7–7b): main way, trip length (not when from home) and the other ways. */
+/** Step 5: main way, trip length (not when from home) and the other ways. */
 export function TravelStep({ draft, set, lang }: StepProps) {
   const t = translator(lang);
   const { travel } = draft;
@@ -44,7 +44,7 @@ export function TravelStep({ draft, set, lang }: StepProps) {
   );
 }
 
-/** Quick path Q2 (spec 5.6): "Is there a morning or evening walk? When?" Big single choices. */
+/** Quick path Q2: "Is there a morning or evening walk? When?" Big single choices. */
 export function QuickWalkStep({ draft, set, lang }: StepProps) {
   const t = translator(lang);
   return (

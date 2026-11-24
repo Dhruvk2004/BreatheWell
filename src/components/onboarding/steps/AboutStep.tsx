@@ -38,7 +38,7 @@ function NameQuestion({ draft, set, lang, showErrors }: StepProps) {
   );
 }
 
-/** Step 1 (spec 6.1): language and what the family calls you. */
+/** Step 1: language and what the family calls you. */
 export function AboutStep(props: StepProps) {
   return (
     <div className="grid gap-5">

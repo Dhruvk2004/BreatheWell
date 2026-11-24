@@ -1,7 +1,7 @@
-/** Sensitivity groups (spec 8.2): the strictest that applies. */
+/** Sensitivity groups: the strictest that applies. */
 export type Group = "everyday" | "sensitive" | "extra";
 
-/** Adults choose 18–59 or 60+; dependents are Under 13 or 13–17 (spec 6.1, 6.2). */
+/** Adults choose 18–59 or 60+; dependents are Under 13 or 13–17. */
 export type AdultAgeGroup = "18to59" | "60plus";
 export type DependentAgeGroup = "under13" | "13to17";
 export type AgeGroup = AdultAgeGroup | DependentAgeGroup;
@@ -9,7 +9,7 @@ export type AgeGroup = AdultAgeGroup | DependentAgeGroup;
 /** Health ticks across adults (6.1) and dependents (6.2). Every one is optional. */
 export type Condition = "asthma" | "copd" | "heart" | "allergies" | "pregnant" | "not_sure" | "none" | "prefer_not";
 
-/** The tag the family sees and Gemini receives instead of condition names (spec 6.5). */
+/** The tag the family sees and Gemini receives instead of condition names. */
 export type CareTag = "none" | "sensitive" | "extra";
 
 const EXTRA: readonly Condition[] = ["asthma", "copd", "heart"];

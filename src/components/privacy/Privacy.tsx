@@ -2,10 +2,10 @@ import { translator, type Lang } from "@/i18n/t";
 import { h2 } from "../ui/styles";
 import { PrivacyTables } from "./PrivacyTables";
 
-/** Plain-words sections, in order (spec 10.16, design 10.16). */
+/** Plain-words sections, in order. */
 const SECTIONS = ["store", "dont", "adults", "gemini", "location", "delete", "sources"] as const;
 
-/** Privacy page (spec 10.16, F19): what we store and don't, who sees what, Gemini, location, retention. */
+/** Privacy page: what we store and don't, who sees what, Gemini, location, retention. */
 export function Privacy({ lang }: { lang: Lang }) {
   const t = translator(lang);
   return (

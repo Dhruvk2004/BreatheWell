@@ -6,11 +6,11 @@ import type { Mode } from "../rules/modes";
 import { LANGS } from "../time/format";
 import { nameSchema } from "./names";
 
-/** "My usual outdoor activities" (spec 6.1 item 6); "I mostly stay in" is an empty list. */
+/** "My usual outdoor activities"; "I mostly stay in" is an empty list. */
 export const ADULT_CHOICES = ["morning_walk", "school_trip", "office_trip", "sport", "evening_walk", "errands", "tuition"] as const;
 export type AdultChoice = (typeof ADULT_CHOICES)[number] & ActivityType;
 
-/** Usual time bands (spec 6.1 item 6a) and the start the rules check for each. */
+/** Usual time bands and the start the rules check for each. */
 export const TIME_BANDS = ["early", "morning", "midday", "afternoon", "evening", "night"] as const;
 export type TimeBand = (typeof TIME_BANDS)[number];
 export const BAND_START: Readonly<Record<TimeBand, string>> = {
@@ -33,7 +33,7 @@ export const CHOICE_DEFAULTS: Readonly<Record<AdultChoice, { band: TimeBand; fle
   tuition: { band: "evening", flex: "fixed", duration: "15to60" },
 };
 
-/** Main ways adults travel (spec 6.1 item 7); "home" = works or studies from home. */
+/** Main ways adults travel; "home" = works or studies from home. */
 export const ADULT_MODES = ["walk", "cycle", "two_wheeler", "auto_bus", "metro", "car", "home"] as const satisfies readonly Mode[];
 export const ADULT_CONDITIONS = [
   "asthma",
@@ -60,7 +60,7 @@ const travelInput = z.strictObject({
   others: z.array(z.enum(ADULT_MODES).exclude(["home"])).max(5),
 });
 
-/** Everything an adult tells us about themself (spec 6.1); the server re-validates it. */
+/** Everything an adult tells us about themself; the server re-validates it. */
 export const profileInput = z
   .strictObject({
     name: nameSchema(30),
@@ -82,7 +82,7 @@ export type ActivityInput = ProfileInput["activities"][number];
 export const memberActivities = (activities: readonly ActivityInput[]): Activity[] =>
   activities.map(({ type, band, flex, duration }) => ({ id: type, type, usual: BAND_START[band], flex, duration }));
 
-/** The tag the family sees instead of condition names (spec 6.4). */
+/** The tag the family sees instead of condition names. */
 export const memberCareTag = (ageGroup: AdultAgeGroup, conditions: readonly Condition[]): CareTag =>
   careTagOf(sensitivityGroup(ageGroup, conditions));
 
@@ -92,7 +92,7 @@ export function bandOf(usual: string): TimeBand {
   return found ?? "morning";
 }
 
-/** What the server stores for the rules (users.profile and the member doc, spec 9.1): no condition names. */
+/** What the server stores for the rules (users.profile and the member doc): no condition names. */
 export function storedProfileOf(input: ProfileInput) {
   return {
     ageGroup: input.ageGroup,
@@ -102,7 +102,7 @@ export function storedProfileOf(input: ProfileInput) {
   };
 }
 
-/** A member who joined before onboarding: planned as setting up until they answer (spec 5.4, 5.11). */
+/** A member who joined before onboarding: planned as setting up until they answer. */
 export const SETTING_UP_PROFILE = {
   ageGroup: "18to59",
   careTag: "none",

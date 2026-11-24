@@ -19,12 +19,11 @@ const TECHNICAL = [
   "air.pollutant.so2",
   "privacy.gemini.title",
 ];
-// Words that are the same in both files on purpose: brand, the "Aa" glyph, formulas.
-const SAME_IN_BOTH = new Set(["app.name", "shell.textSize.button", ...TECHNICAL]);
+// Words that are the same in both files on purpose: brand, formulas.
+const SAME_IN_BOTH = new Set(["app.name", ...TECHNICAL]);
 // Brand-heavy Hindi strings (the brand names BreatheWell and Breezy stay in Latin script).
 const LATIN_IN_HINDI = new Set([
   "app.name",
-  "shell.textSize.button",
   "shell.lang.switch",
   "shell.home",
   "shell.footer.credit",

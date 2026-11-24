@@ -23,7 +23,7 @@ interface InviteViewProps {
   readonly lang: Lang;
 }
 
-/** Invite (spec 10.7, design 10.7): the code first, the QR, Copy link, Share, full screen, the steps and a new code. */
+/** Invite: the code first, the QR, Copy link, Share, full screen, the steps and a new code. */
 export function InviteView({ familyName, code, validTill, joinUrl, lang }: InviteViewProps) {
   const t = translator(lang);
   return (
@@ -86,13 +86,13 @@ function CodeCard({
   );
 }
 
-/** The invite message (spec 5.3): bilingual, Hindi first, when the admin reads the app in Hindi. */
+/** The invite message: bilingual, Hindi first, when the admin reads the app in Hindi. */
 export function inviteShareText(lang: Lang, vars: { url: string; code: string; time: string }): string {
   const english = tr("en", "invite.shareText", vars);
   return lang === "hi" ? `${tr("hi", "invite.shareText", vars)}\n${english}` : english;
 }
 
-/** Make a new code (spec 5.9): the old one stops working at once. */
+/** Make a new code: the old one stops working at once. */
 function NewCode({ code, lang }: { code: string | null; lang: Lang }) {
   const t = translator(lang);
   const router = useRouter();

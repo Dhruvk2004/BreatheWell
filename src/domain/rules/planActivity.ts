@@ -8,7 +8,7 @@ import { judgeFor } from "./judge";
 import type { ActivityPlan, PlanEnv, Planned, PlanNote, PlanStep, Suggestion } from "./plan";
 import { isSevereDay, reachesBand } from "./severeDay";
 
-/** Tomorrow's best non-Avoid start hour for the activity, or null (spec 8.4 step 6). */
+/** Tomorrow's best non-Avoid start hour for the activity, or null. */
 export function tomorrowBest(step: PlanStep): number | null {
   const tomorrow = addDays(step.date, 1);
   if (isSevereDay(step.env.index, tomorrow)) return null;
@@ -37,7 +37,7 @@ const outcome = (suggestion: Suggestion, rest: Partial<Outcome> = {}): Outcome =
   ...rest,
 });
 
-/** Walks, play, sport and errands: move to a better hour, stay in, or go with care (spec 8.3, 8.4). */
+/** Walks, play, sport and errands: move to a better hour, stay in, or go with care. */
 function planFlexible(step: PlanStep, atUsual: HourJudgement): Outcome {
   if (isSevereDay(step.env.index, step.date, step.fromHour))
     return outcome("indoor", { tomorrowBest: tomorrowBest(step), extraNotes: ["severe_day"] });
@@ -58,7 +58,7 @@ function planDay(env: PlanEnv): { date: string; fromHour: number } {
  * The rule result for one activity (spec 8.3–8.4): the verdict at the usual time and what to change.
  * Pure; `env.clock` is the injected clock (the real time live, `scenarioNow` in recorded demos).
  * The winter caution is judged on the planned date (tomorrow after 21:00), not the clock's date.
- * Null when there is no air data for the usual hour (no verdict, spec 8.5).
+ * Null when there is no air data for the usual hour (no verdict).
  */
 export function planActivity(person: Planned, activity: Activity, env: PlanEnv): ActivityPlan | null {
   const { date, fromHour } = planDay(env);

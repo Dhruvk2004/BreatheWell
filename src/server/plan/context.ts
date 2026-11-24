@@ -22,14 +22,14 @@ export function namesById(bundle: FamilyBundle): Record<string, string> {
 /** Every name, each word of it and the family name's words: none may appear in Gemini's text. */
 export const forbiddenNames = (bundle: FamilyBundle): string[] => nameWords([...Object.values(namesById(bundle)), bundle.family.name]);
 
-/** The languages the family uses: each planned adult's plus the admin's (spec 7.2). */
+/** The languages the family uses: each planned adult's plus the admin's. */
 export const familyLanguages = (bundle: FamilyBundle): Lang[] =>
   languagesOf(
     bundle.members.map((m) => ({ language: m.record.language, planned: m.record.onboarded, admin: m.uid === bundle.family.adminUid })),
   );
 
 /**
- * The place as Gemini sees it (spec 7.1: no raw user free text): the listed city of the home's grid
+ * The place as Gemini sees it (no raw user free text): the listed city of the home's grid
  * cell, else only the country. The admin-typed place name never reaches the prompt.
  */
 export function promptPlace(home: FamilyBundle["family"]["home"]): string {

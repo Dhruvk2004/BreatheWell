@@ -4,7 +4,7 @@ import { Suspense } from "react";
 import { InviteView } from "@/components/family/InviteView";
 import { PageLoading } from "@/components/shell/PageLoading";
 import { SignedInShell } from "@/components/shell/SignedInShell";
-import { dayTime } from "@/components/ui/dateTime";
+import { dayTime } from "@/domain/time/dayTime";
 import { INDIA_TIME_ZONE } from "@/domain/time/clock";
 import { currentLang } from "@/i18n/server";
 import { t } from "@/i18n/t";
@@ -15,7 +15,7 @@ import { appDeps } from "@/server/runtime";
 
 export const generateMetadata = async (): Promise<Metadata> => ({ title: t(await currentLang(), "invite.metaTitle") });
 
-/** Invite (spec 10.7): the admin's code, link and QR; others are told who can invite. */
+/** Invite: the admin's code, link and QR; others are told who can invite. */
 export default function FamilyInvitePage() {
   return (
     <Suspense fallback={<PageLoading />}>

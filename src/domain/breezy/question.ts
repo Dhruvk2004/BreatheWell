@@ -1,11 +1,11 @@
 import { foldText } from "../text/fold";
 
 /**
- * Breezy's input hygiene (spec 7.7.7): the question is capped at 300 characters with control
+ * Breezy's input hygiene: the question is capped at 300 characters with control
  * characters and markdown links stripped; the client-held history is untrusted, so it is flattened
  * to plain text, prior cards' actions are dropped, and the total is capped at 800 characters. Text
  * is folded first (`foldText`), so zero-width, fullwidth and look-alike spellings cannot split a
- * word or hide a name (stage 7 AI-7, AI-8).
+ * word or hide a name.
  */
 export const MAX_QUESTION = 300;
 export const MAX_HISTORY = 800;

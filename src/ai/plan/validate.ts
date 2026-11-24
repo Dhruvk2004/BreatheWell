@@ -6,7 +6,7 @@ import { MAX_HOME_TIPS, planOutputSchema, type PlanInputPerson, type PlanOutput,
 import { checkMember, type ValidPerson } from "./validateMember";
 
 /**
- * The family plan validator (spec 7.1, 7.2): Zod structure first, then every field on its own. A
+ * The family plan validator: Zod structure first, then every field on its own. A
  * field or item that fails is dropped, so it falls back to its template; ids must come from the
  * input; activity items must match the rules (kind and the contradiction checks); a dependent's
  * text must also pass the kid-card checks. Null means the whole reply is unusable.

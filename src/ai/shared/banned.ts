@@ -4,7 +4,7 @@ import { harmfulAdvice, hasLink } from "./harmful";
 import { nfc, nfcRegExp } from "./text";
 
 /**
- * Banned content, by pattern and whole word (spec 7.1, 7.7.7), so "diet" and "indie" pass.
+ * Banned content, by pattern and whole word, so "diet" and "indie" pass.
  * "Inhaler" is allowed: the plan uses it.
  */
 export type BanProblem = "diagnosis" | "medicine" | "dosing" | "fear_word" | "cigarette" | "url" | "name_leak" | "harmful" | "system_leak";
@@ -71,7 +71,7 @@ const SYSTEM = ["system prompt", "api key", "my instructions", "other families",
 const anyPhrase = (text: string, phrases: readonly string[]) => phrases.some((p) => containsPhrase(text, p));
 
 export interface BanContext {
-  /** Every member's and dependent's name and alias; Gemini never received one (spec 7.1). */
+  /** Every member's and dependent's name and alias; Gemini never received one. */
   readonly names: readonly string[];
   /** The text is for a dependent: fear words are banned too. */
   readonly forDependent: boolean;

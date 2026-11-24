@@ -8,7 +8,7 @@ import { translator, type Lang } from "@/i18n/t";
 import type { Words } from "@/view/app";
 import { aiLine, btn, h2, sourceLine } from "../ui/styles";
 
-/** "Help the air" (spec 10.8 item 4): one together action, in the plan's words when Gemini's passed. */
+/** "Help the air": one together action, in the plan's words when Gemini's passed. */
 export function HelpTheAir({ action, lang, words = null }: { action: TogetherAction; lang: Lang; words?: Words | null }) {
   const t = translator(lang);
   const alt = alternativeById(action);
@@ -28,12 +28,12 @@ interface WeekLineProps {
   readonly week: { readonly co2Kg: number; readonly carTrips: number };
   readonly lang: Lang;
   readonly family?: boolean;
-  /** With an id, the line gets its "This week" heading (Today, design 10.8 item 4a). */
+  /** With an id, the line gets its "This week" heading (Today). */
   readonly headingId?: string;
 }
 
 /**
- * "This week the family avoided about 7 kg CO₂ and 3 car trips." (F21) from ticked swaps. Today
+ * "This week the family avoided about 7 kg CO₂ and 3 car trips." from ticked swaps. Today
  * says it in the family's voice, and invites the first tick while the week is still empty.
  */
 export function WeekLine({ week, lang, family = false, headingId }: WeekLineProps) {
@@ -56,7 +56,7 @@ export function WeekLine({ week, lang, family = false, headingId }: WeekLineProp
   );
 }
 
-/** Breezy demo entry (spec 10.3 item 5); the demo chat itself arrives with Breezy. */
+/** Breezy demo entry; the demo chat itself arrives with Breezy. */
 export function BreezyEntry({ lang }: { lang: Lang }) {
   return (
     <Link href="/demo/ask" className={`${btn.secondary} w-full`}>
@@ -75,7 +75,7 @@ interface SourceLineProps {
 }
 
 /**
- * The demo's source line and the fixed caption under the rows (design G, 10.3, spec 11.6):
+ * The demo's source line and the fixed caption under the rows:
  * "Made by BreatheWell assistant (Google Gemini), stored for this 6 am" in Monsoon blue only while
  * stored Gemini words show; otherwise "Simple plan".
  */

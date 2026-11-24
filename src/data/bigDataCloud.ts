@@ -33,7 +33,7 @@ export function toPlaceName(response: ReverseResponse): PlaceName {
   return { name: parts.length ? parts.join(", ") : response.countryName, countryCode: response.countryCode };
 }
 
-/** Browser location → place name (F1). Coordinates are rounded to 2 decimals first. */
+/** Browser location → place name. Coordinates are rounded to 2 decimals first. */
 export async function reverseGeocode(at: Coordinates, lang: "en" | "hi", options: FetchOptions = {}): Promise<DataResult<PlaceName>> {
   const result = await fetchJson(reverseUrl(at, lang), reverseResponse, options);
   return result.ok ? { ok: true, value: toPlaceName(result.value) } : result;

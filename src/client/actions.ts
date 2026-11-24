@@ -5,7 +5,7 @@ import type { ProfileInput } from "@/domain/members/profile";
 import { apiRequest, type Fetch } from "./api";
 
 /**
- * Every signed-in write the pages make, one function per route (spec 9.3). The server re-checks
+ * Every signed-in write the pages make, one function per route. The server re-checks
  * everything; these only send JSON and validate the answer.
  */
 const ok = z.object({ ok: z.literal(true) });

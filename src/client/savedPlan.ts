@@ -16,7 +16,7 @@ const savedPlan = z.object({
   madeAt: z.string().max(40),
   /** "6:00 am": the air reading's time. */
   airAt: z.string().max(40),
-  /** ISO: the reading's fetch time, for the freshness rule (spec 8.5). */
+  /** ISO: the reading's fetch time, for the freshness rule. */
   fetchedAt: z.iso.datetime(),
   rows: z.array(z.object({ name: z.string().max(80), verdict: z.enum(["go", "care", "avoid"]), line: z.string().max(300) })).max(12),
 });

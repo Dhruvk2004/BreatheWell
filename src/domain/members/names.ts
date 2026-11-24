@@ -11,18 +11,18 @@ export const nameSchema = (max: number) =>
     .min(1)
     .max(max)
     .regex(NAME_CHARS)
-    // No domains ("site.com", "a.co"): a dot may only follow an initial, as in "R.K. Laxman" (stage 8 QA8-5).
+    // No domains ("site.com", "a.co"): a dot may only follow an initial, as in "R.K. Laxman".
     .refine((name) => !/[\p{L}\p{N}]\.[\p{L}\p{N}]{2,}/u.test(name));
 
 /**
  * A name that came from outside a validated form (the Google display name, a stored profile):
  * kept when it passes `nameSchema`, else empty, so a link or symbol name never reaches the family
- * (stage 7 AUTH-3, WEB-6). Onboarding asks for the name again.
+ *. Onboarding asks for the name again.
  */
 export function safeName(raw: string, max = 30): string {
   const result = nameSchema(max).safeParse(raw);
   return result.success ? result.data : "";
 }
 
-/** Shown for an adult whose Google name could not be used, until they type one in onboarding (QA8-6). */
+/** Shown for an adult whose Google name could not be used, until they type one in onboarding. */
 export const UNNAMED_MEMBER = "New member · नया सदस्य";

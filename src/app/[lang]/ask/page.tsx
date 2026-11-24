@@ -11,7 +11,7 @@ import { appDeps } from "@/server/runtime";
 
 export const generateMetadata = async (): Promise<Metadata> => ({ title: t(await currentLang(), "breezy.metaTitle") });
 
-/** Breezy, the assistant (spec 10.10): signed-in adults only; the public demo is /demo/ask. */
+/** Breezy, the assistant: signed-in adults only; the public demo is /demo/ask. */
 export default function AskPage() {
   return (
     <Suspense fallback={<PageLoading />}>

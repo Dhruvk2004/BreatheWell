@@ -10,7 +10,7 @@ import { appDeps } from "@/server/runtime";
 
 export const generateMetadata = async (): Promise<Metadata> => ({ title: t(await currentLang(), "onb.metaTitle") });
 
-/** Onboarding (spec 10.5, 5.6). */
+/** Onboarding. */
 export default function OnboardingPage() {
   return (
     <Suspense fallback={<PageLoading />}>

@@ -2,7 +2,7 @@ import { expect, test, type Page } from "@playwright/test";
 import { noViolations, signIn } from "./auth";
 import { family, joinWith, mockGeocoding, onboarded } from "./flows";
 
-// Spec 11.4 E2E: create family → invite → a second adult joins → the admin's join card → a dependent
+// E2E: create family → invite → a second adult joins → the admin's join card → a dependent
 // and her kid card → still setting up → delete the dependent → remove the member → old codes.
 
 const next = (page: Page) => page.getByRole("button", { name: "Next" }).click();

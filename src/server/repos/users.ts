@@ -9,7 +9,7 @@ export async function readUser(db: Pick<Db, "get">, uid: string): Promise<UserRe
   return parsed(userRecord, await db.get(paths.user(uid)));
 }
 
-/** The first profile: the Google first name (when it is a plain name) pre-fills "What does the family call you?" (spec 5.6). */
+/** The first profile: the Google first name (when it is a plain name) pre-fills "What does the family call you?". */
 function newUserDoc(googleName: string, now: string): DocData {
   return {
     name: safeName(firstName(googleName).slice(0, 30)),
@@ -27,7 +27,7 @@ function newUserDoc(googleName: string, now: string): DocData {
 }
 
 /**
- * Creates the profile on first sign-in, or refreshes `adultConfirmedAt` (spec 7.0: set by the
+ * Creates the profile on first sign-in, or refreshes `adultConfirmedAt` (set by the
  * server from the 18+ tick that came before every sign-in). Returns the stored profile.
  */
 export async function ensureUser(db: Db, uid: string, googleName: string, now: Date): Promise<UserRecord> {

@@ -1,7 +1,7 @@
 import { t, type Lang } from "@/i18n/t";
 
 /**
- * The required "I am 18 or older" tick (spec 7.0, 10.4), in both languages so a grandparent can
+ * The required "I am 18 or older" tick, in both languages so a grandparent can
  * read it before choosing a language. Nothing is signed in, stored or joined until it is ticked.
  */
 export function AdultTick({ checked, onChange, lang }: { checked: boolean; onChange: (checked: boolean) => void; lang: Lang }) {

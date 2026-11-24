@@ -3,7 +3,7 @@ import { Clock, Info, RefreshCw, Wind } from "lucide-react";
 import { translator, type Lang } from "@/i18n/t";
 import { btn, card, h2, noteInfo, noteNeutral } from "../ui/styles";
 
-/** Loading (design D): a static skeleton with words, never a band colour. */
+/** Loading: a static skeleton with words, never a band colour. */
 export function BandSkeleton({ lang }: { lang: Lang }) {
   const t = translator(lang);
   return (
@@ -23,7 +23,7 @@ export function BandSkeleton({ lang }: { lang: Lang }) {
   );
 }
 
-/** No data, or older than 12 h: a neutral card, no band, no verdicts (spec 8.5). */
+/** No data, or older than 12 h: a neutral card, no band, no verdicts. */
 export function NoDataCard({ lang, retryHref }: { lang: Lang; retryHref: string }) {
   const t = translator(lang);
   return (
@@ -42,7 +42,7 @@ export function NoDataCard({ lang, retryHref }: { lang: Lang; retryHref: string 
   );
 }
 
-/** Tips that are safe whatever the air (spec 5.11). */
+/** Tips that are safe whatever the air. */
 export function SafeAnyway({ lang }: { lang: Lang }) {
   const t = translator(lang);
   return (
@@ -58,7 +58,7 @@ export function SafeAnyway({ lang }: { lang: Lang }) {
   );
 }
 
-/** "This air reading is from 4:00 am. We'll update it when we can." (spec 8.5). */
+/** "This air reading is from 4:00 am. We'll update it when we can.". */
 export function OldDataNote({ time, lang }: { time: string; lang: Lang }) {
   return (
     <p className={`m-0 ${noteNeutral}`}>
@@ -68,7 +68,7 @@ export function OldDataNote({ time, lang }: { time: string; lang: Lang }) {
   );
 }
 
-/** Delhi NCR on every verdict screen (spec 8.5). */
+/** Delhi NCR on every verdict screen. */
 export function StationNote({ lang }: { lang: Lang }) {
   return (
     <p className={`m-0 ${noteInfo}`}>

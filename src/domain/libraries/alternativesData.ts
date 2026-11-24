@@ -3,7 +3,7 @@ import type { Alternative } from "./alternatives";
 const b = (en: string, hi: string) => ({ en, hi });
 const FOR_AIR_TRAVEL = b("Fewer tailpipe fumes on your route today.", "आज आपके रास्ते पर गाड़ियों का धुआँ कम।");
 
-/** The alternatives library v1 (spec 7.5). Wording is EN + HI; figures come from emissions.ts. */
+/** The alternatives library v1. Wording is EN + HI; figures come from emissions.ts. */
 export const ALTERNATIVES: readonly Alternative[] = [
   {
     id: "metro_for_scooter",

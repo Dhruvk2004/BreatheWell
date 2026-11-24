@@ -17,7 +17,7 @@ export interface CommunityInput {
   readonly avg24: number;
   readonly band: Band;
   readonly best: HourWindow | null;
-  /** Which day `best` is on: after 9 pm it is tomorrow's window (spec 8.4 step 9). */
+  /** Which day `best` is on: after 9 pm it is tomorrow's window. */
   readonly windowDay: WindowDay;
   readonly together: CommunityAction;
   /** "7:00 am", the air reading's time. */

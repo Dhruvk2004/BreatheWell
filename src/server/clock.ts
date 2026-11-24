@@ -1,3 +1,4 @@
+import { isDemoProject } from "@/config/env";
 import { INDIA_TIME_ZONE } from "@/domain/time/clock";
 
 type Env = Readonly<Record<string, string | undefined>>;
@@ -28,7 +29,7 @@ function indiaMinutes(at: Date): number {
  */
 export function serverClock(env: Env, real: () => Date = () => new Date()): () => Date {
   const pinned = HH_MM.exec(env.E2E_IST_CLOCK?.trim() ?? "");
-  const demo = env.FIREBASE_PROJECT_ID?.startsWith("demo-") ?? false;
+  const demo = isDemoProject(env.FIREBASE_PROJECT_ID);
   if (!pinned || !demo) return real;
   const start = real();
   const target = Number(pinned[1]) * 60 + Number(pinned[2]);

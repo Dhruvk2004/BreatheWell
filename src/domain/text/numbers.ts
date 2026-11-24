@@ -1,5 +1,5 @@
 /**
- * Number normalisation before the "no air numbers" check (spec 7.1): Devanagari digits become 0–9,
+ * Number normalisation before the "no air numbers" check: Devanagari digits become 0–9,
  * and number words ("three hundred", "तीन सौ") become digits, so a number cannot hide in words.
  */
 const DEVANAGARI_ZERO = "०".charCodeAt(0);

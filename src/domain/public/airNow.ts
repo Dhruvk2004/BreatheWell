@@ -15,7 +15,7 @@ import type { Mode } from "../rules/modes";
 import { whoShouldTakeCare, type CareRow } from "../rules/publicAdvice";
 import type { Clock } from "../time/clock";
 
-/** Everything Air now needs, from the place's hourly data and the injected clock (spec 10.2). */
+/** Everything Air now needs, from the place's hourly data and the injected clock. */
 export interface AirNowInput {
   readonly air: HourlyAir;
   readonly weather: HourlyWeather;
@@ -26,7 +26,7 @@ export interface AirNowInput {
   readonly city: City | null;
 }
 
-/** The band card's reading: the hourly estimate "now" (spec 8.1). */
+/** The band card's reading: the hourly estimate "now". */
 export interface Reading {
   /** The local hour of the reading, "2024-11-18T06:00". */
   readonly time: string;
@@ -35,7 +35,7 @@ export interface Reading {
   readonly main: HourPoint["main"];
 }
 
-/** Air now's content. Without fresh-enough data there is no reading and no advice (spec 8.5). */
+/** Air now's content. Without fresh-enough data there is no reading and no advice. */
 export interface AirNowModel {
   readonly freshness: Freshness;
   readonly summary: AirSummary;
@@ -48,7 +48,7 @@ export interface AirNowModel {
   readonly pollutants: readonly PollutantValue[];
   /** Outside all day today, for the collapsed "For adults: the numbers" panel only (spec 6.4 🔒). */
   readonly cigarettes: CigaretteFigure | null;
-  /** Delhi NCR: "Official stations may read higher" (spec 8.5). */
+  /** Delhi NCR: "Official stations may read higher". */
   readonly stationNote: boolean;
   readonly outsideIndia: boolean;
 }
@@ -64,7 +64,7 @@ function dayCigarettes(summary: AirSummary): CigaretteFigure | null {
 }
 
 /**
- * Builds Air now from code only (rules and checked libraries; no Gemini on public pages, spec 7.8).
+ * Builds Air now from code only (rules and checked libraries; no Gemini on public pages).
  * Pure: the clock is injected, so the same function serves live pages and tests.
  */
 export function airNow(input: AirNowInput): AirNowModel {

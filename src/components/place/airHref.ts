@@ -9,8 +9,8 @@ export interface ChosenPlace {
 }
 
 /**
- * The Air now URL for a place (spec 10.2): `/air?place=…&lat=..&lon=..&cc=IN`, with coordinates
- * rounded to 2 decimals (about 1 km) so an exact position never reaches a URL or a log (spec 6.5).
+ * The Air now URL for a place: `/air?place=…&lat=..&lon=..&cc=IN`, with coordinates
+ * rounded to 2 decimals (about 1 km) so an exact position never reaches a URL or a log.
  */
 export function airHref(place: ChosenPlace, path = "/air"): string {
   const { lat2, lon2 } = round2(place.lat, place.lon);
@@ -19,5 +19,5 @@ export function airHref(place: ChosenPlace, path = "/air"): string {
   return `${path}?${params.toString()}`;
 }
 
-/** The community message page for the same place (spec 10.13), with the same rounding. */
+/** The community message page for the same place, with the same rounding. */
 export const communityHref = (place: ChosenPlace): string => airHref(place, "/community");

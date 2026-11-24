@@ -14,7 +14,7 @@ interface AliasQuestionProps {
   readonly onPick: (forId: string) => Promise<boolean>;
 }
 
-/** "Who do you mean by 'Papa'?" (spec 7.7.9): asked by code; nothing goes to Gemini until a pick. */
+/** "Who do you mean by 'Papa'?": asked by code; nothing goes to Gemini until a pick. */
 export function AliasQuestion({ word, people, lang, onPick }: AliasQuestionProps) {
   const t = translator(lang);
   const [picked, setPicked] = useState<string | null>(null);

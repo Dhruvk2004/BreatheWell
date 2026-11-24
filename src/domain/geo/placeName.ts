@@ -16,7 +16,7 @@ const MAX_PUBLIC_WORDS = 5;
 /**
  * A place name from a public link (`?place=` on Air now and Community), which anyone can craft and
  * the page repeats into WhatsApp share text: also no phone-number-like runs of 5+ digits and at
- * most 5 words, so "Call 9810012345 for free N95" is shown as coordinates (stage 7 PT-7).
+ * most 5 words, so "Call 9810012345 for free N95" is shown as coordinates.
  */
 export const publicPlaceName = (name: string | undefined): string | undefined => {
   const safe = safePlaceName(name);

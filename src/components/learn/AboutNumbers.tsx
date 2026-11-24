@@ -8,7 +8,7 @@ import { Section } from "./Section";
 const FACTS = ["aqi_method", "pm_standards", "model_vs_station"] as const;
 const MODES: readonly Mode[] = ["car", "two_wheeler", "auto_bus", "school_bus", "metro", "cycle"];
 
-/** "About our numbers" (spec 10.11 item 5): method, standards, the model caveat and the emission factors with sources. */
+/** "About our numbers": method, standards, the model caveat and the emission factors with sources. */
 export function AboutNumbers({ lang }: { lang: Lang }) {
   const t = translator(lang);
   return (

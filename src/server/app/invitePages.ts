@@ -9,10 +9,10 @@ import { familyRecord, joinCodeRecord, parsed, userRecord } from "../repos/recor
 import type { InFamily } from "./guards";
 import type { Viewer } from "./viewer";
 
-/** The join link for a code (spec 5.3): `https://<app>/join/K7PM4QXT`, always absolute (QR, WhatsApp). */
+/** The join link for a code: `https://<app>/join/K7PM4QXT`, always absolute (QR, WhatsApp). */
 export const joinUrl = (origin: string, code: string): string => `${origin}/join/${code}`;
 
-/** The family's live join code, read by the server only (spec 9.2); null when none is valid. */
+/** The family's live join code, read by the server only; null when none is valid. */
 export async function liveCode(viewer: InFamily, deps: AppDeps): Promise<{ code: string; expiresAt: string } | null> {
   const docs = await dbOf(deps).query(paths.joinCodes, [{ field: "familyId", value: viewer.bundle.id }]);
   for (const { id, data } of docs) {
@@ -23,7 +23,7 @@ export async function liveCode(viewer: InFamily, deps: AppDeps): Promise<{ code:
 }
 
 /**
- * The admin's Invite page (spec 10.7): the family's live code, or none (then "Make a new code").
+ * The admin's Invite page: the family's live code, or none (then "Make a new code").
  * Non-admins get null and see the read-only note. `origin` comes from `siteOrigin`.
  */
 export async function loadInvite(viewer: InFamily, deps: AppDeps, origin: string): Promise<InvitePage | null> {
@@ -38,7 +38,7 @@ export async function loadInvite(viewer: InFamily, deps: AppDeps, origin: string
 }
 
 /**
- * `/join/[code]` (spec 5.4, 5.11): shows the family name and the admin's first name only for a code
+ * `/join/[code]`: shows the family name and the admin's first name only for a code
  * the server has checked; an expired code names the admin only. Per-IP limited (30 an hour) so the
  * page cannot be used to probe codes.
  */
@@ -55,7 +55,7 @@ export async function loadInvitePreview(raw: string, headers: Headers, deps: App
   return { kind: "valid", code, familyName: family.name, adminName, expiresAt: record.expiresAt };
 }
 
-/** Everything `/join/[code]` shows: the checked invite and who is looking (spec 5.4). */
+/** Everything `/join/[code]` shows: the checked invite and who is looking. */
 export async function loadJoinPage(raw: string, headers: Headers, viewer: Viewer, deps: AppDeps) {
   const preview = await loadInvitePreview(raw, headers, deps);
   const signedIn = viewer.kind === "signed_in";

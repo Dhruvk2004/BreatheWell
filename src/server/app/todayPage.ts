@@ -19,7 +19,7 @@ import { visibleConditions } from "./sharedHealth";
 import { airView, familyView } from "./familyView";
 
 /**
- * Today (spec 10.8): the family's day from code at once, the stored Gemini words where they still
+ * Today: the family's day from code at once, the stored Gemini words where they still
  * fit, the "still setting up" rows, the weekly line, the share text and, for the admin, a card for
  * every join with the code in the last day.
  */
@@ -44,7 +44,7 @@ export async function loadToday(viewer: InFamily, deps: AppDeps, lang: Lang = "e
   return { family, air, joinCards, words, week, shareText, communityHref };
 }
 
-/** Member plan (spec 10.9): one member's or dependent's plan, checklist and today's ticks; null when unknown. */
+/** Member plan: one member's or dependent's plan, checklist and today's ticks; null when unknown. */
 export async function loadMember(viewer: InFamily, id: string, deps: AppDeps, lang: Lang = "en"): Promise<MemberPage | null> {
   const family = familyView(viewer.bundle, viewer.uid);
   const person = family.people.find((p) => p.id === id);

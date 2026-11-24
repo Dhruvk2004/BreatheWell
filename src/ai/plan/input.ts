@@ -14,7 +14,7 @@ import type { Lang } from "@/domain/time/format";
 import type { PlanInput, PlanInputActivity, PlanInputPerson } from "./schema";
 
 /**
- * Builds the family plan prompt input from the rules' day (spec 7.2) and pseudonymises it: members
+ * Builds the family plan prompt input from the rules' day and pseudonymises it: members
  * become `m1`…, dependents `d1`…, activities `a1`…, in the family's stored order (not the viewer's
  * row order), so every member's request builds the same prompt. Names, uids, dependent ids and
  * condition names are never in it, and members still setting up are not planned, so not sent.
@@ -25,7 +25,7 @@ export interface PlanSource {
   readonly people: readonly FamilyPerson[];
   /** Each adult's language, by id. */
   readonly languageOf: Readonly<Record<string, Lang>>;
-  /** Every member's language plus the admin's (spec 7.2: only the languages the family uses). */
+  /** Every member's language plus the admin's (only the languages the family uses). */
   readonly languages: readonly Lang[];
   readonly place: string;
   readonly home: HomeSetup;

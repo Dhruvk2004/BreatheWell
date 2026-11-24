@@ -15,13 +15,13 @@ export interface AirSnapshot {
   readonly weather: HourlyWeather;
 }
 
-/** The air cache keeps a cell for 48 hours (spec 9.4); the daily clean-up deletes it after `expireAt`. */
+/** The air cache keeps a cell for 48 hours; the daily clean-up deletes it after `expireAt`. */
 export const AIR_CACHE_TTL_MS = 48 * 3_600_000;
 
 /** "2026112106": the UTC hour an air reading belongs to. */
 export const hourKey = (at: Date): string => at.toISOString().slice(0, 13).replace(/[-T]/g, "");
 
-/** `airCache/{gridId}_{yyyyMMddHH}` (spec 9.1). */
+/** `airCache/{gridId}_{yyyyMMddHH}`. */
 export const cacheDocId = (gridId: string, at: Date): string => `${gridId}_${hourKey(at)}`;
 
 /** The centre of a 0.1° cell ("28.6_77.2" → 28.6, 77.2): every place in the cell shares one fetch. */
@@ -32,7 +32,7 @@ export function gridCentre(gridId: string): { lat: number; lon: number } {
 
 const series = z.array(z.number().nullable());
 
-/** The stored document (spec 9.1); the derived fields are for reading the cache by eye and in Breezy later. */
+/** The stored document; the derived fields are for reading the cache by eye and in Breezy later. */
 export const airCacheDoc = z.object({
   gridId: z.string(),
   fetchedAt: z.date(),

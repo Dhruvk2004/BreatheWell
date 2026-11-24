@@ -20,7 +20,7 @@ export interface AqiResult {
 const ABOVE_SCALE = AQI_MAX + 1;
 
 /**
- * CPCB sub-index by linear interpolation inside the band's breakpoints (spec 8.1). The concentration
+ * CPCB sub-index by linear interpolation inside the band's breakpoints. The concentration
  * is rounded to a whole µg/m³ first, as the CPCB tables use integers. Null for a missing or negative value.
  */
 export function subIndex(pollutant: PmPollutant, concentration: number | null): number | null {

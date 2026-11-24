@@ -18,14 +18,14 @@ const INK: Readonly<Record<Band, string>> = {
   severe: "#FFFFFF",
 };
 
-/** Smile on clean air, flat on Moderate, a gentle down curve after that; never tears (design G). */
+/** Smile on clean air, flat on Moderate, a gentle down curve after that; never tears. */
 const mouth = (band: Band): string => {
   if (bandRank(band) <= bandRank("satisfactory")) return "M23 39c5 5 13 5 18 0";
   if (band === "moderate") return "M24 41h16";
   return "M25 42.5c4.5-1.2 9.5-1.2 14 0";
 };
 
-/** The kid card's face in the band colour (design D): colour + the word beside it + this picture. */
+/** The kid card's face in the band colour: colour + the word beside it + this picture. */
 export function KidFace({ band, label, className = "size-20" }: { band: Band; label: string; className?: string }) {
   const edge = band === "satisfactory" || band === "moderate" ? "var(--band-edge)" : band === "severe" ? "var(--band-severe-edge)" : "none";
   return (

@@ -24,7 +24,7 @@ export interface HourJudgement {
 }
 
 /**
- * Judges an activity starting at `hour`: the worst hour in h…h+span−1 decides (spec 8.4 step 3),
+ * Judges an activity starting at `hour`: the worst hour in h…h+span−1 decides,
  * each hour through the guardrail table with the winter caution. Null if any of those hours has no data.
  */
 export function judgeAt(judge: Judge, date: string, hour: number): HourJudgement | null {
@@ -40,7 +40,7 @@ export function judgeAt(judge: Judge, date: string, hour: number): HourJudgement
 }
 
 /**
- * Candidate start hours (spec 8.4 step 2): 06–21, never before `fromHour` (past hours are never
+ * Candidate start hours: 06–21, never before `fromHour` (past hours are never
  * suggested). Fixed → the usual hour only; Can move a bit → usual ± 2 h; Any time → all of them.
  */
 export function candidateHours(flex: Flex, usualHour: number, fromHour: number): number[] {
@@ -53,7 +53,7 @@ export function candidateHours(flex: Flex, usualHour: number, fromHour: number):
   return hours;
 }
 
-/** Lowest (verdict rank, worst AQI, distance from the usual hour, hour) wins (spec 8.4 step 4). */
+/** Lowest (verdict rank, worst AQI, distance from the usual hour, hour) wins. */
 export function bestHour(judge: Judge, date: string, hours: readonly number[], usualHour: number): HourJudgement | null {
   const judged = hours.map((h) => judgeAt(judge, date, h)).filter((j): j is HourJudgement => j !== null);
   judged.sort(
@@ -66,7 +66,7 @@ export function bestHour(judge: Judge, date: string, hours: readonly number[], u
   return judged[0] ?? null;
 }
 
-/** "At least 20% and at least 25 points lower" for a move at the same verdict (spec 8.4 step 5). */
+/** "At least 20% and at least 25 points lower" for a move at the same verdict. */
 export const MOVE_MIN_SHARE = 0.2;
 export const MOVE_MIN_POINTS = 25;
 

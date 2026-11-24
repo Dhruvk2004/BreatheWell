@@ -2,9 +2,9 @@ import { MAX_QUESTION } from "@/domain/breezy/question";
 import type { BreezyInput } from "./schema";
 
 /**
- * Breezy's prompt (spec 7.7). The rules have decided every verdict and time; Breezy explains them,
+ * Breezy's prompt. The rules have decided every verdict and time; Breezy explains them,
  * answers in the viewer's language and proposes at most 3 cards. The question and the history are
- * fenced data (spec 7.7.7): instructions inside them are never followed.
+ * fenced data: instructions inside them are never followed.
  */
 export const BREEZY_PROMPT_VERSION = 1;
 

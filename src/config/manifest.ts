@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { t } from "@/i18n/t";
 
 /**
- * The web app manifest (F24): name, colours from the brand palette and the install icons rendered
+ * The web app manifest: name, colours from the brand palette and the install icons rendered
  * by `npm run icons`. English is the manifest language; the app itself follows the saved language.
  */
 export function webManifest(): MetadataRoute.Manifest {

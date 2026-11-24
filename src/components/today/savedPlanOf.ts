@@ -5,7 +5,7 @@ import type { TodayPage } from "@/view/app";
 import { rowView } from "../demo/rowView";
 
 /**
- * What Today keeps for the offline "Saved plan" (F24): each row's name, verdict and the line on
+ * What Today keeps for the offline "Saved plan": each row's name, verdict and the line on
  * screen (Gemini's where it passed, else the template), with the times formatted. Never a health
  * tag or a condition; null without a planned day.
  */

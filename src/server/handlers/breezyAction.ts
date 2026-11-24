@@ -18,7 +18,7 @@ import type { FamilyBundle } from "../repos/family";
 import { forbiddenNames } from "../plan/context";
 
 /**
- * `POST /api/breezy/action` (spec 7.7.4, 9.3): what an adult confirmed on the sheet. The server
+ * `POST /api/breezy/action`: what an adult confirmed on the sheet. The server
  * trusts none of it: the target must be in the caller's family, the fact id must be a library id,
  * both texts pass the validator again with the rules on every time they name, and for a plan item
  * the rules run again for its time (an hour that is no longer allowed is refused). A dependent's
@@ -49,7 +49,7 @@ function textPasses(body: ActionBody, bundle: FamilyBundle, target: Target, allo
   });
 }
 
-/** For a plan item: the rules must still allow this time (spec 7.7.7). */
+/** For a plan item: the rules must still allow this time. */
 function timeAllowed(body: ActionBody, allowed: HourAllowed): boolean {
   if (body.type === "add_checklist") return true;
   if (!body.time || !body.activity) return false;
@@ -83,7 +83,7 @@ export async function breezyAction(request: Request, deps: AppDeps): Promise<Res
   const saved = await addItem(auth.db, bundle.id, { body, forId: target.id, by: { uid, name: adder }, now: deps.now() });
   if (!saved) return forbidden();
   // The kid card shows the text in its own language and checks only that (repos/items.ts), so the
-  // confirmation says the same (stage 7 AI-9).
+  // confirmation says the same.
   const onCard = target.kind === "adult" || passesKidChecks(body.item[target.language]);
   const whatsapp =
     target.kind === "adult" && target.id !== uid

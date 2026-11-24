@@ -10,12 +10,12 @@ interface WhyPanelProps {
   readonly doThis?: string;
   /** Extra level-2 lines, e.g. "For the air: about 2 kg less CO₂". */
   readonly forAir?: ReactNode;
-  /** Level 2 in the assistant's words (Gemini `why`, spec 7.4); the fact's own text otherwise. */
+  /** Level 2 in the assistant's words (Gemini `why`); the fact's own text otherwise. */
   readonly picture?: string;
 }
 
 /**
- * "Why?" (spec 7.4, design G `WhyPanel`): Do this · Picture it · The numbers, from the facts library
+ * "Why?" (design G `WhyPanel`): Do this · Picture it · The numbers, from the facts library
  * (code only). Public pages never show a cigarette line here (that lives only in "For adults").
  */
 export function WhyPanel({ lang, factId, doThis, forAir, picture }: WhyPanelProps) {

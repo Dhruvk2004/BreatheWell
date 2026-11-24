@@ -13,10 +13,10 @@ import {
 import { outlook, type DayOutlook } from "./outlook";
 import { bestWindow, DAY_FIRST_HOUR, DAY_LAST_HOUR, worstWindow, type HourWindow } from "./windows";
 
-/** Which day the best and worst windows describe, as the band card says it (design 10.2, 10.3). */
+/** Which day the best and worst windows describe, as the band card says it. */
 export type WindowDay = "today" | "rest_of_today" | "tomorrow";
 
-/** The family-level reading of a place's hourly air at the clock's time (spec 8.1, 8.4). */
+/** The family-level reading of a place's hourly air at the clock's time. */
 export interface AirSummary {
   readonly index: HourIndex;
   /** The clock's local date. */
@@ -26,7 +26,7 @@ export interface AirSummary {
   readonly now: HourPoint | null;
   /** The 24-hour CPCB-style AQI (shown smaller, labelled "24-h average"). */
   readonly avg24: number | null;
-  /** False with fewer than 6 future hours: "Best time: not available today" (spec 5.11). */
+  /** False with fewer than 6 future hours: "Best time: not available today". */
   readonly enoughForecast: boolean;
   readonly windowDay: WindowDay;
   readonly best: HourWindow | null;
@@ -36,7 +36,7 @@ export interface AirSummary {
   readonly outlook: readonly DayOutlook[];
 }
 
-/** Today from the current hour (the whole day at 6 am), or tomorrow once it is past 21:00 (spec 8.4 step 9). */
+/** Today from the current hour (the whole day at 6 am), or tomorrow once it is past 21:00. */
 function windowDay(date: string, hour: number): { day: WindowDay; date: string; fromHour: number } {
   if (hour >= DAY_LAST_HOUR) return { day: "tomorrow", date: addDays(date, 1), fromHour: DAY_FIRST_HOUR };
   return { day: hour <= DAY_FIRST_HOUR ? "today" : "rest_of_today", date, fromHour: hour };

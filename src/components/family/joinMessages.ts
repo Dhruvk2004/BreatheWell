@@ -1,13 +1,13 @@
 import { translator, type Lang } from "@/i18n/t";
 
-/** What the join answer said, with the names the server chose to reveal (spec 5.11). */
+/** What the join answer said, with the names the server chose to reveal. */
 export interface JoinProblem {
   readonly code: string;
   readonly familyName?: string;
   readonly adminName?: string;
 }
 
-/** The join error line for a server code (spec 5.11, design 10.7 "other messages"). */
+/** The join error line for a server code. */
 export function joinMessage(problem: JoinProblem, lang: Lang): string {
   const t = translator(lang);
   const family = problem.familyName ?? "";

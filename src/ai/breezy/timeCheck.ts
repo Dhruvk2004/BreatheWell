@@ -8,7 +8,7 @@ import { nfc, sentences } from "../shared/text";
 import { findTimes, type FoundTime } from "../shared/times";
 
 /**
- * The rules on every time inside Breezy's free text (spec 7.1, design G): when a clause names a time
+ * The rules on every time inside Breezy's free text: when a clause names a time
  * and an outing ("walk", "play outside", "सुबह 8 बजे बाहर खेलें"), the rules judge that hour for the
  * people it is about, and an hour they do not allow (Avoid, past, a Severe day) rejects the text.
  * Used on the reply, every card field and again on the confirmed action. Pure: the rules come in as

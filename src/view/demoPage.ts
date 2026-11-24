@@ -13,7 +13,7 @@ import type { PlanWords } from "./app";
 /** Where the demo's air came from: a recorded day, live Open-Meteo, or the saved 20 Nov snapshot. */
 export type DemoSource = "recorded" | "live" | "fallback";
 
-/** What the demo page renders (spec 10.3): the query, the air and the Sharma family's planned day. */
+/** What the demo page renders: the query, the air and the Sharma family's planned day. */
 export interface DemoData {
   readonly query: DemoQuery;
   readonly source: DemoSource;
@@ -29,7 +29,7 @@ export interface DemoData {
   readonly storedPlan: boolean;
 }
 
-/** A demo dependent's kid card (spec 10.12): public, from fixtures, text only from the kid library. */
+/** A demo dependent's kid card: public, from fixtures, text only from the kid library. */
 export interface KidPage {
   readonly data: DemoData;
   readonly person: DemoPerson;

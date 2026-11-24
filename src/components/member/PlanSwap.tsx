@@ -12,7 +12,7 @@ import { TickBox } from "./TickBox";
 
 interface PlanSwapProps {
   readonly swap: PlanSwapView;
-  /** Whose plan this is, and today's ticked keys: a done swap counts toward the weekly line (F21). */
+  /** Whose plan this is, and today's ticked keys: a done swap counts toward the weekly line. */
   readonly forId: string;
   readonly ticked: readonly string[];
   readonly travel: { readonly main: Mode; readonly tripLength: TripLength };
@@ -20,7 +20,7 @@ interface PlanSwapProps {
 }
 
 /**
- * The plan's "Swap" card (spec 10.9 item 3, F13): one low-emission alternative code allowed, in the
+ * The plan's "Swap" card: one low-emission alternative code allowed, in the
  * plan's words when Gemini's passed, with "For you" and "For the air" from the library and the
  * emissions maths (code only).
  */

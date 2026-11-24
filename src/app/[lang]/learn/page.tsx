@@ -10,7 +10,7 @@ import { appDeps } from "@/server/runtime";
 
 export const generateMetadata = async (): Promise<Metadata> => ({ title: t(await currentLang(), "learn.metaTitle") });
 
-/** Learn (spec 10.11): the generic page at once; a signed-in adult also gets "Your choices today". */
+/** Learn: the generic page at once; a signed-in adult also gets "Your choices today". */
 export default function LearnPage() {
   return (
     <Suspense fallback={<Generic />}>

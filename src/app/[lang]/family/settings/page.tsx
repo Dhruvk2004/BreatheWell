@@ -11,7 +11,7 @@ import { appDeps } from "@/server/runtime";
 
 export const generateMetadata = async (): Promise<Metadata> => ({ title: t(await currentLang(), "set.metaTitle") });
 
-/** Family settings (spec 10.14). */
+/** Family settings. */
 export default function SettingsPage() {
   return (
     <Suspense fallback={<PageLoading />}>

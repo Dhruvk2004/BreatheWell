@@ -5,13 +5,13 @@ import { paths } from "./paths";
 import { quotaDay } from "./quota";
 
 /**
- * Breezy's daily caps (spec 7.8): 30 questions a day per user and 60 per family, counted in
+ * Breezy's daily caps: 30 questions a day per user and 60 per family, counted in
  * Firestore under the day's quota doc (server only). Only questions that would reach Gemini count;
  * the emergency text, the alias question and the basics never do.
  */
 export const BREEZY_DAILY = { user: 30, family: 60 } as const;
 
-/** Kept with the quota doc: 90 days (spec 9.4). */
+/** Kept with the quota doc: 90 days. */
 const KEEP_DAYS = 90;
 const count = z.object({ count: z.number() });
 

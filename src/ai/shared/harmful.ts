@@ -2,7 +2,7 @@ import { wordsOf } from "@/domain/names/words";
 import { nfc, sentences } from "./text";
 
 /**
- * Medical-safety and link checks by concept, not fixed phrase (stage 7 PT-3; spec 7.1, 7.7.7):
+ * Medical-safety and link checks by concept, not fixed phrase:
  * a sentence that pairs an inhaler, medicine or mask word with a skip or "not needed" word is
  * harmful in either order ("you can leave the inhaler at home", "Inhaler not required today",
  * "आज इनहेलर की ज़रूरत नहीं"), unless the skip verb is itself negated ("don't skip your inhaler").

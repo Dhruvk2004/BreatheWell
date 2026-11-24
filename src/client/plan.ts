@@ -2,7 +2,7 @@ import { z } from "zod";
 import { apiRequest, type Fetch } from "./api";
 
 /**
- * Asking the server for today's Gemini wording (spec 7.2). "busy" means another member's request
+ * Asking the server for today's Gemini wording. "busy" means another member's request
  * holds the lock: ask again after the time the server gives (at most 10 s), until the badge's 30 s
  * are up. The answer is final: "ready" (refresh the page) or "simple" (keep the template).
  */

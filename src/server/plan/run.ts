@@ -17,9 +17,9 @@ export interface RunDeps {
 }
 
 /**
- * Runs one claimed generation and saves it (spec 7.2): Gemini's checked words, or a Simple plan
+ * Runs one claimed generation and saves it: Gemini's checked words, or a Simple plan
  * when the reply was invalid twice, timed out or the budget said no. Logs outcome codes and
- * latency only, never a prompt, a reply or a name (spec 7.1 item 5).
+ * latency only, never a prompt, a reply or a name.
  */
 export async function runGeneration(
   deps: RunDeps,

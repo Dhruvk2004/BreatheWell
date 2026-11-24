@@ -3,7 +3,7 @@ import { MapPin } from "lucide-react";
 import { translator, type Lang } from "@/i18n/t";
 import { btn } from "../ui/styles";
 
-/** "Green Park, New Delhi · Change" and the page's one h1 (visually hidden, design 10.2). */
+/** "Green Park, New Delhi · Change" and the page's one h1 (visually hidden). */
 export function PlaceLine({ name, lang }: { name: string; lang: Lang }) {
   const t = translator(lang);
   return (

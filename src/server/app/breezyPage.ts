@@ -8,7 +8,7 @@ import { namesById } from "../plan/context";
 import { planFamilyToday } from "./familyPlan";
 
 /**
- * Breezy (spec 10.10): the header's place and air time, the people a card can be for (members and
+ * Breezy: the header's place and air time, the people a card can be for (members and
  * dependents, in the family's order), and the rules' basics the page shows when Gemini cannot
  * answer in time. Code only; nothing here calls Gemini.
  */

@@ -4,7 +4,7 @@ import type { Turn } from "@/domain/breezy/question";
 import { apiRequest, type Fetch } from "./api";
 
 /**
- * Breezy from the browser (spec 10.10): ask a question with the session's last turns (held here
+ * Breezy from the browser: ask a question with the session's last turns (held here
  * only, never stored on the server), save a name alias, and send a confirmed card.
  */
 export const askBreezy = (question: string, history: readonly Turn[], fetcher?: Fetch, signal?: AbortSignal): Promise<BreezyAnswer> =>

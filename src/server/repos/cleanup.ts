@@ -26,7 +26,7 @@ export async function collectPeopleData(tx: Tx, fid: string, ids: readonly strin
   };
 }
 
-/** Deletes their items, ticks and plan sections at once (spec 5.5 step 4, 9.4). */
+/** Deletes their items, ticks and plan sections at once. */
 export function deletePeopleData(tx: Tx, fid: string, data: PeopleData): void {
   for (const path of [...data.items, ...data.progress, ...data.planSections]) tx.delete(path);
 }

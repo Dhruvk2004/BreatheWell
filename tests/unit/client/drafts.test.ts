@@ -9,7 +9,7 @@ import {
 import { joinMessage, problemOf } from "@/components/family/joinMessages";
 import { qrPath } from "@/components/family/qrPath";
 import { accountInitials } from "@/components/shell/AccountMenu";
-import { dayTime } from "@/components/ui/dateTime";
+import { dayTime } from "@/domain/time/dayTime";
 import { initialDraft, pickActivities, STAY_IN, stepReady, stepsFor, toggleConditions, toInput } from "@/components/onboarding/draft";
 import { PROFILE, RIYA } from "../../helpers/family";
 
@@ -62,7 +62,6 @@ describe("onboarding draft (spec 10.5, 5.6)", () => {
       ...blank,
       name: "दादाजी",
       ageGroup: "60plus" as const,
-      textSize: "xl" as const,
       quickWalk: "early" as const,
       quickTravel: "auto_bus" as const,
     };

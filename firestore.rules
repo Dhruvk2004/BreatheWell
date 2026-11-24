@@ -1,6 +1,6 @@
 rules_version = '2';
 
-// Security rules (spec 9.2). Default deny; each path below is opened deliberately and covered by
+// Security rules. Default deny; each path below is opened deliberately and covered by
 // the role x path x operation matrix in tests/emulator/rules.test.ts. All other server writes go
 // through route handlers with the Admin SDK, which these rules do not apply to.
 service cloud.firestore {
@@ -27,7 +27,7 @@ service cloud.firestore {
 
     // users/{uid}: the owner reads; every write goes through the server (PUT /api/profile,
     // PUT /api/aliases), which validates the name's characters and each alias value. Stage 7 fix
-    // (AUTH-3): rules cannot check a name's characters reliably or every value of the aliases map,
+    //: rules cannot check a name's characters reliably or every value of the aliases map,
     // and an unchecked name was copied into the family on join.
     match /users/{uid} {
       allow read: if signedIn() && request.auth.uid == uid;
@@ -58,8 +58,8 @@ service cloud.firestore {
 
       // Members read; every write (profile edits, joins, removal) goes through the server
       // (PUT /api/profile, /api/join, /api/members), which validates every nested field, recomputes
-      // careTag, syncs users/{uid} and marks the plan stale. Review fix (slice 3): client writes
-      // could store malformed activities or travel and drop the member from Today.
+      // careTag, syncs users/{uid} and marks the plan stale. Client writes could otherwise store
+      // malformed activities or travel and drop the member from Today.
       match /members/{uid} {
         allow read: if isMember(fid);
       }
@@ -83,6 +83,7 @@ service cloud.firestore {
         allow update: if isMember(fid)
           && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['done', 'doneAt'])
           && request.resource.data.done is bool
+          && (request.resource.data.get('doneAt', null) == null || request.resource.data.doneAt is string)
           && (resource.data.forId == request.auth.uid || isDependent(fid, resource.data.forId));
         allow delete: if isMember(fid) && (resource.data.forId == request.auth.uid
           || resource.data.addedBy == request.auth.uid

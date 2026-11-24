@@ -17,7 +17,7 @@ import { checkClient, type RateLimiter } from "../rateLimit";
 import { communityWords, type WordsDeps } from "./words";
 
 /**
- * The community message (spec 7.6, 10.13) for a place in the URL: the 24-hour average's band and
+ * The community message for a place in the URL: the 24-hour average's band and
  * the best window from code, the day's together action chosen by code, and Gemini's words from the
  * shared cache when there are any (else the template, "Simple message"). Public, per-IP limited.
  */
@@ -59,7 +59,7 @@ function messagesFor(day: Day, together: CommunityAction, words: CommunityOutput
   return Object.fromEntries(entries) as Record<Lang, ShownMessage>;
 }
 
-/** The prompt input: code values only; the URL's place name never reaches Gemini (spec 7.0). */
+/** The prompt input: code values only; the URL's place name never reaches Gemini. */
 function promptInput(day: Day, lat: number, lon: number, together: CommunityAction): CommunityPromptInput {
   const { best, worst, windowDay, avg24 } = day.summary;
   return {

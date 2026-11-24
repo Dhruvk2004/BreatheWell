@@ -5,7 +5,7 @@ import type { KidCardPage } from "@/view/app";
 import { btn, noteInfo, sourceLine } from "../ui/styles";
 import { KidCardView } from "./KidCardView";
 
-/** A family dependent's kid card (spec 10.12): the card speaks the card language; the buttons follow the viewer's. */
+/** A family dependent's kid card: the card speaks the card language; the buttons follow the viewer's. */
 export function FamilyKidView({ page, lang }: { page: KidCardPage; lang: Lang }) {
   const t = translator(lang);
   return (

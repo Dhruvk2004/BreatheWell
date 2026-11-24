@@ -11,7 +11,7 @@ export function qrPath(qr: QrMatrix): { size: number; d: string } {
   return { size, d: parts.join("") };
 }
 
-/** The QR for a join link (spec 5.3): made in the browser, medium error correction, no external service. */
+/** The QR for a join link: made in the browser, medium error correction, no external service. */
 export async function joinQr(link: string): Promise<{ size: number; d: string }> {
   const { default: qrcode } = await import("qrcode-generator");
   const qr = qrcode(0, "M");

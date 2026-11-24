@@ -8,7 +8,7 @@ import type { PlanInputActivity, PlanText } from "./schema";
 import { PLAN_TOKEN } from "./tokens";
 
 /**
- * One text field of the plan reply, checked in every family language (spec 7.1): the shared
+ * One text field of the plan reply, checked in every family language: the shared
  * validator (length after names are filled in, language, numbers, banned content), the concrete
  * contradiction checks for an activity, and the kid-card checks for a dependent's text.
  */

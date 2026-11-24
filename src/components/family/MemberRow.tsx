@@ -9,7 +9,7 @@ interface MemberRowProps {
   readonly initials: string;
   readonly name: string;
   readonly tags: readonly { readonly label: string; readonly outlined?: boolean }[];
-  /** The chip is the verdict at the usual time (design D); no chip at all without fresh air data. */
+  /** The chip is the verdict at the usual time; no chip at all without fresh air data. */
   readonly verdict: Verdict;
   readonly line: ReactNode;
   readonly me?: boolean;
@@ -20,11 +20,11 @@ interface MemberRowProps {
   /** The member plan; the whole row is the link's target (design 10.8 chevron), the action sits above it. */
   readonly href?: string;
   readonly linkLabel?: string;
-  /** Today on desktop: each row is its own card in a 2-column grid (spec 10, design 10.8). */
+  /** Today on desktop: each row is its own card in a 2-column grid. */
   readonly tile?: boolean;
 }
 
-/** One person's row on Today and the demo (design D): avatar, name and tags, verdict chip, one line. */
+/** One person's row on Today and the demo: avatar, name and tags, verdict chip, one line. */
 export function MemberRow({
   lang,
   initials,
@@ -56,7 +56,7 @@ export function MemberRow({
           <Tags tags={tags} />
         </span>
         <VerdictChip verdict={verdict} lang={lang} />
-        {/* Reserved for two lines (design F), so Gemini's wording swaps in without moving the rows. */}
+        {/* Reserved for two lines, so Gemini's wording swaps in without moving the rows. */}
         <span className="min-h-[2lh] text-lg leading-snug">{line}</span>
         {action}
       </span>

@@ -41,7 +41,7 @@ function Progress({ step, lang }: { step: Step; lang: Lang }) {
 }
 
 /**
- * Onboarding (spec 10.5, 5.6): one screen at a time with Back and Next keeping every answer; the
+ * Onboarding: one screen at a time with Back and Next keeping every answer; the
  * standard five steps and a summary, or the 60+ quick path. Saved once, at the end.
  */
 export function Onboarding({ page, lang }: { page: OnboardingPage; lang: Lang }) {

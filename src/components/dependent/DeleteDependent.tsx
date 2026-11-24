@@ -8,7 +8,7 @@ import { ConfirmDialog } from "../form/ConfirmDialog";
 import { btn } from "../ui/styles";
 import { failureText } from "../ui/failure";
 
-/** Delete a child's profile (spec 5.5 step 4): everything about them is erased at once, after a confirm. */
+/** Delete a child's profile: everything about them is erased at once, after a confirm. */
 export function DeleteDependent({ id, name, lang, compact = false }: { id: string; name: string; lang: Lang; compact?: boolean }) {
   const t = translator(lang);
   const router = useRouter();

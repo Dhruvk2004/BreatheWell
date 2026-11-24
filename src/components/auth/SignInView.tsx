@@ -5,7 +5,7 @@ import { LogoMark } from "../shell/Logo";
 import { btn, noteNeutral } from "../ui/styles";
 import { GoogleSignIn } from "./GoogleSignIn";
 
-/** "Sign-in isn't configured" (spec 11): the public pages keep working, so say so and point to them. */
+/** "Sign-in isn't configured": the public pages keep working, so say so and point to them. */
 export function NotConfigured({ lang }: { lang: Lang }) {
   const t = translator(lang);
   return (
@@ -22,7 +22,7 @@ export function NotConfigured({ lang }: { lang: Lang }) {
   );
 }
 
-/** The adults-only small print under every sign-in button (spec 10.4 item 3). */
+/** The adults-only small print under every sign-in button. */
 export function SignInSmallPrint({ lang }: { lang: Lang }) {
   const t = translator(lang);
   return (
@@ -35,7 +35,7 @@ export function SignInSmallPrint({ lang }: { lang: Lang }) {
   );
 }
 
-/** Sign-in (spec 10.4, design 10.4). */
+/** Sign-in. */
 export function SignInView({ lang, configured, next }: { lang: Lang; configured: boolean; next: string | null }) {
   const t = translator(lang);
   return (

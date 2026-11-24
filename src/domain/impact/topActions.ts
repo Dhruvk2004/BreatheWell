@@ -1,6 +1,6 @@
 import { factById } from "./facts";
 
-/** The winter-smog actions Learn leads with (spec 10.11 item 2); each one is backed by a library fact. */
+/** The winter-smog actions Learn leads with; each one is backed by a library fact. */
 export const TOP_ACTION_IDS = ["clean", "room", "incense", "metro", "n95"] as const;
 export type TopActionId = (typeof TOP_ACTION_IDS)[number];
 

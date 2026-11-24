@@ -37,7 +37,7 @@ describe("header (design header pattern)", () => {
 
   it("has no text-size control; the wordmark and the language switch are the only header items", () => {
     render(<SiteHeader lang="en" />);
-    expect(screen.getByRole("link", { name: "BreatheWell home" }).querySelector(".wordmark")).toHaveTextContent("BreatheWell");
+    expect(screen.getByRole("link", { name: "BreatheWell home" })).toHaveTextContent("BreatheWell");
     expect(screen.queryByRole("button", { name: /Text size/ })).toBeNull();
     expect(screen.queryByText("Aa")).toBeNull();
   });

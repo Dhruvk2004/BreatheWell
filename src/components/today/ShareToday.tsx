@@ -3,7 +3,7 @@ import { CopyButton } from "../ui/CopyButton";
 import { ShareButton } from "../ui/ShareButton";
 
 /**
- * "Share today's plan" (F23, spec 10.8 item 2c): the bilingual family text through the share sheet
+ * "Share today's plan": the bilingual family text through the share sheet
  * where the browser has one, and Copy everywhere (paste it in the family WhatsApp group).
  */
 export function ShareToday({ text, lang }: { text: string; lang: Lang }) {

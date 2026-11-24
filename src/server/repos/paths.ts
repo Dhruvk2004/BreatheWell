@@ -20,7 +20,7 @@ export function segment(id: string): string {
 
 const f = (fid: string) => `families/${segment(fid)}`;
 
-/** Firestore document paths (spec 9.1), in one place. */
+/** Firestore document paths, in one place. */
 export const paths = {
   user: (uid: string) => `users/${segment(uid)}`,
   health: (uid: string) => `users/${segment(uid)}/private/health`,
@@ -42,7 +42,7 @@ export const paths = {
   joinCode: (code: string) => `joinCodes/${segment(code)}`,
   rateLimit: (key: string) => `rateLimits/${key}`,
   quota: (date: string) => `quota/${date}`,
-  /** Breezy's daily counts per user and per family (spec 7.8), under the day's quota doc. */
+  /** Breezy's daily counts per user and per family, under the day's quota doc. */
   breezyCount: (date: string, key: string) => `quota/${date}/breezy/${key}`,
   communityCache: (key: string) => `communityCache/${key}`,
 } as const;

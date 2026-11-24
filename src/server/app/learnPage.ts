@@ -4,7 +4,7 @@ import { planFamilyToday, UNKNOWN_HOME } from "./familyPlan";
 import type { Viewer } from "./viewer";
 
 /**
- * Learn (spec 10.11): the generic page for everyone, plus "Your choices today" for a signed-in
+ * Learn: the generic page for everyone, plus "Your choices today" for a signed-in
  * adult whose plan has a full day of air (code numbers only). Null for everyone else.
  */
 export async function loadYourDay(viewer: Viewer, deps: AppDeps): Promise<YourDay | null> {

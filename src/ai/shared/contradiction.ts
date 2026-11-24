@@ -8,7 +8,7 @@ import { findTimes, isTimeAt } from "./times";
 import { nfc, sentences } from "./text";
 
 /**
- * Concrete contradiction checks (spec 7.1, design G): the words may not disagree with the rules.
+ * Concrete contradiction checks: the words may not disagree with the rules.
  * EN and HI word lists; a failing item falls back to its template text.
  */
 export type ContradictionProblem =
@@ -70,7 +70,7 @@ const recommendsTimeToday = (text: string) =>
 
 /** Every contradiction between an item's `doThis` and its rule result. */
 export function contradictions(raw: string, rule: RuleFacts): ContradictionProblem[] {
-  // "eight am", "आठ बजे" and "८ बजे" are times too (stage 7 AI-1).
+  // "eight am", "आठ बजे" and "८ बजे" are times too.
   const text = normaliseNumbers(nfc(raw));
   const problems: ContradictionProblem[] = [];
   const usual = sentences(text).filter((s) => keepsUsual(s, rule));

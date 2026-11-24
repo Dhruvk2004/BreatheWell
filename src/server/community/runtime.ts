@@ -11,7 +11,7 @@ export function communityDeps(): CommunityDeps {
 
 export interface CommunityViewer {
   readonly signedIn: boolean;
-  /** The family home cell, which may also use Gemini (spec 7.6); null without a family. */
+  /** The family home cell, which may also use Gemini; null without a family. */
   readonly homeCell: string | null;
 }
 

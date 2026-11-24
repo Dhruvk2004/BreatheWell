@@ -7,7 +7,7 @@ import { healthRecord, parsed, type UserRecord } from "../repos/records";
 import type { SignedIn, InFamily } from "./guards";
 import { familyView } from "./familyView";
 import { liveCode } from "./invitePages";
-import { dayTime } from "@/components/ui/dateTime";
+import { dayTime } from "@/domain/time/dayTime";
 import { INDIA_TIME_ZONE } from "@/domain/time/clock";
 import type { Lang } from "@/domain/time/format";
 
@@ -46,7 +46,7 @@ export async function loadOnboarding(viewer: SignedIn, deps: AppDeps): Promise<O
   };
 }
 
-/** Profile settings (spec 10.15); null until onboarding has saved a profile. */
+/** Profile settings; null until onboarding has saved a profile. */
 export async function loadProfile(viewer: SignedIn, deps: AppDeps): Promise<ProfilePage | null> {
   const input = await savedInput(viewer.user, viewer.uid, deps);
   if (!input) return null;
@@ -63,7 +63,7 @@ export async function loadProfile(viewer: SignedIn, deps: AppDeps): Promise<Prof
 }
 
 /**
- * Family settings (spec 10.14): everything for the admin, the same page read-only for others; join
+ * Family settings: everything for the admin, the same page read-only for others; join
  * times formatted for the members list, and the admin's live code for the Invite row.
  */
 export async function loadSettingsPage(viewer: InFamily, deps: AppDeps, lang: Lang) {

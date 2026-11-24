@@ -11,7 +11,7 @@ import { appDeps } from "@/server/runtime";
 
 export const generateMetadata = async (): Promise<Metadata> => ({ title: t(await currentLang(), "kid.metaTitle") });
 
-/** A dependent's kid card (spec 10.12): family members only. */
+/** A dependent's kid card: family members only. */
 export default function KidPage(props: PageProps<"/[lang]/kid/[id]">) {
   return (
     <Suspense fallback={<PageLoading />}>

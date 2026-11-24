@@ -1,5 +1,5 @@
 /**
- * The session cookie (spec 9, as in Utsav): `__session`, httpOnly, SameSite=Lax, Secure on https,
+ * The session cookie: `__session`, httpOnly, SameSite=Lax, Secure on https,
  * five days. Beside it, `bw-acct` holds only the viewer's initials (not httpOnly) so the static
  * header can show the avatar menu instead of "Sign in" without making every page dynamic.
  */

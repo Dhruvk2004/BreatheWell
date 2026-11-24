@@ -1,13 +1,13 @@
 /**
- * Content Security Policy and the Firebase auth-helper proxy (spec 11.2). No imports, so
+ * Content Security Policy and the Firebase auth-helper proxy. No imports, so
  * `next.config.ts` can load it.
  *
  * Why no per-request nonce (spec 11.2 asks for nonces; deviation recorded in the build log): Next.js
  * applies nonces only to dynamically rendered pages, so every page would lose static rendering and
  * the CDN cache (Next.js CSP guide, "Static vs Dynamic Rendering with CSP"), against the efficiency
- * budget in spec 11.3. Pages render no user-supplied HTML (React escapes text, no
+ * budget. Pages render no user-supplied HTML (React escapes text, no
  * `dangerouslySetInnerHTML`), so `'unsafe-inline'` for Next's bootstrap scripts is the accepted
- * trade-off, as in Utsav. `script-src-attr 'none'` still blocks inline event handlers.
+ * trade-off. `script-src-attr 'none'` still blocks inline event handlers.
  */
 
 export interface CspOptions {
@@ -19,7 +19,7 @@ export interface CspOptions {
   readonly authEmulator?: string;
 }
 
-/** The only hosts the browser may call (spec 11.2). */
+/** The only hosts the browser may call. */
 export const CONNECT_HOSTS = [
   "https://air-quality-api.open-meteo.com",
   "https://api.open-meteo.com",
@@ -51,13 +51,13 @@ export function csp({ dev, firebaseHost, authEmulator = "" }: CspOptions): strin
   ].join("; ");
 }
 
-/** Security headers on every response (spec 11.2). Camera off: there is no in-app scanner. */
+/** Security headers on every response. Camera off: there is no in-app scanner. */
 export const SECURITY_HEADERS: ReadonlyArray<readonly [string, string]> = [
   ["X-Content-Type-Options", "nosniff"],
   ["Referrer-Policy", "strict-origin-when-cross-origin"],
   ["Permissions-Policy", "camera=(), microphone=(), geolocation=(self)"],
   ["Strict-Transport-Security", "max-age=63072000; includeSubDomains"],
-  // Isolates the browsing context but keeps Google sign-in pop-ups able to report back (slice 3).
+  // Isolates the browsing context but keeps Google sign-in pop-ups able to report back.
   ["Cross-Origin-Opener-Policy", "same-origin-allow-popups"],
 ];
 
@@ -77,14 +77,14 @@ export const firebaseHostOf = (projectId: string | undefined): string =>
 
 /**
  * Where a same-origin `/__/auth/*` or `/__/firebase/init.json` request is proxied to, so redirect
- * sign-in works where third-party storage is blocked (spec 10.4). Null for any other path or without Firebase.
+ * sign-in works where third-party storage is blocked. Null for any other path or without Firebase.
  */
 export function firebaseHelperUrl(pathname: string, search: string, firebaseHost: string): string | null {
   if (!firebaseHost || !(pathname.startsWith("/__/auth/") || pathname === "/__/firebase/init.json")) return null;
   return `${firebaseHost}${pathname}${search}`;
 }
 
-/** Request headers the proxied auth helper must never receive (stage 7 PT-10). */
+/** Request headers the proxied auth helper must never receive. */
 const NOT_FORWARDED = /^(cookie|authorization|x-forwarded-.*|x-real-ip|forwarded)$/iu;
 
 /**

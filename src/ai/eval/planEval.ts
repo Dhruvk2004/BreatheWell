@@ -9,7 +9,7 @@ import { familyLanguages } from "@/domain/family/languages";
 import { EVAL_FAMILIES, type EvalFamily } from "./families";
 
 /**
- * The GenAI eval (spec 11.4, not in CI): the 10 fixture families through the real model with the
+ * The GenAI eval (not in CI): the 10 fixture families through the real model with the
  * same request, budget and validator as the app, reporting the field pass rate, the fallback rate
  * and latency p50/p95. Target: ≥ 95% valid and p95 ≤ 20 s. Unit tests run it with a fake model.
  */
@@ -116,7 +116,7 @@ export function evalReport(runs: readonly { id: string; generated: Generated }[]
   };
 }
 
-/** How the eval paces its calls under the free tier's per-minute limit (spec 7.8). */
+/** How the eval paces its calls under the free tier's per-minute limit. */
 export interface EvalPace {
   readonly rpm: number;
   sleep(ms: number): Promise<void>;

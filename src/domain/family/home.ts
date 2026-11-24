@@ -4,7 +4,7 @@ import { safePlaceName } from "../geo/placeName";
 import type { HomeSetup } from "../libraries/homeSetup";
 import { nameSchema } from "../members/names";
 
-/** Home set-up answers (spec 6.3). */
+/** Home set-up answers. */
 export const homeSetupInput = z.strictObject({
   purifier: z.enum(["none", "one_room", "several"]),
   freshAirVent: z.boolean(),
@@ -14,7 +14,7 @@ export const homeSetupInput = z.strictObject({
   indoorSmoking: z.enum(["yes", "no", "prefer_not"]),
 }) satisfies z.ZodType<HomeSetup>;
 
-/** The home area as the picker chose it; the server rounds it before storing (spec 6.5). */
+/** The home area as the picker chose it; the server rounds it before storing. */
 export const placeInput = z
   .strictObject({
     name: z
@@ -36,14 +36,14 @@ export type PlaceInput = z.infer<typeof placeInput>;
 
 export const familyName = nameSchema(40);
 
-/** "Create family" (spec 10.6): name, home area and home set-up. */
+/** "Create family": name, home area and home set-up. */
 export const familyInput = z.strictObject({ name: familyName, home: placeInput, homeSetup: homeSetupInput });
 export type FamilyInput = z.infer<typeof familyInput>;
 
-/** Family settings (spec 10.14): any of the three, admin only. */
+/** Family settings: any of the three, admin only. */
 export const familyPatch = familyInput.partial().refine((p) => Object.keys(p).length > 0);
 
-/** The stored home: place name and coordinates rounded to 2 decimals, plus the 0.1° air cell (spec 9.1). */
+/** The stored home: place name and coordinates rounded to 2 decimals, plus the 0.1° air cell. */
 export interface StoredHome {
   readonly placeName: string;
   readonly lat2: number;
@@ -52,7 +52,7 @@ export interface StoredHome {
   readonly countryCode: string | null;
 }
 
-/** Rounds the chosen place; the exact position is never stored (spec 6.5). */
+/** Rounds the chosen place; the exact position is never stored. */
 export function storedHome(place: PlaceInput): StoredHome {
   const { lat2, lon2 } = round2(place.lat, place.lon);
   return { placeName: place.name, lat2, lon2, gridId: gridIdOf(lat2, lon2), countryCode: place.countryCode };

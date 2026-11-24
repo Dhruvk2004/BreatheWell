@@ -2,7 +2,7 @@ import type { Lang } from "../../time/format";
 
 const b = (en: string, hi: string) => ({ en, hi });
 
-/** "Things to do inside" (spec 7.2, about 15). The card shows 3, rotating by day. */
+/** "Things to do inside" (about 15). The card shows 3, rotating by day. */
 export const INSIDE_IDEAS = [
   b("Carrom", "कैरम"),
   b("Paper planes", "कागज़ के जहाज़"),
@@ -28,7 +28,7 @@ export function insideIdeas(date: string, lang: Lang, count = 3): string[] {
   return Array.from({ length: count }, (_, i) => INSIDE_IDEAS[(dayNumber * count + i) % INSIDE_IDEAS.length][lang]);
 }
 
-/** One kid "Why?" line per fact (spec 7.2); unknown facts use the sponge line. */
+/** One kid "Why?" line per fact; unknown facts use the sponge line. */
 const KID_WHY: Readonly<Record<string, { en: string; hi: string }>> = {
   morning_inversion: b(
     "Cold, still mornings keep the smoke low. The afternoon sun lifts it.",
@@ -49,7 +49,7 @@ const SPONGE = b(
 /** The kid "Why?" line for a fact id. */
 export const kidWhy = (factId: string | null, lang: Lang): string => (factId ? (KID_WHY[factId] ?? SPONGE) : SPONGE)[lang];
 
-/** Kid "For the air" lines (spec 7.4): what the choice does for the air, in kid words. */
+/** Kid "For the air" lines: what the choice does for the air, in kid words. */
 const KID_FOR_AIR = {
   shared_ride: b("Your bus ride means fewer cars puffing smoke today.", "तुम्हारी बस की सवारी से आज कम कारें धुआँ छोड़ेंगी।"),
   stay_in: b("Playing inside adds no smoke to the air.", "अंदर खेलने से हवा में कोई धुआँ नहीं जुड़ता।"),

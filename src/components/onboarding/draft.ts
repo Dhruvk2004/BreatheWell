@@ -4,7 +4,7 @@ import { quickProfile, type QuickTravel, type QuickWalk } from "@/domain/members
 import type { Lang } from "@/domain/time/format";
 
 /**
- * Onboarding's answers while they are being given (spec 6.1, 10.5): nothing is lost on Back, and
+ * Onboarding's answers while they are being given: nothing is lost on Back, and
  * nothing is sent until the summary's Looks good. Pure, so every path is unit-tested.
  */
 export interface Draft {
@@ -42,7 +42,7 @@ export function initialDraft(saved: ProfileInput | null, googleName: string, lan
 }
 
 /**
- * The screens in order: the standard five, or the 60+ quick path after the age step (spec 5.6).
+ * The screens in order: the standard five, or the 60+ quick path after the age step.
  */
 export function stepsFor(draft: Draft, askStart: boolean): Step[] {
   const first: Step[] = [...(askStart ? (["start"] as const) : []), "about", "age"];

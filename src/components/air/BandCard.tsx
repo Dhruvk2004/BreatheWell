@@ -20,7 +20,7 @@ interface BandCardProps {
 }
 
 /**
- * The answer first (design D): band colour + word + icon + number, one sentence for screen readers
+ * The answer first: band colour + word + icon + number, one sentence for screen readers
  * ("Air quality now 319, Very poor, very unhealthy"). The number never counts up or down.
  */
 export function BandCard({ lang, band, aqi, compact = false, subtitle, meta, children }: BandCardProps) {

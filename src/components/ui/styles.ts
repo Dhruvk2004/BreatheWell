@@ -1,5 +1,5 @@
 /**
- * Shared class names for the design's buttons, cards and notes (design D), so every page uses the
+ * Shared class names for the design's buttons, cards and notes, so every page uses the
  * same 44–48 px targets and colours. Band colours never appear here: they are only for air.
  */
 const BTN =
@@ -8,7 +8,7 @@ const BTN =
 export const btn = {
   primary: `${BTN} border-transparent bg-brand text-on-brand hover:bg-brand-hover`,
   secondary: `${BTN} border-brand bg-card text-brand hover:bg-brand-tint`,
-  /** Destructive verbs in confirm sheets (design D: ink, not the Avoid red). */
+  /** Destructive verbs in confirm sheets (ink, not the Avoid red). */
   ink: `${BTN} border-transparent bg-ink text-canvas hover:opacity-90`,
   small: "min-h-11 px-[0.875em] text-[0.9375em]",
   text: "inline-flex min-h-11 items-center gap-1 px-1.5 font-bold text-brand underline underline-offset-[3px]",

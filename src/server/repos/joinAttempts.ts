@@ -4,7 +4,7 @@ import { paths } from "./paths";
 import { parsed } from "./records";
 
 /**
- * Join attempts per user (spec 5.11, 7.8): 5 per 10 minutes and 20 per day, kept in Firestore
+ * Join attempts per user: 5 per 10 minutes and 20 per day, kept in Firestore
  * `rateLimits` (the only per-user limit stored there) so every server instance counts the same.
  */
 export const JOIN_WINDOW_MS = 10 * 60 * 1000;
@@ -31,7 +31,7 @@ export function countAttempt(current: Attempts | null, now: Date): { allowed: bo
   return { allowed: next.count <= JOIN_WINDOW_MAX && next.dayCount <= JOIN_DAY_MAX, next };
 }
 
-/** Records one join attempt for the user; false once over either limit. Kept 2 days (spec 9.4). */
+/** Records one join attempt for the user; false once over either limit. Kept 2 days. */
 export async function allowJoinAttempt(db: Db, uid: string, now: Date): Promise<boolean> {
   const path = paths.rateLimit(`join_${uid}`);
   return db.transaction(async (tx) => {

@@ -5,7 +5,7 @@ import type { ActivityPlan } from "../rules/plan";
 import { parseHhMm } from "../time/format";
 
 /**
- * Place factors (spec 7.4; assumptions to verify, 12.2 Q4): outdoors or open travel 1.0, enclosed
+ * Place factors (assumptions to verify, 12.2 Q4): outdoors or open travel 1.0, enclosed
  * travel 0.5, indoors with windows shut 0.7, the purifier room at night 0.35.
  */
 export const PLACE_FACTOR = { outdoor: 1, enclosed: 0.5, indoor: 0.7, purifierRoom: 0.35 } as const;
@@ -46,7 +46,7 @@ function outingParts(outings: readonly Outing[], hour: number): Segment[] {
 }
 
 /**
- * `exposureSchedule` (spec 7.4): where the person is in each hour of the day. Outings use their
+ * `exposureSchedule`: where the person is in each hour of the day. Outings use their
  * factor for the part of each hour they cover; the rest of the hour is indoors (0.7), or the
  * purifier room (0.35) at night when `home.purifierRoom`.
  */
@@ -65,7 +65,7 @@ export function dayPm25(index: HourIndex, date: string): number[] | null {
   return values.every((v): v is number => v !== null) ? values : null;
 }
 
-/** exposureToday = Σ_h(PM2.5_h × Σ(fraction × factor)) / 24, in µg/m³ (spec 7.4). */
+/** exposureToday = Σ_h(PM2.5_h × Σ(fraction × factor)) / 24, in µg/m³. */
 export function exposureToday(pm25: readonly number[], schedule: Schedule): number {
   const total = schedule.reduce((sum, segments, h) => sum + pm25[h] * segments.reduce((s, seg) => s + seg.fraction * seg.factor, 0), 0);
   return total / 24;

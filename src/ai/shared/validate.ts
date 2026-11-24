@@ -8,7 +8,7 @@ import { nfc } from "./text";
 import type { ClockTime } from "./times";
 
 /**
- * The semantic validator (spec 7.1) for every Gemini text field: length, language, numbers, banned
+ * The semantic validator for every Gemini text field: length, language, numbers, banned
  * content and, for plan items, the contradiction checks. An empty list means the text may be shown;
  * anything else falls back to the template (and is logged as `invalid:<reason>`, never the text).
  */
@@ -52,7 +52,7 @@ export function checkPlanItem(doThis: string, rule: RuleFacts, rules: FieldRules
 /** True when the text passes. */
 export const isValidText = (raw: string, rules: FieldRules): boolean => checkText(raw, rules).length === 0;
 
-/** Ids Gemini returned that were not in the input lists (spec 7.1: `memberId`, `factId`, `tipId`, `altId`). */
+/** Ids Gemini returned that were not in the input lists (`memberId`, `factId`, `tipId`, `altId`). */
 export function unknownIds(returned: readonly string[], allowed: readonly string[]): string[] {
   return returned.filter((id) => !allowed.includes(id));
 }

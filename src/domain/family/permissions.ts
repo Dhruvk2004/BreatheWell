@@ -1,6 +1,6 @@
 /**
- * Server-side permission rules (spec 9.3), as pure predicates the route handlers call and the
- * Firestore rules mirror (spec 9.2). Every caller is a member of the family; that is checked first.
+ * Server-side permission rules, as pure predicates the route handlers call and the
+ * Firestore rules mirror. Every caller is a member of the family; that is checked first.
  */
 export interface FamilyRoles {
   readonly adminUid: string;
@@ -26,7 +26,7 @@ export function canDeleteItem(
 }
 
 /**
- * Who sees a member's health condition names (spec 6.4): the member; the admin when shared with
+ * Who sees a member's health condition names: the member; the admin when shared with
  * the admin or the family; other adults only when shared with the whole family.
  */
 export function canSeeHealth(shareWith: "self" | "admin" | "family", owner: string, viewer: string, family: FamilyRoles): boolean {
@@ -34,6 +34,6 @@ export function canSeeHealth(shareWith: "self" | "admin" | "family", owner: stri
   return shareWith === "admin" && isAdmin(family, viewer);
 }
 
-/** An admin can leave or delete their account only when alone (spec 5.10); hand-over is S7. */
+/** An admin can leave or delete their account only when alone; hand-over is S7. */
 export const mustStay = (family: FamilyRoles & { readonly memberUids: readonly string[] }, uid: string): boolean =>
   isAdmin(family, uid) && family.memberUids.length > 1;

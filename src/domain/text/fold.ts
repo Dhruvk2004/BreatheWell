@@ -1,5 +1,5 @@
 /**
- * Folds typed text to the plain form every safety check matches on (stage 7 AI-7, AI-8, PT-2):
+ * Folds typed text to the plain form every safety check matches on:
  * NFKC (fullwidth "ｃａｎｔ" → "cant"), format characters deleted rather than turned into spaces
  * (zero-width space and joiners, soft hyphen, bidi marks), and Cyrillic and Greek look-alikes
  * mapped to Latin ("Rіya" with a Cyrillic і → "Riya"). BreatheWell is English and Hindi only, so

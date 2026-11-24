@@ -7,7 +7,7 @@ import { PLAN_TOKEN } from "@/ai/plan/tokens";
 import { sameRule, snapshotOf } from "./sections";
 
 /**
- * The stored Gemini words a page may show (spec 7.2, principle 3): only in the page language, only
+ * The stored Gemini words a page may show (principle 3): only in the page language, only
  * for items whose rule result is unchanged since generation, with `{m1}` tokens filled in from the
  * current family. Everything else keeps its template text, and the source line says "Simple plan"
  * when no Gemini words are left on screen.
@@ -90,7 +90,7 @@ export function planWords(stored: StoredPlan | null, rows: readonly PersonPlan[]
 }
 
 /**
- * The source line for one person's page (stage 7 AI-10): Gemini only when that person's own line,
+ * The source line for one person's page: Gemini only when that person's own line,
  * items or swap use Gemini's words, not another member's.
  */
 export function pageSource(words: PlanWords, id: string): PlanWords["source"] {

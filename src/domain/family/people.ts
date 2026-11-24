@@ -5,7 +5,7 @@ import type { ActivityPlan, PlanEnv } from "../rules/plan";
 import { planActivity } from "../rules/planActivity";
 import { verdictRank } from "../rules/verdict";
 
-/** A family member or dependent as the rules see them: no name, only what the plan needs (spec 6.5). */
+/** A family member or dependent as the rules see them: no name, only what the plan needs. */
 export interface FamilyPerson {
   /** Member uid or dependent id; in prompts a token (`m1`, `d1`). */
   readonly id: string;
@@ -22,7 +22,7 @@ export interface PlannedActivity {
   readonly plan: ActivityPlan;
 }
 
-/** A person's rule results for the day; `headline` is the row's chip and line (design 10.8). */
+/** A person's rule results for the day; `headline` is the row's chip and line. */
 export interface PersonPlan {
   readonly person: FamilyPerson;
   readonly group: Group;
@@ -40,7 +40,7 @@ function headlineOf(items: readonly PlannedActivity[]): PlannedActivity | null {
 
 /**
  * Plans every activity of one person with the rules engine (spec 8.3–8.4). Activities without air
- * data for their usual hour get no verdict and are left out (spec 8.5).
+ * data for their usual hour get no verdict and are left out.
  */
 export function planPerson(person: FamilyPerson, env: PlanEnv): PersonPlan {
   const group = sensitivityGroup(person.ageGroup, person.conditions);
@@ -58,7 +58,7 @@ const ORDER = (p: PersonPlan, viewerId: string | null): number => {
   return p.group === "extra" ? 1 : 2;
 };
 
-/** Row order on Today and the demo (spec 10.8): me, extra care, other adults, then children and teens. */
+/** Row order on Today and the demo: me, extra care, other adults, then children and teens. */
 export function orderRows(plans: readonly PersonPlan[], viewerId: string | null): PersonPlan[] {
   return plans
     .map((plan, i) => ({ plan, i }))

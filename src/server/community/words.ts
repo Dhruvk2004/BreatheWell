@@ -15,7 +15,7 @@ import {
 import { reserveGeminiCall } from "../repos/quota";
 
 /**
- * The day's Gemini words for a grid cell (spec 7.6): from the shared cache while they still fit the
+ * The day's Gemini words for a grid cell: from the shared cache while they still fit the
  * header (same best window, band within 1), else generated once after 5 am for a listed city's cell
  * (or a family home) under a lock, and regenerated at most once a day. Words that no longer fit,
  * a held lock and every failure return null: the template message.

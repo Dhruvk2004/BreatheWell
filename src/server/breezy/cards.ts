@@ -14,7 +14,7 @@ import type { BreezyContext } from "./context";
 import { slotFor, type Slotting } from "./slot";
 
 /**
- * Turns Gemini's checked cards into what the page shows (spec 7.7.3, 7.7.7): tokens become ids, and
+ * Turns Gemini's checked cards into what the page shows: tokens become ids, and
  * the rules run again for every proposed time. The chip is the rule's verdict; a card for an Avoid
  * hour moves to the best hour (dropped if its words name a time) or is dropped when the day has none.
  */
@@ -34,7 +34,7 @@ function base(card: ValidCard, forId: string | null, nameOf: Readonly<Record<str
     factId: card.factId,
     action: card.action,
     item,
-    // Whether a dependent's kid card may show it (spec 7.7.6); the page uses it only for dependents.
+    // Whether a dependent's kid card may show it; the page uses it only for dependents.
     onCard: passesKidChecks(item.en) && passesKidChecks(item.hi),
   };
 }
@@ -51,7 +51,7 @@ function slotsFor(card: ValidCard, time: string, s: Slotting): BreezyCard["slots
   return Object.fromEntries(s.ctx.day.rows.map((row) => [row.person.id, shownSlot(card, time, slotFor(row, s))]));
 }
 
-/** "Picture it" for an adult's timed card (spec 7.7.3); never for a dependent. */
+/** "Picture it" for an adult's timed card; never for a dependent. */
 function pictureFor(row: PersonPlan, s: Slotting, time: string): BreezyCard["picture"] {
   if (row.person.kind !== "adult") return undefined;
   const { summary } = s.ctx.day;

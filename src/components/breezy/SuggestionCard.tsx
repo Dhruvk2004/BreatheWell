@@ -20,7 +20,7 @@ export interface CardScope {
   readonly people: readonly BreezyPerson[];
   readonly viewerId: string;
   readonly lang: Lang;
-  /** Demo mode: actions write nothing (spec 7.7.2). */
+  /** Demo mode: actions write nothing. */
   readonly demo?: boolean;
 }
 
@@ -32,7 +32,7 @@ function slotOf(card: BreezyCard, forId: string | null) {
 }
 
 /**
- * A suggestion card (spec 7.7.3, design 10.10): title, who and when, the verdict chip from the
+ * A suggestion card: title, who and when, the verdict chip from the
  * rules (none without an activity), Breezy's why, then Add (behind the confirm sheet), Share and
  * Why? (the code's "Picture it" for an adult's timed card, the fact panel otherwise). A card without
  * a person first asks "Who is this for?".

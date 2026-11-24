@@ -1,7 +1,7 @@
 import type { z } from "zod";
 
 /**
- * The browser side of the JSON API (as in Utsav): same-origin requests with the session cookie,
+ * The browser side of the JSON API: same-origin requests with the session cookie,
  * responses validated with Zod, and errors carried as `ApiRequestError` with the server's code and
  * the whole body (join errors carry the family and admin names).
  */

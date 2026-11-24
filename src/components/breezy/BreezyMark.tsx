@@ -1,4 +1,4 @@
-/** Breezy's avatar (spec 7.7.1, design `#bz`): the two breath curves as a gust in a Monsoon circle, not a face. */
+/** Breezy's avatar (design `#bz`): the two breath curves as a gust in a Monsoon circle, not a face. */
 export function BreezyMark({ label }: { label?: string }) {
   return (
     <svg

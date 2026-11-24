@@ -9,7 +9,7 @@ import { errorResponse, forbidden, privateJson, readJson } from "../http";
 import { paths } from "../repos/paths";
 
 /**
- * `PUT /api/aliases` (spec 7.7.9): saves "Papa" → a member or dependent in the viewer's own
+ * `PUT /api/aliases`: saves "Papa" → a member or dependent in the viewer's own
  * `users/{uid}.aliases`, after the alias question. The key is stored by its kin key ("papa" for
  * "पापा" too); at most 12 entries, and only people of the viewer's family.
  */

@@ -7,7 +7,7 @@ import { findTimes } from "../shared/times";
 import type { CommunityPromptInput } from "./schema";
 
 /**
- * The community message must agree with the band and the best window from code (spec 7.1, 7.6):
+ * The community message must agree with the band and the best window from code:
  * on a Poor or worse day, a sentence that sends people out ("walks are fine today") must name a time
  * inside the best window, or be a "stay in / skip it" sentence. So the body can never invite people
  * out at another hour than the header's best time, or at all on a day with no window.

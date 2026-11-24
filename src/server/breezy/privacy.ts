@@ -3,7 +3,7 @@ import type { Lang } from "@/domain/time/format";
 import type { FamilyBundle } from "../repos/family";
 
 /**
- * Names never sent (spec 7.0, 7.7.9, 9.4), for everyone, not only the planned people (stage 7
+ * Names never sent, for everyone, not only the planned people (stage 7
  * AI-3): a member who joined but has no plan yet, or a dependent with no row, has no token, so
  * their name becomes "a family member"; the family's own name ("Sharma family", "Sharma") becomes
  * "the family". Planned people keep their tokens.

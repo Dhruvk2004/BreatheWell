@@ -5,7 +5,7 @@ import { noteInfo } from "../ui/styles";
 
 export type Intent = "start" | "join";
 
-/** Step 0 (spec 10.5): only without a family. Start a family | I have a join code. */
+/** Step 0: only without a family. Start a family | I have a join code. */
 export function StartStep({
   intent,
   onChange,

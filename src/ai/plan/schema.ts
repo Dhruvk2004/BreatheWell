@@ -11,7 +11,7 @@ import type { Verdict } from "@/domain/rules/verdict";
 import type { Lang } from "@/domain/time/format";
 
 /**
- * The family plan's prompt input and Gemini's structured output (spec 7.2). The input is built by
+ * The family plan's prompt input and Gemini's structured output. The input is built by
  * code and pseudonymised (`m1`…, `d1`…, `a1`…); the output schema is sent to Gemini as its response
  * schema and checks the reply. Every text field is `{ en?, hi? }` with exactly the family's languages.
  */
@@ -37,7 +37,7 @@ const swap = z.object({ altId: id, doThis: text, why: text.optional(), factId: i
 
 const member = z.object({
   memberId: id,
-  /** The Today row's one line (design F: EN ≤ 45, HI ≤ 40 characters). */
+  /** The Today row's one line (EN ≤ 45, HI ≤ 40 characters). */
   line: text,
   items: z.array(item).max(10),
   swap: swap.optional(),
@@ -71,17 +71,17 @@ export interface PlanInputActivity {
   };
 }
 
-/** A member (`m1`) or dependent (`d1`) with no name, no uid and no condition names (spec 7.0, 7.1). */
+/** A member (`m1`) or dependent (`d1`) with no name, no uid and no condition names. */
 export interface PlanInputPerson {
   readonly id: string;
   readonly role: "adult" | "grandparent" | "child" | "teen";
   readonly ageGroup: AgeGroup;
   readonly care: CareTag;
-  /** Adults only; a dependent's card language is never sent (spec 7.2). */
+  /** Adults only; a dependent's card language is never sent. */
   readonly language?: Lang;
   readonly travel: Mode;
   readonly activities: readonly PlanInputActivity[];
-  /** The alternatives code allows for this person (spec 7.5); Gemini picks at most one. */
+  /** The alternatives code allows for this person; Gemini picks at most one. */
   readonly alternatives: readonly string[];
 }
 
@@ -101,7 +101,7 @@ export interface PlanInput {
   readonly members: readonly PlanInputPerson[];
   readonly languages: readonly Lang[];
   readonly allowedTips: readonly string[];
-  /** The "Help the air" action code chose for today (spec 10.8 item 4); Gemini only words it. */
+  /** The "Help the air" action code chose for today; Gemini only words it. */
   readonly together: string;
   readonly allowedAlternatives: readonly string[];
   readonly allowedFacts: readonly string[];

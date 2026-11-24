@@ -7,7 +7,7 @@ import { translator, type Lang } from "@/i18n/t";
 type Picture = NonNullable<BreezyCard["picture"]>;
 
 /**
- * "Why?" on an adult's Breezy card with an activity and a time (spec 7.7.3): the code-made "Picture
+ * "Why?" on an adult's Breezy card with an activity and a time: the code-made "Picture
  * it" (less smoke than at the day's smokiest hour, and the whole-day cigarette figure for adults),
  * then the fact's numbers. Gemini never writes any of it; a dependent's card never gets it.
  */

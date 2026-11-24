@@ -1,5 +1,5 @@
 /**
- * In-app browsers block Google sign-in with `disallowed_useragent` (spec 10.4, 5.11): Instagram,
+ * In-app browsers block Google sign-in with `disallowed_useragent`: Instagram,
  * Facebook, some WhatsApp and Google Lens flows, and Android WebViews. Detected from the user
  * agent before the button, so no sign-in is ever attempted there.
  */
@@ -16,5 +16,5 @@ export function openInChromeHref(href: string, userAgent: string): string {
   return `intent://${url.host}${url.pathname}${url.search}#Intent;scheme=${url.protocol.replace(":", "")};package=com.android.chrome;end`;
 }
 
-/** Popup on desktop, redirect on phones and tablets (spec F5). */
+/** Popup on desktop, redirect on phones and tablets. */
 export const prefersRedirect = (userAgent: string): boolean => /Android|iPhone|iPad|iPod|Mobile/i.test(userAgent);

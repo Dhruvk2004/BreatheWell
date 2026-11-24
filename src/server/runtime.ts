@@ -10,7 +10,7 @@ import { createLimits, type AppDeps } from "./deps";
 
 type Env = Readonly<Record<string, string | undefined>>;
 
-/** Structured JSON logs: uids are hashed; names, health and free text are never logged (spec 7.1 item 5). */
+/** Structured JSON logs: uids are hashed; names, health and free text are never logged. */
 export function jsonLog(event: string, fields: Record<string, string | number | boolean> = {}): void {
   const { uid, ...rest } = fields;
   const uidHash = typeof uid === "string" ? createHash("sha256").update(uid).digest("hex").slice(0, 16) : undefined;

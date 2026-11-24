@@ -2,7 +2,6 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { reverseGeocode } from "@/data/bigDataCloud";
 import type { Lang } from "@/domain/time/format";
 import { airHref, type ChosenPlace } from "./airHref";
 
@@ -19,7 +18,7 @@ function position(): Promise<GeolocationCoordinates> {
 }
 
 /**
- * "Check the air near me" (spec 5.1 steps 2–4): the browser's location → BigDataCloud's place
+ * "Check the air near me": the browser's location → BigDataCloud's place
  * name (rounded coordinates, no name sent) → Air now. Denied or unavailable → `denied`, and the
  * caller moves focus to the city search. No retry loop.
  */
@@ -37,6 +36,7 @@ export function useLocate(lang: Lang, onDenied: () => void, onFound?: (place: Ch
       return;
     }
     const at = { lat: coords.latitude, lon: coords.longitude };
+    const { reverseGeocode } = await import("@/data/bigDataCloud");
     const place = await reverseGeocode(at, lang);
     const name = place.ok ? place.value.name : "";
     const chosen = { name, ...at, countryCode: place.ok ? place.value.countryCode : null };

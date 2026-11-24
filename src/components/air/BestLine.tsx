@@ -4,8 +4,8 @@ import { formatWindow } from "@/domain/time/format";
 import { translator, type Lang } from "@/i18n/t";
 
 /**
- * "Best time outside today: 2–4 pm · Worst: 6–9 am" (spec 8.4 step 7), "Best time left today" once
- * the morning is past, tomorrow's after 9 pm, or "Best time: not available today" (spec 5.11).
+ * "Best time outside today: 2–4 pm · Worst: 6–9 am", "Best time left today" once
+ * the morning is past, tomorrow's after 9 pm, or "Best time: not available today".
  */
 export function BestLine({ summary, lang }: { summary: AirSummary; lang: Lang }) {
   const t = translator(lang);

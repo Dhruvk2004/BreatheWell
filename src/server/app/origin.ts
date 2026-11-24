@@ -1,9 +1,9 @@
 /**
  * The app's absolute origin for links people open somewhere else: the invite QR, Copy link and the
- * WhatsApp texts (spec 5.3, 5.11). A phone camera cannot open a relative path, so without
+ * WhatsApp texts. A phone camera cannot open a relative path, so without
  * `APP_ORIGIN` the request's own host is used, but only a host the deployment names (a local dev
  * host, or Vercel's own `VERCEL_*_URL` values): a client-chosen `Host` or `X-Forwarded-Host` never
- * reaches a join link (stage 7 WEB-2, PT-9). `X-Forwarded-Host` is read only behind a proxy the
+ * reaches a join link. `X-Forwarded-Host` is read only behind a proxy the
  * owner trusts (`TRUST_PROXY=1`).
  */
 const HOST = /^[a-z0-9.-]+(:\d{1,5})?$|^\[[0-9a-f:]+\](:\d{1,5})?$/i;

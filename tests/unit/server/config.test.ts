@@ -2,7 +2,6 @@ import { describe, expect, it } from "vitest";
 import {
   appOrigin,
   authEmulatorHost,
-  dataGovKey,
   DEFAULT_GEMINI_MODEL,
   firebaseProjectId,
   firebaseWebConfig,
@@ -25,7 +24,6 @@ describe("environment (setup-steps names)", () => {
     expect(geminiConfig({})).toBeNull();
     expect(firebaseProjectId({})).toBeNull();
     expect(appOrigin({})).toBeNull();
-    expect(dataGovKey({ DATA_GOV_IN_KEY: " " })).toBeNull();
     expect(Object.keys(publicEnv())).toHaveLength(5);
   });
 
@@ -37,7 +35,6 @@ describe("environment (setup-steps names)", () => {
     expect(geminiConfig({ GEMINI_API_KEY: "x" })).toEqual({ apiKey: "x", model: DEFAULT_GEMINI_MODEL });
     expect(geminiConfig({ GEMINI_API_KEY: "x", GEMINI_MODEL: "gemini-flash-lite-latest" })?.model).toBe("gemini-flash-lite-latest");
     expect(appOrigin({ APP_ORIGIN: "https://bw.app//" })).toBe("https://bw.app");
-    expect(dataGovKey({ DATA_GOV_IN_KEY: "g" })).toBe("g");
   });
 
   it("uses the Auth emulator only for a demo project on a local host (E2E only)", () => {

@@ -7,7 +7,7 @@ import { btn } from "../ui/styles";
 import { BreezyMark } from "./BreezyMark";
 
 /**
- * Breezy's fixed-text states (design 10.10): code text, never Gemini. The emergency note is not a
+ * Breezy's fixed-text states: code text, never Gemini. The emergency note is not a
  * Breezy bubble (ink outline, alert role, a Call 112 link); the basics and the daily limit are.
  */
 export function EmergencyNote({ lang }: { lang: Lang }) {
@@ -57,7 +57,7 @@ export function Basics({ basics, lang }: { basics: readonly BasicsView[]; lang: 
   );
 }
 
-/** The daily limit (spec 7.8): no queue, a way back to the plan. */
+/** The daily limit: no queue, a way back to the plan. */
 export function QuotaNote({ lang }: { lang: Lang }) {
   const t = translator(lang);
   return (

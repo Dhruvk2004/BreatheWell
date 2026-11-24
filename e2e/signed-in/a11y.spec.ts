@@ -17,7 +17,7 @@ for (const lang of ["en", "hi"] as const) {
   });
 }
 
-test("Member plan, Join, Edit child and both full-screen views pass axe (review fix)", async ({ page, browser, baseURL }) => {
+test("Member plan, Join, Edit child and both full-screen views pass axe", async ({ page, browser, baseURL }) => {
   const code = await family(page);
   const { id } = await addChild(page, "Riya");
   for (const path of ["/today", `/dependent/${id}`, `/member/${id}`]) {

@@ -8,7 +8,7 @@ import { familyChips, PromptChips } from "./PromptChips";
 import { Thread } from "./Thread";
 import { useBreezy } from "./useBreezy";
 
-/** Breezy for a signed-in adult (spec 10.10): header, chips with the family's names, the thread, the ask bar and the disclaimer. */
+/** Breezy for a signed-in adult: header, chips with the family's names, the thread, the ask bar and the disclaimer. */
 export function BreezyView({ page }: { page: BreezyPage }) {
   const { lang } = page;
   const t = translator(lang);

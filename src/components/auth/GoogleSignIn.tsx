@@ -25,7 +25,7 @@ const noop = () => () => undefined;
 const userAgent = () => navigator.userAgent;
 
 /**
- * The adult tick and Google sign-in (spec 10.4, design 10.4): Continue stays disabled until the
+ * The adult tick and Google sign-in: Continue stays disabled until the
  * tick, with the reason written next to it; "I'm under 18" explains and signs nothing in; an
  * in-app browser gets Open in Chrome instead; a failed sign-in says so and offers Try again.
  */

@@ -23,7 +23,7 @@ function subtitle(person: PersonView, lang: Lang): string {
   ].join(" · ");
 }
 
-/** Member plan (spec 10.9, design 10.9). */
+/** Member plan. */
 export function MemberView({ page, lang }: { page: MemberPage; lang: Lang }) {
   const t = translator(lang);
   const { person, plan, air } = page;

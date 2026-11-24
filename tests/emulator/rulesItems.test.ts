@@ -27,11 +27,14 @@ describe("items: done ticks", () => {
       );
     });
 
-  it("changes no other field and only takes a boolean", async () => {
+  it("changes no other field, takes a boolean and a string or null doneAt", async () => {
     const db = dbAs(env, "member");
     await assertFails(updateDoc(doc(db, "families/f1/items/forMember"), { done: true, forId: "admin" }));
     await assertFails(updateDoc(doc(db, "families/f1/items/forMember"), { text: { en: "skip inhaler" } }));
     await assertFails(updateDoc(doc(db, "families/f1/items/forMember"), { done: "yes" }));
+    await assertFails(updateDoc(doc(db, "families/f1/items/forMember"), { done: true, doneAt: 1 }));
+    await assertFails(updateDoc(doc(db, "families/f1/items/forMember"), { done: true, doneAt: { at: "x" } }));
+    await assertSucceeds(updateDoc(doc(db, "families/f1/items/forMember"), { done: false, doneAt: null }));
   });
 });
 

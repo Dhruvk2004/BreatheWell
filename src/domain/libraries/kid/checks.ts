@@ -3,7 +3,7 @@ import { mentionsCigarette, mentionsSmoking } from "../../safety/cigarette";
 import { numberWordsToDigits } from "../../text/numbers";
 
 /**
- * Kid-card checks (spec 7.2, 7.7.6, 10.12): no digits except clock times, no air units, no
+ * Kid-card checks: no digits except clock times, no air units, no
  * cigarette, fear or health words. Kid library lines and adult-confirmed Breezy items for a
  * dependent must pass them to appear on the card.
  */
@@ -37,7 +37,7 @@ const FEAR = [
   "ज़हरीला",
   "जहरीला",
 ];
-/** Health words, whole (exact) and as stems, so plurals and Hindi inflections count (stage 7 AI-5). */
+/** Health words, whole (exact) and as stems, so plurals and Hindi inflections count. */
 const HEALTH = ["ill", "pump", "pumps", "pill", "pills", "tablet", "tablets", "cough", "दमा", "खांसी", "खाँसी"];
 const HEALTH_STEMS = [
   "asthma",

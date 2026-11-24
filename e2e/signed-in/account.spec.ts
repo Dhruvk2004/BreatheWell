@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 import { authUserExists, countWhere, noViolations, signIn, uniqueName } from "./auth";
 import { addChild, family, joinWith, onboarded } from "./flows";
 
-// Review fix (spec 11.4): ticks, profile and family edits, leave, delete account, the 60+ Hindi
+// Ticks, profile and family edits, leave, delete account, the 60+ Hindi
 // quick path, and a dependent's documents really gone after delete.
 
 test("a plan tick is saved and still there after a reload", async ({ page }) => {

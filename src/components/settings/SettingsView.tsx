@@ -22,7 +22,7 @@ interface Props {
 const LIST = "m-0 grid list-none gap-0 overflow-hidden rounded-[16px] border border-rule bg-card p-0";
 const ROW = "flex flex-wrap items-center justify-between gap-2 border-t border-rule px-4 py-3 first:border-t-0";
 
-/** Family settings (spec 10.14, design 10.14): everything for the admin; read-only for other adults. */
+/** Family settings: everything for the admin; read-only for other adults. */
 export function SettingsView({ page, joinedAt, code, lang }: Props) {
   const t = translator(lang);
   const { family } = page;
@@ -63,7 +63,7 @@ export function SettingsView({ page, joinedAt, code, lang }: Props) {
   );
 }
 
-/** Members with how they joined (design 10.14); the admin can remove anyone but themself. */
+/** Members with how they joined; the admin can remove anyone but themself. */
 function Members({ page, joinedAt, lang }: Omit<Props, "code">) {
   const t = translator(lang);
   const { family } = page;

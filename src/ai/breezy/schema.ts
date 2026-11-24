@@ -8,13 +8,12 @@ import { hhmm, LANGS } from "@/domain/time/format";
 import type { PlanInput, PlanInputPerson } from "../plan/schema";
 
 /**
- * Breezy's structured output (spec 7.7.8). The schema keeps loose limits so one long field does not
+ * Breezy's structured output. The schema keeps loose limits so one long field does not
  * void the whole reply; the validator applies the real caps (reply ≤ 400, title ≤ 50, why ≤ 140)
  * field by field and drops a failing card on its own.
  */
 export const MAX_CARDS = 3;
 export const ACTION_TYPES = ["add_to_plan", "add_checklist", "share"] as const;
-export type ActionType = (typeof ACTION_TYPES)[number];
 
 const loose = (max: number) => z.string().max(max);
 
@@ -51,7 +50,7 @@ export interface OutlookInput {
   readonly bestWindow: string | null;
 }
 
-/** The pseudonymised context (spec 7.7.8): the plan input's people and air, plus the outlook. */
+/** The pseudonymised context: the plan input's people and air, plus the outlook. */
 export interface BreezyInput {
   /** The viewer's token, or null for a member still setting up. */
   readonly viewer: string | null;

@@ -4,14 +4,14 @@ export interface Bilingual {
   readonly hi: string;
 }
 
-/** Where a fact comes from (spec 7.4: every fact cites its source). */
+/** Where a fact comes from (every fact cites its source). */
 export interface Source {
   readonly name: string;
   readonly url: string;
 }
 
 /**
- * One entry of the facts library (spec 7.4). Gemini may only reference a fact by `id`; it never
+ * One entry of the facts library. Gemini may only reference a fact by `id`; it never
  * writes level-3 content. `checkedOn` is null until QA has checked the fact against its source.
  */
 export interface Fact {

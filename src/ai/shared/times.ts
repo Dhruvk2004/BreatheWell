@@ -2,7 +2,7 @@
  * Clock times inside generated text, in every allowed format: "3 pm", "6:30 am", "2–4 pm",
  * "15:00", "दोपहर 3 बजे", "2–4 बजे", Hinglish "subah 8 baje" and spoken "8 o'clock", "8 in the
  * morning". Number words and Devanagari digits are turned into digits by the callers first. The validator lets a number through only when it is one of
- * the input's allowed times (spec 7.1), and the contradiction checks look for the rule's times.
+ * the input's allowed times, and the contradiction checks look for the rule's times.
  */
 export interface FoundTime {
   /** The matched text. */
@@ -41,7 +41,7 @@ const EN_RANGE = new RegExp(`${HM}(?:${DASH}${HM})?\\s*(a\\.?m\\.?|p\\.?m\\.?)(?
 const HI_PART = "सुबह|दोपहर|शाम|रात|subah|subeh|dopahar|dopehar|shaam|sham|raat";
 const HI_RANGE = new RegExp(`(?:(${HI_PART})\\s+)?${HM}(?:${DASH}${HM})?\\s*(?:बजे|baje|bje)(?![\\p{L}\\p{M}])`, "giu");
 const H24 = /(?<![\d:])([01]?\d|2[0-3]):([0-5]\d)(?![\d:]|\s*(?:am|pm|a\.m|p\.m|बजे|baje))/giu;
-// Spoken English (stage 7 AI-1): "8 o'clock (this morning)", "8 in the morning", "8 this evening", "8 tonight".
+// Spoken English: "8 o'clock (this morning)", "8 in the morning", "8 this evening", "8 tonight".
 const DAY_PART = String.raw`(?:\s+(?:in\s+the|this|at)\s+(morning|afternoon|evening|night)|\s+(tonight))`;
 const OCLOCK = new RegExp(`(?<![\\d.:])${HM}\\s*o['’]?\\s?clock${DAY_PART}?(?![\\p{L}])`, "giu");
 const SPOKEN = new RegExp(`(?<![\\d.:])${HM}${DAY_PART}(?![\\p{L}])`, "giu");

@@ -4,7 +4,7 @@ import { translator, type Lang } from "@/i18n/t";
 import type { DemoData } from "@/view/demoPage";
 import { noteNeutral } from "../ui/styles";
 
-/** "Sample family. Sign in to make your own." Persistent, not dismissible (spec 10.3 item 1). */
+/** "Sample family. Sign in to make your own." Persistent, not dismissible. */
 export function DemoBanner({ lang }: { lang: Lang }) {
   return (
     <p className="m-0 flex items-center gap-2 rounded-sm bg-[var(--color-inverse-bg)] px-4 py-2.5 text-[0.9375em] font-bold text-[var(--color-on-inverse)]">
@@ -20,7 +20,7 @@ const longDate = (date: string, lang: Lang) =>
     new Date(`${date}T00:00:00Z`),
   );
 
-/** Which air the demo shows: the recorded day and its clock, live air, or the saved snapshot (spec 10.3). */
+/** Which air the demo shows: the recorded day and its clock, live air, or the saved snapshot. */
 export function ScenarioNote({ data, lang }: { data: DemoData; lang: Lang }) {
   const t = translator(lang);
   const time = formatInstant(data.clock.now, data.clock.timeZone, lang);

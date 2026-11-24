@@ -63,7 +63,7 @@ function withPlan(query: DemoQuery, base: Base): DemoData {
 export const recordedDemo = (scenario: ScenarioId, time: DemoTime, view: DemoViewer): DemoData =>
   withPlan({ scenario, time, view }, recorded(scenario, time));
 
-/** Loads the demo for a query and plans the Sharma family with the rules (code only, spec 10.3). */
+/** Loads the demo for a query and plans the Sharma family with the rules (code only). */
 export async function loadDemo(query: DemoQuery, deps: AirDeps): Promise<DemoData> {
   return query.scenario === "live" ? withPlan(query, await live(deps)) : recordedDemo(query.scenario, query.time, query.view);
 }

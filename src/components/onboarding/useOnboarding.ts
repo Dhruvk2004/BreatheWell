@@ -9,7 +9,7 @@ import { initialDraft, sameStep, stepReady, stepsFor, toInput, type Draft, type 
 import type { Intent } from "./StartStep";
 
 /**
- * The onboarding wizard's state (spec 10.5): the draft, the current step, Back/Next with focus
+ * The onboarding wizard's state: the draft, the current step, Back/Next with focus
  * moved to the new heading, and the one save at the end (then Create family, Join or Today).
  */
 export function useOnboarding(page: OnboardingPage, lang: Lang) {

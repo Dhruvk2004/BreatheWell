@@ -18,7 +18,7 @@ function Group({ label, children }: { label: string; children: ReactNode }) {
 }
 
 /**
- * Scenario switch, time-of-day stepper and View as (design 10.3). The stepper moves the scenario
+ * Scenario switch, time-of-day stepper and View as. The stepper moves the scenario
  * clock (recorded days only); "View as" shows Dadaji's Hindi card.
  */
 export function DemoControls({ query, lang }: { query: DemoQuery; lang: Lang }) {

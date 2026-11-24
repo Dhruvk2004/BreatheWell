@@ -12,7 +12,7 @@ export function bestBand(summary: AirSummary): Band | null {
 }
 
 /**
- * The swaps code allows one person today (spec 7.5, F13): travel swaps from their usual mode to a
+ * The swaps code allows one person today: travel swaps from their usual mode to a
  * mode they can use, routine and home actions that fit. Gemini may pick one and word it; without
  * Gemini the first one is the template swap. Empty when nothing fits (a swap is never forced).
  */

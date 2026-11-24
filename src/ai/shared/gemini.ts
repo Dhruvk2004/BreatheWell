@@ -1,10 +1,10 @@
 import { FinishReason, GoogleGenAI } from "@google/genai";
 
 /**
- * The Gemini wrapper (spec 7, adapted from Utsav): server-side only, `@google/genai` with the free
+ * The Gemini wrapper: server-side only, `@google/genai` with the free
  * AI Studio key, structured JSON output, thinking off, a hard timeout and no SDK retries. The caller
  * decides the one retry (spec 7: only when time is left, never after a 4xx). Tests inject a fake
- * client; nothing here logs a prompt or a reply (spec 7.1 item 5).
+ * client; nothing here logs a prompt or a reply.
  */
 export interface JsonRequest {
   readonly system: string;
@@ -59,7 +59,7 @@ export function failureOf(error: unknown): ModelError {
   return new ModelError(name === "AbortError" || name === "TimeoutError" ? "timeout" : "server_error");
 }
 
-/** One generation, with thinking off (spec 7: thinking budget 0) and the SDK's retries off. */
+/** One generation, with thinking off (thinking budget 0) and the SDK's retries off. */
 async function generate(client: GenerateClient, model: string, request: JsonRequest): Promise<string> {
   const response = await client.models.generateContent({
     model,

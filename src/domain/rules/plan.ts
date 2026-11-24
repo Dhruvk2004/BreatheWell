@@ -37,7 +37,7 @@ export interface PlanEnv {
 /** The rule result for one activity: the prompt's `rule` object and every chip and time on screen. */
 export interface ActivityPlan {
   readonly activityId: string;
-  /** The day planned: today, or tomorrow after 21:00 (spec 8.4 step 9). */
+  /** The day planned: today, or tomorrow after 21:00. */
   readonly date: string;
   readonly usualHour: number;
   /** The row's chip (design note: chip = verdict at the usual time). */
@@ -48,7 +48,7 @@ export interface ActivityPlan {
   /** Verdict after the change (new time or new mode), else null. */
   readonly verdictAtBest: Verdict | null;
   readonly switchTo: Mode | null;
-  /** "Tomorrow at {time} looks better" when nothing today is better than Avoid (spec 8.4 step 6). */
+  /** "Tomorrow at {time} looks better" when nothing today is better than Avoid. */
   readonly tomorrowBest: number | null;
   readonly notes: readonly PlanNote[];
 }

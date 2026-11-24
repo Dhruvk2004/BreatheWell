@@ -1,5 +1,5 @@
 /**
- * Latin ↔ Devanagari name matching (spec 7.7.9). A family stores one spelling of each name; a
+ * Latin ↔ Devanagari name matching. A family stores one spelling of each name; a
  * question may use the other script ("Riya" typed as "रिया", "नेहा" stored as "Neha"). Each word
  * is reduced to a rough Latin sound key, so both spellings of a common Indian first name meet:
  * Devanagari is read letter by letter, then vowel length, aspiration, doubled letters and the

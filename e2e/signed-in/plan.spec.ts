@@ -3,9 +3,9 @@ import { noViolations } from "./auth";
 import { addChild, family } from "./flows";
 
 /**
- * The plan slot end to end (spec 11.4, design 10.8), on the "plan" project's server, which has a
+ * The plan slot end to end, on the "plan" project's server, which has a
  * Gemini key pointed at the local stand-in (e2e/stub/gemini.mjs). The stand-in's mode is global,
- * so this file runs its tests one after another. Plans start at 5 am in India (spec 7.2), so that
+ * so this file runs its tests one after another. Plans start at 5 am in India, so that
  * server's clock is pinned to 10:00 IST (E2E_IST_CLOCK, src/server/clock.ts) and the Gemini tests run
  * at any hour. Breezy's end-to-end tests live here too, for the same stand-in and
  * the same serial order: "Papa…" asks who first, then the item lands on the plan and the kid card.

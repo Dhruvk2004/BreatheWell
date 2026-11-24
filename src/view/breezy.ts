@@ -3,7 +3,7 @@ import type { Verdict } from "@/domain/rules/verdict";
 import type { Lang } from "@/domain/time/format";
 
 /**
- * The Breezy page (spec 10.10): who can be picked, the code basics for the fallback, and the header
+ * The Breezy page: who can be picked, the code basics for the fallback, and the header
  * line "Breezy uses today's air for {place}, {time}". Demo mode adds the stored chip answers.
  */
 export interface BreezyPerson {
@@ -22,7 +22,7 @@ export interface BasicsView {
 export interface BreezyPage {
   readonly viewerId: string;
   readonly viewerName: string;
-  /** The family admin: an `admin_action` refusal links to Family settings (spec 7.7.5). */
+  /** The family admin: an `admin_action` refusal links to Family settings. */
   readonly isAdmin: boolean;
   readonly lang: Lang;
   readonly place: string;

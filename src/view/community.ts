@@ -2,7 +2,7 @@ import type { Band } from "@/domain/air/bands";
 import type { Lang } from "@/domain/time/format";
 
 /**
- * The community message page (spec 10.13): the place and band header from code, the message in
+ * The community message page: the place and band header from code, the message in
  * English and in Hindi, and where its words came from. Never a cigarette comparison.
  */
 export interface ShownMessage {

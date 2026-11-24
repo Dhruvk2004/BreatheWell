@@ -8,7 +8,7 @@ import { PlaceSearch } from "./PlaceSearch";
 import { useLocate } from "./useLocate";
 
 /**
- * The landing's way to a place (spec 5.1, 10.1): the location note above the button, "Check the
+ * The landing's way to a place: the location note above the button, "Check the
  * air near me", the sample-family link (children) and the city search. Location denied → the note
  * "We'll use the city you pick…" and focus moves to the search; "Use my location" stays available.
  */

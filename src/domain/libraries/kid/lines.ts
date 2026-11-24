@@ -1,6 +1,6 @@
 import type { Lang } from "../../time/format";
 
-/** Kid card tone: kid for Under 13, a short teen tone for 13–17 (spec 7.2). */
+/** Kid card tone: kid for Under 13, a short teen tone for 13–17. */
 export type Tone = "kid" | "teen";
 /** How the kid library groups activities. */
 export type KidActivity = "travel" | "play" | "cycling" | "sport";

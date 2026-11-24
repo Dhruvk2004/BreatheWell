@@ -5,12 +5,14 @@ import { InvalidPathId } from "./repos/paths";
  * Response and request helpers for route handlers. Handlers stay free of Next.js imports so they
  * are tested with plain `Request` objects.
  */
-export interface ApiError {
-  readonly error: { readonly code: string; readonly message: string; readonly fields?: Record<string, string> };
-}
-
-/** Signed-in and per-user responses are never cached (spec 11.2). */
+/** Signed-in and per-user responses are never cached. */
 export const NO_STORE = { "Cache-Control": "private, no-store" } as const;
+
+/** Public air and community answers are the same for everyone in a cell: the CDN keeps them 10 minutes. */
+export const PUBLIC_CACHE = { "Cache-Control": "public, s-maxage=600, stale-while-revalidate=300" } as const;
+
+/** The 503 every public air answer gives when there is no air data. */
+export const airUnavailable = (): Response => errorResponse(503, "air_unavailable", "We can't get the air data right now. We won't guess.");
 
 /** JSON with explicit cache headers. */
 export function json(data: unknown, status = 200, headers: HeadersInit = {}): Response {
@@ -51,7 +53,7 @@ export function fieldErrors(issues: readonly z.core.$ZodIssue[]): Record<string,
 /**
  * The body as text, or null once it passes `MAX_BODY_BYTES`: a larger Content-Length is refused
  * before reading, and a stream is cancelled as soon as the running total passes the limit, so a
- * 100 MB upload is never buffered (stage 7 WEB-7, PT-5).
+ * 100 MB upload is never buffered.
  */
 async function readLimited(request: Request): Promise<string | null> {
   const declared = Number(request.headers.get("content-length"));
@@ -96,7 +98,7 @@ export async function readJson<S extends z.ZodType>(request: Request, schema: S)
 }
 
 /**
- * CSRF check for every mutation (as in Utsav): the browser's `Origin` must be the app's public
+ * CSRF check for every mutation: the browser's `Origin` must be the app's public
  * origin. Without APP_ORIGIN configured, the request's own origin is the reference.
  */
 export function isSameOrigin(request: Request, appOrigin: string | null): boolean {
@@ -120,7 +122,7 @@ export async function pausedOnQuota(work: Promise<Response>): Promise<Response> 
   try {
     return await work;
   } catch (error) {
-    // An id that is not one path segment ("..%2F..%2Fx") names nothing (stage 7 PT-8).
+    // An id that is not one path segment ("..%2F..%2Fx") names nothing.
     if (error instanceof InvalidPathId) return notFoundError();
     if (!isQuotaExhausted(error)) throw error;
     return errorResponse(503, "saving_paused", "Saving is paused until tomorrow.", { "Retry-After": "3600" });

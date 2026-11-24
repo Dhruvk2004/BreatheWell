@@ -4,7 +4,7 @@ import type { Lang } from "@/domain/time/format";
 import { rowLine } from "../plan/template";
 
 /**
- * Breezy's fallback (spec 7, design 10.10 "over 10 s, or Gemini down"): "I can't think right now.
+ * Breezy's fallback: "I can't think right now.
  * Here are today's basics:" and each person's row from the rules, in code words (the template
  * plan's row line). Nothing here is Gemini text.
  */

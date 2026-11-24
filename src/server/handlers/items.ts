@@ -11,7 +11,7 @@ import { dependentRecord, itemRecord, parsed, type FamilyRecord, type ItemRecord
 /**
  * `PATCH /api/items/{id}` ticks a checklist or plan item; `DELETE` removes it (spec 9.2–9.3). A
  * member ticks their own items and any dependent's; the target, the adder, the dependent's
- * guardian or the admin may delete. Items are created by Breezy actions (slice 5).
+ * guardian or the admin may delete. Items are created by Breezy actions.
  */
 const body = z.strictObject({ done: z.boolean() });
 

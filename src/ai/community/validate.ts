@@ -5,7 +5,7 @@ import { agreesWithBand } from "./bandCheck";
 import { COMMUNITY_CAPS, communityOutputSchema, type CommunityOutput, type CommunityPromptInput, type CommunityWords } from "./schema";
 
 /**
- * The community message validator (spec 7.1, 7.6): every field in both languages passes the shared
+ * The community message validator: every field in both languages passes the shared
  * checks (length, language, no air numbers, no cigarettes or other banned content) and agrees with
  * the band and the best window from code (`bandCheck`). Shared
  * messages never carry a cigarette comparison, so the cigarette ban here is absolute. Any failure

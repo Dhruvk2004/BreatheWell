@@ -23,7 +23,7 @@ interface TodayRowsProps {
 const asRowPerson = (p: PersonView) => ({ ...p, travel: { main: p.mainMode } });
 
 /**
- * Today's family rows (spec 10.8 item 2): the rules' rows in order (me, extra care, adults,
+ * Today's family rows: the rules' rows in order (me, extra care, adults,
  * dependents), each a link to the member plan; dependents get Kid card; members still setting up
  * read "… is still setting up · Remind" with the careful chip.
  */

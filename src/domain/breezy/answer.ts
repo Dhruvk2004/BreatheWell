@@ -1,10 +1,11 @@
 import { z } from "zod";
+import { MAX_ALIAS_KEY } from "../names/kin";
 import { LANGS } from "../time/format";
 import { BREEZY_ACTIVITIES } from "./activity";
 import { MAX_HISTORY, MAX_QUESTION } from "./question";
 
 /**
- * The Breezy API's shapes (spec 7.7), shared by the route handlers and the browser: the question
+ * The Breezy API's shapes, shared by the route handlers and the browser: the question
  * body, the answer kinds, a suggestion card as the page shows it, and the confirmed action body.
  * The verdict on a card always comes from the rules on the server.
  */
@@ -16,7 +17,7 @@ export const cardTime = z.string().regex(/^(?:0[6-9]|1\d|2[01]):(?:00|30)$/u);
 
 const slot = z.object({ time: cardTime, verdict }).nullable();
 
-/** "Picture it" from code (spec 7.7.3): only on an adult's card with an activity and a time. */
+/** "Picture it" from code: only on an adult's card with an activity and a time. */
 const picture = z.object({
   lessPercent: z.number().int().min(0).max(100),
   thanTime: cardTime,
@@ -44,9 +45,8 @@ export const breezyCard = z.object({
 });
 export type BreezyCard = z.infer<typeof breezyCard>;
 
-/** Why Breezy declined (spec 7.7.5): `admin_action` links to Family settings for the admin. */
+/** Why Breezy declined: `admin_action` links to Family settings for the admin. */
 export const REFUSALS = ["medical", "off_topic", "admin_action", "other"] as const;
-export type Refusal = (typeof REFUSALS)[number];
 
 export const breezyAnswer = z.discriminatedUnion("kind", [
   z.object({
@@ -94,7 +94,7 @@ export const actionAnswer = z.object({
   whatsapp: z.string().nullable(),
 });
 
-/** `PUT /api/aliases`: "papa" → the member or dependent the viewer means (spec 7.7.9). */
-export const aliasBody = z.strictObject({ key: z.string().trim().min(1).max(20), forId: z.string().min(1).max(128) });
+/** `PUT /api/aliases`: "papa" → the member or dependent the viewer means. */
+export const aliasBody = z.strictObject({ key: z.string().trim().min(1).max(MAX_ALIAS_KEY), forId: z.string().min(1).max(128) });
 
 export { MAX_HISTORY };

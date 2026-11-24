@@ -14,7 +14,7 @@ import { familyRecord, joinCodeRecord, parsed, userRecord, type FamilyRecord, ty
 
 /**
  * `POST /api/join` (spec 5.3–5.4, 5.11, 9.3): a signed-in adult with no family, a valid active
- * unexpired code, a family under 6 adults. An expired code names the admin's first name only (spec 5.11). The code only adds the person; it never creates or fills
+ * unexpired code, a family under 6 adults. An expired code names the admin's first name only. The code only adds the person; it never creates or fills
  * a profile. Every answer takes at least `JOIN_MIN_MS`, so timing never hints whether a family exists.
  */
 const body = z.strictObject({ code: z.string().max(20) });
@@ -55,10 +55,10 @@ async function join(tx: Tx, uid: string, code: string, now: Date): Promise<Outco
   if (!user || !record || !family) return { kind: "not_found" };
   if (!user.adultConfirmedAt) return { kind: "not_adult" };
   if (user.familyId === record.familyId && family.memberUids.includes(uid)) return { kind: "already_member", familyName: family.name };
-  // A familyId whose family is gone, or no longer lists the user, is "no family" (stage 7 AUTH-2).
+  // A familyId whose family is gone, or no longer lists the user, is "no family".
   if (other?.memberUids.includes(uid)) return { kind: "in_other_family", familyName: other.name };
   const admin = await adminName(tx, family);
-  // Removed while this code existed: only a code made after the removal lets them back (stage 8 QA8-2).
+  // Removed while this code existed: only a code made after the removal lets them back.
   if (record.removedUids.includes(uid)) return { kind: "removed", adminName: admin };
   if (codeState(record, now) === "expired") return { kind: "expired", adminName: admin };
   if (family.memberUids.length >= MAX_ADULTS) return { kind: "full", familyName: family.name, adminName: admin };

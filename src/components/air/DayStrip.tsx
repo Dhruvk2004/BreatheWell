@@ -6,7 +6,7 @@ import { BAND_BG } from "../ui/bandStyle";
 import { BandGlyph } from "../ui/icons";
 
 /**
- * Next 5 days (F20, design D): a real list, one row per day on phones and five columns from 30 rem
+ * Next 5 days: a real list, one row per day on phones and five columns from 30 rem
  * of width; it never scrolls sideways. `showBest` is off in the compact strip on Today and the demo.
  */
 export function DayStrip({ days, lang, showBest = true }: { days: readonly DayOutlook[]; lang: Lang; showBest?: boolean }) {

@@ -11,7 +11,7 @@ import { loadDemo } from "@/server/demo/demoPage";
 
 export const generateMetadata = async (): Promise<Metadata> => ({ title: t(await currentLang(), "demo.metaTitle") });
 
-/** Demo family (spec 10.3): the Sharma family on a recorded smog morning, no sign-in. */
+/** Demo family: the Sharma family on a recorded smog morning, no sign-in. */
 export default function DemoPage({ searchParams }: PageProps<"/[lang]/demo">) {
   return (
     <Suspense fallback={<DemoLoading />}>

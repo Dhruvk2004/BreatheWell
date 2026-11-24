@@ -4,7 +4,7 @@ import { MODES } from "@/domain/rules/modes";
 import { LANGS } from "@/domain/time/format";
 
 /**
- * The stored documents (spec 9.1), parsed on every read so a hand-edited or old document can never
+ * The stored documents, parsed on every read so a hand-edited or old document can never
  * reach a page as the wrong shape. Timestamps are ISO strings on this side (`db/timestamps.ts`).
  */
 const activity = z.object({
@@ -107,19 +107,15 @@ export const joinCodeRecord = z.object({
   uses: z.number(),
   maxUses: z.number(),
   active: z.boolean(),
-  /** People the admin removed while this code existed: it no longer lets them back in (stage 8 QA8-2). */
+  /** People the admin removed while this code existed: it no longer lets them back in. */
   removedUids: z.array(z.string()).default([]),
 });
 
 export type UserRecord = z.infer<typeof userRecord>;
-export type StoredProfile = z.infer<typeof storedProfile>;
-export type HealthRecord = z.infer<typeof healthRecord>;
 export type FamilyRecord = z.infer<typeof familyRecord>;
 export type MemberRecord = z.infer<typeof memberRecord>;
 export type DependentRecord = z.infer<typeof dependentRecord>;
 export type ItemRecord = z.infer<typeof itemRecord>;
-export type ProgressRecord = z.infer<typeof progressRecord>;
-export type JoinCodeRecord = z.infer<typeof joinCodeRecord>;
 
 /** Parses a stored document, or null when it is missing or not the expected shape. */
 export function parsed<S extends z.ZodType>(schema: S, data: unknown): z.output<S> | null {

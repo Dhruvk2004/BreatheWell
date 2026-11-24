@@ -6,9 +6,9 @@ import { paths } from "./paths";
 import { itemRecord, parsed, progressRecord } from "./records";
 
 /**
- * Today's checklist for one person (spec 10.9 item 4): items added by Breezy or the family, in the
+ * Today's checklist for one person: items added by Breezy or the family, in the
  * viewer's language when written in it. For a dependent, `onCard` says whether the text passes the
- * kid-card checks; an item that fails stays on the parent's view only (spec 7.7.6).
+ * kid-card checks; an item that fails stays on the parent's view only.
  */
 export async function checklistFor(db: Db, fid: string, forId: string, date: string, lang: Lang): Promise<ChecklistItem[]> {
   const docs = await db.query(paths.items(fid), [

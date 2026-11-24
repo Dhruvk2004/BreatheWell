@@ -28,7 +28,7 @@ export function breezyActivityOf(value: unknown): BreezyActivity {
   return BREEZY_ACTIVITIES.find((a) => a === value) ?? "other";
 }
 
-/** The guardrail activity type (spec 8.2): travel follows the person's main mode. */
+/** The guardrail activity type: travel follows the person's main mode. */
 export function breezyIntensity(activity: BreezyActivity, mode: Mode): Intensity {
   return SPECS[activity].intensity ?? (isEnclosed(mode) ? "light" : "moderate");
 }

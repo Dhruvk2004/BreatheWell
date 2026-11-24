@@ -9,7 +9,7 @@ import { rejectsTime, type CardDate, type HourAllowed } from "./timeCheck";
 import { breezyOutputSchema, MAX_CARDS, type BreezyInput, type BreezyOutput, type BreezyOutputCard } from "./schema";
 
 /**
- * Breezy's validator (spec 7.1, 7.7.7): the reply text and every card field go through the shared
+ * Breezy's validator: the reply text and every card field go through the shared
  * checks (length after names are filled in, language, numbers, banned content incl. harmful advice
  * and system leaks, name leaks) and the rules on every time it names (`timeCheck`); the reply also
  * through the plan's contradiction check. A failing reply means the fixed "basics" fallback; a
@@ -52,7 +52,7 @@ function parse(raw: string): BreezyOutput | null {
 /**
  * Reasons a text is rejected, measured as shown. A dependent's text also may not use fear words; the
  * kid-card checks are not a rejection here: a card that fails them is still offered, and its item
- * stays on the parent's view only (spec 7.7.6).
+ * stays on the parent's view only.
  */
 interface About {
   /** Who the text is about when it names nobody. */

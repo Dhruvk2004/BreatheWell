@@ -5,7 +5,7 @@ interface TextFieldProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "id
   readonly id: string;
   readonly label: string;
   readonly hint?: string;
-  /** Shown inline with an icon and announced (design 10.5 "inline error, aria-live"). */
+  /** Shown inline with an icon and announced. */
   readonly error?: string | null;
 }
 

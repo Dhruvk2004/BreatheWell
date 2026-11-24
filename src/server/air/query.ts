@@ -10,7 +10,7 @@ export const MAX_PLACE_LENGTH = 80;
 const coordinate = (min: number, max: number) => z.coerce.number().finite().min(min).max(max);
 
 /**
- * The Air now place in the URL (`/air?place=…&lat=..&lon=..&cc=IN`, spec 10.2): rounded coordinates,
+ * The Air now place in the URL (`/air?place=…&lat=..&lon=..&cc=IN`): rounded coordinates,
  * a display name and the geocoder's country code. Never a person's name or exact position.
  */
 export const placeQuery = z

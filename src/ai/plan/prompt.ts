@@ -2,7 +2,7 @@ import { LENGTH_CAPS } from "@/ai/shared/validate";
 import type { PlanInput } from "./schema";
 
 /**
- * The family plan prompt (spec 7.1, 7.2). The rules have already decided every verdict, time and
+ * The family plan prompt. The rules have already decided every verdict, time and
  * mode; Gemini only writes words for them. The input is pseudonymised JSON; the system instruction
  * carries the guardrails the validator checks again (any item that breaks one uses its template).
  */

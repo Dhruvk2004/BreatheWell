@@ -9,7 +9,7 @@ export interface HourlyPm {
   readonly pm10: readonly (number | null)[];
 }
 
-/** Every pollutant the air card shows (spec F2): µg/m³, CO included (shown in mg/m³ by the UI). */
+/** Every pollutant the air card shows: µg/m³, CO included (shown in mg/m³ by the UI). */
 export interface HourlyAir extends HourlyPm {
   readonly no2: readonly (number | null)[];
   readonly o3: readonly (number | null)[];
@@ -29,7 +29,7 @@ export interface HourPoint {
   readonly pm10: number | null;
 }
 
-/** Hourly AQI estimates from the hourly PM series (spec 8.4 step 1). */
+/** Hourly AQI estimates from the hourly PM series. */
 export function hourPoints(series: HourlyPm): HourPoint[] {
   return series.time.flatMap((time, i) => {
     const pm25 = series.pm25[i] ?? null;
@@ -54,7 +54,7 @@ export function indexHours(points: readonly HourPoint[]): HourIndex {
 /** The point for a date and hour, if there is data. */
 export const pointAt = (index: HourIndex, date: string, hour: number): HourPoint | undefined => index.get(key(date, hour));
 
-/** "Now" = the hourly estimate for the clock's current local hour (spec 8.1). */
+/** "Now" = the hourly estimate for the clock's current local hour. */
 export function nowPoint(index: HourIndex, clock: Clock): HourPoint | undefined {
   const local = localTime(clock);
   return pointAt(index, local.date, local.hour);
@@ -65,7 +65,7 @@ const MIN_HOURS_24 = 16;
 
 /**
  * The 24-hour CPCB-style AQI: the mean PM2.5 and PM10 over the 24 hours ending at the clock's hour,
- * then the AQI of those means (spec 8.1 "24-hour average"). Null with fewer than 16 hours of data.
+ * then the AQI of those means. Null with fewer than 16 hours of data.
  */
 export function average24Aqi(series: HourlyPm, clock: Clock): number | null {
   const local = localTime(clock);
@@ -80,7 +80,7 @@ export function average24Aqi(series: HourlyPm, clock: Clock): number | null {
   return aqiFromPm({ pm25: mean(window.map((r) => r.pm25)), pm10: mean(window.map((r) => r.pm10)) })?.aqi ?? null;
 }
 
-/** Hours that hold at least `minFuture` hours after the clock's hour (spec 5.11 "forecast too short"). */
+/** Hours that hold at least `minFuture` hours after the clock's hour. */
 export function hasEnoughForecast(points: readonly HourPoint[], clock: Clock, minFuture = 6): boolean {
   const local = localTime(clock);
   const now = key(local.date, local.hour);

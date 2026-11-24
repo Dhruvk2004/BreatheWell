@@ -9,13 +9,13 @@ import type { Target } from "./cardText";
 interface AddedNoteProps {
   readonly line: string;
   readonly target: Target;
-  /** A member's `wa.me` text; null for yourself and for dependents (spec 7.7.4). */
+  /** A member's `wa.me` text; null for yourself and for dependents. */
   readonly whatsapp: string | null;
   readonly onCard: boolean;
   readonly lang: Lang;
 }
 
-/** After a confirmed add (design 10.10): Send on WhatsApp for a member, Open the kid card for a dependent. */
+/** After a confirmed add: Send on WhatsApp for a member, Open the kid card for a dependent. */
 export function AddedNote({ line, target, whatsapp, onCard, lang }: AddedNoteProps) {
   const t = translator(lang);
   return (

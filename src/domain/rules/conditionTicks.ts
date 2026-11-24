@@ -1,6 +1,6 @@
 import type { Condition } from "./groups";
 
-/** "None", "Prefer not to say" and "Not sure" are answers on their own (spec 6.1 item 5, 6.2). */
+/** "None", "Prefer not to say" and "Not sure" are answers on their own. */
 const ALONE: ReadonlySet<Condition> = new Set(["none", "prefer_not", "not_sure"]);
 
 /** True when a stand-alone answer is not mixed with real conditions (the server's check). */
@@ -17,7 +17,7 @@ export function toggleConditionTicks<C extends Condition>(next: readonly C[], be
   return next.filter((c) => !ALONE.has(c));
 }
 
-/** The real conditions, the ones listed by name where they are shared (spec 6.4). */
+/** The real conditions, the ones listed by name where they are shared. */
 export const NAMED_CONDITIONS = ["asthma", "copd", "heart", "allergies", "pregnant"] as const satisfies readonly Condition[];
 export type NamedCondition = (typeof NAMED_CONDITIONS)[number];
 

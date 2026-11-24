@@ -2,7 +2,7 @@
 export const MAX_ADULTS = 6;
 export const MAX_DEPENDENTS = 4;
 
-/** Join cards on Today show joins from the last day (spec 5.3 "every join shows the admin a card"). */
+/** Join cards on Today show joins from the last day. */
 export const JOIN_CARD_MS = 24 * 60 * 60 * 1000;
 
 /** The first word of a name: the admin's first name on the invite page ("Neha invited you"). */

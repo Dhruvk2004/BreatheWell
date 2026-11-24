@@ -29,7 +29,7 @@ async function viewerFor(needs: Needs, here: string): Promise<Viewer> {
 /** The signed-in viewer, or a redirect to Sign-in. */
 export const requireAccount = async (here: string): Promise<SignedIn> => (await viewerFor("account", here)) as SignedIn;
 
-/** The signed-in viewer with a family, or a redirect to Sign-in or to Start / Join (spec 10.8). */
+/** The signed-in viewer with a family, or a redirect to Sign-in or to Start / Join. */
 export const requireFamily = async (here: string): Promise<InFamily> => (await viewerFor("family", here)) as InFamily;
 
 /** Create family: set up, and not in a family yet (else Today). */

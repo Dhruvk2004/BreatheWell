@@ -5,7 +5,7 @@ import { dayPm25, outsideAllDay } from "./exposure";
 import { percentLess } from "./picture";
 
 /**
- * "Picture it" on a Breezy card with an activity and a time (spec 7.7.3, 7.4), made by code: the
+ * "Picture it" on a Breezy card with an activity and a time, made by code: the
  * smoke during the activity at the card's hour against the day's smokiest hour for it, and, for
  * adults only, the whole-day cigarette figure. Never shown on a dependent's card (spec 6.4 🔒).
  */

@@ -8,8 +8,8 @@ import { cleanQuestion, type Turn } from "@/domain/breezy/question";
 import { isEmergency } from "@/domain/safety/emergency";
 
 /**
- * The Breezy thread's state (spec 10.10): the session's turns live only in this browser tab
- * (spec 9.4: chats are not stored). Emergency words get the fixed note at once, even offline. A
+ * The Breezy thread's state: the session's turns live only in this browser tab
+ * (chats are not stored). Emergency words get the fixed note at once, even offline. A
  * kin word with no alias pauses the question until the asker picks who they mean; then the alias
  * is saved and the same question is sent.
  */

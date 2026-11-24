@@ -5,7 +5,7 @@ import { planRecord, sectionRecord, type PlanRecord, type SectionRecord, type St
 import { parsed } from "./records";
 
 /**
- * Plan storage (spec 7.2, 9.1): read today's plan, take the generation lock, save the result.
+ * Plan storage: read today's plan, take the generation lock, save the result.
  * No timers: a plan is (re)generated only when someone opens Today and it is missing or stale.
  */
 export const LOCK_MS = 40_000;
@@ -39,7 +39,7 @@ export type Claim =
   | { readonly kind: "busy"; readonly retryAfterMs: number };
 
 /**
- * Takes the generation lock in a transaction (spec 7.2): a fresh lock means "busy"; a lock older
+ * Takes the generation lock in a transaction: a fresh lock means "busy"; a lock older
  * than 40 s is taken over. A current Gemini plan is "fresh"; a current Simple plan too, unless the
  * person pressed Try again. After 3 generations today the plan stays as it is ("capped").
  */

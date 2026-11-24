@@ -11,10 +11,10 @@ import { paths } from "../repos/paths";
 import { parsed, userRecord } from "../repos/records";
 
 /**
- * `POST /api/family`: create a family (spec 5.2, 10.6, 9.3: a signed-in adult with no family). The
+ * `POST /api/family`: create a family (a signed-in adult with no family). The
  * creator becomes the admin and the first member, and the first join code is made at once.
  * `PATCH`: the admin changes the name, home area or home set-up; the server computes the rounded
- * coordinates and grid cell, so they always match (spec 9.1).
+ * coordinates and grid cell, so they always match.
  */
 export async function createFamily(request: Request, deps: AppDeps): Promise<Response> {
   const auth = await authorize(request, deps, "write");
@@ -29,7 +29,7 @@ export async function createFamily(request: Request, deps: AppDeps): Promise<Res
     const user = parsed(userRecord, await tx.get(paths.user(uid)));
     if (!user) return "no_profile" as const;
     if (!user.adultConfirmedAt) return "not_adult" as const;
-    // A familyId whose family is gone (or no longer lists the user) is "no family" (stage 7 AUTH-2).
+    // A familyId whose family is gone (or no longer lists the user) is "no family".
     if (user.familyId && (await familyFor(tx, user.familyId, uid))) return "in_family" as const;
     const code = await freshCode(tx, deps.randomBytes);
     const { name, home, homeSetup } = input.data;

@@ -7,7 +7,7 @@ import { avoidedBySwap } from "./emissions";
 /** A ticked Swap card's progress key is `swap:{altId}` (activity ids never contain a colon). */
 export const SWAP_KEY = "swap:";
 
-/** Suggestions whose done tick protects time (spec 1.5, north-star metric). */
+/** Suggestions whose done tick protects time (north-star metric). */
 const PROTECTING = new Set(["move_time", "switch_mode", "indoor"]);
 
 export interface Ticked {
@@ -16,10 +16,10 @@ export interface Ticked {
 }
 
 /**
- * The totals stored on a progress doc (spec 9.1, computed by the server): protected hours (the
+ * The totals stored on a progress doc (computed by the server): protected hours (the
  * activity's duration bucket for a moved, switched or indoor item), kg CO₂ avoided by a switch and
  * the car trips a switch away from the car replaced (the weekly line, spec 7.5). `swapsTo` are the
- * modes of ticked Swap cards (F13), which count like a switched activity but protect no hours.
+ * modes of ticked Swap cards, which count like a switched activity but protect no hours.
  */
 export function progressTotals(
   ticked: readonly Ticked[],

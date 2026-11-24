@@ -2,7 +2,7 @@ import type { Region } from "../rules/context";
 import { gridIdOf } from "./grid";
 
 /**
- * Listed Indian cities (spec 7.6, 8.3): the Indo-Gangetic Plain cities that get the winter caution,
+ * Listed Indian cities: the Indo-Gangetic Plain cities that get the winter caution,
  * Delhi NCR (station note on every verdict screen), which cities have a metro (Air now "One swap"),
  * and each city's explicit 0.1° grid cells (the community message spends Gemini quota only on these).
  */
@@ -15,9 +15,9 @@ export interface City {
   readonly cells: number;
   /** Delhi NCR, Punjab, Haryana, Uttar Pradesh or Bihar (spec 8.3 override 4). */
   readonly igp: boolean;
-  /** Delhi NCR: "Official stations may read higher" on every verdict screen (spec 8.5). */
+  /** Delhi NCR: "Official stations may read higher" on every verdict screen. */
   readonly ncr: boolean;
-  /** A running metro line, so the Air now swap is car → metro (spec 7.5). */
+  /** A running metro line, so the Air now swap is car → metro. */
   readonly metro: boolean;
 }
 
@@ -88,7 +88,7 @@ export const isListedGrid = (gridId: string): boolean => BY_GRID.has(gridId);
 const INDIA_BOX = { south: 6.5, north: 35.7, west: 68, east: 97.5 } as const;
 
 /**
- * The rule region for a place (spec 8.3, 8.5): a listed Indo-Gangetic city, elsewhere in India, or
+ * The rule region for a place: a listed Indo-Gangetic city, elsewhere in India, or
  * outside India ("Shown on India's CPCB scale", no winter caution). The geocoder's country code wins
  * over the box; the box only covers places typed or found without one.
  */

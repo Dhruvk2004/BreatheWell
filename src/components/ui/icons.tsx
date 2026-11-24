@@ -30,7 +30,7 @@ export function BandGlyph({ band, className = "size-5" }: { band: Band; classNam
 
 const VERDICT_ICONS: Readonly<Record<Verdict, LucideIcon>> = { go: CircleCheck, care: CircleAlert, avoid: Ban };
 
-/** The verdict's icon: check, exclamation, no-entry (design B). */
+/** The verdict's icon: check, exclamation, no-entry. */
 export function VerdictGlyph({ verdict, className = "size-[1.125em]" }: { verdict: Verdict; className?: string }) {
   const Icon = VERDICT_ICONS[verdict];
   return <Icon className={className} aria-hidden="true" focusable="false" strokeWidth={2.4} />;

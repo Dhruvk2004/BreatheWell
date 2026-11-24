@@ -1,5 +1,5 @@
 /**
- * Join codes (spec 5.3, 11.2): 8 characters from a 31-symbol alphabet with no 0, O, 1, I or L
+ * Join codes: 8 characters from a 31-symbol alphabet with no 0, O, 1, I or L
  * (about 8.5 × 10¹¹ codes), shown as K7PM-4QXT, typed in any case with or without the hyphen;
  * valid for 24 hours and at most 8 joins, whichever comes first.
  */

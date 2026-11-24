@@ -15,7 +15,7 @@ export const generateStaticParams = () => DEMO_FAMILY.filter((p) => p.kind === "
 
 export const generateMetadata = async (): Promise<Metadata> => ({ title: t(await currentLang(), "kid.metaTitle") });
 
-/** A demo dependent's kid card (spec 10.12): public, from fixtures. */
+/** A demo dependent's kid card: public, from fixtures. */
 export default function KidCardPage(props: PageProps<"/[lang]/demo/kid/[id]">) {
   return (
     <Suspense fallback={<KidLoading />}>

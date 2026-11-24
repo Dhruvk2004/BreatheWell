@@ -9,7 +9,7 @@ import { translator } from "@/i18n/t";
 import { VerdictChip } from "../air/VerdictChip";
 import { noteNeutral } from "../ui/styles";
 
-/** Verdict chips follow the freshness rule with the saved reading time (spec 8.5, F24). */
+/** Verdict chips follow the freshness rule with the saved reading time. */
 const chipsAllowed = (plan: SavedPlan, now: Date): boolean =>
   verdictsAllowed(freshness(new Date(plan.fetchedAt), { now, timeZone: INDIA_TIME_ZONE }));
 

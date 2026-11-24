@@ -7,7 +7,7 @@ import { asAnswer, fromAnswer, QUESTIONS } from "./homeSetup";
 
 export { BLANK_HOME } from "./homeSetup";
 
-/** Home set-up (spec 6.3, design 10.6): one group per card, each saying why it changes the advice. */
+/** Home set-up: one group per card, each saying why it changes the advice. */
 export function HomeSetupFields({ value, onChange, lang }: { value: HomeSetup; onChange: (v: HomeSetup) => void; lang: Lang }) {
   const t = translator(lang);
   return (

@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { webManifest } from "@/config/manifest";
 
-/** `/manifest.webmanifest` (F24): makes BreatheWell installable; no service worker (spec F24). */
+/** `/manifest.webmanifest`: makes BreatheWell installable; no service worker. */
 export default function manifest(): MetadataRoute.Manifest {
   return webManifest();
 }

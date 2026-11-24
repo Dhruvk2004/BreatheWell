@@ -9,7 +9,7 @@ import { planFamilyToday } from "./familyPlan";
 import { familyView } from "./familyView";
 
 /**
- * A dependent's kid card for the family's adults (spec 10.12): the rules' plan in kid words, in
+ * A dependent's kid card for the family's adults: the rules' plan in kid words, in
  * the card language, with the checklist items that pass the kid-card checks and today's ticks (any
  * adult in the family ticks a dependent's items, spec 5.5 step 7). Null for an id that
  * is not one of the family's dependents; `kid` is null without fresh air data.

@@ -1,5 +1,5 @@
 /**
- * The injected clock (spec 8.3). Domain code never reads the wall clock: live pages pass the real
+ * The injected clock. Domain code never reads the wall clock: live pages pass the real
  * time, recorded demo scenarios pass their `scenarioNow`, and tests pass a fixed instant.
  */
 export interface Clock {

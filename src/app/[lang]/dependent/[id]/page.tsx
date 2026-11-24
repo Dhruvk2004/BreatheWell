@@ -10,7 +10,7 @@ import { requireFamily } from "@/server/app/guards";
 
 export const generateMetadata = async (): Promise<Metadata> => ({ title: t(await currentLang(), "dep.newTitle") });
 
-/** Edit a child or teen, with Delete (spec 10.12): the guardian or the admin. */
+/** Edit a child or teen, with Delete: the guardian or the admin. */
 export default function EditDependentPage(props: PageProps<"/[lang]/dependent/[id]">) {
   return (
     <Suspense fallback={<PageLoading />}>

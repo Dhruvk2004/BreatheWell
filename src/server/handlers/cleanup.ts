@@ -20,7 +20,7 @@ export function authorised(header: string | null, secret: string): boolean {
 }
 
 /**
- * `GET /api/cron/cleanup` (spec 9.4): Vercel Cron calls it once a day. It fails closed: with no
+ * `GET /api/cron/cleanup`: Vercel Cron calls it once a day. It fails closed: with no
  * `CRON_SECRET` set nobody can run it, and a wrong or missing token gets 401 before any read.
  */
 export async function cleanupGet(request: Request, deps: CleanupDeps): Promise<Response> {

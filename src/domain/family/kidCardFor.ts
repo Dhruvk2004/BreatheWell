@@ -12,7 +12,7 @@ function kidFactFor(plan: PersonPlan): string | null {
 }
 
 /**
- * A dependent's kid card (spec 10.12) from their rule results: kid tone under 13, teen tone 13–17,
+ * A dependent's kid card from their rule results: kid tone under 13, teen tone 13–17,
  * one line per activity, the face in the band of the air now. Text only from the kid library.
  */
 export function kidCardFor(plan: PersonPlan, band: Band, lang: Lang, hour: number, date: string): KidCard {

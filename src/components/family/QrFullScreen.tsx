@@ -14,7 +14,7 @@ interface Props {
   readonly lang: Lang;
 }
 
-/** QR full screen (design 10.7): for pointing Dadaji's camera at it across the table; Close returns focus. */
+/** QR full screen: for pointing Dadaji's camera at it across the table; Close returns focus. */
 export function QrFullScreen({ link, code, validTill, familyName, lang }: Props) {
   const t = translator(lang);
   const dialog = useRef<HTMLDialogElement>(null);

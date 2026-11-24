@@ -1,7 +1,7 @@
 import type { Lang } from "../time/format";
 import type { ProfileInput } from "./profile";
 
-/** Q2 (spec 5.6): Morning 5–7 · Morning 7–10 · Evening 5–8 · No walk. */
+/** Q2: Morning 5–7 · Morning 7–10 · Evening 5–8 · No walk. */
 export const QUICK_WALKS = ["early", "morning", "evening", "none"] as const;
 export type QuickWalk = (typeof QUICK_WALKS)[number];
 
@@ -19,7 +19,7 @@ export interface QuickAnswers {
 }
 
 /**
- * The 60+ quick path (spec 5.6): three questions, then defaults: a 45-minute walk that can move to
+ * The 60+ quick path: three questions, then defaults: a 45-minute walk that can move to
  * any time today, trips under 15 minutes. Everything can be changed in Profile.
  */
 export function quickProfile(answers: QuickAnswers): ProfileInput {

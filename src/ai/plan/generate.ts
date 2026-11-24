@@ -5,10 +5,10 @@ import { planOutputSchema } from "./schema";
 import { validatePlan, type PlanCheck, type ValidPlan } from "./validate";
 
 /**
- * One family plan generation (spec 7.2): a 25 s budget, one Gemini call, and one retry only when
+ * One family plan generation: a 25 s budget, one Gemini call, and one retry only when
  * at least 10 s are left and the failure was not a 4xx. An invalid reply twice, a timeout or no
  * budget gives `plan: null`, which means the template plan. Every call first asks `reserve` for a
- * slot in the global quota (spec 7.8); a refused slot also means the template.
+ * slot in the global quota; a refused slot also means the template.
  */
 export const PLAN_BUDGET_MS = 25_000;
 export const RETRY_MIN_MS = 10_000;

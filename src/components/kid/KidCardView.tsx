@@ -30,7 +30,7 @@ export function kidIcon(item: PlannedActivity | undefined): LucideIcon {
 }
 
 /**
- * The kid card (spec 10.12, design D): a face in the band colour, one line per activity, a kid
+ * The kid card: a face in the band colour, one line per activity, a kid
  * "Why?", three things to do inside, then Show full screen · Share on WhatsApp · Copy. The card
  * speaks the card language; no numbers except clock times, no cigarettes, nothing scary (tested).
  */
@@ -108,7 +108,7 @@ function KidLines({ kid, lang }: { kid: KidCardData; lang: Lang }) {
   );
 }
 
-/** Checklist items that passed the kid-card checks (spec 7.7.6), "added by Rahul". */
+/** Checklist items that passed the kid-card checks, "added by Rahul". */
 function KidChecklist({ kid, lang }: { kid: KidCardData; lang: Lang }) {
   const t = translator(lang);
   return (

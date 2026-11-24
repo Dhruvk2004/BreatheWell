@@ -5,7 +5,7 @@ import { avoidedBySwap } from "./emissions";
 import { afterOutings, dayPm25, exposureSchedule, exposureToday, outsideAllDay } from "./exposure";
 
 /**
- * Learn's "Your choices today" for a signed-in adult (spec 10.11 item 1, 7.4): the day outside all
+ * Learn's "Your choices today" for a signed-in adult: the day outside all
  * day against the day with the plan, both as whole-day cigarette figures, and the CO₂ the plan's
  * switch avoids for the air. Adults only (the caller never passes a dependent); null without a
  * full day of air data.

@@ -9,7 +9,7 @@ import { useGoTo } from "../profile/useGoTo";
 import { btn } from "../ui/styles";
 import { failureText } from "../ui/failure";
 
-/** Danger zone (spec 10.14 item 6): only when the admin is alone; typed confirmation of the family name. */
+/** Danger zone: only when the admin is alone; typed confirmation of the family name. */
 export function DeleteFamily({ familyName, alone, lang }: { familyName: string; alone: boolean; lang: Lang }) {
   const t = translator(lang);
   const [typed, setTyped] = useState("");

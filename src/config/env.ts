@@ -1,11 +1,11 @@
 /**
- * Deployment configuration (names fixed by setup-steps.html). Every reader is a pure function of an
+ * Deployment configuration (the names are listed in .env.example). Every reader is a pure function of an
  * env object, so the app builds and serves its public pages and the demo with nothing set: callers
  * get null and show a "not configured" state instead of crashing.
  */
 export type Env = Readonly<Record<string, string | undefined>>;
 
-/** Firebase web config. Public by design; `authDomain` is the app host (spec 10.4). */
+/** Firebase web config. Public by design; `authDomain` is the app host. */
 export interface FirebaseWebConfig {
   readonly apiKey: string;
   readonly authDomain: string;
@@ -49,9 +49,12 @@ const HOST_PORT = /^(localhost|127\.0\.0\.1):\d{2,5}$/;
  * emulator-only projects, which cannot reach real accounts) and a local `host:port`. Not one of
  * the deployment variables, and never set on Vercel.
  */
+/** A Firebase "demo-" project exists only on the emulators, so test-only hooks may switch on. */
+export const isDemoProject = (projectId: string | null | undefined): boolean => projectId?.startsWith("demo-") ?? false;
+
 export function authEmulatorHost(env: Env): string | null {
   const host = value(env, "NEXT_PUBLIC_FIREBASE_AUTH_EMULATOR_HOST");
-  const demo = value(env, "NEXT_PUBLIC_FIREBASE_PROJECT_ID")?.startsWith("demo-") ?? false;
+  const demo = isDemoProject(value(env, "NEXT_PUBLIC_FIREBASE_PROJECT_ID"));
   return host && demo && HOST_PORT.test(host) ? host : null;
 }
 
@@ -60,7 +63,7 @@ export const firebaseProjectId = (env: Env): string | null =>
   value(env, "FIREBASE_PROJECT_ID") ?? value(env, "NEXT_PUBLIC_FIREBASE_PROJECT_ID");
 
 /**
- * The default model, pinned to a versioned stable ID (spec 7) so evals and validator pass rates do
+ * The default model, pinned to a versioned stable ID so evals and validator pass rates do
  * not drift: `gemini-flash-latest` is an alias Google hot-swaps with every release. `gemini-3.8-flash`
  * is listed as Stable and free of charge on the AI Studio models and pricing pages (checked 20 Nov 2026).
  */
@@ -102,6 +105,3 @@ export const openMeteoTestBase = (env: Env): string | null => localTestBase(env,
  * (any long random string); without it the clean-up route refuses every call.
  */
 export const cronSecret = (env: Env): string | null => value(env, "CRON_SECRET");
-
-/** The optional data.gov.in key for CPCB station readings (spec S1). */
-export const dataGovKey = (env: Env): string | null => value(env, "DATA_GOV_IN_KEY");

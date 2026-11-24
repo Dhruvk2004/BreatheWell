@@ -1,7 +1,7 @@
 import { translator, type Lang } from "@/i18n/t";
 import type { DependentDraft } from "./dependentDraft";
 
-/** The default times a parent can change (spec 6.2: school 7–8 am and 1–2 pm, play 5–6 pm, tuition 7 pm). */
+/** The default times a parent can change (school 7–8 am and 1–2 pm, play 5–6 pm, tuition 7 pm). */
 export function PickTimes({
   picks,
   onChange,

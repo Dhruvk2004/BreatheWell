@@ -35,9 +35,9 @@ export interface Limits {
   readonly mutation: RateLimiter;
   /** The public invite preview on /join/[code]: 30 an hour per IP. */
   readonly invite: RateLimiter;
-  /** Breezy questions: 5 a minute per user (spec 7.8). */
+  /** Breezy questions: 5 a minute per user. */
   readonly breezy: RateLimiter;
-  /** The public community message: 20 an hour per IP (spec 7.8, 11.2). */
+  /** The public community message: 20 an hour per IP. */
   readonly community: RateLimiter;
 }
 

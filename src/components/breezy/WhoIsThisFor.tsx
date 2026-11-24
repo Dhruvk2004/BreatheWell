@@ -12,7 +12,7 @@ interface PersonChipsProps {
   readonly disabled?: boolean;
 }
 
-/** A row of person chips (design 10.10): the alias question and "Who is this for?" both use it. */
+/** A row of person chips: the alias question and "Who is this for?" both use it. */
 export function PersonChips({ people, label, chosen = null, onPick, disabled }: PersonChipsProps) {
   return (
     <div role="group" aria-label={label} className="flex flex-wrap gap-2">
@@ -25,7 +25,7 @@ export function PersonChips({ people, label, chosen = null, onPick, disabled }: 
   );
 }
 
-/** "Who is this for?" when a card came back without a person (spec 7.7.9). */
+/** "Who is this for?" when a card came back without a person. */
 export function WhoIsThisFor(props: Omit<PersonChipsProps, "label"> & { readonly lang: Lang }) {
   const t = translator(props.lang);
   return (

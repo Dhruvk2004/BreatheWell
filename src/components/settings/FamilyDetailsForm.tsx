@@ -44,7 +44,7 @@ function useDetails({ name, homeSetup, lang }: Props) {
   return { value, setValue, home, setHome, setup, setSetup, status, nameOk, submit };
 }
 
-/** Family settings items 1–3 (spec 10.14): name, home area (change) and home set-up, saved together. */
+/** Family settings items 1–3: name, home area (change) and home set-up, saved together. */
 export function FamilyDetailsForm(props: Props) {
   const t = translator(props.lang);
   const form = useDetails(props);

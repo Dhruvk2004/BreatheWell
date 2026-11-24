@@ -2,9 +2,9 @@ import type { BreezyActivity } from "@/domain/breezy/activity";
 import { containsPhrase } from "@/domain/names/words";
 
 /**
- * Outing words (spec 7.1, design G): the words that make a clause about going out, mapped to the
+ * Outing words: the words that make a clause about going out, mapped to the
  * Breezy activity the rules judge them as. "go", "outside", "terrace" and the like are a moderate `other`; yoga, exercise and running
- * are sport (stage 7 AI-6).
+ * are sport.
  * Used by Breezy's time check and the community message's band check.
  */
 const ACTIVITY_WORDS: readonly (readonly [BreezyActivity, readonly string[]])[] = [

@@ -1,6 +1,6 @@
 import type { z } from "zod";
 
-/** The fetch function, injected so tests replay recorded fixtures (spec 11.4). */
+/** The fetch function, injected so tests replay recorded fixtures. */
 export type FetchLike = (input: string, init?: RequestInit) => Promise<Response>;
 
 /** Why a data call failed; the UI shows "We can't get the air data right now. We won't guess." */
@@ -8,7 +8,7 @@ export type DataErrorCode = "timeout" | "network" | "http" | "invalid";
 
 export type DataResult<T> = { readonly ok: true; readonly value: T } | { readonly ok: false; readonly error: DataErrorCode };
 
-/** Spec 5.11: Open-Meteo calls time out after 5 s. */
+/** Open-Meteo calls time out after 5 s. */
 export const DEFAULT_TIMEOUT_MS = 5_000;
 
 export interface FetchOptions {

@@ -2,7 +2,7 @@ import type { Band } from "../air/bands";
 import type { Intensity } from "./activities";
 import type { Group } from "./groups";
 
-/** Go = fine as planned; Care = go with care; Avoid = not outdoors in this hour (spec 8.3). */
+/** Go = fine as planned; Care = go with care; Avoid = not outdoors in this hour. */
 export type Verdict = "go" | "care" | "avoid";
 
 type Row = Readonly<Record<Group, readonly [Verdict, Verdict, Verdict]>>;

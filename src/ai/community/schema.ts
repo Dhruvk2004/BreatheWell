@@ -3,7 +3,7 @@ import type { Band } from "@/domain/air/bands";
 import type { CommunityAction } from "@/domain/libraries/alternatives";
 
 /**
- * The community message's structured output (spec 7.6): per language a title (≤ 60) and a body of
+ * The community message's structured output: per language a title (≤ 60) and a body of
  * 3 short lines (≤ 450), plus the "together" line's words. The code adds the header with the
  * numbers, the "Together today:" label and the source footer. Loose limits here; the validator caps.
  */
@@ -15,7 +15,7 @@ export type CommunityWords = CommunityOutput["en"];
 
 export const COMMUNITY_CAPS = { title: 60, body: 450, together: 160 } as const;
 
-/** What Gemini gets: code inputs only (spec 7.0: never a visitor's text). */
+/** What Gemini gets: code inputs only (never a visitor's text). */
 export interface CommunityPromptInput {
   /** The listed city's name, or "India" (the URL's place name never reaches the prompt). */
   readonly place: string;

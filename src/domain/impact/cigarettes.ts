@@ -1,5 +1,5 @@
 /**
- * The cigarette comparison (spec 7.4, Berkeley Earth): one cigarette ≈ 22 µg/m³ of PM2.5 breathed
+ * The cigarette comparison (Berkeley Earth): one cigarette ≈ 22 µg/m³ of PM2.5 breathed
  * for a whole day. Whole days only, never per activity; always "about" and whole numbers. Rendered
  * only by code, only on adult members' plans or in the collapsed "For adults" panel (spec 6.4 🔒).
  */

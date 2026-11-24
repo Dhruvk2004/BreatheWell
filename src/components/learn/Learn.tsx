@@ -10,7 +10,7 @@ import { YourChoices } from "./YourChoices";
 import type { YourDay } from "@/domain/impact/yourDay";
 
 /**
- * Learn (spec 10.11, design 10.11): for a signed-in adult, "Your choices today" first; then the top
+ * Learn: for a signed-in adult, "Your choices today" first; then the top
  * actions with their three levels, the picture, how we decide and our numbers. In the generic view
  * the cigarette comparison sits only in the collapsed "For adults: the numbers" panel (spec 6.4 🔒).
  */

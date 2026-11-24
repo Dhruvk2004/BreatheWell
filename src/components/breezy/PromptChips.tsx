@@ -1,7 +1,7 @@
 import { translator, type Lang, type MessageKey } from "@/i18n/t";
 import type { BreezyPerson } from "@/view/breezy";
 
-/** Suggested prompts in the viewer's language (spec 7.7.8; Hindi chips for Hindi readers). */
+/** Suggested prompts in the viewer's language (Hindi chips for Hindi readers). */
 export const PROMPT_CHIPS: readonly MessageKey[] = [
   "breezy.chip.walk",
   "breezy.chip.mask",
@@ -16,7 +16,7 @@ export interface Chip {
 }
 
 /**
- * The chips with the family's own names (spec 7.7.8): "When should Dadaji walk today?" for another
+ * The chips with the family's own names: "When should Dadaji walk today?" for another
  * adult and "Plan Riya's evening" for the first dependent, then the general ones.
  */
 export function familyChips(people: readonly BreezyPerson[], viewerId: string, lang: Lang): Chip[] {

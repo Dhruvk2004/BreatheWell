@@ -9,8 +9,8 @@ import { VerdictChip } from "./VerdictChip";
 type Advice = "go" | "care" | "careNoWindow" | "careTomorrow" | "avoid" | "avoidNoWindow" | "avoidTomorrow";
 
 /**
- * The advice line for a verdict (spec 10.2 item 5), with the best window when there is one. After
- * 9 pm the window is tomorrow's (spec 8.4 step 9), and the line says so.
+ * The advice line for a verdict, with the best window when there is one. After
+ * 9 pm the window is tomorrow's, and the line says so.
  */
 export function adviceKey(row: CareRow, windowDay: WindowDay | null): `air.care.${Advice}` {
   if (row.verdict === "go") return "air.care.go";
@@ -18,7 +18,7 @@ export function adviceKey(row: CareRow, windowDay: WindowDay | null): `air.care.
   return windowDay === "tomorrow" ? `air.care.${row.verdict}Tomorrow` : `air.care.${row.verdict}`;
 }
 
-/** "Who should take care": Most people, and children, people over 60, asthma or heart (spec 10.2 item 5). */
+/** "Who should take care": Most people, and children, people over 60, asthma or heart. */
 export function CareRows({
   rows,
   best,

@@ -98,7 +98,7 @@
   --space-8: 2rem;
   --space-10: 2.5rem;
   --space-12: 3rem;
-  --target-min: 2.75rem; /* 44px; becomes 55px/66px with large text because it is rem */
+  --target-min: 2.75rem; /* 44px; rem, so it grows with the browser's text size */
   --content-max: 60rem; /* 960px desktop */
 
   /* ---------- Radius (varied on purpose: not every box is a rounded card) ---------- */

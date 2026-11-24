@@ -3,10 +3,11 @@ import { Pencil } from "lucide-react";
 import { translator, type Lang } from "@/i18n/t";
 import type { ProfilePage } from "@/view/app";
 import { btn, h2 } from "../ui/styles";
-import { DeleteAccount, LeaveFamily, SignOutButton } from "./AccountActions";
+import { DeleteAccount, LeaveFamily } from "./AccountActions";
+import { SignOutButton } from "./SignOutButton";
 import { ProfileEditor } from "./ProfileEditor";
 
-/** Profile settings (spec 10.15, design 10.15). */
+/** Profile settings. */
 export function ProfileView({ page, lang }: { page: ProfilePage; lang: Lang }) {
   const t = translator(lang);
   return (
@@ -51,7 +52,7 @@ function NoFamily({ lang }: { lang: Lang }) {
   );
 }
 
-/** "Sharma family · Admin", Leave family (not for the admin, spec 5.10), and the children I added. */
+/** "Sharma family · Admin", Leave family (not for the admin), and the children I added. */
 function FamilyPart({ page, familyName, lang }: { page: ProfilePage; familyName: string; lang: Lang }) {
   const t = translator(lang);
   const leaveNote = page.mustStay ? t("prof.leaveAdmin") : page.isAdmin ? t("prof.leaveAlone") : null;

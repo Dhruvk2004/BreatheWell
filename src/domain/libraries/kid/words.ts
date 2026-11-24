@@ -6,7 +6,7 @@ import type { KidActivity } from "./lines";
 
 const b = (en: string, hi: string) => ({ en, hi });
 
-/** "The air is …" by band, in kid words: no numbers, nothing scary (spec 10.12). */
+/** "The air is …" by band, in kid words: no numbers, nothing scary. */
 export const KID_HEADLINE: Readonly<Record<Band, { en: string; hi: string }>> = {
   good: b("The air is clean {part}", "{part} हवा साफ़ है"),
   satisfactory: b("The air is okay {part}", "{part} हवा ठीक है"),
@@ -55,7 +55,7 @@ export function kidActivityOf(type: ActivityType): KidActivity {
   return "play";
 }
 
-/** Share emoji by band (design G): 🟢 Good and Satisfactory · 🟡 Moderate · 🟠 Poor · 🔴 Very poor · 🟤 Severe. */
+/** Share emoji by band: 🟢 Good and Satisfactory · 🟡 Moderate · 🟠 Poor · 🔴 Very poor · 🟤 Severe. */
 export const BAND_EMOJI: Readonly<Record<Band, string>> = {
   good: "🟢",
   satisfactory: "🟢",

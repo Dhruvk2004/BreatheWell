@@ -1,4 +1,4 @@
-/** The BreatheWell mark (design A): a B with one breath running through it. Decorative next to the wordmark. */
+/** The BreatheWell mark: a B with one breath running through it. Decorative next to the wordmark. */
 export function LogoMark({ className = "size-9" }: { className?: string }) {
   return (
     <svg viewBox="0 0 64 64" className={className} aria-hidden="true" focusable="false">

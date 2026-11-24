@@ -1,6 +1,6 @@
 /**
  * The server keeps timestamps as ISO strings; Firestore stores them as `Timestamp`, so the daily
- * clean-up's range query on `expireAt` works (spec 9.4). Conversion is by field name, never by the shape of a string, so a
+ * clean-up's range query on `expireAt` works. Conversion is by field name, never by the shape of a string, so a
  * name that happens to look like a date stays text.
  */
 export const TIMESTAMP_FIELDS: ReadonlySet<string> = new Set([

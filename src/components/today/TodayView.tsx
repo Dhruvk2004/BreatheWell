@@ -21,7 +21,7 @@ import { ShareToday } from "./ShareToday";
 import { TodayRows } from "./TodayRows";
 
 /**
- * Today (spec 10.8, design 10.8): the answer first from code, the family rows, the admin's join
+ * Today: the answer first from code, the family rows, the admin's join
  * cards, Add a child or teen, Share today's plan, At home today, Help the air, this week and the
  * 5 days. Rows, tips and Help the air show the Gemini plan's words where they passed the checks;
  * the slot under "Your family today" says which ("Made by BreatheWell assistant" or "Simple plan").
@@ -137,7 +137,7 @@ function FamilyActions({ alone, canAdd, isAdmin, lang }: { alone: boolean; canAd
   );
 }
 
-/** The Breezy bar and the society message for the home area (design 10.8; spec 10.13 "in the app"). */
+/** The Breezy bar and the society message for the home area. */
 function TodayLinks({ communityHref, lang }: { communityHref: string; lang: Lang }) {
   const t = translator(lang);
   return (

@@ -101,7 +101,7 @@ describe("saved plan on screen", () => {
     savePlan(PLAN);
     render(<ErrorBoundary error={new Error("x")} retry={vi.fn()} />);
     expect(screen.getByRole("alert")).toBeInTheDocument();
-    expect(screen.getByText("Take the metro today, not the scooter.")).toBeInTheDocument();
+    expect(await screen.findByText("Take the metro today, not the scooter.")).toBeInTheDocument();
     await userEvent.click(screen.getByRole("button"));
   });
 });

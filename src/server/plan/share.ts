@@ -5,7 +5,7 @@ import { formatWindow, type Lang } from "@/domain/time/format";
 import { t } from "@/i18n/t";
 
 /**
- * "Share today's plan" (F23, spec 10.8 item 2c): one bilingual text for the family WhatsApp group,
+ * "Share today's plan": one bilingual text for the family WhatsApp group,
  * the admin's language first. Code text only (the template line per person), so it carries no
  * health tags, no cigarette values and no air numbers. Null without a plan (no air data).
  */

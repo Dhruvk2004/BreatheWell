@@ -3,7 +3,7 @@ import { translator, type Lang } from "@/i18n/t";
 import { h2 } from "../ui/styles";
 import { DayStrip } from "./DayStrip";
 
-/** "Next 5 days · Forecast" (F20): the heading and the day strip, shared by Air now and the demo. */
+/** "Next 5 days · Forecast": the heading and the day strip, shared by Air now and the demo. */
 export function DaySection({
   days,
   lang,

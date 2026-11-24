@@ -10,7 +10,7 @@ import { requireFamily } from "@/server/app/guards";
 
 export const generateMetadata = async (): Promise<Metadata> => ({ title: t(await currentLang(), "dep.newTitle") });
 
-/** Add a child or teen (spec 10.12). */
+/** Add a child or teen. */
 export default function NewDependentPage() {
   return (
     <Suspense fallback={<PageLoading />}>

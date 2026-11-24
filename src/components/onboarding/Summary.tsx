@@ -3,7 +3,7 @@ import type { ProfileInput } from "@/domain/members/profile";
 import { activityKey, modeKey } from "@/i18n/labels";
 import { translator, type Lang } from "@/i18n/t";
 
-/** "Your plan is based on" (spec 10.5): one line per activity, the travel, the other ways and health. */
+/** "Your plan is based on": one line per activity, the travel, the other ways and health. */
 export function Summary({ input, lang }: { input: ProfileInput; lang: Lang }) {
   const t = translator(lang);
   const health =

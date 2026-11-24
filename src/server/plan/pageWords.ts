@@ -12,7 +12,7 @@ import { PLAN_FROM_HOUR } from "./hours";
 import { planWords } from "./words";
 
 /**
- * Today's plan words for a page (spec 7.2): the stored plan read once, merged over the rules' day.
+ * Today's plan words for a page: the stored plan read once, merged over the rules' day.
  * `pending` tells the client to ask for a generation; it is never set without Gemini, before
  * 5 am or once the day's budget is spent (the template is the answer then).
  */

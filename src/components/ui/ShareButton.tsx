@@ -8,7 +8,7 @@ const noSubscription = () => () => {};
 const canShare = () => typeof navigator !== "undefined" && typeof navigator.share === "function";
 
 /**
- * The system share sheet (Web Share, spec 10.12), shown only where the browser has one; the
+ * The system share sheet (Web Share), shown only where the browser has one; the
  * WhatsApp link and Copy stay as the fallback. Closing the sheet without sharing is not an error.
  */
 export function ShareButton({ text, label }: { text: string; label: string }) {

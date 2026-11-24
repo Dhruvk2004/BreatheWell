@@ -2,7 +2,7 @@ import type { HourlyAir } from "./hourly";
 import type { HourlyWeather } from "./weatherWhy";
 import { weatherWhy, type WeatherWhy } from "./weatherWhy";
 
-/** The six pollutants on the Air now accordion (spec 10.2 item 7), in display order. */
+/** The six pollutants on the Air now accordion, in display order. */
 export const POLLUTANTS = ["pm25", "pm10", "no2", "o3", "co", "so2"] as const;
 export type Pollutant = (typeof POLLUTANTS)[number];
 
@@ -31,7 +31,7 @@ export function pollutantsAt(air: HourlyAir, time: string): PollutantValue[] {
   });
 }
 
-/** The morning weather behind "Why are mornings worst?" (spec 10.2 item 6). */
+/** The morning weather behind "Why are mornings worst?". */
 export interface MorningWeather {
   readonly windKmh: number;
   readonly tempC: number;

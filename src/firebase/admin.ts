@@ -4,7 +4,7 @@ import { getFirestore, initializeFirestore, type Firestore } from "firebase-admi
 import { firebaseProjectId, type Env } from "@/config/env";
 
 /**
- * Firebase Admin SDK for route handlers and server pages (spec 9: all server writes use it).
+ * Firebase Admin SDK for route handlers and server pages (all server writes use it).
  * Credentials: FIREBASE_SERVICE_ACCOUNT_B64 on Vercel (the key JSON, base64), else
  * GOOGLE_APPLICATION_CREDENTIALS locally, else the emulator. Without any of them it returns null and
  * callers carry on without Firestore (the public pages and the demo still work, spec 11).

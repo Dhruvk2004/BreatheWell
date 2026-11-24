@@ -10,7 +10,7 @@ import { communityDeps, communityViewer } from "@/server/community/runtime";
 
 export const generateMetadata = async (): Promise<Metadata> => ({ title: t(await currentLang(), "community.metaTitle") });
 
-/** Community message (spec 10.13): public; the message streams in behind "Writing today's message…". */
+/** Community message: public; the message streams in behind "Writing today's message…". */
 export default function CommunityPage({ searchParams }: PageProps<"/[lang]/community">) {
   return (
     <Suspense fallback={<Loading />}>

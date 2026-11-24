@@ -30,7 +30,7 @@ interface PlanItemsProps {
 }
 
 /**
- * Today's plan (spec 10.9 item 2): timed items in time order, each with its chip, Do this (the
+ * Today's plan: timed items in time order, each with its chip, Do this (the
  * plan's words or the template line), Why? in three levels, Listen and the done tick.
  */
 export function PlanItems({ plan, ticked, words = {}, lang }: PlanItemsProps) {

@@ -1,11 +1,11 @@
 /**
- * CPCB AQI bands (spec 8.1): the one source of truth for band order, breakpoints and icons. The
+ * CPCB AQI bands: the one source of truth for band order, breakpoints and icons. The
  * UI, the rules, the prompts and the templates all read bands from here.
  */
 export const BANDS = ["good", "satisfactory", "moderate", "poor", "very_poor", "severe"] as const;
 export type Band = (typeof BANDS)[number];
 
-/** Lucide icon names; every band is shown as colour + word + icon (spec 11.5). */
+/** Lucide icon names; every band is shown as colour + word + icon. */
 export type BandIcon = "smile" | "cloud-sun" | "cloud" | "cloud-fog" | "triangle-alert" | "octagon-alert";
 
 export interface BandInfo {
@@ -27,7 +27,7 @@ export const BAND_TABLE: readonly BandInfo[] = [
   { band: "severe", aqi: [401, 500], pm25: [251, 380], pm10: [431, 510], icon: "octagon-alert" },
 ];
 
-/** AQI values above the scale are shown as "500+" (spec 8.1). */
+/** AQI values above the scale are shown as "500+". */
 export const AQI_MAX = 500;
 
 /** 0 for Good … 5 for Severe. */

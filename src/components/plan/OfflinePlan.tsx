@@ -12,7 +12,7 @@ function appLinkOf(event: MouseEvent): HTMLAnchorElement | null {
 }
 
 /**
- * Signed-in pages while the browser is offline (F24): the saved plan at the top of the page, and a
+ * Signed-in pages while the browser is offline: the saved plan at the top of the page, and a
  * tap on an app link stays here and moves focus to the saved plan, instead of the browser's
  * offline error page. Today shows the same state in its own plan slot, so it is skipped there.
  */

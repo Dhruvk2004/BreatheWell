@@ -48,7 +48,7 @@ function EntryView({ entry, page, onAlias }: { entry: Entry; page: BreezyPage; o
   );
 }
 
-/** An admin's refused admin action (spec 7.7.5): "You can do that in Family settings." and the link. */
+/** An admin's refused admin action: "You can do that in Family settings." and the link. */
 function SettingsLink({ lang }: { lang: Lang }) {
   const t = translator(lang);
   return (

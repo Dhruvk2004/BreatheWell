@@ -3,7 +3,7 @@ import { DEFAULT_OTHER_MODES, DEPENDENT_DEFAULTS, type DependentChoice } from "@
 import { dependentInput, type DependentInput } from "@/domain/dependents/schema";
 import type { Lang } from "@/domain/time/format";
 
-/** The Add a child or teen form's answers (spec 6.2), before they are checked. */
+/** The Add a child or teen form's answers, before they are checked. */
 export interface DependentDraft {
   readonly name: string;
   readonly ageGroup: DependentInput["ageGroup"] | null;

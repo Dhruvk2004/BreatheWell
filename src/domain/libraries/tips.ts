@@ -86,7 +86,7 @@ function windowTip(airOutAt: number | null): TipId {
 }
 
 /**
- * The three band-based tips for Air now "At home today" (spec 10.2 item 5a), code only, no sign-in.
+ * The three band-based tips for Air now "At home today", code only, no sign-in.
  * Clean air: open up; Moderate: air out, wet-mop, chimney; Poor or worse: shut till noon, air out
  * at the best hour (or keep shut), no incense or coils.
  */
@@ -98,7 +98,7 @@ export function bandTips(band: Band, airOutAt: number | null): TipId[] {
 }
 
 /**
- * Home tips that fit this family's set-up (spec 6.3), most important first; the plan prompt's
+ * Home tips that fit this family's set-up, most important first; the plan prompt's
  * `allowedTips` and the template's "At home" block both come from this list.
  */
 export function homeTips(home: HomeSetup, band: Band, airOutAt: number | null): TipId[] {

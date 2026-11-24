@@ -21,7 +21,7 @@ interface FieldsProps {
   readonly lang: Lang;
 }
 
-/** Add a child or teen, and Edit (spec 10.12, 6.2): one screen, the guardian note right above Save. */
+/** Add a child or teen, and Edit: one screen, the guardian note right above Save. */
 export function DependentForm({ page, lang }: { page: DependentPage; lang: Lang }) {
   const t = translator(lang);
   const { draft, set, tried, busy, error, submit } = useDependentForm(page, lang);
@@ -55,7 +55,7 @@ export function DependentForm({ page, lang }: { page: DependentPage; lang: Lang 
   );
 }
 
-/** Age group, health ticks, outside things and their times (spec 6.2). */
+/** Age group, health ticks, outside things and their times. */
 function AboutFields({ draft, set, who, lang }: FieldsProps) {
   const t = translator(lang);
   const picked = draft.stayIn ? [STAY_IN] : draft.picks.map((p) => p.choice as string);

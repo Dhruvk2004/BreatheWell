@@ -5,7 +5,7 @@ import type { Db } from "../db/types";
 import { paths } from "./paths";
 
 /**
- * `communityCache/{gridId}_{date}_{audience}` (spec 7.6, 9.1): the day's Gemini message for a grid
+ * `communityCache/{gridId}_{date}_{audience}`: the day's Gemini message for a grid
  * cell, shared by every visitor and family there; kept 7 days. `regenerated` marks the one
  * regeneration allowed after the band moves by 2 or more or the best window changes; `bestWindow`
  * is the window the words were written for. `lockedUntil` is the generation lock: one caller

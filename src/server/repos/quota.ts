@@ -1,16 +1,17 @@
 import { z } from "zod";
+import { isDemoProject, type Env } from "@/config/env";
 import { addDays, localTime } from "@/domain/time/clock";
 import type { Db } from "../db/types";
 import { paths } from "./paths";
 
 /**
- * The global Gemini budget (spec 7.8): one Firestore counter `quota/{date}` for every placement, keyed
+ * The global Gemini budget: one Firestore counter `quota/{date}` for every placement, keyed
  * by Google's quota day (requests per day reset at midnight Pacific time, 13:30 IST). At
  * 80% of the daily limit every placement switches to its template; a per-minute count keeps calls
  * under the per-minute limit (over it, the template, not a queue). Spec 7.8 protects plans first,
  * then community, then Breezy: Breezy may use half the day's budget and community a quarter, and
  * neither may take the last 3 calls of a minute, so a few accounts asking Breezy cannot push every
- * family onto template plans (stage 7 AUTH-5, PT-4).
+ * family onto template plans.
  */
 export type Placement = "plan" | "community" | "breezy";
 
@@ -25,9 +26,9 @@ export const GEMINI_LIMITS = { rpd: 250, rpm: 10 } as const;
  * local Gemini stand-in, honoured only for a `demo-*` Firebase project (as `E2E_IST_CLOCK` is), so
  * the suite's back-to-back plans do not take Breezy's share of one minute.
  */
-export function geminiLimits(env: Readonly<Record<string, string | undefined>> = process.env): Limits {
+export function geminiLimits(env: Env = process.env): Limits {
   const rpm = Number(env.E2E_GEMINI_RPM);
-  const demo = env.FIREBASE_PROJECT_ID?.startsWith("demo-") ?? false;
+  const demo = isDemoProject(env.FIREBASE_PROJECT_ID);
   return demo && Number.isInteger(rpm) && rpm > 0 ? { ...GEMINI_LIMITS, rpm } : GEMINI_LIMITS;
 }
 export const BUDGET_SHARE = 0.8;
@@ -35,7 +36,7 @@ export const BUDGET_SHARE = 0.8;
 export const PLACEMENT_SHARE: Readonly<Record<Placement, number>> = { plan: 1, community: 0.25, breezy: 0.5 };
 /** Calls per minute only plans may use. */
 export const PLAN_RESERVED_RPM = 3;
-/** Quota docs are kept 90 days (spec 9.4). */
+/** Quota docs are kept 90 days. */
 const KEEP_DAYS = 90;
 
 const quotaRecord = z.object({

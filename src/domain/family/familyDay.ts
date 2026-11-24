@@ -10,7 +10,7 @@ import { isSevereDay } from "../rules/severeDay";
 import type { Clock } from "../time/clock";
 import { orderRows, planPerson, type FamilyPerson, type PersonPlan } from "./people";
 
-/** A family's day as Today and the Demo show it (spec 10.3, 10.8), from code only. */
+/** A family's day as Today and the Demo show it, from code only. */
 export interface FamilyDayInput {
   readonly air: HourlyPm;
   readonly fetchedAt: Date;
@@ -23,13 +23,13 @@ export interface FamilyDayInput {
   readonly ticks: readonly SwapTick[];
 }
 
-/** The "Help the air" action (spec 10.8 item 4): no burning in the smog months, no idling otherwise. */
+/** The "Help the air" action: no burning in the smog months, no idling otherwise. */
 export type TogetherAction = "no_leaf_burning" | "no_idling_signals";
 
 export interface FamilyDay {
   readonly freshness: Freshness;
   readonly summary: AirSummary;
-  /** Rows in display order; empty without fresh-enough data (no chips without air, design G). */
+  /** Rows in display order; empty without fresh-enough data (no chips without air). */
   readonly rows: readonly PersonPlan[];
   /** The three "At home today" tips for this home and band. */
   readonly homeTips: readonly TipId[];

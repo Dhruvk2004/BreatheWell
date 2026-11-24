@@ -1,5 +1,5 @@
 /**
- * More word lists for the breathing-emergency check (stage 7 AI-2), in the check's normal form:
+ * More word lists for the breathing-emergency check, in the check's normal form:
  * "inhaler is not helping", "inhaler se aaram nahi", "इनहेलर से आराम नहीं".
  */
 

@@ -2,7 +2,7 @@
 
 import { MapPin, Search } from "lucide-react";
 import type { Ref } from "react";
-import { suggestionLabel, type PlaceSuggestion } from "@/data/openMeteo/geocode";
+import { suggestionLabel, type PlaceSuggestion } from "@/data/openMeteo/suggestion";
 import { translator, type Lang } from "@/i18n/t";
 import type { ChosenPlace } from "./airHref";
 import { usePlaceCombobox } from "./useCombobox";
@@ -17,7 +17,7 @@ const STATUS_KEY = {
 } as const;
 
 /**
- * "Or type your city" (spec 10.1 item 4): an ARIA 1.2 combobox with place suggestions after 3
+ * "Or type your city": an ARIA 1.2 combobox with place suggestions after 3
  * letters, inside a GET form to /air so the field still submits without JavaScript.
  */
 interface PlaceSearchProps {

@@ -9,8 +9,8 @@ import { checkClient } from "../rateLimit";
 import { ensureUser } from "../repos/users";
 
 /**
- * `POST /api/session` exchanges a fresh Google sign-in for the httpOnly session cookie (as in
- * Utsav). The body must carry the "I am 18 or older" tick (spec 7.0, 10.4): without it nothing is
+ * `POST /api/session` exchanges a fresh Google sign-in for the httpOnly session cookie. The
+ * body must carry the "I am 18 or older" tick: without it nothing is
  * stored, no profile exists and no cookie is set. `DELETE` signs out.
  */
 const body = z.strictObject({ idToken: z.string().min(1).max(4096), adultConfirmed: z.literal(true) });

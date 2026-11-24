@@ -1,5 +1,5 @@
 /**
- * Activity-level "Picture it" (spec 7.4): the smoke breathed during one activity, before and after
+ * Activity-level "Picture it": the smoke breathed during one activity, before and after
  * the change, as a rounded percentage ("about 60% less smoke during your walk").
  */
 export interface ActivitySmoke {

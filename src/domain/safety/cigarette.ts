@@ -1,8 +1,8 @@
 import { wordsOf } from "../names/words";
 
 /**
- * The cigarette comparison (spec 7.6, section 9 safety rules) never appears in a shared message, a
- * Breezy reply or on a kid card. One list for every check (stage 7 AI-4): word stems, so plurals
+ * The cigarette comparison (section 9 safety rules) never appears in a shared message, a
+ * Breezy reply or on a kid card. One list for every check: word stems, so plurals
  * and Hindi inflections are caught ("सिगरेटों", "बीड़ियाँ"), and "smoking" when it is compared ("like
  * smoking ten a day", "धूम्रपान जैसा"). Plain "no smoking indoors" advice stays allowed for adults.
  */

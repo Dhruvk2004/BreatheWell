@@ -3,7 +3,7 @@ import { Wind } from "lucide-react";
 import { translator, type Lang } from "@/i18n/t";
 import { aiLine, btn, h2 } from "../ui/styles";
 
-/** "Get a plan for each person in your family" → Sign in · See a sample family (spec 10.2 item 9). */
+/** "Get a plan for each person in your family" → Sign in · See a sample family. */
 export function SignInCta({ lang }: { lang: Lang }) {
   const t = translator(lang);
   return (

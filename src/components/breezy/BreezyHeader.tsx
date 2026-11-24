@@ -1,7 +1,7 @@
 import { translator, type Lang } from "@/i18n/t";
 import { BreezyMark } from "./BreezyMark";
 
-/** "Breezy uses today's air for Green Park, 7:00 am" (spec 7.7.1, always shown). */
+/** "Breezy uses today's air for Green Park, 7:00 am" (always shown). */
 export function BreezyHeader({ lang, title, uses }: { lang: Lang; title: string; uses: string }) {
   const t = translator(lang);
   return (

@@ -16,11 +16,11 @@ export interface Coordinates {
 
 /**
  * Hourly window for every live call: yesterday (for the 24-hour average) plus 5 forecast days
- * (spec F2; the India horizon was checked on 21 Nov, build log). Local time via `timezone=auto`.
+ * (the India horizon was checked on 21 Nov, build log). Local time via `timezone=auto`.
  */
 const LIVE_WINDOW = { timezone: "auto", past_days: 1, forecast_days: 5 } as const;
 
-/** Rounded coordinates only ever leave the server (spec 6.5). */
+/** Rounded coordinates only ever leave the server. */
 const place = ({ lat, lon }: Coordinates) => {
   const { lat2, lon2 } = round2(lat, lon);
   return { latitude: lat2, longitude: lon2 };
@@ -56,7 +56,7 @@ export interface LiveAir {
   readonly timeZone: string;
 }
 
-/** Live hourly air for a place, cached by Next.js for an hour (spec 11.3). */
+/** Live hourly air for a place, cached by Next.js for an hour. */
 export async function fetchAirQuality(at: Coordinates, options: OpenMeteoOptions = {}): Promise<DataResult<LiveAir>> {
   const result = await fetchJson(airQualityUrl(at, options.base), airQualityResponse, { next: { revalidate: 3600 }, ...options });
   return result.ok ? { ok: true, value: { air: toHourlyAir(result.value), timeZone: result.value.timezone } } : result;

@@ -11,7 +11,7 @@ import { appDeps } from "@/server/runtime";
 
 export const generateMetadata = async (): Promise<Metadata> => ({ title: t(await currentLang(), "auth.metaTitle") });
 
-/** Sign-in (spec 10.4). */
+/** Sign-in. */
 export default function SignInPage({ searchParams }: PageProps<"/[lang]/sign-in">) {
   return (
     <Suspense fallback={<PageLoading />}>

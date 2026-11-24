@@ -10,7 +10,7 @@ const base = {
   timezone: z.string(),
 };
 
-/** Open-Meteo Air Quality API, hourly only (the API has no daily variables, spec F2). */
+/** Open-Meteo Air Quality API, hourly only (the API has no daily variables). */
 export const airQualityResponse = z.object({
   ...base,
   hourly: z

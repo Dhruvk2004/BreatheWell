@@ -8,7 +8,7 @@ import { requireNoFamily } from "@/server/app/guards";
 
 export const generateMetadata = async (): Promise<Metadata> => ({ title: t(await currentLang(), "fam.metaTitle") });
 
-/** Create family (spec 10.6). */
+/** Create family. */
 export default function NewFamilyPage() {
   return (
     <Suspense fallback={<PageLoading />}>

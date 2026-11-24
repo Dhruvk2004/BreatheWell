@@ -5,7 +5,7 @@ import type { PersonPlan } from "@/domain/family/people";
 import type { Verdict } from "@/domain/rules/verdict";
 import { translator, type Lang } from "@/i18n/t";
 
-/** What a family row shows, from the rules and the template (design D, 10.8). */
+/** What a family row shows, from the rules and the template. */
 export interface RowView {
   readonly id: string;
   readonly initials: string;
@@ -28,7 +28,7 @@ export interface RowPerson {
   readonly travel: { readonly main: Mode };
 }
 
-/** Tags: You, Admin, Extra care (outlined, neutral), Child, Teen. Never a health condition's name (spec 6.4). */
+/** Tags: You, Admin, Extra care (outlined, neutral), Child, Teen. Never a health condition's name. */
 function tagsFor(plan: PersonPlan, person: RowPerson, me: boolean, lang: Lang): RowView["tags"] {
   const t = translator(lang);
   const tags: RowView["tags"] = [];

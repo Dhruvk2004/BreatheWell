@@ -19,7 +19,7 @@ import { communityHref } from "../place/airHref";
 
 type Loaded = Extract<AirNowPage, { kind: "ready" | "unavailable" }>;
 
-/** Air now for a place (spec 10.2): the answer first, then the day, the advice and the sources. */
+/** Air now for a place: the answer first, then the day, the advice and the sources. */
 export function AirNow({ page, lang, retryHref }: { page: Loaded; lang: Lang; retryHref: string }) {
   const t = translator(lang);
   const name = page.place.label;

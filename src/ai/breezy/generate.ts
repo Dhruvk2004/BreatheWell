@@ -5,7 +5,7 @@ import { breezyOutputSchema } from "./schema";
 import { validateBreezy, type BreezyCheck, type ValidReply } from "./validate";
 
 /**
- * One Breezy answer (spec 7): a 10 s budget and no retry. Any failure (timeout, Gemini down, an
+ * One Breezy answer: a 10 s budget and no retry. Any failure (timeout, Gemini down, an
  * invalid reply, no quota) gives `reply: null`, and the page shows the fixed basics from code.
  */
 export const BREEZY_BUDGET_MS = 10_000;

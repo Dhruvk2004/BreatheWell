@@ -44,7 +44,7 @@ function hasSequence(words: readonly string[], sequence: readonly string[]): boo
 }
 
 /**
- * True when the text describes a breathing emergency (spec 5.11, 7.7.5): breath words near
+ * True when the text describes a breathing emergency: breath words near
  * "can't", "difficulty", "short", "nahi", "दिक्कत" and so on; chest pain or tightness; an asthma
  * attack; fainting; wheezing; lips turning blue; an inhaler that is not helping. Patterns, not fixed phrases, so the common ways people
  * describe breathlessness in English, Hinglish and Devanagari are all caught. When true, the fixed

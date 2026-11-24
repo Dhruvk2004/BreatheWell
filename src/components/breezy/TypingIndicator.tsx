@@ -1,7 +1,7 @@
 import { translator, type Lang } from "@/i18n/t";
 import { BreezyMark } from "./BreezyMark";
 
-/** "Breezy is thinking…" with three dots (design F: the only loop in the app; static under reduced motion). */
+/** "Breezy is thinking…" with three dots (the only loop in the app; static under reduced motion). */
 export function TypingIndicator({ lang }: { lang: Lang }) {
   const t = translator(lang);
   return (

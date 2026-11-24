@@ -7,7 +7,7 @@ import type { Mode } from "@/domain/rules/modes";
 import type { Lang } from "@/domain/time/format";
 
 /**
- * The 10 eval families (spec 11.4): made-up people on the recorded Delhi days, covering two
+ * The 10 eval families: made-up people on the recorded Delhi days, covering two
  * dependents sent as tokens, a 60+ Hindi speaker, a 10-person family (6 adults + 4 dependents),
  * a Severe day, Hindi-only and English-only families. Names exist only so the validator can
  * catch a leak; they are never in a prompt.

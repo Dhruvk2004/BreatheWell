@@ -9,7 +9,7 @@ import { failureText } from "../ui/failure";
 type Target = { kind: "plan"; forId: string; key: string } | { kind: "item"; id: string };
 
 /**
- * A done tick (spec 5.7 step 5, 9.1): plan keys go to `/api/progress`, checklist items to
+ * A done tick: plan keys go to `/api/progress`, checklist items to
  * `/api/items`. Optimistic, rolled back with an announced message when the save fails.
  */
 export function TickBox({ target, label, done, lang }: { target: Target; label: string; done: boolean; lang: Lang }) {

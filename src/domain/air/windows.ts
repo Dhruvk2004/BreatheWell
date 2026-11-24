@@ -7,7 +7,7 @@ export interface HourWindow {
   readonly end: number;
 }
 
-/** Outdoor hours the plan uses: starts from 06:00 to 21:00 (spec 8.4 step 2). */
+/** Outdoor hours the plan uses: starts from 06:00 to 21:00. */
 export const DAY_FIRST_HOUR = 6;
 export const DAY_LAST_HOUR = 21;
 
@@ -29,7 +29,7 @@ function blocks(index: HourIndex, date: string, fromHour: number): Block[] {
 }
 
 /**
- * Family best window (spec 8.4 step 7): the 2-hour block in 06–21 with the lowest worst-hour AQI
+ * Family best window: the 2-hour block in 06–21 with the lowest worst-hour AQI
  * (ties: lower total, then earlier). `fromHour` drops past hours. Null when no block has data.
  */
 export function bestWindow(index: HourIndex, date: string, fromHour = DAY_FIRST_HOUR): HourWindow | null {
@@ -54,13 +54,13 @@ function peakOf(index: HourIndex, date: string, w: HourWindow): number | null {
 }
 
 /**
- * Worst window (spec 8.4 step 7): the 2-hour block with the highest worst-hour AQI, extended to an
+ * Worst window: the 2-hour block with the highest worst-hour AQI, extended to an
  * adjacent hour (later first) while that hour is in the same band, up to 3 hours. `fromHour` drops
  * past hours, so a 4 pm view says "Worst: 7–9 pm" rather than a morning already gone.
  *
  * With `best`, it never touches the best window and must be a worse band than it, or it is null:
  * late in the day only a few hours are left, and "Best 8–10 pm · Worst: 7–10 pm" contradicted
- * itself (stage 8).
+ * itself.
  */
 export function worstWindow(index: HourIndex, date: string, fromHour = DAY_FIRST_HOUR, best: HourWindow | null = null): HourWindow | null {
   const first = Math.max(DAY_FIRST_HOUR, fromHour);

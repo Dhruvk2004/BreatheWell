@@ -16,7 +16,7 @@ import { PLAN_FROM_HOUR } from "../plan/hours";
 import { runGeneration } from "../plan/run";
 
 /**
- * `POST /api/plan` (spec 7.2): the client asks for today's Gemini wording after Today has already
+ * `POST /api/plan`: the client asks for today's Gemini wording after Today has already
  * rendered the answer from code. Generation happens in the route under a 40 s lock, within 25 s of
  * the request's start (`maxDuration` leaves room for the save); the answer says what the client
  * shows next: "ready" (refresh to see the words), "busy" (another member is generating; ask again

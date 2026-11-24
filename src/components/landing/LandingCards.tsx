@@ -13,7 +13,7 @@ const HOW = [
   { key: "landing.how.tailored", Icon: MapPin },
 ] as const;
 
-/** "How BreatheWell works" in the brief's own words (spec 11.6), with what the AI assistant writes. */
+/** "How BreatheWell works" in the brief's own words, with what the AI assistant writes. */
 export function HowItWorks({ lang }: { lang: Lang }) {
   const t = translator(lang);
   return (
@@ -37,7 +37,7 @@ export function HowItWorks({ lang }: { lang: Lang }) {
   );
 }
 
-/** The three cards (spec 10.1 item 5), drawn from the recorded smog morning so every chip and bar is real. */
+/** The three cards, drawn from the recorded smog morning so every chip and bar is real. */
 export function LandingCards({ demo, lang }: { demo: DemoData; lang: Lang }) {
   return (
     <div className="grid gap-4 md:grid-cols-3">

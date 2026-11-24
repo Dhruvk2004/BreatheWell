@@ -6,7 +6,7 @@ import type { HomeSetup } from "./homeSetup";
 import { ALTERNATIVES } from "./alternativesData";
 
 /**
- * A low-emission alternative (spec 7.5). Travel swaps carry `from` and `to`, so their "for the air"
+ * A low-emission alternative. Travel swaps carry `from` and `to`, so their "for the air"
  * figure is computed by `avoidedBySwap`; home and community actions have fixed wording.
  */
 export interface Alternative {
@@ -54,7 +54,7 @@ function fits(alt: Alternative, ctx: AlternativeContext): boolean {
 }
 
 /**
- * The alternatives code allows for one person today (spec 7.5): Gemini picks one of these and
+ * The alternatives code allows for one person today: Gemini picks one of these and
  * explains it; if none fits there is no swap card (never forced).
  */
 export function eligibleAlternatives(ctx: AlternativeContext): Alternative[] {
@@ -64,7 +64,7 @@ export function eligibleAlternatives(ctx: AlternativeContext): Alternative[] {
 /** An alternative by id. */
 export const alternativeById = (id: string): Alternative | undefined => ALTERNATIVES.find((a) => a.id === id);
 
-/** Community "together" actions (spec 7.6): eligible for every area, chosen by code. */
+/** Community "together" actions: eligible for every area, chosen by code. */
 export const COMMUNITY_ACTIONS = [
   "no_leaf_burning",
   "no_garbage_burning",

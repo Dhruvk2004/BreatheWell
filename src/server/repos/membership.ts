@@ -8,8 +8,8 @@ import type { FamilyRecord } from "./records";
 export type Departure = "left" | "removed" | "deleted";
 
 /**
- * Takes a member out of the family (spec 5.9, 5.10): their member doc, the dependents they added
- * (an accepted v1 limit, spec 12.1) and every item, tick and plan section of all of them. Their
+ * Takes a member out of the family: their member doc, the dependents they added
+ * (an accepted v1 limit) and every item, tick and plan section of all of them. Their
  * own profile stays unless the account is deleted; a removed member is told once, by family name.
  */
 export async function takeOut(tx: Tx, fid: string, family: FamilyRecord, uid: string, now: Date, why: Departure): Promise<void> {
@@ -26,7 +26,7 @@ export async function takeOut(tx: Tx, fid: string, family: FamilyRecord, uid: st
 
 /**
  * Inside the deleting transaction, before any write: the family doc and its join codes go at
- * once, so a join that lands before the tree is deleted finds no family (stage 7 AUTH-2).
+ * once, so a join that lands before the tree is deleted finds no family.
  */
 export async function closeFamily(tx: Tx, fid: string): Promise<void> {
   const codes = await familyCodes(tx, fid);

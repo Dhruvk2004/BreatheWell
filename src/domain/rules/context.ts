@@ -2,7 +2,7 @@ import { stricterBand, type Band } from "../air/bands";
 import { localTime, type Clock } from "../time/clock";
 import type { Group } from "./groups";
 
-/** Where the place is: an Indo-Gangetic Plain city, elsewhere in India, or outside India (spec 8.3, 8.5). */
+/** Where the place is: an Indo-Gangetic Plain city, elsewhere in India, or outside India. */
 export type Region = "igp" | "india" | "outside_india";
 
 /** Inputs to the winter caution (spec 8.3 override 4): `{month, region, hasStation}` as in the spec. */
@@ -10,7 +10,7 @@ export interface RuleContext {
   /** Month (1–12) of the day being planned. */
   readonly month: number;
   readonly region: Region;
-  /** A CPCB station value is available (S1); then the rules use the higher value instead. */
+  /** A CPCB station value is available; then the rules use the higher value instead. */
   readonly hasStation: boolean;
 }
 

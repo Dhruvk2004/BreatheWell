@@ -32,7 +32,7 @@ function useJoin(initialCode: string, onboarded: boolean) {
 }
 
 /**
- * Join with a typed code (spec 10.7): auto-uppercase, hyphen optional; the server runs every check
+ * Join with a typed code: auto-uppercase, hyphen optional; the server runs every check
  * and answers in constant time. Errors stay on screen (no timed dismiss) with the way on.
  */
 export function JoinForm({ lang, initialCode = "", onboarded }: { lang: Lang; initialCode?: string; onboarded: boolean }) {

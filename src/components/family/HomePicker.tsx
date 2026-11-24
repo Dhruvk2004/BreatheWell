@@ -9,8 +9,8 @@ import { useLocate } from "../place/useLocate";
 import { btn, noteNeutral } from "../ui/styles";
 
 /**
- * Home area (spec 10.6 item 2, 6.3): Use my location or search; a preview "Green Park, New Delhi"
- * with no map. The server rounds the coordinates to 2 decimals before storing (spec 6.5).
+ * Home area: Use my location or search; a preview "Green Park, New Delhi"
+ * with no map. The server rounds the coordinates to 2 decimals before storing.
  */
 export function HomePicker({
   value,

@@ -1,16 +1,16 @@
 import { TtlCache } from "../cache";
 
 /**
- * Session verification (as in Utsav). The cookie is verified locally (signature and expiry with
+ * Session verification. The cookie is verified locally (signature and expiry with
  * cached Google keys), then checked for revocation on reads and writes alike: the cookie's
  * `auth_time` against the user's `tokensValidAfterTime`, cached per uid for 60 s. A deleted or
  * disabled account counts as revoked, so "Sign out everywhere" and disabling a user in the console
- * also end page reads with a copied cookie (stage 7 AUTH-1, AUTH-6).
+ * also end page reads with a copied cookie.
  */
 export type SessionKind = "read" | "write";
 
 export const REVOCATION_TTL_MS = 60_000;
-/** Writes re-check sooner, so another instance's sign-out stops writes within 10 s (AUTH-6). */
+/** Writes re-check sooner, so another instance's sign-out stops writes within 10 s. */
 export const WRITE_REVOCATION_TTL_MS = 10_000;
 
 /** The claims BreatheWell reads from a verified ID token or session cookie. */

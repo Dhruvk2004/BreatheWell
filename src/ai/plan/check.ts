@@ -2,7 +2,7 @@ import { planRequest, type PlanSource } from "./input";
 import type { PlanCheck } from "./validate";
 
 /**
- * The plan request plus what its reply is checked against (spec 7.1): the names Gemini never got
+ * The plan request plus what its reply is checked against: the names Gemini never got
  * (any of them in a reply is a leak) and token → name, to measure lines as they will be shown.
  * Shared by the route, the demo recorder and the eval, so all three check replies the same way.
  */

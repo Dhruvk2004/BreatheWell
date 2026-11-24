@@ -13,14 +13,14 @@ export interface AirDeps {
   readonly store: AirStore | null;
   /** This hour's snapshots by cache id. */
   readonly memory: TtlCache<AirSnapshot>;
-  /** The last good snapshot per grid cell, for up to 12 hours (spec 8.5 "from 4:00 am"). */
+  /** The last good snapshot per grid cell, for up to 12 hours. */
   readonly lastGood: TtlCache<AirSnapshot>;
   readonly now: () => Date;
 }
 
 const NO_WEATHER: HourlyWeather = { time: [], windKmh: [], tempC: [], humidity: [] };
 
-/** The store is best effort: a failed read or a used-up write quota never breaks Air now (spec 7.8). */
+/** The store is best effort: a failed read or a used-up write quota never breaks Air now. */
 async function quietly<T>(work: () => Promise<T>, fallback: T): Promise<T> {
   try {
     return await work();
@@ -46,7 +46,7 @@ async function fetchSnapshot(gridId: string, deps: AirDeps): Promise<AirSnapshot
 }
 
 /**
- * The air for a place (spec F2, 11.3): fetched once per 0.1° grid cell per hour. Order: this
+ * The air for a place: fetched once per 0.1° grid cell per hour. Order: this
  * instance's memory, then Firestore `airCache`, then Open-Meteo (air and weather in parallel, 5 s
  * timeout) with a best-effort write back. If Open-Meteo fails, the last good snapshot (≤ 12 h) is
  * returned and its age decides what the page may show; null when there is nothing at all.

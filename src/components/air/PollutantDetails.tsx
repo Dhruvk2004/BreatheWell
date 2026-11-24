@@ -6,7 +6,7 @@ import { accordion, summaryRow } from "../ui/styles";
 import { ForAdults } from "./ForAdults";
 
 /**
- * Pollutant details (spec 10.2 item 7), collapsed. Inside it, the collapsed "For adults: the
+ * Pollutant details, collapsed. Inside it, the collapsed "For adults: the
  * numbers" panel is the only place a public page shows the cigarette comparison (spec 6.4 🔒).
  */
 export function PollutantDetails({

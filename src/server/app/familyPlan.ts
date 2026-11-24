@@ -21,16 +21,16 @@ export const UNKNOWN_HOME: HomeSetup = {
 /** The family's day: the air at home, the rules' plan for everyone set up, and the place flags. */
 export interface FamilyPlanDay {
   readonly snapshot: AirSnapshot | null;
-  /** Null without air data (no verdicts, spec 8.5). */
+  /** Null without air data (no verdicts). */
   readonly day: FamilyDay | null;
   readonly region: Region;
-  /** Delhi NCR: "Official stations may read higher" (spec 8.5). */
+  /** Delhi NCR: "Official stations may read higher". */
   readonly stationNote: boolean;
 }
 
 /**
- * The people the rules plan for: onboarded members by their tag (never condition names, spec 6.5)
- * and every dependent. Members still setting up are left out (spec 5.11).
+ * The people the rules plan for: onboarded members by their tag (never condition names)
+ * and every dependent. Members still setting up are left out.
  */
 export function plannedPeople(bundle: FamilyBundle): FamilyPerson[] {
   const adults = bundle.members
@@ -55,7 +55,7 @@ export function plannedPeople(bundle: FamilyBundle): FamilyPerson[] {
 }
 
 /**
- * Plans the family for today from code (answer first, spec 7.2): the home cell's air through the
+ * Plans the family for today from code (answer first): the home cell's air through the
  * shared air service (instance memory → Firestore cache → Open-Meteo), the injected clock in the
  * place's time zone, and the one verdict table. Gemini wording arrives in slice 4.
  */

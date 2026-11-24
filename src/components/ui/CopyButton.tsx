@@ -15,7 +15,7 @@ interface CopyButtonProps {
   readonly ariaLabel?: string;
 }
 
-/** Copies a share text and says so in a live region (design F: no timed auto-dismiss for errors). */
+/** Copies a share text and says so in a live region (no timed auto-dismiss for errors). */
 export function CopyButton({ text, label, done, failed, className = "", ariaLabel }: CopyButtonProps) {
   const [status, setStatus] = useState("");
   const copy = async () => {

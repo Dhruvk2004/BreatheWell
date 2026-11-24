@@ -39,7 +39,7 @@ function useSheet(onConfirm: () => Promise<string | null>) {
 }
 
 /**
- * The confirm sheet (design D "Confirm sheet"): a native modal dialog, so focus is trapped and
+ * The confirm sheet: a native modal dialog, so focus is trapped and
  * Escape closes it; Cancel comes first, the destructive verb is on the ink button, and focus goes
  * back to the button that opened it.
  */

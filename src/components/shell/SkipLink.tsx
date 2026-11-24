@@ -1,6 +1,6 @@
 import { translator, type Lang } from "@/i18n/t";
 
-/** The first Tab stop on every page: hidden until focused (spec 10, design header pattern). */
+/** The first Tab stop on every page: hidden until focused (design header pattern). */
 export function SkipLink({ lang }: { lang: Lang }) {
   const t = translator(lang);
   return (

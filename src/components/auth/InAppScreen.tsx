@@ -7,7 +7,7 @@ import { CopyButton } from "../ui/CopyButton";
 import { btn } from "../ui/styles";
 
 /**
- * Opened inside WhatsApp, Instagram or another in-app browser (spec 10.4, 5.11): Google blocks
+ * Opened inside WhatsApp, Instagram or another in-app browser: Google blocks
  * sign-in there, so the page offers Open in Chrome and Copy link, in English and Hindi, and never
  * starts a sign-in.
  */

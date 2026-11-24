@@ -6,9 +6,9 @@ import type { Mode } from "../rules/modes";
 import { LANGS } from "../time/format";
 import { DEPENDENT_DEFAULTS, type DependentChoice } from "./defaults";
 
-/** Health ticks for a child or teen (spec 6.2): optional. */
+/** Health ticks for a child or teen: optional. */
 export const DEPENDENT_CONDITIONS = ["asthma", "heart", "allergies", "none", "not_sure"] as const satisfies readonly Condition[];
-/** "How do they go to school?" and "Other ways they could go" (spec 6.2). */
+/** "How do they go to school?" and "Other ways they could go". */
 export const DEPENDENT_MODES = ["walk", "cycle", "school_bus", "car", "auto_van"] as const satisfies readonly Mode[];
 export const DEPENDENT_CHOICES = Object.keys(DEPENDENT_DEFAULTS) as DependentChoice[];
 
@@ -20,7 +20,7 @@ const pick = z.strictObject({
 });
 
 /**
- * A child or teen as a parent describes them (spec 6.2). Flexibility, duration and trip length are
+ * A child or teen as a parent describes them. Flexibility, duration and trip length are
  * not asked: `/api/dependent` fills them from the defaults table.
  */
 export const dependentInput = z

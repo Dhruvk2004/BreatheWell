@@ -15,7 +15,7 @@ Fixed, tested rules decide Go / Go with care / Avoid, the best time and every nu
 5. **Community message** (`/community?place=…`, linked from Air now). One bilingual, WhatsApp-ready text for a housing society: the header and footer from code, the middle from Gemini (or the "Simple message" template), copy and share buttons.
 6. **Learn** (`/learn`) and **Privacy** (`/privacy`).
 
-What one account can't show (screenshots to come on 28 Nov): two phones joining by QR, adding Riya and sharing her kid card, Breezy asking "Who do you mean by 'Papa'?" before anything is sent and then adding to Dadaji's checklist with **Send on WhatsApp**, and the large-text Hindi view.
+What one account can't show (the README has phone screenshots of the public pages): two phones joining by QR, adding Riya and sharing her kid card, Breezy asking "Who do you mean by 'Papa'?" before anything is sent and then adding to Dadaji's checklist with **Send on WhatsApp**, and the Hindi quick set-up for a 60+ adult.
 
 ## Brief to feature
 
@@ -83,9 +83,33 @@ Every page is prerendered twice, under `app/[lang]` (`/en`, `/hi`). `src/proxy.t
 
 The Gemini API Additional Terms (effective 23 Mar 2026, checked 20 Nov 2026) say: "You must be 18 years of age or older to use the APIs." They also rule out services directed towards or likely to be accessed by under-18s. So BreatheWell accounts are for adults only; children and teens are added by a parent as dependents and never use the app or reach Gemini except as anonymous tokens.
 
+## Testing
+
+- **Unit and component tests (Vitest):** about 2,600 tests in 130 files, with 95% coverage thresholds enforced; current coverage is about 99.6% of lines and 98.6% of branches. Every rule (verdicts, best time, outlook, kid-card checks, Gemini output checks) is a pure function with an injected clock, so tests pin any hour of any day.
+- **Firestore emulator (317 tests):** the security-rule matrix (every role against every path), the plan lock, the air cache, the daily clean-up and a full family journey on a real Firestore.
+- **Browser tests (Playwright + axe):** 72 public tests on phone and desktop in English and Hindi, and 28 signed-in tests on the Firebase Auth emulator: the real "Continue with Google" popup and phone redirect, create family → invite by QR → a second adult joins → the admin removes them, adding a child and their kid card, plan ticks, profile edits, leaving, and deleting an account.
+- **Gemini eval (`npm run eval:gemini`, not in CI):** 10 fixture families through the real model, measuring valid-reply and fallback rates and latency.
+- **CI (GitHub Actions):** lint, format, types, coverage, build, both browser suites and the emulator suite on every push.
+
+## Accessibility
+
+- Every air band and verdict has a colour, a word and an icon, never colour alone.
+- A skip link, one `h1` per page, landmarks, labelled form controls and visible focus rings; menus close with Escape.
+- Sizes are in `rem`, so the phone's or browser's own text-size setting scales the whole layout; touch targets are at least 44 px.
+- Hindi is server-rendered with `lang="hi"` and a Devanagari font; mixed-language text carries its own `lang`.
+- Motion respects `prefers-reduced-motion`. Kid cards have no numbers, only words and clock times.
+- axe runs on every public page in both languages and on the signed-in pages in CI: zero violations.
+
+## Efficiency
+
+- Public pages are prerendered for `/en` and `/hi` and served from the CDN; the public air and community APIs are cached at the edge for 10 minutes.
+- Air data is fetched once per grid cell and hour and kept in Firestore for every visitor in that cell.
+- Gemini runs with thinking off and a JSON schema, one call per family plan (one retry at most), one community message per cell per day (with a lock so only one request writes it), and a daily quota split so plans always come first.
+- Heavy code loads on demand: the Firebase sign-in SDK only on sign-in, and the city search and location lookups only when used.
+
 ## Security notes
 
-- **Per-IP rate limits rely on the host's forwarded-for header.** Air now and `/api/air` allow 60 checks per hour per hashed IP and `/api/community` 20, kept in memory. Breezy allows 5 questions a minute per user, and 30 a day per user and 60 per family (Firestore counters).
+- **Per-IP rate limits rely on the host's forwarded-for header.** Air now and `/api/air` allow 60 checks per hour per hashed IP and `/api/community` 20, kept in memory. Breezy allows 5 questions a minute per user (in memory, per server instance), and 30 a day per user and 60 per family (Firestore counters, so they hold across instances). The per-minute limits are a first line only; the daily Firestore caps and the Gemini quota split are what bound cost.
 - **Breezy's defences:** emergency words get fixed code text and no Gemini call; names and aliases are swapped for tokens before sending; the question (≤ 300 characters) and the client-held history (≤ 800) are cleaned and fenced; Gemini has no tools; every card's person, fact and time is checked again on the server, and the confirmed action is re-validated before anything is written.
 - **Content Security Policy without nonces.** The policy (`src/server/csp.ts`) limits every source to this app, Firebase, Google sign-in, Open-Meteo and BigDataCloud, blocks framing and inline event handlers. It allows `'unsafe-inline'` scripts for the Next.js bootstrap because the public pages are static; pages render no user-supplied HTML.
 - Other headers: HSTS, `nosniff`, a strict referrer policy, `Permissions-Policy` and `Cross-Origin-Opener-Policy: same-origin-allow-popups`.

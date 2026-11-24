@@ -3,7 +3,7 @@ import { headers } from "next/headers";
 import { Suspense } from "react";
 import { InvitePreviewView } from "@/components/family/InvitePreviewView";
 import { PageLoading } from "@/components/shell/PageLoading";
-import { dayTime } from "@/components/ui/dateTime";
+import { dayTime } from "@/domain/time/dayTime";
 import { INDIA_TIME_ZONE } from "@/domain/time/clock";
 import { currentLang } from "@/i18n/server";
 import { t } from "@/i18n/t";

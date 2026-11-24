@@ -16,7 +16,7 @@ const markerPosition = (start: number, end: number) => {
 };
 
 /**
- * Today, hour by hour (design D): one picture with a sentence label (bars are not focusable: 11 px
+ * Today, hour by hour: one picture with a sentence label (bars are not focusable: 11 px
  * targets would fail WCAG 2.5.8), the legend, a "Now" line and "Show as table" with a real table.
  */
 export function HourStrip({ summary, lang }: { summary: AirSummary; lang: Lang }) {

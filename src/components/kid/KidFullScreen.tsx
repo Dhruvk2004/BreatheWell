@@ -13,7 +13,7 @@ interface KidFullScreenProps {
 }
 
 /**
- * "Show full screen" (design F): a native modal dialog with big text for the child at the door.
+ * "Show full screen": a native modal dialog with big text for the child at the door.
  * `showModal()` traps focus; Close (or Escape) returns focus to the button.
  */
 export function KidFullScreen({ openLabel, closeLabel, title, lang, children }: KidFullScreenProps) {

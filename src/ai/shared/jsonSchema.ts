@@ -1,8 +1,8 @@
 import { z } from "zod";
 
 /**
- * JSON Schema for Gemini's structured output (spec 7: `responseMimeType: application/json` plus a
- * response schema), generated from the same Zod schema that checks the reply (adapted from Utsav).
+ * JSON Schema for Gemini's structured output (`responseMimeType: application/json` plus a
+ * response schema), generated from the same Zod schema that checks the reply.
  * Gemini rejects some keywords with HTTP 400, so only the supported ones are kept and the dropped
  * limits are said in words; Zod still enforces every limit on the reply.
  */

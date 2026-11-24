@@ -3,8 +3,8 @@ import { translator, type Lang, type MessageKey } from "@/i18n/t";
 
 /**
  * The home set-up questions and their read-only summary. Not a client module, so the server-rendered
- * family settings page can call `homeSetupSummary` (stage 8 QA8-1: calling it through the client
- * component crashed the page for every non-admin member).
+ * family settings page can call `homeSetupSummary`: a helper called from a
+ * "use client" file crashes the server page.
  */
 
 /** A home nobody has answered: the careful defaults the plan also assumes (no purifier, not sure). */
@@ -23,7 +23,7 @@ const YES_NO: readonly [Answer, MessageKey][] = [
   ["no", "common.no"],
 ];
 
-/** The six questions (spec 6.3): label, why it changes the advice, and the answers. */
+/** The six questions: label, why it changes the advice, and the answers. */
 export const QUESTIONS: readonly { key: keyof HomeSetup; label: MessageKey; why: MessageKey; answers: readonly [Answer, MessageKey][] }[] =
   [
     {

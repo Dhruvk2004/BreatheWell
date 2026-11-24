@@ -1,5 +1,5 @@
 /**
- * Word lists for the breathing-emergency check (spec 5.11, 7.7.5), in English, Devanagari and
+ * Word lists for the breathing-emergency check, in English, Devanagari and
  * romanised Hindi with its common spellings. Every entry is already in the check's normal form:
  * lower case, no apostrophes, no nukta, and chandrabindu written as anusvara (साँस → सांस).
  */

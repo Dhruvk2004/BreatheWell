@@ -1,7 +1,7 @@
 import { Timestamp, type Firestore } from "firebase-admin/firestore";
 import { cacheDocId, fromCacheDoc, toCacheDoc, type AirSnapshot } from "./snapshot";
 
-/** Where air snapshots persist between server instances: `airCache` in Firestore (spec 9.1, 11.3). */
+/** Where air snapshots persist between server instances: `airCache` in Firestore. */
 export interface AirStore {
   /** The snapshot cached for this grid cell and UTC hour, or null. */
   get(gridId: string, at: Date): Promise<AirSnapshot | null>;

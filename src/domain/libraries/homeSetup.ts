@@ -1,4 +1,4 @@
-/** The family's home set-up (spec 6.3), stored in `families/{fid}/private/home`. */
+/** The family's home set-up, stored in `families/{fid}/private/home`. */
 export interface HomeSetup {
   readonly purifier: "none" | "one_room" | "several";
   readonly freshAirVent: boolean;

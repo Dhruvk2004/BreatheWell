@@ -1,7 +1,7 @@
 import { SCENARIO_IDS } from "@/data/recorded/scenarios";
 import { DEMO_VIEWERS, type DemoViewer } from "./family";
 
-/** The demo's three scenarios (spec 10.3) and the time-of-day stepper (6 am · 12 pm · 4 pm). */
+/** The demo's three scenarios and the time-of-day stepper (6 am · 12 pm · 4 pm). */
 export const DEMO_SCENARIOS = [...SCENARIO_IDS, "live"] as const;
 export type DemoScenario = (typeof DEMO_SCENARIOS)[number];
 export const DEMO_TIMES = [6, 12, 16] as const;

@@ -6,8 +6,7 @@ import { WEATHER_FACTS } from "./facts/weather";
 
 export type { Bilingual, Fact, Source } from "./facts/types";
 
-/** The facts library, version 1 (spec 7.4): every fact with EN + HI text, level 3 and a source. */
-export const FACTS_VERSION = 1;
+/** The facts library, version 1: every fact with EN + HI text, level 3 and a source. */
 export const FACTS: readonly Fact[] = [...WEATHER_FACTS, ...PROTECT_FACTS, ...HOME_FACTS, ...TRAVEL_FACTS];
 
 const BY_ID = new Map(FACTS.map((f) => [f.id, f]));

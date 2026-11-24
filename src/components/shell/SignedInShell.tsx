@@ -38,7 +38,7 @@ function AppNav({ lang, here, className }: { lang: Lang; here: Here; className: 
  * the bottom of the phone screen and a top nav from 768 px. Visual order is DOM order (no CSS
  * `order`), so each layout has its own copy and only one is displayed (the other is
  * `display: none`, out of the accessibility tree). Offline, every page
- * but Today (which says so in its plan slot) starts with the saved plan (F24).
+ * but Today (which says so in its plan slot) starts with the saved plan.
  */
 export function SignedInShell({ lang, here, children }: { lang: Lang; here: Here; children: ReactNode }) {
   return (

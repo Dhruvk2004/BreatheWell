@@ -3,7 +3,7 @@ import type { MorningWeather } from "@/domain/air/pollutants";
 import { translator, type Lang } from "@/i18n/t";
 import { card, h2 } from "../ui/styles";
 
-/** "Why are mornings worst?" with the day's own 6 am wind and temperature (spec 10.2 item 6). */
+/** "Why are mornings worst?" with the day's own 6 am wind and temperature. */
 export function WhyMornings({ morning, lang }: { morning: MorningWeather; lang: Lang }) {
   const t = translator(lang);
   return (

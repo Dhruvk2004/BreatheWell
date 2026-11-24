@@ -3,7 +3,7 @@
 import { t, type Lang } from "@/i18n/t";
 import { btn } from "../ui/styles";
 
-/** The error boundary's content (spec 10.17): bilingual "Your data is safe." first, then Try again. */
+/** The error boundary's content: bilingual "Your data is safe." first, then Try again. */
 export function ErrorPanel({ lang, onRetry }: { lang: Lang; onRetry: () => void }) {
   const other: Lang = lang === "en" ? "hi" : "en";
   return (

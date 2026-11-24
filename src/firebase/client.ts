@@ -2,8 +2,8 @@ import type { FirebaseWebConfig } from "@/config/env";
 import type { GoogleSignIn } from "@/client/auth";
 
 /**
- * The Firebase web SDK, imported only when someone signs in (spec 11.3, as in Utsav). `authDomain`
- * is the app's own host: `/__/auth/*` is proxied same-origin (spec 10.4). The SDK is signed out
+ * The Firebase web SDK, imported only when someone signs in. `authDomain`
+ * is the app's own host: `/__/auth/*` is proxied same-origin. The SDK is signed out
  * right after the cookie exchange: the server's session cookie is the only session.
  */
 let emulatorConnected = false;

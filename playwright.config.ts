@@ -17,7 +17,6 @@ export const NO_SERVER_KEYS = {
   FIREBASE_SERVICE_ACCOUNT_B64: "",
   APP_ORIGIN: "",
   CRON_SECRET: "",
-  DATA_GOV_IN_KEY: "",
   GEMINI_MODEL: "",
 };
 

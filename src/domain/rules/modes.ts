@@ -1,11 +1,11 @@
 /**
- * Travel modes (spec 6.1 item 7, 6.2) and the essential-trip order (spec 8.3 override 1).
+ * Travel modes and the essential-trip order (spec 8.3 override 1).
  * "Auto or bus" (adults) and "Auto or van" (dependents) are open travel.
  */
 export const MODES = ["walk", "cycle", "two_wheeler", "auto_bus", "auto_van", "school_bus", "metro", "carpool", "car", "home"] as const;
 export type Mode = (typeof MODES)[number];
 
-/** Enclosed travel is Light (spec 8.2) and halves outdoor exposure (spec 7.4). */
+/** Enclosed travel is Light and halves outdoor exposure. */
 const ENCLOSED: readonly Mode[] = ["metro", "school_bus", "carpool", "car", "home"];
 
 /**

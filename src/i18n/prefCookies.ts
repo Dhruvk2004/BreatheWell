@@ -1,6 +1,6 @@
 /**
  * The viewer's language lives in a first-party cookie, so it survives closing the
- * tab and the Google sign-in redirect (spec 5.3), and the server can pick the right language before
+ * tab and the Google sign-in redirect, and the server can pick the right language before
  * rendering: `src/proxy.ts` rewrites every page to its static `/en` or `/hi` variant.
  */
 export const PREF_COOKIES = { lang: "bw-lang" } as const;

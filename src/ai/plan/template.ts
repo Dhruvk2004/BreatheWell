@@ -122,7 +122,7 @@ export function rowLine(input: RowLineInput, lang: Lang): string {
   });
 }
 
-/** "Tomorrow 3 pm looks better." when nothing today beats Avoid (spec 8.4 step 6), else null. */
+/** "Tomorrow 3 pm looks better." when nothing today beats Avoid, else null. */
 export function tomorrowLine(plan: ActivityPlan, lang: Lang): string | null {
   if (plan.tomorrowBest === null) return null;
   const time = formatHour(plan.tomorrowBest, lang);

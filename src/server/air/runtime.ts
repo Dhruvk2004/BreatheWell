@@ -10,7 +10,7 @@ import { firestoreAirStore, type AirStore } from "./store";
 
 const HOUR_MS = 3_600_000;
 
-/** Air now and `/api/air`: 60 requests per hour per IP, in memory (spec 7.8, 11.2). */
+/** Air now and `/api/air`: 60 requests per hour per IP, in memory. */
 export const airLimiter = new RateLimiter(60, HOUR_MS);
 
 /** The Firestore air cache, or null without (or with broken) Admin credentials. */

@@ -1,7 +1,7 @@
 import { t, type Lang } from "@/i18n/t";
 import { CopyButton } from "../ui/CopyButton";
 
-/** "Remind" (spec 5.11): copies one bilingual WhatsApp text with the app link; nothing is sent by us. */
+/** "Remind": copies one bilingual WhatsApp text with the app link; nothing is sent by us. */
 export function RemindButton({ name, appOrigin, lang }: { name: string; appOrigin: string; lang: Lang }) {
   const url = `${appOrigin}/onboarding`;
   const text = `${t("en", "today.remindText", { url })}\n${t("hi", "today.remindText", { url })}`;

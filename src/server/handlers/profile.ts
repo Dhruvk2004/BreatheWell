@@ -1,6 +1,6 @@
 import { initialsOf } from "@/domain/family/caps";
 import { profileInput, storedProfileOf } from "@/domain/members/profile";
-import { PREF_COOKIES, prefCookie } from "@/components/prefs/cookies";
+import { PREF_COOKIES, prefCookie } from "@/i18n/prefCookies";
 import { accountCookieHeader, secureCookies } from "../auth/cookies";
 import { authorize } from "../auth/guard";
 import type { AppDeps } from "../deps";
@@ -10,9 +10,9 @@ import { paths } from "../repos/paths";
 import { parsed, userRecord } from "../repos/records";
 
 /**
- * `PUT /api/profile`: onboarding and profile edits (spec 6.1, 10.5, 10.15). The user's own profile,
+ * `PUT /api/profile`: onboarding and profile edits. The user's own profile,
  * the private health doc (owner only, spec 6.5) and, in a family, the member doc the family plans
- * with (tag only, never the conditions). A member change marks today's plan stale (spec 7.2).
+ * with (tag only, never the conditions). A member change marks today's plan stale.
  */
 export async function saveProfile(request: Request, deps: AppDeps): Promise<Response> {
   const auth = await authorize(request, deps, "write");

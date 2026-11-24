@@ -11,7 +11,7 @@ import { namesById, planCheckFor } from "../plan/context";
 import { hourAllowedFor, ruleContextOf } from "./slot";
 
 /**
- * Everything one Breezy question needs on the server (spec 7.7.8): the pseudonymised check for
+ * Everything one Breezy question needs on the server: the pseudonymised check for
  * Gemini, the people behind each token (names stay here), the rules' day to re-check card times.
  */
 export interface BreezyContext {

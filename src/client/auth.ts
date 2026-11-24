@@ -3,7 +3,7 @@ import { apiRequest, type Fetch } from "./api";
 import { hasPending, savePending, takePending, type Pending } from "./pending";
 
 /**
- * Google sign-in (spec 10.4, as in Utsav): a popup on desktop, the redirect on phones or when the
+ * Google sign-in: a popup on desktop, the redirect on phones or when the
  * popup is blocked. The Google ID token and the 18+ tick go to `POST /api/session`, which sets the
  * httpOnly cookie; the Firebase web SDK is signed out straight away (the cookie is the session).
  */

@@ -6,8 +6,8 @@ import { VerdictChip } from "../air/VerdictChip";
 import { ListenButton } from "../ui/ListenButton";
 
 /**
- * "View as Dadaji" (design 10.3): the viewer's own card first, one instruction and one better
- * time, and a Listen button. The demo renders it inside the viewer's language and text size.
+ * "View as Dadaji": the viewer's own card first, one instruction and one better
+ * time, and a Listen button. The demo renders it in the viewer's language.
  */
 export function ViewerCard({ plan, name, mainMode, lang }: { plan: PersonPlan; name: string; mainMode: Mode; lang: Lang }) {
   const { headline } = plan;

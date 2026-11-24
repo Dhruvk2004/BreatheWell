@@ -10,7 +10,7 @@ import type { Pending } from "@/client/pending";
 export type SignInStatus = { kind: "idle" } | { kind: "busy" } | { kind: "failed"; reason: SignInFailure };
 
 /**
- * The sign-in steps for the page (spec 10.4): warm up the SDK, finish a redirect that came back,
+ * The sign-in steps for the page: warm up the SDK, finish a redirect that came back,
  * then popup on desktop or redirect on phones; a blocked popup offers "Continue in this tab".
  */
 export function useSignIn(client: AuthClient | null, joinCode: string | null, next: string | null) {

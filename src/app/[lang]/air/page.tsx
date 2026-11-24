@@ -11,7 +11,7 @@ import { airDeps, airLimiter } from "@/server/air/runtime";
 
 export const generateMetadata = async (): Promise<Metadata> => ({ title: t(await currentLang(), "air.title") });
 
-/** Air now (spec 10.2): the shell is static; the place's air streams in behind "Checking the air…". */
+/** Air now: the shell is static; the place's air streams in behind "Checking the air…". */
 export default function AirPage({ searchParams }: PageProps<"/[lang]/air">) {
   return (
     <Suspense fallback={<AirLoading />}>

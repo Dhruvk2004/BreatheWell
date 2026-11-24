@@ -1,7 +1,7 @@
 import { normaliseWord } from "./words";
 
 /**
- * Near spellings of a stored name (stage 7 PT-2): "Rameshji" and "रमेशजी" carry an honorific, and
+ * Near spellings of a stored name: "Rameshji" and "रमेशजी" carry an honorific, and
  * "Riyaa" or "Riyu" are one letter away from "Riya". Each is still that person's name, so it is
  * swapped for the token before anything reaches Gemini.
  */

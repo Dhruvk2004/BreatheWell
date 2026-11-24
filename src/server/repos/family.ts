@@ -15,7 +15,7 @@ import {
   type UserRecord,
 } from "./records";
 
-/** A family as the server reads it for one request: one document read per part (spec 11.3). */
+/** A family as the server reads it for one request: one document read per part. */
 export interface FamilyBundle {
   readonly id: string;
   readonly family: FamilyRecord;
@@ -52,12 +52,12 @@ export async function loadFamily(db: Db, fid: string): Promise<FamilyBundle | nu
 /** The family's calendar date (India time; the app's families are in Indian cities). */
 export const familyToday = (now: Date): string => localTime({ now, timeZone: INDIA_TIME_ZONE }).date;
 
-/** Plans, member plans, items and progress are kept 30 days after their date (spec 9.4); the daily
+/** Plans, member plans, items and progress are kept 30 days after their date; the daily
  * clean-up (src/server/cleanup) deletes them after `expireAt`. */
 export const retainedUntil = (date: string): string => `${addDays(date, 30)}T00:00:00.000Z`;
 
 /**
- * A member or dependent change makes today's plan stale (spec 7.2): the next open of Today
+ * A member or dependent change makes today's plan stale: the next open of Today
  * regenerates it. Merged, so a plan that does not exist yet is simply flagged, with its expiry.
  */
 export function markPlanStale(tx: Tx, fid: string, now: Date): void {
@@ -74,7 +74,7 @@ export async function familyFor(tx: Tx, fid: string, uid: string): Promise<Famil
 /**
  * Inside a writing transaction, before its writes: true while the caller is still in the family and
  * `forId` is still one of its members or dependents, so a request in flight when a member is
- * removed writes nothing after `takeOut` (stage 7 AUTH-4).
+ * removed writes nothing after `takeOut`.
  */
 export async function stillInFamily(tx: Tx, fid: string, uid: string, forId: string): Promise<boolean> {
   const family = await familyFor(tx, fid, uid);

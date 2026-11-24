@@ -1,9 +1,9 @@
 import { z } from "zod";
 
 /**
- * What must survive the Google redirect (spec 5.3, 10.4): the join code, the 18+ tick and
- * where to go next. Language and text size already live in their own cookies. Kept in `sessionStorage` (this tab only) and read
- * back once after sign-in.
+ * What must survive the Google redirect: the join code, the 18+ tick and
+ * where to go next. The language already lives in its own cookie. Kept in `sessionStorage` (this
+ * tab only) and read back once after sign-in.
  */
 export const PENDING_KEY = "bw:pending-sign-in";
 
@@ -52,7 +52,7 @@ export function hasPending(store: Store): boolean {
 
 const SENTINEL = "https://next.invalid";
 // Control characters, whitespace and backslashes: the URL parser drops or rewrites them, so
-// "/\t/evil.example" would become "//evil.example" (stage 7 WEB-1, PT-1).
+// "/\t/evil.example" would become "//evil.example".
 const UNSAFE = /[\u0000-\u001f\u007f\s\\]/u;
 
 /** A same-site path to return to after sign-in, never another origin (open-redirect guard). */

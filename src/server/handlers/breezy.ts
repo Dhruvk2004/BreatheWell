@@ -21,12 +21,12 @@ import { reserveGeminiCall } from "../repos/quota";
 import type { Db } from "../db/types";
 
 /**
- * `POST /api/breezy` (spec 7.7, 10.10). In order: emergency words get the fixed text (no Gemini,
+ * `POST /api/breezy`. In order: emergency words get the fixed text (no Gemini,
  * before any limit); then the per-minute limit; a kin word with no alias gets the code question
  * "Who do you mean by 'Papa'?" (nothing is sent); then the daily caps and the global budget, one
  * Gemini call of at most 10 s, the validator and the rules again on every card. The question and
  * every history turn go out with names swapped for tokens. Any failure answers "basics".
- * Logs outcome codes only; the question is never stored or logged (spec 9.4).
+ * Logs outcome codes only; the question is never stored or logged.
  */
 const answer = (body: BreezyAnswer): Response => privateJson(body);
 
@@ -42,7 +42,7 @@ export async function askBreezy(request: Request, deps: AppDeps): Promise<Respon
   if (!input.ok) return input.response;
   const question = cleanQuestion(input.data.question);
   if (!question) return errorResponse(400, "invalid_input", "Type a question.");
-  // The whole typed text (up to 600 characters), not only the 300 that would be sent (stage 7 AI-7).
+  // The whole typed text (up to 600 characters), not only the 300 that would be sent.
   if (isEmergency(cleanText(input.data.question))) return answer({ kind: "emergency" });
   const { uid } = auth.session;
   const limit = deps.limits.breezy.check(uid);
@@ -82,7 +82,7 @@ interface Call {
   readonly history: string;
 }
 
-/** Cards a refusal keeps: none for off-topic or other refusals (spec 7.7.5). */
+/** Cards a refusal keeps: none for off-topic or other refusals. */
 const keptCards = (cards: BreezyCard[], refusal: string | null): BreezyCard[] =>
   refusal === "off_topic" || refusal === "other" ? [] : cards;
 

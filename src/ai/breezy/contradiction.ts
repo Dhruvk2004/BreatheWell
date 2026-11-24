@@ -5,7 +5,7 @@ import { ruleFactsOf } from "../plan/fields";
 import type { PlanInputPerson } from "../plan/schema";
 
 /**
- * The plan's contradiction check on Breezy's free text (design G): a reply that talks about a
+ * The plan's contradiction check on Breezy's free text: a reply that talks about a
  * person's activity must agree with `planActivity` for it. For each person the reply is about (the
  * viewer, or anyone named by token), an Avoid activity may not get a go-word at its usual time, and
  * an activity planned indoors may not get a time today ("दोपहर 3 बजे की सैर आपके लिए बेहतर है।"

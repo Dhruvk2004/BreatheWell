@@ -1,7 +1,7 @@
 import type { Activity, ActivityType, Duration, Flex, TripLength } from "../rules/activities";
 import type { Mode } from "../rules/modes";
 
-/** "What does Riya do outside?" (spec 6.2). "Mostly stays in" is an empty selection. */
+/** "What does Riya do outside?". "Mostly stays in" is an empty selection. */
 export type DependentChoice = "school_trip" | "play" | "cycling" | "sport" | "tuition";
 
 interface ChoiceDefaults {
@@ -11,7 +11,7 @@ interface ChoiceDefaults {
   readonly times: readonly string[];
 }
 
-/** The dependent defaults table (spec 6.2). Type follows from the activity and mode (spec 8.2). */
+/** The dependent defaults table. Type follows from the activity and mode. */
 export const DEPENDENT_DEFAULTS: Readonly<Record<DependentChoice, ChoiceDefaults>> = {
   school_trip: { flex: "fixed", duration: "15to60", times: ["07:00", "13:00"] },
   tuition: { flex: "fixed", duration: "15to60", times: ["19:00"] },
@@ -20,10 +20,10 @@ export const DEPENDENT_DEFAULTS: Readonly<Record<DependentChoice, ChoiceDefaults
   cycling: { flex: "some", duration: "15to60", times: ["17:00"] },
 };
 
-/** Trip length for every dependent: 15–45 min, 10 km in emissions.ts (spec 6.2). */
+/** Trip length for every dependent: 15–45 min, 10 km in emissions.ts. */
 export const DEPENDENT_TRIP_LENGTH: TripLength = "15to45";
 
-/** "Other ways to school" when the optional question is skipped: School bus + Car (spec 6.2). */
+/** "Other ways to school" when the optional question is skipped: School bus + Car. */
 export const DEFAULT_OTHER_MODES: readonly Mode[] = ["school_bus", "car"];
 
 /** A parent's pick, with an optional changed time ("HH:MM") per default slot. */

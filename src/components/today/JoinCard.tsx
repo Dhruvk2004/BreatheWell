@@ -12,11 +12,11 @@ export interface RemovalCopy {
   readonly uid: string;
   readonly name: string;
   readonly familyName: string;
-  /** The children and teens this member added, deleted with them (named in the confirm, spec 5.9). */
+  /** The children and teens this member added, deleted with them (named in the confirm). */
   readonly dependents: readonly string[];
 }
 
-/** The remove confirm used on Today's join card and in Family settings (spec 5.9, design 10.14). */
+/** The remove confirm used on Today's join card and in Family settings. */
 export function RemoveMember({ member, lang, label }: { member: RemovalCopy; lang: Lang; label: string }) {
   const t = translator(lang);
   const router = useRouter();

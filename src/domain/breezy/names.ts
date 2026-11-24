@@ -4,7 +4,7 @@ import { nearSpelling, withoutHonorific } from "../names/spelling";
 import { normaliseWord, replacePhrases } from "../names/words";
 
 /**
- * Names out, tokens in (spec 7.7.9): before a question reaches Gemini, every stored name, the
+ * Names out, tokens in: before a question reaches Gemini, every stored name, the
  * viewer's own aliases and the Latin/Devanagari forms of kin words become the person's token
  * (`{m1}`, `{d1}`), and so does a name typed in the other script ("रिया" for a stored "Riya"). A kin word that is neither a stored name nor in the viewer's aliases is left
  * as it is and reported, so Breezy asks "Who do you mean by 'Papa'?" before anything is sent.
@@ -19,7 +19,7 @@ export interface NamedPerson {
   readonly names: readonly string[];
   /**
    * What the name becomes instead of `{token}`: a person with no plan token ("a family member")
-   * or the family's own name ("the family") (stage 7 AI-3).
+   * or the family's own name ("the family").
    */
   readonly replacement?: string;
 }

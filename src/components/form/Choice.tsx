@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 
 /**
- * Picture-tile choices (design 10.5): native radio and checkbox inputs inside a fieldset with a
+ * Picture-tile choices: native radio and checkbox inputs inside a fieldset with a
  * legend, so keyboard, screen readers and forms work without extra code. Tiles are ≥ 48 px and the
  * chosen one is marked by colour, border and a bold label, never colour alone.
  */

@@ -5,7 +5,7 @@ import { COMMUNITY_SYSTEM, communityPrompt } from "./prompt";
 import { communityOutputSchema, type CommunityOutput, type CommunityPromptInput } from "./schema";
 import { validateCommunity } from "./validate";
 
-/** One community message generation (spec 7): a 15 s budget, no retry; any failure means the template. */
+/** One community message generation: a 15 s budget, no retry; any failure means the template. */
 export const COMMUNITY_BUDGET_MS = 15_000;
 const SCHEMA = geminiSchemaOf(communityOutputSchema);
 

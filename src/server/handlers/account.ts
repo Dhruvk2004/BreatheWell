@@ -9,7 +9,7 @@ import { closeFamily, deleteFamilyTree, takeOut } from "../repos/membership";
 import { paths } from "../repos/paths";
 
 /**
- * `DELETE /api/account` (spec 5.10, 10.15): the profile, private health doc, member doc, the
+ * `DELETE /api/account`: the profile, private health doc, member doc, the
  * dependents the user added and all their data go at once; an admin alone takes the family with
  * them. The Firebase Auth user is deleted with the Admin SDK and both cookies are cleared.
  * `DELETE /api/family` (spec 10.14 Danger zone): the admin, alone, types the family name.

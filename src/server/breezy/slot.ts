@@ -7,7 +7,7 @@ import type { Region, RuleContext } from "@/domain/rules/context";
 import { addDays } from "@/domain/time";
 
 /**
- * The rules for one Breezy time (spec 7.7.7, 8.4): a person's slot for an activity at an hour,
+ * The rules for one Breezy time: a person's slot for an activity at an hour,
  * and the `HourAllowed` judge the validator and the action route use on every time in free text.
  */
 export interface DayRules {
@@ -29,7 +29,7 @@ export const ruleContextOf = (date: string, region: Region): RuleContext => ({
   hasStation: false,
 });
 
-/** The rule's answer for one person and card time (spec 8.4: from the next full hour today). */
+/** The rule's answer for one person and card time (from the next full hour today). */
 export function slotFor(row: PersonPlan, s: Slotting): CardTime {
   const { summary } = s.ctx.day;
   const today = s.date === "today";

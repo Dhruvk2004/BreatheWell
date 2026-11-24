@@ -4,9 +4,9 @@ import { describe, expect, it } from "vitest";
 import { testBodySizes } from "./helpers/testBodies";
 
 /**
- * Spec 11.1 and the slice "done" checklist, checked on the source tree: no file over 200 lines, no
+ * The code layout rules, checked on the source tree: no file over 200 lines, no
  * wall clock in domain/, domain/ free of I/O, components presentational (they never reach into
- * server/), view models type-only, and route shells (excluded from coverage) kept thin.
+ * server/) and server code free of components, view models type-only, and route shells (excluded from coverage) kept thin.
  */
 const SRC = join(process.cwd(), "src");
 
@@ -22,10 +22,11 @@ const code = files(SRC, /\.(ts|tsx)$/);
 const domain = files(join(SRC, "domain"), /\.ts$/);
 const components = files(join(SRC, "components"), /\.(ts|tsx)$/);
 const views = files(join(SRC, "view"), /\.ts$/);
+const server = [...files(join(SRC, "server"), /\.ts$/), join(SRC, "proxy.ts")];
 const shells = files(join(SRC, "app"), /^(page|layout|loading|error|not-found)\.tsx$/);
 const suites = [...files(join(process.cwd(), "tests"), /\.test\.tsx?$/), ...files(join(process.cwd(), "e2e"), /\.spec\.ts$/)];
 
-describe("architecture (spec 11.1)", () => {
+describe("architecture", () => {
   it.each(code.map((f) => [relative(process.cwd(), f), f]))("%s has at most 200 lines", (_, file) => {
     expect(readFileSync(file, "utf8").split("\n").length).toBeLessThanOrEqual(200);
   });
@@ -44,6 +45,10 @@ describe("architecture (spec 11.1)", () => {
 
   it.each(components.map((f) => [relative(process.cwd(), f), f]))("%s is presentational: no server/ imports", (_, file) => {
     expect(readFileSync(file, "utf8")).not.toMatch(/from "@\/server\//);
+  });
+
+  it.each(server.map((f) => [relative(process.cwd(), f), f]))("%s does not reach into components/", (_, file) => {
+    expect(readFileSync(file, "utf8")).not.toMatch(/from "@\/components\//);
   });
 
   it.each(views.map((f) => [relative(process.cwd(), f), f]))("%s holds types only", (_, file) => {

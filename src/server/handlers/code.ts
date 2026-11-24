@@ -8,7 +8,7 @@ import { paths } from "../repos/paths";
 
 /**
  * `POST /api/family/code` (spec 5.9, 10.7 "Make a new code"): the admin's new code replaces the
- * old one at once; the old one is deleted, so it stops working (spec 9.4 "deleted on regenerate").
+ * old one at once; the old one is deleted, so it stops working.
  */
 export async function regenerateCode(request: Request, deps: AppDeps): Promise<Response> {
   const auth = await authorize(request, deps, "write");

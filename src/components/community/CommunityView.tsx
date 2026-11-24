@@ -13,7 +13,7 @@ import { MessageBox, messageText } from "./MessageBox";
 
 type Ready = Extract<CommunityPage, { kind: "ready" }>;
 
-/** Copy English · Copy Hindi · Copy both · Share · WhatsApp (spec 10.13 item 3). No personal data in the link. */
+/** Copy English · Copy Hindi · Copy both · Share · WhatsApp. No personal data in the link. */
 function ShareRow({ page, lang }: { page: Ready; lang: Lang }) {
   const t = translator(lang);
   const en = messageText(page.messages.en);
@@ -62,7 +62,7 @@ function Ready({ page, lang }: { page: Ready; lang: Lang }) {
 }
 
 /**
- * Community message (spec 10.13): public, the template first if Gemini has nothing; never
+ * Community message: public, the template first if Gemini has nothing; never
  * cigarettes. "Make your own family plan" opens Today for a signed-in viewer, sign-in otherwise.
  */
 export function CommunityView({ page, lang, signedIn = false }: { page: CommunityPage; lang: Lang; signedIn?: boolean }) {

@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { PREF_COOKIES } from "@/components/prefs/cookies";
+import { PREF_COOKIES } from "@/i18n/prefCookies";
 import { AUTH_HELPER_HEADERS, firebaseHelperUrl, firebaseHostOf, helperRequestHeaders } from "@/server/csp";
 import { localisedPath, pickLang } from "@/server/lang";
 
@@ -7,8 +7,8 @@ import { localisedPath, pickLang } from "@/server/lang";
 const FIREBASE_HOST = firebaseHostOf(process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID);
 
 /**
- * Serves Firebase's auth helper from the app's own origin with its own security headers (spec 10.4),
- * without the request's cookies (stage 7 PT-10).
+ * Serves Firebase's auth helper from the app's own origin with its own security headers,
+ * without the request's cookies.
  */
 function authHelper(helper: string, request: NextRequest): NextResponse {
   const response = NextResponse.rewrite(new URL(helper), { request: { headers: helperRequestHeaders(request.headers) } });

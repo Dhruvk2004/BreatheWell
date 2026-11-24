@@ -6,7 +6,7 @@ import { readUser } from "../repos/users";
 
 /**
  * Who is looking at a signed-in page. Pages never trust the proxy's cookie check: the session is
- * verified here, and a removed member (not in `memberUids`) gets no family (spec 9.2).
+ * verified here, and a removed member (not in `memberUids`) gets no family.
  */
 export type Viewer =
   | { readonly kind: "not_configured" }
@@ -45,6 +45,6 @@ export function redirectFor(viewer: Viewer, needs: Needs, here: string): string 
   return null;
 }
 
-/** Sign-in works only with the Admin SDK and the web config (else the "not configured" state, spec 11). */
+/** Sign-in works only with the Admin SDK and the web config (else the "not configured" state). */
 export const signInConfigured = (deps: Pick<AppDeps, "db" | "sessions">, env: Env): boolean =>
   Boolean(deps.db && deps.sessions && firebaseWebConfig(env));

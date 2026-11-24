@@ -12,11 +12,11 @@ export interface DayOutlook {
   readonly best: HourWindow | null;
 }
 
-/** Up to 5 days, from today (spec 8.4 step 10). */
+/** Up to 5 days, from today. */
 export const OUTLOOK_DAYS = 5;
 
 /**
- * The "Next 5 days" outlook (F20), computed from the hourly forecast because the air-quality API has
+ * The "Next 5 days" outlook, computed from the hourly forecast because the air-quality API has
  * no daily variables. One entry per day that has outdoor-hour data, starting today, up to 5 days.
  * Code only; labelled "Forecast; may change" in the UI.
  */

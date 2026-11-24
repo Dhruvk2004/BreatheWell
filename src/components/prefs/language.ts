@@ -1,5 +1,5 @@
 import type { Lang } from "@/domain/time/format";
-import { PREF_COOKIES, prefCookie } from "./cookies";
+import { PREF_COOKIES, prefCookie } from "@/i18n/prefCookies";
 
 /**
  * Saves the language and reloads: the proxy then serves the page's static variant in that language,

@@ -2,7 +2,7 @@ import type { TripLength } from "../rules/activities";
 import type { Mode } from "../rules/modes";
 import { EMISSION_FACTORS } from "./emissionFactors";
 
-/** Trip length bucket → one-way km (spec 7.5). */
+/** Trip length bucket → one-way km. */
 export const TRIP_KM: Readonly<Record<TripLength, number>> = { under15: 3, "15to45": 10, over45: 20 };
 
 export interface Emission {
@@ -19,7 +19,7 @@ export function tripEmission(mode: Mode, km: number): Emission {
 }
 
 /**
- * "For the air" on a swap card (spec 7.5): avoided = (factor(current) − factor(swap)) × km, over the
+ * "For the air" on a swap card: avoided = (factor(current) − factor(swap)) × km, over the
  * same trip, a return trip by default. Never negative: a swap that adds emissions shows nothing avoided.
  */
 export function avoidedBySwap(current: Mode, swap: Mode, tripLength: TripLength, returnTrip = true): Emission {
@@ -30,7 +30,7 @@ export function avoidedBySwap(current: Mode, swap: Mode, tripLength: TripLength,
 }
 
 /**
- * The Air now "One swap for the air today" (spec 7.5): a fixed 10 km car trip (the 15–45 min bucket),
+ * The Air now "One swap for the air today": a fixed 10 km car trip (the 15–45 min bucket),
  * there and back, by metro, or by bus where the city has no metro.
  */
 export function airNowSwap(hasMetro: boolean): { swap: Mode; avoided: Emission } {
@@ -38,14 +38,14 @@ export function airNowSwap(hasMetro: boolean): { swap: Mode; avoided: Emission }
   return { swap, avoided: avoidedBySwap("car", swap, "15to45") };
 }
 
-/** A ticked swap from `progress` (spec 9.1). */
+/** A ticked swap from `progress`. */
 export interface SwapTick {
   readonly from: Mode;
   readonly to: Mode;
   readonly tripLength: TripLength;
 }
 
-/** The weekly line on Today: "avoided about 9 kg CO₂ and 6 car trips" (spec 7.5, F21). */
+/** The weekly line on Today: "avoided about 9 kg CO₂ and 6 car trips". */
 export function weeklyTotals(ticks: readonly SwapTick[]): { co2Kg: number; carTrips: number } {
   return ticks.reduce(
     (sum, t) => ({

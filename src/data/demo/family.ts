@@ -5,7 +5,7 @@ import type { HomeSetup } from "@/domain/libraries/homeSetup";
 import type { Lang } from "@/domain/time/format";
 
 /**
- * The Sharma family (spec 2, 10.3): the public demo's sample family in Green Park, Delhi. Names and
+ * The Sharma family: the public demo's sample family in Green Park, Delhi. Names and
  * display details live here, apart from the name-free `FamilyPerson` the rules plan for.
  */
 export interface DemoPerson extends FamilyPerson {
@@ -84,11 +84,11 @@ const riya: DemoPerson = {
 /** Neha (admin), Rahul, Dadaji, and the two dependents Neha added. */
 export const DEMO_FAMILY: readonly DemoPerson[] = [neha, rahul, dadaji, aarav, riya];
 
-/** The two "View as" people (design 10.3). */
+/** The two "View as" people. */
 export const DEMO_VIEWERS = ["neha", "dadaji"] as const;
 export type DemoViewer = (typeof DEMO_VIEWERS)[number];
 
-/** The Sharma home set-up (spec 6.3): a purifier in Dadaji's room, a busy road, incense sometimes. */
+/** The Sharma home set-up: a purifier in Dadaji's room, a busy road, incense sometimes. */
 export const DEMO_HOME: HomeSetup = {
   purifier: "one_room",
   freshAirVent: false,

@@ -3,7 +3,7 @@
  * so templates, the kid library and the validator's time allow-list always agree.
  */
 export const LANGS = ["en", "hi"] as const;
-/** The two app languages (spec F17); i18n re-exports this one declaration. */
+/** The two app languages; i18n re-exports this one declaration. */
 export type Lang = (typeof LANGS)[number];
 
 /** True for a supported language code. */

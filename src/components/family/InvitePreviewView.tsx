@@ -34,7 +34,7 @@ function returnedProblem(code: string, preview: InvitePreview, viewer: InviteVie
 }
 
 /**
- * `/join/[code]` (spec 5.4, 10.7): the validated family and admin names, the 18+ tick and "Sign in
+ * `/join/[code]`: the validated family and admin names, the 18+ tick and "Sign in
  * with Google to join" (the code survives the redirect); signed in, the Join button; every error
  * from spec 5.11 with the way on.
  */

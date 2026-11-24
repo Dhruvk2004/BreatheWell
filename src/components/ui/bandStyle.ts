@@ -1,7 +1,7 @@
 import type { Band } from "@/domain/air/bands";
 import type { Verdict } from "@/domain/rules/verdict";
 
-/** Fill and text for a band (tokens.css; the same in both themes). Light fills get a 1 px edge (design B). */
+/** Fill and text for a band (tokens.css; the same in both themes). Light fills get a 1 px edge. */
 export const BAND_FILL: Readonly<Record<Band, string>> = {
   good: "bg-band-good text-on-band-good",
   satisfactory: "bg-band-satisfactory text-on-band-satisfactory shadow-[inset_0_0_0_1px_var(--band-edge)]",
@@ -21,7 +21,7 @@ export const BAND_BG: Readonly<Record<Band, string>> = {
   severe: "bg-band-severe",
 };
 
-/** Verdict chips are tinted pills with an outline, never a band colour (design B). */
+/** Verdict chips are tinted pills with an outline, never a band colour. */
 export const VERDICT_STYLE: Readonly<Record<Verdict, string>> = {
   go: "bg-go-tint text-go",
   care: "bg-care-tint text-care",

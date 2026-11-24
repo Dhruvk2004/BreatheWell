@@ -13,7 +13,7 @@ import { paths } from "../repos/paths";
 import { dependentRecord, parsed } from "../repos/records";
 
 /**
- * `/api/dependent` (spec 5.5, 6.2, 9.3): any member adds a child or teen (at most 4 per family,
+ * `/api/dependent`: any member adds a child or teen (at most 4 per family,
  * the caller becomes the guardian); the guardian or the admin edits or deletes them. Delete erases
  * the dependent's items, ticks and plan sections at once. Flexibility, duration and trip length
  * come from the dependent defaults; every change marks today's plan stale.

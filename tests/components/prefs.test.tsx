@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from "vitest";
-import { prefCookie } from "@/components/prefs/cookies";
+import { prefCookie } from "@/i18n/prefCookies";
 import { siteMetadata } from "@/i18n/metadata";
 import { localisedPath, pickLang } from "@/server/lang";
 

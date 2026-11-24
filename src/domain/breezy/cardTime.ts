@@ -10,7 +10,7 @@ import type { Verdict } from "../rules/verdict";
 import { breezyIntensity, breezySpan, type BreezyActivity } from "./activity";
 
 /**
- * The rules re-run for a time Breezy proposes (spec 7.7.7): the card's verdict chip comes from here,
+ * The rules re-run for a time Breezy proposes: the card's verdict chip comes from here,
  * never from Gemini. A card for an Avoid hour is moved to the best non-Avoid hour of that day, or
  * dropped when there is none; a past hour or one outside 06:00–21:00 is treated the same way. On a
  * Severe day every non-essential card is dropped, as the plan keeps everyone indoors.

@@ -24,7 +24,7 @@ function inputOf(record: DependentRecord): DependentInput {
 }
 
 /**
- * Add a child or teen (spec 10.12): a blank form for any member; edit for the guardian or the
+ * Add a child or teen: a blank form for any member; edit for the guardian or the
  * admin. Null when the id is not one of the family's dependents or the viewer may not edit it.
  */
 export function loadDependent(viewer: InFamily, id: string | null): DependentPage | null {

@@ -8,7 +8,7 @@ import { MemberRow } from "../family/MemberRow";
 import { btn } from "../ui/styles";
 import { rowView } from "./rowView";
 
-/** The Sharma family's rows (design 10.3): me first, extra care, other adults, then Aarav and Riya with Kid card. */
+/** The Sharma family's rows: me first, extra care, other adults, then Aarav and Riya with Kid card. */
 export function FamilyRows({
   rows,
   query,

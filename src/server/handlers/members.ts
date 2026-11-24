@@ -9,7 +9,7 @@ import { paths } from "../repos/paths";
 import { joinCodeRecord, parsed } from "../repos/records";
 
 /**
- * `POST /api/family/leave` (spec 5.10) and `DELETE /api/family/members/{uid}` (admin removes a
+ * `POST /api/family/leave` and `DELETE /api/family/members/{uid}` (admin removes a
  * member, spec 5.9). Both take the member out with the dependents they added. An admin cannot
  * leave while others are in the family: they remove them first or delete the family.
  */
@@ -39,7 +39,7 @@ export async function removeMember(request: Request, deps: AppDeps, target: stri
     const found = await callerFamily(tx, uid);
     if (!found || !isAdmin(found.family, uid)) return "forbidden" as const;
     if (!found.family.memberUids.includes(target)) return "not_found" as const;
-    // Every code that exists now stops working for them; the admin can make a new one (stage 8 QA8-2).
+    // Every code that exists now stops working for them; the admin can make a new one.
     const codes = await Promise.all(
       (await familyCodes(tx, found.fid)).map(async (code) => ({
         code,

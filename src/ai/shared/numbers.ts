@@ -2,7 +2,7 @@ import { normaliseNumbers } from "./normalise";
 import { findTimes, isAllowedTime, withoutTimes, type ClockTime } from "./times";
 
 /**
- * "No air numbers, without false alarms" (spec 7.1). After normalising digits and number words,
+ * "No air numbers, without false alarms". After normalising digits and number words,
  * only these number tokens may stay: N95; PM2.5 / PM10 when not followed by a number; 112; the
  * fixed durations (5, 10, 15, 30 minutes; 1 hour); the input's allowed times; small counts ≤ 10.
  * Air numbers are slotted in by code, so anything else is a leak.

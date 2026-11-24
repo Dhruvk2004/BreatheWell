@@ -8,13 +8,13 @@ import severeDay from "./severe-day.json";
 import smogMorning from "./smog-morning.json";
 
 /**
- * The recorded demo days (spec 10.3), saved exactly as Open-Meteo returned them by
+ * The recorded demo days, saved exactly as Open-Meteo returned them by
  * `scripts/record-fixtures.mjs` and parsed with the same schemas as live data.
  */
 export const SCENARIO_IDS = ["smog-morning", "severe-day"] as const;
 export type ScenarioId = (typeof SCENARIO_IDS)[number];
 
-/** The recorded days plus the "Live today" fallback snapshot (Delhi, 20 Nov 2026, 4:30 pm; spec 10.3). */
+/** The recorded days plus the "Live today" fallback snapshot (Delhi, 20 Nov 2026, 4:30 pm). */
 export const RECORDED_IDS = [...SCENARIO_IDS, "live-fallback"] as const;
 export type RecordedId = (typeof RECORDED_IDS)[number];
 

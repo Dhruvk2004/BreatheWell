@@ -1,12 +1,12 @@
 import { wordsOf, normaliseWord } from "./words";
 
-/** One kin word with its Latin (incl. Hinglish) and Devanagari spellings (spec 7.7.9). */
+/** One kin word with its Latin (incl. Hinglish) and Devanagari spellings. */
 export interface KinWord {
   readonly key: string;
   readonly forms: readonly string[];
 }
 
-/** The kin-word list (`domain/names/kin.ts`, spec 7.7.9), EN/Latin ↔ Devanagari. */
+/** The kin-word list (`domain/names/kin.ts`), EN/Latin ↔ Devanagari. */
 export const KIN_WORDS: readonly KinWord[] = [
   { key: "papa", forms: ["papa", "पापा"] },
   { key: "mummy", forms: ["mummy", "mumma", "मम्मी"] },
@@ -34,7 +34,7 @@ export function kinWordsIn(text: string): string[] {
   return keys.filter((k, i) => keys.indexOf(k) === i);
 }
 
-/** A viewer's private aliases: kin key or name → member uid or "dep:<did>" (spec 9.1, ≤ 12 entries). */
+/** A viewer's private aliases: kin key or name → member uid or "dep:<did>" (≤ 12 entries). */
 export type Aliases = Readonly<Record<string, string>>;
 
 export const MAX_ALIASES = 12;
@@ -42,7 +42,7 @@ export const MAX_ALIAS_KEY = 20;
 
 /**
  * Kin words in a question that the viewer has not mapped yet: Breezy asks "Who do you mean by
- * 'Papa'?" for these before anything is sent (spec 7.7.9).
+ * 'Papa'?" for these before anything is sent.
  */
 export function unmappedKin(text: string, aliases: Aliases): string[] {
   return kinWordsIn(text).filter((key) => aliases[key] === undefined);

@@ -2,7 +2,7 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test, type Page } from "@playwright/test";
 
 /**
- * Signs a page in through the real path (as in Utsav): the Auth emulator issues a Google ID token,
+ * Signs a page in through the real path: the Auth emulator issues a Google ID token,
  * the browser posts it with the 18+ tick to `POST /api/session`, and the server mints the httpOnly
  * cookie with the Admin SDK. No test-only route exists.
  */
@@ -58,7 +58,7 @@ export const PUNE = {
 };
 
 /**
- * Signs in through the real button (review fix, spec 10.4): the 18+ tick, Continue, the web SDK's
+ * Signs in through the real button: the 18+ tick, Continue, the web SDK's
  * popup on the Auth emulator's Google page (`authEmulatorHost`), then `AuthClient` and `afterSignIn`.
  */
 export async function signInWithButton(page: Page, name: string, button = "Continue with Google") {

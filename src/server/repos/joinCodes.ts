@@ -19,7 +19,7 @@ export async function familyCodes(tx: Tx, fid: string): Promise<string[]> {
 
 /**
  * Writes a new code: valid for 24 h and 8 joins; `expireAt` lets the daily clean-up delete it one day
- * after expiry (spec 9.4). Only the server reads or writes `joinCodes` (spec 9.2).
+ * after expiry. Only the server reads or writes `joinCodes`.
  */
 export function writeCode(tx: Tx, code: string, fid: string, uid: string, now: Date): { code: string; expiresAt: string } {
   const record = codeRecord(now);

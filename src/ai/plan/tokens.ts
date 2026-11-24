@@ -1,5 +1,5 @@
 /**
- * The person tokens in plan text (spec 7.1): `{m1}` for an adult member, `{d1}` for a dependent.
+ * The person tokens in plan text: `{m1}` for an adult member, `{d1}` for a dependent.
  * One definition for the validator, the stored-words renderer and the prompt rules.
  */
 export const PLAN_TOKEN = /\{([md]\d+)\}/gu;

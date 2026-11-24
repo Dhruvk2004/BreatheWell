@@ -44,13 +44,13 @@ export interface FamilyView {
   readonly people: readonly PersonView[];
 }
 
-/** The family's air and the rules' day, or null pieces when the air is missing (spec 8.5). */
+/** The family's air and the rules' day, or null pieces when the air is missing. */
 export interface AirView {
   readonly day: FamilyDay | null;
   readonly fetchedAt: string | null;
   readonly timeZone: string;
   readonly stationNote: boolean;
-  /** The chip for members still setting up: Sensitive group, moderate activity, now (spec 5.11). */
+  /** The chip for members still setting up: Sensitive group, moderate activity, now. */
   readonly setupVerdict: Verdict | null;
 }
 
@@ -63,7 +63,7 @@ export interface Words {
 }
 
 /**
- * The plan's words on a page (spec 7.2, design G `PlanSourceLine`): Gemini's where they are still
+ * The plan's words on a page (design G `PlanSourceLine`): Gemini's where they are still
  * valid, keyed by person and activity id; anything missing shows its template text.
  */
 export interface PlanWords {
@@ -84,7 +84,7 @@ export interface PlanWords {
   readonly together: Words | null;
 }
 
-/** "This week your family avoided about 9 kg CO₂ and 6 car trips" (spec 7.5, F21), from `progress`. */
+/** "This week your family avoided about 9 kg CO₂ and 6 car trips", from `progress`. */
 export interface WeekTotals {
   readonly co2Kg: number;
   readonly carTrips: number;
@@ -97,9 +97,9 @@ export interface TodayPage {
   readonly joinCards: readonly { readonly uid: string; readonly name: string; readonly at: string }[];
   readonly words: PlanWords;
   readonly week: WeekTotals;
-  /** The bilingual "Share today's plan" text (F23): code text only, no health tags or cigarettes. */
+  /** The bilingual "Share today's plan" text: code text only, no health tags or cigarettes. */
   readonly shareText: string | null;
-  /** The community message for the family's home area (spec 10.13, "in the app"). */
+  /** The community message for the family's home area ("in the app"). */
   readonly communityHref: string;
 }
 
@@ -108,7 +108,7 @@ export interface ChecklistItem {
   readonly text: string;
   readonly addedByName: string;
   readonly done: boolean;
-  /** Dependents only: false when the text fails the kid-card checks (parent's view only, spec 7.7.6). */
+  /** Dependents only: false when the text fails the kid-card checks (parent's view only). */
   readonly onCard: boolean;
 }
 
@@ -127,13 +127,13 @@ export interface MemberPage {
   /** Today's ticked plan keys (activity ids). */
   readonly ticked: readonly string[];
   readonly canEdit: boolean;
-  /** Health condition names this viewer may see (spec 6.4): shared ones only; empty otherwise. */
+  /** Health condition names this viewer may see: shared ones only; empty otherwise. */
   readonly conditions: readonly NamedCondition[];
   readonly words: PlanWords;
   readonly swap: PlanSwapView | null;
 }
 
-/** What a kid card shows (spec 10.12), for the demo and for a family's dependent. */
+/** What a kid card shows, for the demo and for a family's dependent. */
 export interface KidCardData {
   readonly name: string;
   readonly band: Band;
@@ -141,7 +141,7 @@ export interface KidCardData {
   readonly plan: PersonPlan;
   readonly shareText: string;
   readonly checklist?: readonly ChecklistItem[];
-  /** A family's card (not the demo): who the ticks are for and today's ticked plan keys (spec 5.5 step 7). */
+  /** A family's card (not the demo): who the ticks are for and today's ticked plan keys. */
   readonly ticks?: { readonly forId: string; readonly done: readonly string[] };
 }
 
@@ -158,7 +158,7 @@ export interface InvitePage {
   readonly joinUrl: string | null;
 }
 
-/** `/join/[code]` before sign-in: the family name only after the server checks the code (spec 5.4). */
+/** `/join/[code]` before sign-in: the family name only after the server checks the code. */
 export type InvitePreview =
   | { readonly kind: "valid"; readonly code: string; readonly familyName: string; readonly adminName: string; readonly expiresAt: string }
   | { readonly kind: "expired"; readonly adminName: string }
@@ -173,7 +173,7 @@ export interface ProfilePage {
   readonly input: ProfileInput;
   readonly familyName: string | null;
   readonly isAdmin: boolean;
-  /** An admin with other members cannot leave or delete the account (spec 5.10). */
+  /** An admin with other members cannot leave or delete the account. */
   readonly mustStay: boolean;
   readonly dependents: readonly { readonly id: string; readonly name: string }[];
 }
@@ -187,7 +187,7 @@ export interface DependentPage {
   readonly canDelete: boolean;
 }
 
-/** Onboarding's starting point (spec 10.5). */
+/** Onboarding's starting point. */
 export interface OnboardingPage {
   readonly googleName: string;
   readonly input: ProfileInput | null;

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Lock, Pencil, Users } from "lucide-react";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { translator, type Lang } from "@/i18n/t";
-import { SignOutButton } from "../profile/AccountActions";
+import { SignOutButton } from "../profile/SignOutButton";
 
 /** The `bw-acct` cookie holds only initials ("NS"), set with the session (src/server/auth/cookies.ts). */
 export function accountInitials(cookie: string): string | null {
@@ -27,7 +27,7 @@ function useEscape(open: boolean, close: () => void) {
 }
 
 /**
- * Sign in, or the avatar menu once signed in (design 10.14): Profile · Family · Privacy · Sign out.
+ * Sign in, or the avatar menu once signed in: Profile · Family · Privacy · Sign out.
  * A disclosure button with a list of links (no ARIA menu role to get wrong); Escape closes it.
  */
 export function AccountMenu({ lang }: { lang: Lang }) {
