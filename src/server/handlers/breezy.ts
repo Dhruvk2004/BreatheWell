@@ -91,6 +91,7 @@ async function reply({ ctx, model, question, history }: Call, asker: Asker, deps
   const result = await askGemini(ctx.check, question, history, {
     model,
     reserve: () => reserveGeminiCall(asker.db, "breezy", deps.now()),
+    now: () => deps.now().getTime(),
   });
   const refusal = result.reply?.refusal ?? null;
   const cards = result.reply ? keptCards(resolveCards(result.reply.cards, ctx), refusal) : [];

@@ -108,4 +108,25 @@ describe("askGemini", () => {
     });
     expect((await askGemini(check, "q", "", { model: weird, reserve: async () => true })).outcome).toBe("server_error");
   });
+
+  it("asks once more after a quick 503 if 4 s are left, and not after a slow one", async () => {
+    let clock = 0;
+    const now = () => clock;
+    let calls = 0;
+    const busyThenOk = fakeModel(() => {
+      calls += 1;
+      clock += 2_000;
+      if (calls === 1) throw new ModelError("server_error");
+      return ok;
+    });
+    const quick = await askGemini(check, "q", "", { model: busyThenOk, reserve: async () => true, now });
+    expect(quick.outcome).toBe("ok");
+    expect(busyThenOk.calls.map((c) => c.timeoutMs)).toEqual([10_000, 8_000]);
+    const slow = fakeModel(() => {
+      clock += 7_000;
+      throw new ModelError("server_error");
+    });
+    expect((await askGemini(check, "q", "", { model: slow, reserve: async () => true, now })).outcome).toBe("server_error");
+    expect(slow.calls).toHaveLength(1);
+  });
 });

@@ -60,6 +60,12 @@ export function failureOf(error: unknown): ModelError {
 }
 
 /** One generation, with thinking off (thinking budget 0) and the SDK's retries off. */
+/**
+ * Thinking off, for speed. Flash-Lite models refuse `thinkingBudget` (400 "invalid argument") and
+ * answer fast without it, so they get no thinking config.
+ */
+export const thinkingOff = (model: string) => (/-lite\b/.test(model) ? {} : { thinkingConfig: { thinkingBudget: 0 } });
+
 async function generate(client: GenerateClient, model: string, request: JsonRequest): Promise<string> {
   const response = await client.models.generateContent({
     model,
@@ -70,7 +76,7 @@ async function generate(client: GenerateClient, model: string, request: JsonRequ
       responseJsonSchema: request.schema,
       temperature: request.temperature,
       maxOutputTokens: request.maxOutputTokens,
-      thinkingConfig: { thinkingBudget: 0 },
+      ...thinkingOff(model),
       abortSignal: AbortSignal.timeout(request.timeoutMs),
       httpOptions: { timeout: request.timeoutMs, retryOptions: { attempts: 1 } },
     },

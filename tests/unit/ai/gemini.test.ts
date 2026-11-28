@@ -32,6 +32,12 @@ describe("Gemini wrapper (adapted from Utsav)", () => {
     });
   });
 
+  it("sends no thinking config to Flash-Lite models, which refuse it", async () => {
+    const { client: c, generateContent } = client(async () => ({ text: "{}" }));
+    await createGeminiModel({ apiKey: "k", model: "gemini-3.5-flash-lite" }, c).generateJson(request);
+    expect(generateContent.mock.calls[0][0].config).not.toHaveProperty("thinkingConfig");
+  });
+
   it("turns empty, cut-off and HTTP failures into failure kinds", async () => {
     const run = (answer: () => Promise<{ text?: string; candidates?: { finishReason?: string }[] }>) =>
       createGeminiModel({ apiKey: "k", model: "m" }, client(answer).client).generateJson(request);
