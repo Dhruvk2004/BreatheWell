@@ -11,7 +11,7 @@ import { addRiya, joins, sharmaFamily } from "../helpers/family";
 import { replyToPrompt } from "../helpers/planReply";
 
 /**
- * The plan lock on real Firestore transactions (spec 7.2): two members opening Today at once make
+ * The plan lock on real Firestore transactions: two members opening Today at once make
  * one Gemini call, the other is told "busy"; when saving fails the claim is given back (lock
  * cleared, the try not counted), so the next request generates at once instead of waiting 40 s.
  */

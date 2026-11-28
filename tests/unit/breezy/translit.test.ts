@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import { tokeniseQuestion, type NamedPerson } from "@/domain/breezy/names";
 import { devanagariToLatin, sameNameAcrossScripts, soundKey } from "@/domain/names/translit";
 
-/** A stored name typed in the other script still becomes its token (review H3, spec 7.7.9). */
+/** A stored name typed in the other script still becomes its token. */
 const PEOPLE: readonly NamedPerson[] = [
   { id: "neha", kind: "adult", token: "m1", names: ["Neha"] },
   { id: "riya", kind: "dependent", token: "d2", names: ["Riya"] },

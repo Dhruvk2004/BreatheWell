@@ -2,10 +2,9 @@
  * Content Security Policy and the Firebase auth-helper proxy. No imports, so
  * `next.config.ts` can load it.
  *
- * Why no per-request nonce (spec 11.2 asks for nonces; deviation recorded in the build log): Next.js
- * applies nonces only to dynamically rendered pages, so every page would lose static rendering and
- * the CDN cache (Next.js CSP guide, "Static vs Dynamic Rendering with CSP"), against the efficiency
- * budget. Pages render no user-supplied HTML (React escapes text, no
+ * Why no per-request nonce: Next.js applies nonces only to dynamically rendered pages, so every
+ * page would lose static rendering and the CDN cache (Next.js CSP guide, "Static vs Dynamic
+ * Rendering with CSP"). Pages render no user-supplied HTML (React escapes text, no
  * `dangerouslySetInnerHTML`), so `'unsafe-inline'` for Next's bootstrap scripts is the accepted
  * trade-off. `script-src-attr 'none'` still blocks inline event handlers.
  */
@@ -54,6 +53,8 @@ export function csp({ dev, firebaseHost, authEmulator = "" }: CspOptions): strin
 /** Security headers on every response. Camera off: there is no in-app scanner. */
 export const SECURITY_HEADERS: ReadonlyArray<readonly [string, string]> = [
   ["X-Content-Type-Options", "nosniff"],
+  // Older browsers ignore CSP frame-ancestors; this header blocks framing there too (clickjacking).
+  ["X-Frame-Options", "DENY"],
   ["Referrer-Policy", "strict-origin-when-cross-origin"],
   ["Permissions-Policy", "camera=(), microphone=(), geolocation=(self)"],
   ["Strict-Transport-Security", "max-age=63072000; includeSubDomains"],
@@ -67,6 +68,7 @@ export const SECURITY_HEADERS: ReadonlyArray<readonly [string, string]> = [
  */
 export const AUTH_HELPER_HEADERS: ReadonlyArray<readonly [string, string]> = [
   ["Content-Security-Policy", "frame-ancestors 'self'; object-src 'none'; base-uri 'self'"],
+  ["X-Frame-Options", "SAMEORIGIN"],
   ["X-Content-Type-Options", "nosniff"],
   ["Referrer-Policy", "strict-origin-when-cross-origin"],
 ];

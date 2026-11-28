@@ -19,8 +19,8 @@ import { addRiya, joins, RIYA, sharmaFamily } from "../helpers/family";
 import { fakeModel, replyToPrompt } from "../helpers/planReply";
 
 /**
- * One family's whole journey across the slices, through the real handlers on the Firestore
- * emulator with Gemini faked (spec 11.4): sign up with the 18+ tick, create the family, add a child,
+ * One family's whole journey, through the real handlers on the Firestore
+ * emulator with Gemini faked: sign up with the 18+ tick, create the family, add a child,
  * join by code, Today's plan (Gemini ok, down, the 80% budget switch, the cap), ticks, a Breezy
  * question and its checklist action, the kid card, leaving and deleting with every doc cleaned up.
  */

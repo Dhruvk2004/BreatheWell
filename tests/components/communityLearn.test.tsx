@@ -29,7 +29,7 @@ const READY: CommunityPage = {
   },
 };
 
-describe("CommunityView (spec 10.13)", () => {
+describe("CommunityView", () => {
   it("shows both languages with lang, the copy buttons, WhatsApp and the AI label", () => {
     render(<CommunityView page={READY} lang="en" />);
     expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("Today's message for Green Park");
@@ -55,7 +55,7 @@ describe("CommunityView (spec 10.13)", () => {
   });
 });
 
-describe("Learn, signed in (spec 10.11)", () => {
+describe("Learn, signed in", () => {
   it("leads with your choices today, in whole-day cigarettes, and the CO₂ for the air", () => {
     const day = { outside: { count: 11, lessThanOne: false }, withPlan: { count: 1, lessThanOne: true }, co2Kg: 0.4 };
     render(<Learn lang="en" yourDay={day} />);

@@ -16,7 +16,7 @@ export interface Coordinates {
 
 /**
  * Hourly window for every live call: yesterday (for the 24-hour average) plus 5 forecast days
- * (the India horizon was checked on 21 Nov, build log). Local time via `timezone=auto`.
+ * (Open-Meteo's air-quality forecast covers India that far). Local time via `timezone=auto`.
  */
 const LIVE_WINDOW = { timezone: "auto", past_days: 1, forecast_days: 5 } as const;
 

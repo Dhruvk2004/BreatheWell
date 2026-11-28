@@ -4,7 +4,7 @@ import { LANGS } from "@/domain/time/format";
 import stored from "./storedBreezy.json";
 
 /**
- * The demo's stored Breezy chip answers (spec 7.7.2, 7.8: 0 live calls on page view), written once
+ * The demo's stored Breezy chip answers (a page view makes no live calls), written once
  * by `npm run demo:record-breezy` with a real key through the same prompt, validator and rules
  * re-check as a family's question. Keyed "scenario:chip:lang". Empty until a key exists: the demo
  * then shows the code's answer, labelled "Simple answer".

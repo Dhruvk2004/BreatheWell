@@ -7,7 +7,7 @@ import { MemoryDb } from "../../helpers/memoryDb";
 import { NOW } from "../../helpers/airDeps";
 import { fakeModel } from "../../helpers/planReply";
 
-/** The community cache's lock, its best-window match, and the band check (review M4, M5). */
+/** The community cache's lock, its best-window match, and the band check. */
 const WORDS: CommunityOutput = {
   en: { title: "Smog morning", body: "Keep morning walks indoors. Keep windows shut this morning.", together: "no burning." },
   hi: { title: "धुंध वाली सुबह", body: "सुबह की सैर घर के अंदर करें। सुबह खिड़कियाँ बंद रखें।", together: "कुछ न जलाएँ।" },

@@ -6,7 +6,7 @@ import { loadViewer } from "@/server/app/viewer";
 import { json, request, testApp } from "../../helpers/appDeps";
 import { addRiya, joins, sharmaFamily } from "../../helpers/family";
 
-/** `POST /api/breezy/action` (spec 7.7.4, 9.3): the server checks the target, the words and the rules again. */
+/** `POST /api/breezy/action`: the server checks the target, the words and the rules again. */
 const item = { en: "Carry the inhaler today", hi: "आज इनहेलर साथ रखें" };
 const checklist = (forId: string, over: object = {}) => ({
   type: "add_checklist",

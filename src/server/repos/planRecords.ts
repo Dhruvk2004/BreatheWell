@@ -5,7 +5,7 @@ import { LANGS } from "@/domain/time/format";
 import { planText } from "@/ai/plan/schema";
 
 /**
- * Stored family plans (spec 9.1 `plans/{date}` and `plans/{date}/members/{id}`). Gemini's words are
+ * Stored family plans (`plans/{date}` and `plans/{date}/members/{id}`). Gemini's words are
  * stored with their `{m1}` tokens and the token map, so names are filled in from the current
  * family on every read; each item keeps the rule result it was written for, so an item whose rule
  * changed since (a band change during the day) shows its template instead.

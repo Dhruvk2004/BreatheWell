@@ -35,7 +35,7 @@ const OK = {
   pending: { adultConfirmed: true as const, joinCode: null, next: null },
 };
 
-describe("Sign-in (spec 10.4)", () => {
+describe("Sign-in", () => {
   it("keeps Continue disabled until the 18+ tick, with the reason written", async () => {
     const client = fakeClient(OK);
     render(<GoogleSignIn lang="en" buttonLabel="Continue with Google" client={client} />);
@@ -92,7 +92,7 @@ describe("Sign-in (spec 10.4)", () => {
   });
 });
 
-describe("Join (spec 10.7, 5.11)", () => {
+describe("Join", () => {
   const signedOut = { signedIn: false, onboarded: false, familyName: null };
   const valid = { kind: "valid" as const, code: "K7PM4QXT", familyName: "Sharma family", adminName: "Neha", expiresAt: "x" };
 

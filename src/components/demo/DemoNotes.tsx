@@ -41,14 +41,14 @@ export function ScenarioNote({ data, lang }: { data: DemoData; lang: Lang }) {
   );
 }
 
-/** Severe day: GRAP and indoor-first plans (spec 8.3 override 2, 3 "Severe-day mode"). */
+/** Severe day: GRAP and indoor-first plans. */
 export function SevereNote({ lang }: { lang: Lang }) {
   const t = translator(lang);
   return (
     <p className="m-0 flex items-start gap-2.5 rounded-sm border-2 border-ink bg-card px-3.5 py-3 text-[0.9375em]">
       <OctagonAlert className="mt-0.5 size-5 shrink-0" aria-hidden="true" />
       <span>
-        <b>{t("demo.severe.title")}</b> {t("note.schools_may_close")} {t("demo.severe.grap")}
+        <strong>{t("demo.severe.title")}</strong> {t("note.schools_may_close")} {t("demo.severe.grap")}
       </span>
     </p>
   );

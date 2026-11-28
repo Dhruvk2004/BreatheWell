@@ -12,7 +12,7 @@ import type { YourDay } from "@/domain/impact/yourDay";
 /**
  * Learn: for a signed-in adult, "Your choices today" first; then the top
  * actions with their three levels, the picture, how we decide and our numbers. In the generic view
- * the cigarette comparison sits only in the collapsed "For adults: the numbers" panel (spec 6.4 🔒).
+ * the cigarette comparison sits only in the collapsed "For adults: the numbers" panel.
  */
 export function Learn({ lang, yourDay }: { lang: Lang; yourDay?: YourDay | null }) {
   const t = translator(lang);
@@ -48,7 +48,7 @@ function TopActions({ lang }: { lang: Lang }) {
             {i + 1}
           </span>
           <span>
-            <b>{t(`learn.top.${id}`)}</b>
+            <strong>{t(`learn.top.${id}`)}</strong>
             <WhyPanel lang={lang} factId={factId} forAir={factId === "metro_exposure" ? t("learn.metroAir", { kg: swapKg }) : undefined} />
           </span>
         </li>

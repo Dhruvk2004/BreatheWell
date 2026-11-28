@@ -50,7 +50,7 @@ export function RemoveMember({ member, lang, label }: { member: RemovalCopy; lan
   );
 }
 
-/** "Rahul joined via your code · Remove" (spec 5.3, design 10.8 admin card). */
+/** "Rahul joined via your code · Remove", shown to the admin. */
 export function JoinCard({ member, lang }: { member: RemovalCopy; lang: Lang }) {
   const t = translator(lang);
   return (

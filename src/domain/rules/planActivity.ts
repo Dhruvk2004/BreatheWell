@@ -48,14 +48,14 @@ function planFlexible(step: PlanStep, atUsual: HourJudgement): Outcome {
   return outcome(atUsual.verdict === "care" ? "protect" : "as_planned");
 }
 
-/** Today, or tomorrow once it is past 21:00; candidates start at the next full hour (spec 8.4 steps 2 and 9). */
+/** Today, or tomorrow once it is past 21:00; candidates start at the next full hour. */
 function planDay(env: PlanEnv): { date: string; fromHour: number } {
   const local = localTime(env.clock);
   return local.hour >= DAY_LAST_HOUR ? { date: addDays(local.date, 1), fromHour: 0 } : { date: local.date, fromHour: local.hour + 1 };
 }
 
 /**
- * The rule result for one activity (spec 8.3–8.4): the verdict at the usual time and what to change.
+ * The rule result for one activity: the verdict at the usual time and what to change.
  * Pure; `env.clock` is the injected clock (the real time live, `scenarioNow` in recorded demos).
  * The winter caution is judged on the planned date (tomorrow after 21:00), not the clock's date.
  * Null when there is no air data for the usual hour (no verdict).

@@ -27,7 +27,7 @@ const dayFor = (id: "smog-morning" | "severe-day", hour: number, viewerId: strin
   });
 };
 
-describe("planPerson and row order (spec 10.8)", () => {
+describe("planPerson and row order", () => {
   it("headlines the activity that needs the most care, then the earliest", () => {
     const env = envFor(bandDay("2024-11-18", "very_poor"), "2024-11-18T06:10", "igp");
     const riya = planPerson(DEMO_FAMILY[4], env);
@@ -49,7 +49,7 @@ describe("planPerson and row order (spec 10.8)", () => {
   });
 });
 
-describe("familyDay on the recorded days (spec 10.3)", () => {
+describe("familyDay on the recorded days", () => {
   it.each([6, 12, 16])("Smog morning at %i:00 has an Avoid and a switch_mode, three home tips and the week line", (hour) => {
     const day = dayFor("smog-morning", hour);
     const plans = day.rows.flatMap((r) => r.items.map((i) => i.plan));
@@ -68,7 +68,7 @@ describe("familyDay on the recorded days (spec 10.3)", () => {
     expect(dayFor("severe-day", 16).severeDay).toBe(false);
   });
 
-  it("shows no rows, tips or GRAP note without fresh-enough air (spec 8.5)", () => {
+  it("shows no rows, tips or GRAP note without fresh-enough air", () => {
     const { s, clock } = at("smog-morning", 6);
     const day = familyDay({
       air: s.air,
@@ -112,7 +112,7 @@ describe("familyDay on the recorded days (spec 10.3)", () => {
   });
 });
 
-describe("kid cards for the demo dependents (spec 10.12) 🔒", () => {
+describe("kid cards for the demo dependents 🔒", () => {
   it.each([
     ["smog-morning", 6],
     ["smog-morning", 16],

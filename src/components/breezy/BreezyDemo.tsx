@@ -13,7 +13,7 @@ import { PromptChips } from "./PromptChips";
 import { SuggestionCard } from "./SuggestionCard";
 
 /**
- * Breezy's public demo (spec 7.7.2, design 10.10 demo mode): chips only, never free typing, so no
+ * Breezy's public demo: chips only, never free typing, so no
  * visitor text reaches Gemini. Answers are stored Gemini words or the code's Simple
  * answer, each labelled; cards show what they would do and write nothing.
  */

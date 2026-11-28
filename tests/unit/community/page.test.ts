@@ -7,7 +7,7 @@ import { deps as airDeps, NOW } from "../../helpers/airDeps";
 import { MemoryDb } from "../../helpers/memoryDb";
 import { fakeModel } from "../../helpers/planReply";
 
-/** `/community` and `GET /api/community` (spec 7.6, 10.13): code header and footer, Gemini middle, template fallback. */
+/** `/community` and `GET /api/community`: code header and footer, Gemini middle, template fallback. */
 const WORDS = {
   en: {
     title: "Smog morning",

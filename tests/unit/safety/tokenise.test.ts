@@ -6,7 +6,7 @@ import { isEmergency } from "@/domain/safety/emergency";
 import { EMERGENCY_NEGATIVE, EMERGENCY_POSITIVE } from "../../fixtures/corpus/emergency";
 
 /**
- * Safety properties of the pure code in front of Gemini (spec 7.1, 7.7.9, 5.11): no name, name
+ * Safety properties of the pure code in front of Gemini: no name, name
  * word, alias or other-script spelling survives tokenisation, and the emergency matcher does not
  * depend on case, apostrophes or the words around the phrase.
  */

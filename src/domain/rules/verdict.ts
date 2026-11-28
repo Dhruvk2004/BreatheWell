@@ -7,7 +7,7 @@ export type Verdict = "go" | "care" | "avoid";
 
 type Row = Readonly<Record<Group, readonly [Verdict, Verdict, Verdict]>>;
 
-/** Band × group × (Light, Moderate, Hard), exactly as the spec 8.3 table. */
+/** Band × group × (Light, Moderate, Hard): the one verdict table. */
 const GUARDRAIL: Readonly<Record<Band, Row>> = {
   good: { everyday: ["go", "go", "go"], sensitive: ["go", "go", "go"], extra: ["go", "go", "go"] },
   satisfactory: { everyday: ["go", "go", "go"], sensitive: ["go", "go", "go"], extra: ["go", "go", "care"] },

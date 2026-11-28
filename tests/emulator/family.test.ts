@@ -8,7 +8,7 @@ import { request, testApp, type TestApp } from "../helpers/appDeps";
 import { addRiya, joins, sharmaFamily } from "../helpers/family";
 
 /**
- * The family flow against real Firestore (spec 11.4 integration): create, join with the code,
+ * The family flow against real Firestore: create, join with the code,
  * add and delete a dependent, remove a member and delete the admin's account, through the same
  * handlers and the Admin SDK adapter, with timestamps stored as Firestore Timestamps.
  */

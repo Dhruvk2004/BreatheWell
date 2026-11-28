@@ -10,7 +10,7 @@ import { NOW } from "../../helpers/airDeps";
 import { addRiya, joins, sharmaFamily } from "../../helpers/family";
 import { fakeModel, replyToPrompt } from "../../helpers/planReply";
 
-/** Today and Member plan with stored Gemini words (spec 7.2, 10.8, 10.9), the weekly line and the share text. */
+/** Today and Member plan with stored Gemini words, the weekly line and the share text. */
 const DATE = "2024-11-18";
 /** Gemini's quota day for 6:10 am IST on 18 Nov: still 17 Nov in California. */
 const QUOTA_DAY = "2024-11-17";
@@ -139,7 +139,7 @@ describe("Member plan with the family plan", () => {
   });
 });
 
-describe("Gemini budget (spec 7.8)", () => {
+describe("Gemini budget", () => {
   it("counts on Google's quota day (midnight Pacific), not the Indian date", async () => {
     const lateIst = new Date("2024-11-18T17:30:00Z"); // 11 pm IST on 18 Nov
     const nextIstMorning = new Date("2024-11-18T19:30:00Z"); // 1 am IST on 19 Nov

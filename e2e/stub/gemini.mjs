@@ -1,7 +1,7 @@
 // A local stand-in for the Gemini API (`generateContent`), for the signed-in Playwright suite only.
 // The app reaches it through GEMINI_TEST_BASE (loopback only). Its mode is set per test with
-// POST /gemini/mode {"mode": "ok" | "slow" | "down"}: "slow" answers after 20 s (design 10.8's
-// LCP check), "down" answers 503. The plan reply words only the home tip and Help the air; Breezy
+// POST /gemini/mode {"mode": "ok" | "slow" | "down"}: "slow" answers after 20 s (for the
+// slow-answer LCP check), "down" answers 503. The plan reply words only the home tip and Help the air; Breezy
 // and the community message get short replies the app's validator accepts.
 const SLOW_MS = 20_000;
 let mode = "ok";

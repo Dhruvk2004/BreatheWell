@@ -12,7 +12,7 @@ const series = joinSeries(
   bandDay("2024-11-19", "poor", { 13: "satisfactory", 14: "satisfactory" }),
 );
 
-describe("airSummary (spec 8.1, 8.4)", () => {
+describe("airSummary", () => {
   it("at 6 am describes today's best and worst windows and the 24-hour average", () => {
     const s = airSummary(series, istClock(`${DAY}T06:10`));
     expect(s).toMatchObject({ date: DAY, hour: 6, windowDay: "today", enoughForecast: true, best: { start: 14, end: 16 } });
@@ -35,7 +35,7 @@ describe("airSummary (spec 8.1, 8.4)", () => {
     expect(s.best).toEqual({ start: 13, end: 15 });
   });
 
-  it("with fewer than 6 future hours has no best or worst time (spec 5.11)", () => {
+  it("with fewer than 6 future hours has no best or worst time", () => {
     const s = airSummary(bandDay(DAY, "poor"), istClock(`${DAY}T19:10`));
     expect(s.enoughForecast).toBe(false);
     expect(s.best).toBeNull();
@@ -49,7 +49,7 @@ describe("airSummary (spec 8.1, 8.4)", () => {
   });
 });
 
-describe("pollutants and the morning weather (spec 10.2 items 6–7)", () => {
+describe("pollutants and the morning weather", () => {
   const air = airOf(bandDay(DAY, "poor"));
   it("rounds µg/m³ and shows CO in mg/m³, leaving out missing values", () => {
     const values = pollutantsAt(air, `${DAY}T06:00`);
@@ -65,7 +65,7 @@ describe("pollutants and the morning weather (spec 10.2 items 6–7)", () => {
   });
 });
 
-describe("who should take care (spec 10.2 item 5)", () => {
+describe("who should take care", () => {
   const ctx = { month: 11, region: "india" as const, hasStation: false };
   it("uses the one verdict table, the stricter of Sensitive and Extra care", () => {
     expect(whoShouldTakeCare("very_poor", ctx)).toEqual([

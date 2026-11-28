@@ -15,7 +15,7 @@ const HOME: HomeSetup = {
   indoorSmoking: "no",
 };
 
-describe("facts library (spec 7.4)", () => {
+describe("facts library", () => {
   it("has about 25 facts with unique ids, both languages and an https source", () => {
     expect(FACTS.length).toBeGreaterThanOrEqual(25);
     expect(new Set(FACTS.map((f) => f.id)).size).toBe(FACTS.length);
@@ -38,7 +38,7 @@ describe("facts library (spec 7.4)", () => {
   });
 });
 
-describe("home tips (spec 6.3, 8.4 step 8, 10.2)", () => {
+describe("home tips", () => {
   it("gives three band tips for Air now", () => {
     expect(bandTips("good", null)).toEqual(["open_windows_clean", "wet_mop", "chimney_on"]);
     expect(bandTips("moderate", 15)).toEqual(["air_out_best_hour", "wet_mop", "chimney_on"]);
@@ -64,7 +64,7 @@ describe("home tips (spec 6.3, 8.4 step 8, 10.2)", () => {
   });
 });
 
-describe("alternatives library (spec 7.5)", () => {
+describe("alternatives library", () => {
   const ctx: AlternativeContext = {
     main: "two_wheeler",
     options: ["metro"],

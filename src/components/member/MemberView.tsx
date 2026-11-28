@@ -11,7 +11,7 @@ import { PlanItems } from "./PlanItems";
 import { PlanSwap } from "./PlanSwap";
 import { TickBox } from "./TickBox";
 
-/** "18–59 · English · Admin" or "Child · added by Neha" (design 10.9 header). */
+/** "18–59 · English · Admin" or "Child · added by Neha". */
 function subtitle(person: PersonView, lang: Lang): string {
   const t = translator(lang);
   if (person.kind === "dependent")

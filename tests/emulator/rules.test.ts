@@ -4,7 +4,7 @@ import { afterAll, beforeAll, beforeEach, describe, it } from "vitest";
 import { dbAs, ROLES, rulesEnv, seed, SEED, type Role } from "./rulesSeed";
 
 /**
- * Security rules (spec 9.2): every role × every path × read / create / update / delete. Default
+ * Security rules: every role × every path × read / create / update / delete. Default
  * deny; the few client paths are opened deliberately. All other writes go through route handlers.
  */
 let env: RulesTestEnvironment;
@@ -41,7 +41,7 @@ const READ: Readonly<Record<string, readonly Role[]>> = {
   "stats/2026-11-21": [],
 };
 
-describe("reads (spec 9.2)", () => {
+describe("reads", () => {
   for (const [path, allowed] of Object.entries(READ))
     it.each(ROLES)(`${path} read by %s`, async (role) => {
       const read = getDoc(doc(dbAs(env, role), path));
@@ -73,7 +73,7 @@ const SERVER_ONLY = [
   "users/member",
 ];
 
-describe("server-only writes (spec 9.2)", () => {
+describe("server-only writes", () => {
   for (const path of SERVER_ONLY)
     it.each(ROLES)(`${path}: %s can neither write nor delete`, async (role) => {
       const db = dbAs(env, role);
@@ -83,7 +83,7 @@ describe("server-only writes (spec 9.2)", () => {
     });
 });
 
-describe("own profile (spec 9.2; stage 7 AUTH-3: every write goes through the server)", () => {
+describe("own profile (every write goes through the server)", () => {
   it.each(ROLES)("users/member updated by %s: refused, even for the owner's own profile fields", async (role) => {
     const write = updateDoc(doc(dbAs(env, role), "users/member"), {
       name: "Neha",
@@ -112,7 +112,7 @@ describe("own profile (spec 9.2; stage 7 AUTH-3: every write goes through the se
     await assertFails(deleteDoc(doc(db, "users/member")));
   });
 
-  it.each(ROLES)("member doc updated by %s: server only (review fix, slice 3)", async (role) => {
+  it.each(ROLES)("member doc updated by %s: server only", async (role) => {
     const db = dbAs(env, role);
     for (const change of [
       { ageGroup: "60plus", name: "Dadaji" },

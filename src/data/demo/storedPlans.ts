@@ -4,7 +4,7 @@ import { planRecord, sectionRecord, type StoredPlan } from "@/server/repos/planR
 import stored from "./storedPlans.json";
 
 /**
- * The demo's stored 6 am Gemini plans (spec 10.3, 7.8: 0 live calls on page view), written once by
+ * The demo's stored 6 am Gemini plans (a page view makes no live calls), written once by
  * `npm run demo:record-plans` with a real key, the same prompt and the same validator as families.
  * Empty until a key exists: the demo then shows the template, labelled "Simple plan".
  */

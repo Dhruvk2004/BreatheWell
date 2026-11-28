@@ -7,7 +7,7 @@ import type { Tx } from "@/server/db/types";
 import { json, request, testApp } from "../../helpers/appDeps";
 import { addRiya, joins, RIYA, sharmaFamily } from "../../helpers/family";
 
-/** `POST /api/breezy/action` after stage 7: AI-1, AI-9 (stage 6 B1), PT-3 and AUTH-4. */
+/** `POST /api/breezy/action`: the card's language, the same safety checks as the reply, and membership checked on write. */
 const checklist = (forId: string, item: { en: string; hi: string }) => ({
   type: "add_checklist",
   forId,
@@ -31,7 +31,7 @@ async function setup() {
   return { app, fid, riya, act, kidCard };
 }
 
-describe("onCard follows the kid card's own language (AI-9)", () => {
+describe("onCard follows the kid card's own language", () => {
   it("an English card shows a clean English item even when the Hindi text fails, and says so", async () => {
     const { act, riya, kidCard } = await setup();
     const response = await act(checklist(riya, { en: "Carry your water bottle", hi: "बीमार हो तो बताना" }));
@@ -47,7 +47,7 @@ describe("onCard follows the kid card's own language (AI-9)", () => {
   });
 });
 
-describe("the action route runs the same checks as the reply (AI-1, AI-5, PT-3)", () => {
+describe("the action route runs the same checks as the reply", () => {
   it.each([
     { en: "Play outside at eight am", hi: "आज अंदर खेलें" },
     { en: "Play inside today", hi: "सुबह ८ बजे बाहर खेलें" },
@@ -72,7 +72,7 @@ describe("the action route runs the same checks as the reply (AI-1, AI-5, PT-3)"
   });
 });
 
-describe("membership is checked in the writing transaction (AUTH-4)", () => {
+describe("membership is checked in the writing transaction", () => {
   it("an action in flight when the adder is removed writes nothing", async () => {
     const { app, fid, act } = await setup();
     const realTx = app.db.transaction.bind(app.db);

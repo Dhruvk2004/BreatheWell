@@ -4,7 +4,7 @@ import type { ActivityPlan } from "@/domain/rules/plan";
 import { formatHour, formatTime, parseHhMm, type Lang } from "@/domain/time/format";
 
 /**
- * The template plan's one-line row text (spec 7.2 fallback, design 10.8 "one line"): what the
+ * The template plan's one-line row text: what the
  * person changes, written by code from the rule result, in English or Hindi. It is what every row
  * shows before (or instead of) Gemini's wording, labelled "Simple plan". Every time comes from the
  * rule; nothing here decides a verdict.

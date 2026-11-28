@@ -24,7 +24,7 @@ export interface FieldRules {
   readonly forDependent: boolean;
 }
 
-/** Length caps by field and language (design round 2: Today rows EN ≤ 45, HI ≤ 40; doThis EN ≤ 110, HI ≤ 90). */
+/** Length caps by field and language (Today rows EN ≤ 45, HI ≤ 40; doThis EN ≤ 110, HI ≤ 90). */
 export const LENGTH_CAPS = {
   rowLine: { en: 45, hi: 40 },
   doThis: { en: 110, hi: 90 },

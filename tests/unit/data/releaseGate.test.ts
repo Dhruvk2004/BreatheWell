@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { storedDemoPlanFor, storedDemoPlans } from "@/data/demo/storedPlans";
 
 /**
- * Release gate (slice 2 blocker H1, review slice 4 H3): the judges' demo must show real Gemini
+ * Release gate: the judges' demo must show real Gemini
  * text at 6 am. It runs only with `npm run test:release` (RELEASE_CHECK=1) and fails while
  * `src/data/demo/storedPlans.json` has no smog-morning plan; run `npm run demo:record-plans` with
  * a key first. Once recorded, the owner adds `npm run test:release` to CI.

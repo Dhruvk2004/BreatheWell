@@ -1,5 +1,8 @@
 import { createHash } from "node:crypto";
 
+/** Expired windows are swept only once this many keys are held, so a normal request does no extra work. */
+const PRUNE_AT = 5000;
+
 /**
  * Fixed-window rate limiter kept in memory: public per-IP limits never write to
  * Firestore, so a crawler cannot spend the Spark write quota. Per instance, so best effort.
@@ -29,7 +32,7 @@ export class RateLimiter {
   }
 
   private prune(now: number): void {
-    if (this.windows.size < 5000) return;
+    if (this.windows.size < PRUNE_AT) return;
     for (const [key, window] of this.windows) if (window.resetAt <= now) this.windows.delete(key);
   }
 }

@@ -21,7 +21,7 @@ const openDialog = () => {
   return within(dialog);
 };
 
-describe("Family settings (spec 10.14)", () => {
+describe("Family settings", () => {
   it("gives the admin the details form, members with how they joined, children and the danger zone", async () => {
     const { app, viewer } = await sharmaApp();
     const { page, joinedAt, code } = await loadSettingsPage(await viewer("neha"), app.deps, "en");
@@ -71,7 +71,7 @@ describe("Family settings (spec 10.14)", () => {
   });
 });
 
-describe("Profile (spec 10.15)", () => {
+describe("Profile", () => {
   it("lets a member leave (naming the children that go too) and blocks the admin with members", async () => {
     const { app, viewer } = await sharmaApp();
     const rahul = await loadProfile(await viewer("rahul"), app.deps);
@@ -98,7 +98,7 @@ describe("Profile (spec 10.15)", () => {
     );
   });
 
-  it("a lone admin's delete confirm says the family and the children go too (spec 9.3)", async () => {
+  it("a lone admin's delete confirm says the family and the children go too", async () => {
     const { app, viewer } = await sharmaApp();
     const neha = await loadProfile(await viewer("neha"), app.deps);
     if (!neha) throw new Error("no profile");
@@ -124,7 +124,7 @@ describe("Profile (spec 10.15)", () => {
   });
 });
 
-describe("Invite (spec 10.7)", () => {
+describe("Invite", () => {
   it("shows the code, a QR of the link, Copy link, full screen and Make a new code", async () => {
     const { app, viewer } = await sharmaApp();
     const page = await loadInvite(await viewer("neha"), app.deps, "https://app.test");

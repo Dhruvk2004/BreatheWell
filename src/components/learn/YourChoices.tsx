@@ -8,7 +8,7 @@ const figure = (f: CigaretteFigure, lang: Lang): string =>
   f.lessThanOne ? translator(lang)("learn.you.lessThanOne") : translator(lang)("learn.you.count", { count: f.count });
 
 /**
- * "Your choices today" (spec 10.11 item 1, design 10.11 signed-in): outside all day against the day
+ * "Your choices today" (signed in): outside all day against the day
  * with the plan, in whole-day cigarettes (adults only, signed in), and the CO₂ avoided for the air.
  */
 export function YourChoices({ day, lang }: { day: YourDay; lang: Lang }) {

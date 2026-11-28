@@ -4,7 +4,7 @@ import { translator, type Lang, type MessageKey } from "@/i18n/t";
 import type { BreezyPerson } from "@/view/breezy";
 
 /**
- * The words around a suggestion card (spec 7.7.3–7.7.4, design 10.10): "For: Dadaji · Today, 3:00
+ * The words around a suggestion card: "For: Dadaji · Today, 3:00
  * pm", the add button, the confirm question and the note after adding. Self, member and dependent
  * each get their own sentence; no pronouns.
  */

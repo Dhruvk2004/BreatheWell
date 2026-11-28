@@ -6,7 +6,7 @@ import { kidCardProblems, kidShareText } from "@/domain/libraries/kid";
 import { recordedDemo } from "@/server/demo/demoPage";
 
 /**
- * The kid card (spec 7.2, 10.12): no numbers but clock times, no air units, no cigarettes, fear or
+ * The kid card: no numbers but clock times, no air units, no cigarettes, fear or
  * health words, for every band, hour, language and dependent; and the check itself, as properties.
  */
 const strings = (value: unknown): string[] =>

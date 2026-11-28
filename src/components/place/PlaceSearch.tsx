@@ -127,6 +127,10 @@ interface SuggestionsProps {
   readonly optionId: (i: number) => string;
 }
 
+/**
+ * The WAI-ARIA combobox pattern: the keyboard stays in the input (arrows, Enter, Escape move
+ * `aria-activedescendant`), so the options take only a mouse or touch click.
+ */
 function Suggestions({ results, active, open, choose, label, listId, optionId }: SuggestionsProps) {
   return (
     <ul
@@ -137,6 +141,7 @@ function Suggestions({ results, active, open, choose, label, listId, optionId }:
       className="m-0 list-none overflow-hidden rounded-xs border border-rule bg-card p-0 shadow-raised"
     >
       {results.map((s, i) => (
+        // eslint-disable-next-line jsx-a11y/click-events-have-key-events -- keys are handled on the input
         <li
           key={s.id}
           id={optionId(i)}

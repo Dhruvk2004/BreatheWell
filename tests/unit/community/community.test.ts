@@ -10,7 +10,7 @@ import { MemoryDb } from "../../helpers/memoryDb";
 import { NOW } from "../../helpers/airDeps";
 import { fakeModel } from "../../helpers/planReply";
 
-/** The community message (spec 7.6): code inputs only, both languages checked, the shared daily cache. */
+/** The community message: code inputs only, both languages checked, the shared daily cache. */
 const WORDS: CommunityOutput = {
   en: {
     title: "Smog morning in our area",

@@ -6,6 +6,9 @@ import { airHref } from "@/components/place/airHref";
 import { recordedDemo } from "@/server/demo/demoPage";
 import geocodePune from "../fixtures/api/geocode-pune.json";
 import reverseDelhi from "../fixtures/api/reverse-delhi.json";
+// The search and the location lookup load these lazily; loading them here first keeps the timing deterministic.
+import "@/data/openMeteo/geocode";
+import "@/data/bigDataCloud";
 
 const demo = recordedDemo("smog-morning", 6, "neha");
 const push = vi.fn();
@@ -16,9 +19,13 @@ const respond = (body: unknown, ok = true) => Promise.resolve(new Response(JSON.
 beforeEach(() => push.mockReset());
 afterEach(() => vi.useRealTimers());
 
-describe("landing (spec 10.1)", () => {
-  // Deferred Must items, tracked here so the 25 Nov freeze cannot miss them (build review slice 2, M7).
-  it.todo("shows the 'For your society or school' card linking to the community message (10.1 item 6, F14, slice 5)");
+describe("landing", () => {
+  it("shows the 'For your society or school' card, linking to a filled-in community message", () => {
+    render(<Landing demo={demo} lang="en" />);
+    expect(screen.getByRole("heading", { name: "For your society or school" })).toBeInTheDocument();
+    const link = screen.getByRole("link", { name: "See today's community message" });
+    expect(link.getAttribute("href")).toMatch(/^\/community\?place=Green\+Park%2C\+Delhi&lat=28\.56&lon=77\.21&cc=IN$/);
+  });
 
   it("shows the question, the location note, both ways in and real sample chips", () => {
     render(<Landing demo={demo} lang="en" />);
@@ -37,7 +44,7 @@ describe("landing (spec 10.1)", () => {
   });
 });
 
-describe("check the air near me (spec 5.1 steps 2–4)", () => {
+describe("check the air near me (geolocation)", () => {
   it("goes to Air now with the place name and rounded coordinates", async () => {
     vi.stubGlobal(
       "fetch",
@@ -49,7 +56,7 @@ describe("check the air near me (spec 5.1 steps 2–4)", () => {
     Object.defineProperty(navigator, "geolocation", { value: { getCurrentPosition }, configurable: true });
     render(<Landing demo={demo} lang="en" />);
     await userEvent.click(screen.getByRole("button", { name: "Check the air near me" }));
-    expect(push).toHaveBeenCalledWith(expect.stringMatching(/^\/air\?place=.+&lat=28\.56&lon=77\.21&cc=IN$/));
+    await vi.waitFor(() => expect(push).toHaveBeenCalledWith(expect.stringMatching(/^\/air\?place=.+&lat=28\.56&lon=77\.21&cc=IN$/)));
   });
 
   it("on denial says so, moves focus to the search and offers Use my location", async () => {
@@ -82,7 +89,7 @@ describe("check the air near me (spec 5.1 steps 2–4)", () => {
   });
 });
 
-describe("city search combobox (spec 10.1 item 4)", () => {
+describe("city search combobox", () => {
   const type = async (text: string) => {
     fireEvent.change(screen.getByRole("combobox"), { target: { value: text } });
     await act(async () => {

@@ -3,7 +3,7 @@ import type { ValidCard } from "@/ai/breezy/validate";
 import { resolveCard, resolveCards } from "@/server/breezy/cards";
 import { card, demoContext } from "../../helpers/breezy";
 
-/** Cards as shown (spec 7.7.3, 7.7.7): ids for tokens, names filled in, the rules run again for every time. */
+/** Cards as shown: ids for tokens, names filled in, the rules run again for every time. */
 const ctx = demoContext();
 const valid = (over: Parameters<typeof card>[0] = {}): ValidCard => {
   const { forMemberId, ...rest } = card(over);

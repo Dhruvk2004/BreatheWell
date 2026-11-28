@@ -64,7 +64,7 @@ export function safeNext(next: string | null | undefined): string | null {
   return url.origin === SENTINEL && !path.startsWith("//") ? path.slice(0, 200) : null;
 }
 
-/** Where a fresh session goes (spec 5.2–5.4): back to `next`, else Today, else onboarding. */
+/** Where a fresh session goes: back to `next`, else Today, else onboarding. */
 export function afterSignInPath(state: { onboarded: boolean; hasFamily: boolean }, next: string | null): string {
   if (state.onboarded && state.hasFamily) return safeNext(next) ?? "/today";
   return "/onboarding";

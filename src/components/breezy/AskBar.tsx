@@ -5,7 +5,7 @@ import { useId, useState } from "react";
 import { MAX_QUESTION } from "@/domain/breezy/question";
 import { translator, type Lang } from "@/i18n/t";
 
-/** The question box (design G `AskBar`): at most 300 characters with a counter, Send, and a language hint. */
+/** The question box: at most 300 characters with a counter, Send, and a language hint. */
 export function AskBar({ lang, busy, onSend }: { lang: Lang; busy: boolean; onSend: (text: string) => void }) {
   const t = translator(lang);
   const [text, setText] = useState("");

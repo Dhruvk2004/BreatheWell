@@ -11,8 +11,8 @@ const PHONE_LINKS = [
 ] as const;
 
 /**
- * Footer on every page: Privacy · About the data · Open-Meteo credit · For adults (18+) (spec 10,
- * 10.17), led on phones by Air now · Sample family · Learn.
+ * Footer on every page: Privacy · About the data · Open-Meteo credit · For adults (18+),
+ * led on phones by Air now · Sample family · Learn.
  */
 export function SiteFooter({ lang }: { lang: Lang }) {
   const t = translator(lang);

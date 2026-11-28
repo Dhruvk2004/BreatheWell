@@ -1,4 +1,5 @@
 import type { z } from "zod";
+import { announceAccountChange } from "./accountEvents";
 
 /**
  * The browser side of the JSON API: same-origin requests with the session cookie,
@@ -52,6 +53,8 @@ export async function apiRequest<S extends z.ZodType>(
     body: body === undefined ? undefined : JSON.stringify(body),
   });
   const json: unknown = await response.json().catch(() => undefined);
+  // A sign-in, profile save or sign-out may have changed the account cookie.
+  if (method !== "GET") announceAccountChange();
   if (!response.ok) throw errorOf(response.status, json);
   return schema.parse(json);
 }

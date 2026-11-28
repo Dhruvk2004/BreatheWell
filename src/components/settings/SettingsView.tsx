@@ -86,9 +86,9 @@ function Members({ page, joinedAt, lang }: Omit<Props, "code">) {
           .map((p) => (
             <li key={p.id} className={ROW}>
               <span className="grid">
-                <b>
+                <strong>
                   {[p.name, p.id === family.viewerUid ? t("set.you") : "", p.admin ? `· ${t("tag.admin")}` : ""].filter(Boolean).join(" ")}
-                </b>
+                </strong>
                 <span className="text-sm text-ink-muted">{line(p)}</span>
               </span>
               {family.isAdmin && p.id !== family.viewerUid && (
@@ -107,7 +107,7 @@ function AdminTail({ familyName, code, alone, lang }: { familyName: string; code
   return (
     <>
       <div className="flex flex-wrap items-center justify-between gap-2 rounded-[16px] border border-rule bg-card p-4">
-        <b>{code ? `${t("set.invite")} · ${formatCode(code)}` : t("set.invite")}</b>
+        <strong>{code ? `${t("set.invite")} · ${formatCode(code)}` : t("set.invite")}</strong>
         <Link href="/family/invite" className={`${btn.secondary} ${btn.small}`}>
           {t("set.openInvite")}
         </Link>
@@ -127,7 +127,7 @@ function ChildrenList({ people, page, lang }: { people: readonly PersonView[]; p
         return (
           <li key={p.id} className={ROW}>
             <span className="grid">
-              <b>{p.name}</b>
+              <strong>{p.name}</strong>
               <span className="text-sm text-ink-muted">
                 {t(`age.${p.ageGroup}`)} · {t("set.addedBy", { name: p.guardianName ?? "" })}
                 {!canManage && ` · ${t("set.readOnlyChildren")}`}

@@ -5,13 +5,13 @@ import { findTimes } from "@/ai/shared/times";
 import { asViewer, card, demoContext, reply } from "../../helpers/breezy";
 
 /**
- * Stage 7 AI-1 and AI-6 🔒: the rules judge every time in Breezy's text, however it is written.
+ * 🔒 The rules judge every time in Breezy's text, however it is written.
  * Demo Smog morning, viewer Dadaji (m3): his morning walk is Avoid.
  */
 const en = asViewer(demoContext().check, "m3");
 const hi = asViewer(demoContext("smog-morning", "hi").check, "m3");
 
-describe("times in words, Devanagari digits and spoken forms (AI-1)", () => {
+describe("times in words, Devanagari digits and spoken forms", () => {
   it("still rejects the digit forms", () => {
     expect(validateBreezy(reply("You can go for your walk at 8 am today."), en)).toBeNull();
     expect(validateBreezy(reply("आप सुबह 8 बजे सैर पर जा सकते हैं।", [], "hi"), hi)).toBeNull();
@@ -63,7 +63,7 @@ describe("times in words, Devanagari digits and spoken forms (AI-1)", () => {
   });
 });
 
-describe("outing words the rules judge (AI-6)", () => {
+describe("outing words the rules judge", () => {
   it.each(["Do yoga on the terrace at 8 am.", "Exercise in the open at 8 am.", "Go running at 8 am."])(
     "rejects %s at an Avoid hour",
     (text) => {

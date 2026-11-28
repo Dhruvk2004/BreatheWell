@@ -55,7 +55,7 @@ export function sameStep(steps: readonly Step[], current: Step): number {
   return Math.max(0, steps.indexOf(current));
 }
 
-/** Picking an activity fills its defaults (spec 6.1 6a–6c); unpicking drops it. */
+/** Picking an activity fills its defaults; unpicking drops it. */
 export function toggleActivity(activities: readonly ActivityInput[], type: AdultChoice): ActivityInput[] {
   if (activities.some((a) => a.type === type)) return activities.filter((a) => a.type !== type);
   const { band, flex, duration } = CHOICE_DEFAULTS[type];

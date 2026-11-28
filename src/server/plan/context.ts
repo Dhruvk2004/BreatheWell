@@ -8,8 +8,8 @@ import { plannedPeople, UNKNOWN_HOME, type FamilyPlanDay } from "../app/familyPl
 import type { FamilyBundle } from "../repos/family";
 
 /**
- * Turns the family and the rules' day into the pseudonymised plan request and its checks (spec
- * 7.1, 7.2). Names stay here, on the server: they go only to the validator, which rejects any reply
+ * Turns the family and the rules' day into the pseudonymised plan request and its checks.
+ * Names stay here, on the server: they go only to the validator, which rejects any reply
  * that uses one, and fill the `{m1}` tokens when a page renders.
  */
 export function namesById(bundle: FamilyBundle): Record<string, string> {

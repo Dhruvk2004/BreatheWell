@@ -6,7 +6,7 @@ import { HOME, HOME_SETUP, joins, sharmaFamily, signUp } from "../../helpers/fam
 
 const body = { name: "Sharma family", home: HOME, homeSetup: HOME_SETUP };
 
-describe("POST /api/family (spec 5.2, 10.6, 9.3)", () => {
+describe("POST /api/family", () => {
   it("makes the creator the admin and first member, stores the rounded home and the first code", async () => {
     const app = testApp();
     const { fid, code } = await sharmaFamily(app);
@@ -49,7 +49,7 @@ describe("POST /api/family (spec 5.2, 10.6, 9.3)", () => {
   });
 });
 
-describe("PATCH /api/family (spec 10.14)", () => {
+describe("PATCH /api/family", () => {
   it("lets the admin change the name, home and set-up and marks the plan stale", async () => {
     const app = testApp();
     const { fid } = await sharmaFamily(app);
@@ -82,7 +82,7 @@ describe("PATCH /api/family (spec 10.14)", () => {
   });
 });
 
-describe("POST /api/family/code (spec 5.9)", () => {
+describe("POST /api/family/code", () => {
   it("replaces the old code at once, admin only", async () => {
     const app = testApp();
     const { fid, code } = await sharmaFamily(app);

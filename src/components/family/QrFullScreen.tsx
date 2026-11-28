@@ -35,6 +35,7 @@ export function QrFullScreen({ link, code, validTill, familyName, lang }: Props)
         <div className="relative grid min-h-full content-center justify-items-center gap-4 px-6 pt-16 pb-8 text-center">
           <button
             type="button"
+            // eslint-disable-next-line jsx-a11y/no-autofocus -- a modal dialog's initial focus (WAI-ARIA dialog pattern)
             autoFocus
             onClick={() => dialog.current?.close()}
             className={`${btn.secondary} ${btn.small} absolute top-4 right-4`}

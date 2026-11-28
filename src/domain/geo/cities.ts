@@ -13,7 +13,7 @@ export interface City {
   readonly lon: number;
   /** Half-width of the city's square of grid cells, in 0.1° cells (1 → 3 × 3 cells). */
   readonly cells: number;
-  /** Delhi NCR, Punjab, Haryana, Uttar Pradesh or Bihar (spec 8.3 override 4). */
+  /** Delhi NCR, Punjab, Haryana, Uttar Pradesh or Bihar: the Indo-Gangetic Plain, for the winter caution. */
   readonly igp: boolean;
   /** Delhi NCR: "Official stations may read higher" on every verdict screen. */
   readonly ncr: boolean;

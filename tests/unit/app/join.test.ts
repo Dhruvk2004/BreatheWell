@@ -9,7 +9,7 @@ import { NOW } from "../../helpers/airDeps";
 const join = (app: ReturnType<typeof testApp>, uid: string, code: string) =>
   joinFamily(request("/api/join", { uid, body: { code } }), app.deps);
 
-describe("POST /api/join (spec 5.3–5.4, 5.11, 9.3)", () => {
+describe("POST /api/join", () => {
   it("adds the member with the join logged, uses the code once and marks the plan stale", async () => {
     const app = testApp();
     const { fid, code } = await sharmaFamily(app);
@@ -39,7 +39,7 @@ describe("POST /api/join (spec 5.3–5.4, 5.11, 9.3)", () => {
     });
   });
 
-  it("answers every error from spec 5.11 without leaking more than it should", async () => {
+  it("answers every join error without leaking more than it should", async () => {
     const app = testApp();
     const { code } = await sharmaFamily(app);
     await signUp(app, "x", "X");
@@ -63,7 +63,7 @@ describe("POST /api/join (spec 5.3–5.4, 5.11, 9.3)", () => {
     expect(await json(full)).toEqual({ kind: "full", familyName: "Sharma family", adminName: "Neha" });
     app.db.docs.set(`families/${fid}`, { ...app.db.docs.get(`families/${fid}`), memberUids: ["neha"] });
     app.db.docs.set(`joinCodes/${code}`, { ...app.db.docs.get(`joinCodes/${code}`), uses: 8 });
-    // Spec 5.11: an expired code names the admin's first name only, never the family.
+    // An expired code names the admin's first name only, never the family.
     const expired = await json(await join(app, "a6", code));
     expect(expired).toEqual({ kind: "expired", adminName: "Neha" });
     expect(expired).not.toHaveProperty("familyName");
@@ -90,7 +90,7 @@ describe("POST /api/join (spec 5.3–5.4, 5.11, 9.3)", () => {
     expect(countAttempt(first, new Date(NOW.getTime() + 25 * 3_600_000)).next.dayCount).toBe(1);
   });
 
-  it("refuses a join or a new family without the 18+ confirmation on the user doc (spec 9.3)", async () => {
+  it("refuses a join or a new family without the 18+ confirmation on the user doc", async () => {
     const app = testApp();
     const { code } = await sharmaFamily(app);
     await signUp(app, "kid", "Kid");

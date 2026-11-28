@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
 
-/** A recorded demo answer (spec 7.7.2): shown with the assistant label instead of "Simple answer". */
+/** A recorded demo answer: shown with the assistant label instead of "Simple answer". */
 vi.mock("@/data/demo/storedBreezy", () => ({
   storedBreezyKey: (s: string, c: string, l: string) => `${s}:${c}:${l}`,
   storedBreezyFor: (key: string) =>

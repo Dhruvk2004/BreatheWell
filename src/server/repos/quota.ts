@@ -16,8 +16,8 @@ import { paths } from "./paths";
 export type Placement = "plan" | "community" | "breezy";
 
 /**
- * The free-tier limits assumed until the owner reads the project's real RPM/RPD in AI Studio (build
- * log, slice 1 check 2). Deliberately low, so the design holds if Google cuts the free tier.
+ * Assumed free-tier limits; the project's real RPM/RPD are shown in AI Studio.
+ * Deliberately low, so the design holds if Google cuts the free tier.
  */
 export const GEMINI_LIMITS = { rpd: 250, rpm: 10 } as const;
 

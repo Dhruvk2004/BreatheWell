@@ -35,7 +35,7 @@ export async function closeFamily(tx: Tx, fid: string): Promise<void> {
 }
 
 /**
- * Deletes a family whose admin is alone (spec 10.14 Danger zone, 5.10): every document under it
+ * Deletes a family whose admin is alone: every document under it
  * (dependents, items, progress, plans) and its join codes. The tree goes first, so a failure
  * part-way leaves the user pointing at a missing family, which the app treats as "no family".
  */

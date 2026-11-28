@@ -10,7 +10,7 @@ import { joinCodeRecord, parsed } from "../repos/records";
 
 /**
  * `POST /api/family/leave` and `DELETE /api/family/members/{uid}` (admin removes a
- * member, spec 5.9). Both take the member out with the dependents they added. An admin cannot
+ * member). Both take the member out with the dependents they added. An admin cannot
  * leave while others are in the family: they remove them first or delete the family.
  */
 export async function leaveFamily(request: Request, deps: AppDeps): Promise<Response> {

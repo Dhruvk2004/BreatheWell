@@ -9,7 +9,7 @@ import { reply } from "../../helpers/breezy";
 import { joins, sharmaFamily } from "../../helpers/family";
 import { fakeModel } from "../../helpers/planReply";
 
-/** Names never sent (spec 7.0, 7.7.9) 🔒: stage 7 AI-3, AI-8 and PT-2. */
+/** Names never sent 🔒: unplanned members, disguised spellings, honorifics and near spellings. */
 const people: NamedPerson[] = [
   { id: "d2", kind: "dependent", token: "d2", names: ["Riya"] },
   { id: "ramesh", kind: "adult", token: "m3", names: ["Ramesh"] },
@@ -17,7 +17,7 @@ const people: NamedPerson[] = [
 ];
 const sent = (q: string) => tokeniseQuestion(cleanQuestion(q), people, {}).text;
 
-describe("unplanned members and the family name (AI-3)", () => {
+describe("unplanned members and the family name", () => {
   it("never sends Pooja Kapoor (joined, no plan yet) or 'Sharma' (the family name) to Gemini, in the question or history", async () => {
     const model = fakeModel(() => reply("3 pm is better than the morning today."));
     const app = testApp({ gemini: model });
@@ -38,7 +38,7 @@ describe("unplanned members and the family name (AI-3)", () => {
   });
 });
 
-describe("zero-width, look-alike and fullwidth spellings (AI-8)", () => {
+describe("zero-width, look-alike and fullwidth spellings", () => {
   it.each([
     ["the plain name", "Can Riya play?"],
     ["a zero-width space", "Can Ri​ya play?"],
@@ -56,7 +56,7 @@ describe("zero-width, look-alike and fullwidth spellings (AI-8)", () => {
   });
 });
 
-describe("honorifics and near spellings (PT-2)", () => {
+describe("honorifics and near spellings", () => {
   it.each([
     ["Should Rameshji walk at 4?", "Should {m3} walk at 4?"],
     ["क्या रमेशजी शाम को टहलें?", "क्या {m3} शाम को टहलें?"],

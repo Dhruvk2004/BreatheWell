@@ -23,7 +23,7 @@ function indiaMinutes(at: Date): number {
  * The server's clock. Signed-in E2E only (`playwright.emulators.config.ts`): `E2E_IST_CLOCK=HH:MM`
  * starts the clock at the latest such time in India (today, or yesterday when it is still earlier)
  * and lets it run on from there, so the plan specs do not depend on the hour they run at (plans
- * start at 5 am, spec 7.2). The stand-in's air series starts yesterday, so both days are covered.
+ * start at 5 am). The stand-in's air series starts yesterday, so both days are covered.
  * Honoured only for a `demo-*` Firebase project (emulator-only, never a real deployment) and never
  * set on Vercel.
  */

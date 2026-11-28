@@ -13,7 +13,7 @@ import { json, request, testApp } from "../../helpers/appDeps";
 import { HOME, HOME_SETUP, PROFILE, RIYA, sharmaFamily, signUp } from "../../helpers/family";
 import { sharmaApp } from "../../helpers/dom";
 
-/** Every write handler refuses a missing session and a foreign Origin before reading the body (spec 9.3, 11.2). */
+/** Every write handler refuses a missing session and a foreign Origin before reading the body. */
 type Handler = (request: Request, deps: AppDeps) => Promise<Response>;
 const HANDLERS: readonly [string, string, Handler][] = [
   ["DELETE", "/api/account", deleteAccount],
@@ -41,7 +41,7 @@ describe("write handlers: session, origin and body checks", () => {
     expect((await handler(request(path, { method, uid: "neha", body: {}, origin: "https://evil.test" }), app.deps)).status).toBe(403);
   });
 
-  it("refuses bodies that do not match, after the session check (review fix: authorise first)", async () => {
+  it("refuses bodies that do not match, after the session check, so authorisation comes first", async () => {
     const { app, riya } = await sharmaApp();
     const bad = { nonsense: true };
     for (const [method, path, handler] of [
@@ -57,7 +57,7 @@ describe("write handlers: session, origin and body checks", () => {
   });
 });
 
-describe("admin-only actions from a member or someone with no family (review fix)", () => {
+describe("admin-only actions from a member or someone with no family", () => {
   it("refuses a new code and settings changes from a member, and from a user without a family", async () => {
     const { app } = await sharmaApp();
     await signUp(app, "loner", "Loner");
@@ -96,7 +96,7 @@ describe("join codes", () => {
     expect(calls).toBeGreaterThanOrEqual(3);
   });
 
-  it("treats a familyId whose family is gone as no family, so the joiner can join (stage 7 AUTH-2)", async () => {
+  it("treats a familyId whose family is gone as no family, so the joiner can join", async () => {
     const { app, code } = await sharmaApp();
     await signUp(app, "amit", "Amit");
     app.db.docs.set("users/amit", { ...app.db.docs.get("users/amit"), familyId: "vanished" });

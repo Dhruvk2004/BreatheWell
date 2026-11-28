@@ -90,7 +90,7 @@ function KidLines({ kid, lang }: { kid: KidCardData; lang: Lang }) {
             </span>
             <span className="grid min-w-0 gap-1">
               <span>
-                <b className="block text-sm text-ink-muted">{line.label}</b> {line.text}
+                <strong className="block text-sm text-ink-muted">{line.label}</strong> {line.text}
               </span>
               {kid.ticks && item && (
                 <TickBox

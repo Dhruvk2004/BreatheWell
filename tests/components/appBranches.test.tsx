@@ -29,7 +29,7 @@ const openDialog = () => {
   return dialog;
 };
 
-/** The less common states of the signed-in screens (spec 10.4–10.8, 10.14). */
+/** The less common states of the signed-in screens: sign-in, onboarding, family, join, Today, member plan and settings. */
 describe("sign-in states", () => {
   it("finishes a redirect that came back, and renders in Hindi with English beside it", async () => {
     const client = {

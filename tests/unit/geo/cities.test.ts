@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { cityAt, cityGridIds, CITIES, isListedGrid, regionAt } from "@/domain/geo/cities";
 import { gridIdOf } from "@/domain/geo/grid";
 
-describe("listed cities (spec 7.6, 8.3)", () => {
+describe("listed cities", () => {
   it.each(CITIES.map((c) => [c.id, c] as const))("%s lists its own centre cell and well-formed grid ids", (_, city) => {
     const ids = cityGridIds(city);
     expect(ids).toContain(gridIdOf(city.lat, city.lon));

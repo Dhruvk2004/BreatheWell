@@ -5,7 +5,7 @@ import type { Group } from "./groups";
 /** Where the place is: an Indo-Gangetic Plain city, elsewhere in India, or outside India. */
 export type Region = "igp" | "india" | "outside_india";
 
-/** Inputs to the winter caution (spec 8.3 override 4): `{month, region, hasStation}` as in the spec. */
+/** Inputs to the winter caution: `{month, region, hasStation}`. */
 export interface RuleContext {
   /** Month (1–12) of the day being planned. */
   readonly month: number;
@@ -25,7 +25,7 @@ export function contextOn(ctx: RuleContext, date: string): RuleContext {
   return { ...ctx, month: Number(date.slice(5, 7)) };
 }
 
-/** 1 Nov to the end of February (spec 8.3 override 4 says 28 Feb; 29 Feb in a leap year is included). */
+/** 1 Nov to the end of February (29 Feb in a leap year is included). */
 export const isWinter = (month: number): boolean => month === 11 || month === 12 || month === 1 || month === 2;
 
 /** True when an Extra care member's verdicts use the band one step stricter. */

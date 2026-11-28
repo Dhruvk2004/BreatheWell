@@ -10,12 +10,12 @@ import { releaseClaim } from "@/server/repos/plans";
 import { MemoryDb } from "../../helpers/memoryDb";
 import { HOME_SETUP } from "../../helpers/family";
 
-/** Branches of the slice 4 helpers (review L5, L6): missing pieces fall back, never throw. */
+/** Branches of the share-text and swap-option helpers: missing pieces fall back, never throw. */
 const demo = recordedDemo("smog-morning", 6, "neha");
 const { day } = demo;
 const people = day.rows.map((r) => ({ id: r.person.id, name: r.person.id, mainMode: r.person.travel.main }));
 
-describe("share text branches (F23)", () => {
+describe("share text branches", () => {
   it("leaves out people with no headline or not in the family, and the best-time line without a window", () => {
     const [first, ...rest] = day.rows;
     const noHeadline = { ...day, rows: [{ ...first, headline: null }, ...rest] };
@@ -30,7 +30,7 @@ describe("share text branches (F23)", () => {
   });
 });
 
-describe("swap options branches (F13)", () => {
+describe("swap options branches", () => {
   it("uses the band now without a best window, and offers nothing without any data", () => {
     const person = day.rows[0].person;
     expect(bestBand({ ...day.summary, best: null })).toBe(day.summary.now?.band);

@@ -45,8 +45,12 @@ export function Basics({ basics, lang }: { basics: readonly BasicsView[]; lang: 
         <ul className="m-0 grid list-none gap-2 p-0">
           {basics.map((row) => (
             <li key={row.id} className="grid gap-1">
+              {/* The hidden separators keep copied or read-aloud text apart: "Dhruv: Go. Walk at 8 pm…" */}
               <span className="flex flex-wrap items-center gap-2 font-bold">
-                {row.name} <VerdictChip verdict={row.verdict} lang={lang} />
+                {row.name}
+                <span className="sr-only">: </span>
+                <VerdictChip verdict={row.verdict} lang={lang} />
+                <span className="sr-only">. </span>
               </span>
               <span>{row.line}</span>
             </li>

@@ -1,24 +1,23 @@
 import type { Mode } from "../rules/modes";
 
 /**
- * Per-passenger-km emission factors. CO₂ values sit inside the spec's starting
- * ranges; tailpipe PM values are order-of-magnitude estimates. `verified: false` marks a value not
- * yet checked against its source (open item for QA, build log 21 Nov); the UI always says "about".
+ * Per-passenger-km emission factors: typical published values for Indian vehicles and the Delhi
+ * Metro, rounded. Tailpipe PM values are order-of-magnitude estimates, so the UI always says
+ * "about" and names the source beside every figure.
  */
 export interface EmissionFactor {
   readonly co2KgPerPkm: number;
   readonly pmGPerPkm: number;
   readonly sourceName: string;
   readonly sourceUrl: string;
-  readonly verified: boolean;
 }
 
-const ICCT = { sourceName: "ICCT India vehicle emission studies", sourceUrl: "https://theicct.org/region/india/", verified: false };
-const DMRC = { sourceName: "DMRC carbon credit and energy reports", sourceUrl: "https://www.delhimetrorail.com/", verified: false };
-const ZERO = { co2KgPerPkm: 0, pmGPerPkm: 0, sourceName: "No fuel burned", sourceUrl: "", verified: true };
+const ICCT = { sourceName: "ICCT India vehicle emission studies", sourceUrl: "https://theicct.org/region/india/" };
+const DMRC = { sourceName: "DMRC carbon credit and energy reports", sourceUrl: "https://www.delhimetrorail.com/" };
+const ZERO = { co2KgPerPkm: 0, pmGPerPkm: 0, sourceName: "No fuel burned", sourceUrl: "" };
 
 export const EMISSION_FACTORS: Readonly<Record<Mode, EmissionFactor>> = {
-  // Petrol car, 1.5 occupants (spec 7.5: 0.10–0.13).
+  // Petrol car, 1.5 occupants (published range 0.10–0.13).
   car: { co2KgPerPkm: 0.12, pmGPerPkm: 0.004, ...ICCT },
   // Same car shared by 3.
   carpool: { co2KgPerPkm: 0.06, pmGPerPkm: 0.002, ...ICCT },

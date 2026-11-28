@@ -1,17 +1,15 @@
 @import "tailwindcss";
 
-/* BreatheWell design tokens v1.2, copied verbatim from design/tokens.css below this header.
-   App additions follow the tokens: next/font family variables, base element styles and the skip link. */
-
-/* BreatheWell design tokens v1.2 (20 Nov 2026, round 1 and round 2 audit fixes)
-   Copy into app/globals.css (Tailwind v4: keep the @theme block; the :root blocks drive light/dark).
+/* BreatheWell design tokens. The :root blocks drive light and dark themes; the @theme block exposes
+   them to Tailwind v4. App additions follow the tokens: font variables, base element styles and the
+   skip link.
    Rules:
    - Brand colours live in the cool half of the wheel. Every green, yellow, orange, red and maroon
      is reserved for the six CPCB bands and the three verdicts. Never use a band colour for a
      button, link, brand accent or decoration.
-   - Every band and verdict is shown with colour + word + icon (spec 11.5).
+   - Every band and verdict is shown with colour + word + icon, never colour alone (WCAG 1.4.1).
    - All sizes are rem, so the browser's own text size setting scales everything.
-   Contrast ratios (WCAG 2.x) are listed in design.html section B and in design-notes.md. */
+   Text and control colours are chosen for WCAG 2.2 AA contrast; the axe tests check every page. */
 
 :root {
   /* ---------- Brand palette (8 named colours) ---------- */

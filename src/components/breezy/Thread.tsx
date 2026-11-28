@@ -73,7 +73,7 @@ function announcement(entries: readonly Entry[], lang: Lang): string {
 }
 
 /**
- * The conversation (design G `BreezyThread`): new answers are read out by one polite status node,
+ * The conversation: new answers are read out by one polite status node,
  * the emergency note by its own alert role (so it is never read twice), and the new message scrolls
  * into view (no smooth scroll, so reduced motion needs nothing else).
  */

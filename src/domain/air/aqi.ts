@@ -13,7 +13,7 @@ export interface AqiResult {
   readonly band: Band;
   /** The pollutant whose sub-index set the AQI. */
   readonly main: PmPollutant;
-  /** PM10 was missing, so the AQI is from PM2.5 alone (spec 8.1 edge handling). */
+  /** PM10 was missing, so the AQI is from PM2.5 alone. */
   readonly pm10Missing: boolean;
 }
 

@@ -7,7 +7,7 @@ import { percentLess } from "./picture";
 /**
  * "Picture it" on a Breezy card with an activity and a time, made by code: the
  * smoke during the activity at the card's hour against the day's smokiest hour for it, and, for
- * adults only, the whole-day cigarette figure. Never shown on a dependent's card (spec 6.4 🔒).
+ * adults only, the whole-day cigarette figure. Never shown on a dependent's card.
  */
 export interface CardPicture {
   /** About this many percent less smoke than at `thanHour` (rounded to 10; 0 when it is that hour). */

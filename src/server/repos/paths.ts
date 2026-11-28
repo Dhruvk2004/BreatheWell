@@ -1,6 +1,6 @@
 /**
  * An id from a URL or a document is used as one path segment only: Firestore auto-ids, Auth uids
- * and join codes (stage 7 PT-8: "..%2F..%2F{otherFid}" or "x/y/z" must never reach Firestore).
+ * and join codes ("..%2F..%2F{otherFid}" or "x/y/z" must never reach Firestore).
  */
 const ID = /^[A-Za-z0-9_-]{1,128}$/u;
 

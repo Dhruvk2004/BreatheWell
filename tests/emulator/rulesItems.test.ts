@@ -4,7 +4,7 @@ import { afterAll, beforeAll, beforeEach, describe, expect, it } from "vitest";
 import { dbAs, ROLES, rulesEnv, seed, type Role } from "./rulesSeed";
 
 /**
- * Items, health and removal (spec 9.2): `done` only, by the target member or anyone for a
+ * Items, health and removal: `done` only, by the target member or anyone for a
  * dependent; delete by the target, the adder, the dependent's guardian or the admin; health docs
  * owner-written; a removed member loses every read at once.
  */
@@ -74,7 +74,7 @@ describe("health docs", () => {
   });
 });
 
-describe("removal (spec 9.2)", () => {
+describe("removal", () => {
   it("a removed member loses the family, its dependents and items at once", async () => {
     const before = dbAs(env, "member");
     expect((await getDoc(doc(before, "families/f1/dependents/d1"))).exists()).toBe(true);

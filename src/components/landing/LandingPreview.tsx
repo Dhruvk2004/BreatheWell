@@ -7,7 +7,7 @@ import { rowView } from "../demo/rowView";
 import { MemberRow } from "../family/MemberRow";
 
 /**
- * The desktop hero's preview (design 10.1 desktop): the sample family's recorded smog morning, so
+ * The desktop hero's preview: the sample family's recorded smog morning, so
  * the number and chips are real and captioned with their date. Hidden on phones, where the
  * "Answer first" card carries the same idea.
  */

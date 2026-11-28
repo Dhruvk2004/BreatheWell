@@ -4,7 +4,7 @@ import type { CommunityOutput, CommunityPromptInput } from "@/ai/community/schem
 import { banProblems } from "@/ai/shared/banned";
 import { kidCardProblems } from "@/domain/libraries/kid/checks";
 
-/** Stage 7 AI-4, AI-5 and PT-3 🔒: bans by concept and stem, not only by fixed phrase. */
+/** 🔒 Bans by concept and stem, not only by fixed phrase. */
 const WORDS: CommunityOutput = {
   en: {
     title: "Smog morning in our area",
@@ -33,7 +33,7 @@ const INPUT: CommunityPromptInput = {
 const withBody = (lang: "en" | "hi", text: string): string => JSON.stringify({ ...WORDS, [lang]: { ...WORDS[lang], body: text } });
 const bans = (text: string) => banProblems(text, { names: [], forDependent: false });
 
-describe("cigarette comparisons in every form (AI-4)", () => {
+describe("cigarette comparisons in every form", () => {
   it("keeps the clean community message", () => {
     expect(validateCommunity(JSON.stringify(WORDS), TIMES, INPUT)).not.toBeNull();
   });
@@ -69,7 +69,7 @@ describe("cigarette comparisons in every form (AI-4)", () => {
   );
 });
 
-describe("kid-card health words and worded numbers (AI-5)", () => {
+describe("kid-card health words and worded numbers", () => {
   it.each([
     "Carry your medicine",
     "Carry your medicines",
@@ -98,7 +98,7 @@ describe("kid-card health words and worded numbers (AI-5)", () => {
   });
 });
 
-describe("harmful advice and links by concept (PT-3)", () => {
+describe("harmful advice and links by concept", () => {
   it.each([
     "you can leave the inhaler at home today, masks are unnecessary",
     "Inhaler not required today",

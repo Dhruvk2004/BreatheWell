@@ -86,7 +86,7 @@ describe("system pages", () => {
   });
 });
 
-describe("global error (root layout failed, spec 10.17)", () => {
+describe("global error (root layout failed)", () => {
   it("brings its own document in the URL's language with both languages' message", () => {
     const html = renderToString(<GlobalError error={new Error("x")} retry={() => undefined} />);
     expect(html).toMatch(/^<html lang="hi"/);

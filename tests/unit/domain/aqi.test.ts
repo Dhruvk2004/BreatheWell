@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import { aqiFromPm, subIndex } from "@/domain/air/aqi";
 import { BAND_TABLE, bandIcon, bandOfAqi, bandRank, BANDS, displayAqi, stricterBand, worstBand } from "@/domain/air/bands";
 
-describe("CPCB sub-index at every boundary (spec 8.1, 11.4)", () => {
+describe("CPCB sub-index at every boundary", () => {
   it.each([
     [0, 0],
     [30, 50],

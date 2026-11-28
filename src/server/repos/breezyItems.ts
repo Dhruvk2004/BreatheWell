@@ -4,7 +4,7 @@ import type { Db } from "../db/types";
 import { familyToday, retainedUntil, stillInFamily } from "./family";
 import { paths } from "./paths";
 
-/** What a confirmed Breezy action writes (spec 9.1 `items`): created by the server only. */
+/** What a confirmed Breezy action writes (`items`): created by the server only. */
 export interface NewItem {
   readonly body: ActionBody;
   readonly forId: string;

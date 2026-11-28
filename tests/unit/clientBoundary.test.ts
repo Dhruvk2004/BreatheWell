@@ -3,7 +3,7 @@ import { dirname, join, resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 
 /**
- * Stage 8 QA8-1: the family settings page called `homeSetupSummary()` from a "use client" file and
+ * Regression: the family settings page called `homeSetupSummary()` from a "use client" file and
  * crashed for every non-admin member. Across the client boundary only components (rendered, not
  * called) may be imported; helpers and constants must live in a plain module.
  */

@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 import { askForPlan, BADGE_TIMEOUT_MS } from "@/client/plan";
 
-/** The client side of `POST /api/plan` (spec 7.2): ask, wait out another member's lock, give up after 30 s. */
+/** The client side of `POST /api/plan`: ask, wait out another member's lock, give up after 30 s. */
 const reply = (...bodies: object[]) => {
   const queue = [...bodies];
   return vi.fn(async () => new Response(JSON.stringify(queue.shift()), { status: 200 }));

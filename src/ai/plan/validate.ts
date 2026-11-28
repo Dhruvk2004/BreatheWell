@@ -32,7 +32,7 @@ export interface PlanCheck {
   readonly nameOf: Readonly<Record<string, string>>;
 }
 
-/** Every time the input names: usual and best times, and the window ends (spec 7.1 allowlist). */
+/** Every time the input names: usual and best times, and the window ends. A reply may name no other time. */
 export function allowedTimes(request: PlanRequest): ClockTime[] {
   const { air, members } = request.input;
   const windows = [air.bestWindow, air.worstWindow].flatMap((w) => (w ? w.split("-") : []));

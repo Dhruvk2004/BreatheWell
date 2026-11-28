@@ -24,7 +24,7 @@ const trip = (suggestion: Suggestion, verdictAtBest: Verdict | null, switchTo: M
 });
 
 /**
- * School, college and office trips (spec 8.3 override 1): never "skip it". On Avoid, switch to the
+ * School, college and office trips: never "skip it". On Avoid, switch to the
  * safest mode the person can use (shared enclosed modes first) and re-judge it; if that is still
  * Avoid, or there is no safer mode, present it as Care with the protect tips. A child is never
  * told to skip school; on a Severe day the note says schools may close. A switch to the own car

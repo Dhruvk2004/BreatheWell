@@ -4,7 +4,7 @@ import { dailyBudget, GEMINI_LIMITS, geminiLimits, reserveGeminiCall } from "@/s
 import { MemoryDb } from "../../helpers/memoryDb";
 import { NOW } from "../../helpers/airDeps";
 
-/** Spec 7.8 protects plans first (stage 7 AUTH-5, PT-4): Breezy cannot spend the plans' share. */
+/** The Gemini budget protects plans first: Breezy cannot spend the plans' share. */
 const minute = (n: number) => new Date(NOW.getTime() + n * 60_000);
 
 describe("Gemini sub-budgets per placement", () => {

@@ -1,9 +1,11 @@
-import { Clock, House, MapPin, TrainFront, Wind } from "lucide-react";
+import { Clock, House, MapPin, TrainFront, Users, Wind } from "lucide-react";
+import Link from "next/link";
 import { translator, type Lang } from "@/i18n/t";
 import type { DemoData } from "@/view/demoPage";
 import { VerdictChip } from "../air/VerdictChip";
 import { demoPerson } from "@/data/demo/family";
 import { aqiBarHeight, BAND_BG } from "../ui/bandStyle";
+import { communityHref } from "../place/airHref";
 import { card, h2, noteNeutral } from "../ui/styles";
 
 const HOW = [
@@ -78,7 +80,7 @@ function BestCard({ demo, lang }: { demo: DemoData; lang: Lang }) {
       </h2>
       <div className="grid h-10 grid-cols-16 items-end gap-0.5" aria-hidden="true">
         {hours.map((p, i) => (
-          <i key={i} className={`block rounded-t-[2px] ${p ? BAND_BG[p.band] : ""}`} style={{ height: p ? aqiBarHeight(p.aqi) : 0 }} />
+          <span key={i} className={`block rounded-t-[2px] ${p ? BAND_BG[p.band] : ""}`} style={{ height: p ? aqiBarHeight(p.aqi) : 0 }} />
         ))}
       </div>
       <p className="m-0 text-[0.9375em]">{t("landing.best.body")}</p>
@@ -98,6 +100,26 @@ function WhyCard({ lang }: { lang: Lang }) {
         <li>{t("landing.why.picture")}</li>
         <li>{t("landing.why.numbers")}</li>
       </ol>
+    </section>
+  );
+}
+
+/** A sample place, so the community message opens filled in; the page lets anyone pick their own. */
+const SAMPLE_PLACE = { name: "Green Park, Delhi", lat: 28.56, lon: 77.21, countryCode: "IN" } as const;
+
+/** The brief's community part, from the first screen: a message for a housing society or school group. */
+export function CommunityInvite({ lang }: { lang: Lang }) {
+  const t = translator(lang);
+  return (
+    <section aria-labelledby="community-invite-h" className={card}>
+      <h2 id="community-invite-h" className={`${h2} flex items-center gap-2`}>
+        <Users className="size-5 text-brand" aria-hidden="true" />
+        {t("landing.community.title")}
+      </h2>
+      <p className="m-0 text-[0.9375em]">{t("landing.community.body")}</p>
+      <Link href={communityHref(SAMPLE_PLACE)} className="font-bold text-brand underline">
+        {t("landing.community.cta")}
+      </Link>
     </section>
   );
 }

@@ -5,7 +5,7 @@ import type { FamilyPerson } from "@/domain/family/people";
 import fc from "fast-check";
 import { checkOf, familyOf, namesOf, sourceOf } from "../../helpers/planSource";
 
-/** The plan prompt input (spec 7.2): what is left out when the day has gaps, and the token map. */
+/** The plan prompt input: what is left out when the day has gaps, and the token map. */
 const withSummary = (src: PlanSource, over: Partial<PlanSource["day"]["summary"]>): PlanSource => ({
   ...src,
   day: { ...src.day, summary: { ...src.day.summary, ...over } },

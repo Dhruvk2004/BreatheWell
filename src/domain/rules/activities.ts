@@ -40,7 +40,7 @@ const ESSENTIAL: readonly ActivityType[] = ["school_trip", "office_trip"];
 
 /** Trips whose intensity comes from the travel mode. */
 export const isTravel = (type: ActivityType): boolean => TRAVEL.includes(type);
-/** School, college and office trips are never "skip it" (spec 8.3 override 1). */
+/** School, college and office trips are never "skip it". */
 export const isEssential = (type: ActivityType): boolean => ESSENTIAL.includes(type);
 
 const BY_DURATION: Readonly<Record<Duration, Intensity>> = { under15: "light", "15to60": "moderate", over60: "hard" };

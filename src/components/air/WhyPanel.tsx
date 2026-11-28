@@ -15,7 +15,7 @@ interface WhyPanelProps {
 }
 
 /**
- * "Why?" (design G `WhyPanel`): Do this · Picture it · The numbers, from the facts library
+ * "Why?": Do this · Picture it · The numbers, from the facts library
  * (code only). Public pages never show a cigarette line here (that lives only in "For adults").
  */
 export function WhyPanel({ lang, factId, doThis, forAir, picture }: WhyPanelProps) {

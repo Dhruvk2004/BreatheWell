@@ -15,7 +15,7 @@ import { deps, NOW, snapshot } from "../../helpers/airDeps";
 const request = (query: string, ip = "198.51.100.7") =>
   new Request(`https://app.test/api/air?${query}`, { headers: { "x-forwarded-for": ip } });
 
-describe("GET /api/air (spec 11.2)", () => {
+describe("GET /api/air", () => {
   it("returns the grid cell's snapshot with a CDN cache header", async () => {
     const response = await airGet(request("lat=28.56&lon=77.21"), deps(), new RateLimiter(60, 3_600_000));
     expect(response.status).toBe(200);
@@ -128,7 +128,7 @@ describe("runtime and manifest", () => {
     expect(airLimiter.check("unit-test").allowed).toBe(true);
   });
 
-  it("makes BreatheWell installable (F24)", () => {
+  it("makes BreatheWell installable", () => {
     const m = webManifest();
     expect(m).toMatchObject({ name: "BreatheWell", start_url: "/", display: "standalone", theme_color: "#0B5E7A" });
     expect(m.icons?.map((i) => i.sizes)).toEqual(["192x192", "512x512", "512x512"]);

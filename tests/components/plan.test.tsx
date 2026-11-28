@@ -79,7 +79,7 @@ describe("plan slot (design F, G PlanBadge / PlanSourceLine)", () => {
     expect(screen.queryByRole("button")).toBeNull();
   });
 
-  it("says 'Saved plan' offline, without the badge or Try again (F24)", () => {
+  it("says 'Saved plan' offline, without the badge or Try again", () => {
     const online = vi.spyOn(navigator, "onLine", "get").mockReturnValue(false);
     render(<PlanSlot words={words({ canRetry: true })} madeAt="6:05 am" airAt="6:00 am" lang="en" />);
     expect(slotLine()).toBe("You're offline. Saved plan from 6:05 am · Updated air 6:00 am.");
@@ -91,7 +91,7 @@ describe("plan slot (design F, G PlanBadge / PlanSourceLine)", () => {
   });
 });
 
-describe("Today and Member plan with Gemini words (spec 10.8, 10.9)", () => {
+describe("Today and Member plan with Gemini words", () => {
   it("shows the plan's row lines, Share today's plan and the weekly line", async () => {
     const { app, viewer } = await geminiFamily();
     render(<TodayView page={await loadToday(await viewer("neha"), app.deps)} appOrigin="" lang="en" />);
@@ -116,7 +116,7 @@ describe("Today and Member plan with Gemini words (spec 10.8, 10.9)", () => {
 
 const FACT = alternativeById("electric_repellent")?.factId;
 
-describe("Swap card (F13)", () => {
+describe("Swap card (cleaner way to travel)", () => {
   it("shows a home action's own 'for the air' line, and nothing for an unknown alternative", () => {
     const travel = { main: "walk" as const, tripLength: "15to45" as const };
     const { container, rerender } = render(

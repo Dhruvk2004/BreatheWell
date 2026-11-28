@@ -89,7 +89,7 @@ export function CommunityView({ page, lang, signedIn = false }: { page: Communit
   );
 }
 
-/** The static skeleton while the message is written (design 10.13 loading). */
+/** The static skeleton while the message is written. */
 export function CommunityLoading({ lang }: { lang: Lang }) {
   return (
     <div className="grid gap-4" aria-busy="true">

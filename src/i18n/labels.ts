@@ -9,7 +9,7 @@ import type { MessageKey } from "./t";
 /*
  * Message keys for the rule enums. `satisfies MessageKey` makes a missing key in en.json a type
  * error, and the i18n test checks hi.json has the same keys, so a new note, suggestion, mode or
- * activity cannot ship without its English and Hindi words (spec 8.3 fixes several of them).
+ * activity cannot ship without its English and Hindi words.
  */
 
 /** "note.keep_inhaler" → "Keep inhaler or medicines with you." */

@@ -6,7 +6,7 @@ import type { Group } from "./groups";
 import type { Mode } from "./modes";
 import type { Verdict } from "./verdict";
 
-/** What the plan tells the person to do (spec 7.2 `kind`, plus "as planned" for a Go). */
+/** What the plan tells the person to do (the plan's `kind`, plus "as planned" for a Go). */
 export const SUGGESTIONS = ["as_planned", "move_time", "switch_mode", "protect", "indoor"] as const;
 export type Suggestion = (typeof SUGGESTIONS)[number];
 

@@ -4,8 +4,8 @@ import { EMISSION_FACTORS } from "@/domain/impact/emissionFactors";
 import { aboutKg, airNowSwap, avoidedBySwap, TRIP_KM, tripEmission, weeklyTotals } from "@/domain/impact/emissions";
 import { MODES } from "@/domain/rules/modes";
 
-describe("emission factors (spec 7.5)", () => {
-  it("keeps CO₂ inside the spec's starting ranges and every source named", () => {
+describe("emission factors", () => {
+  it("keeps CO₂ inside the expected starting ranges and every source named", () => {
     expect(EMISSION_FACTORS.car.co2KgPerPkm).toBeGreaterThanOrEqual(0.1);
     expect(EMISSION_FACTORS.car.co2KgPerPkm).toBeLessThanOrEqual(0.13);
     expect(EMISSION_FACTORS.metro.co2KgPerPkm).toBeLessThanOrEqual(0.02);

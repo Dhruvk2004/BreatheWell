@@ -13,9 +13,9 @@ import { paths } from "../repos/paths";
 import { familyRecord, joinCodeRecord, parsed, userRecord, type FamilyRecord, type UserRecord } from "../repos/records";
 
 /**
- * `POST /api/join` (spec 5.3–5.4, 5.11, 9.3): a signed-in adult with no family, a valid active
- * unexpired code, a family under 6 adults. An expired code names the admin's first name only. The code only adds the person; it never creates or fills
- * a profile. Every answer takes at least `JOIN_MIN_MS`, so timing never hints whether a family exists.
+ * `POST /api/join`: a signed-in adult with no family, a valid active unexpired code, a family under
+ * 6 adults. An expired code names the admin's first name only. The code only adds the person; it
+ * never creates or fills a profile. Every answer takes at least `JOIN_MIN_MS`, so timing never hints whether a family exists.
  */
 const body = z.strictObject({ code: z.string().max(20) });
 export const JOIN_MIN_MS = 600;

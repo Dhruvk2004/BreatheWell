@@ -5,7 +5,7 @@ import type { Intensity } from "@/domain/rules/activities";
 import type { Group } from "@/domain/rules/groups";
 import { verdict, verdictRank, worstVerdict, type Verdict } from "@/domain/rules/verdict";
 
-/** Spec 8.3, copied as text so the test reads like the table it checks. */
+/** The guardrail table, copied as text so the test reads like the table it checks. */
 const SPEC_TABLE = `
 good          | Go Go Go       | Go Go Go          | Go Go Go
 satisfactory  | Go Go Go       | Go Go Go          | Go Go Care
@@ -25,7 +25,7 @@ const cells = SPEC_TABLE.trim()
     return groups.flatMap((g, gi) => g.split(/\s+/).map((w, ii) => [band, GROUPS[gi], INTENSITIES[ii], WORD[w]] as const));
   });
 
-describe("the guardrail table (spec 8.3)", () => {
+describe("the guardrail table", () => {
   it("has all 54 cells", () => expect(cells).toHaveLength(54));
 
   it.each(cells)("%s × %s × %s → %s", (band, group, intensity, expected) => {

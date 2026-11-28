@@ -5,7 +5,7 @@ import { INHALER_FAILING, INHALER_WORDS, NEGATIONS } from "./emergencyMore";
 
 /**
  * How many words apart a breath word and a trouble word may be: "सांस लेने में बहुत तकलीफ" puts
- * तकलीफ 4 words after सांस (stage 7 AI-2; was 3).
+ * तकलीफ 4 words after सांस.
  */
 const NEAR = 5;
 

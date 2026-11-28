@@ -53,7 +53,7 @@ const cases = KINDS.flatMap((k) =>
   ),
 );
 
-describe("kid library lines (spec 7.2): every verdict × suggestion × activity × tone × language", () => {
+describe("kid library lines: every verdict × suggestion × activity × tone × language", () => {
   it.each(cases.map((c) => [`${c.kind} ${c.type} ${c.tone} ${c.lang}`, c] as const))("%s passes the kid-card checks", (_, c) => {
     const item: KidItem = { type: c.type, plan: c.plan, mainMode: "cycle" };
     const line = kidLine(item, c.tone, c.lang);
@@ -85,7 +85,7 @@ describe("kid library lines (spec 7.2): every verdict × suggestion × activity 
   });
 });
 
-describe("kid card and share text (spec 10.12)", () => {
+describe("kid card and share text", () => {
   const items: KidItem[] = [
     { type: "school_trip", plan: KINDS[3].plan, mainMode: "cycle" },
     { type: "play", plan: KINDS[6].plan, mainMode: "cycle" },
@@ -138,7 +138,7 @@ describe("part of the day in kid words", () => {
   });
 });
 
-describe("kid-card checks (spec 7.7.6, 11.4)", () => {
+describe("kid-card checks", () => {
   it.each([
     ["Wear an N95 for 15 minutes", ["digits"]],
     ["The AQI is very high", ["air_units"]],

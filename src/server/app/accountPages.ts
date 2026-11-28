@@ -14,8 +14,8 @@ import type { Lang } from "@/domain/time/format";
 type AdultActivity = ProfileInput["activities"][number]["type"];
 
 /**
- * The saved answers as the onboarding and profile editors take them (spec 10.15 "same editor as
- * onboarding"): the stored activities back to time bands, the health ticks from the private doc.
+ * The saved answers as the onboarding and profile editors take them (one
+ * editor for both): the stored activities back to time bands, the health ticks from the private doc.
  */
 async function savedInput(user: UserRecord, uid: string, deps: AppDeps): Promise<ProfileInput | null> {
   if (!user.profile) return null;

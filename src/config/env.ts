@@ -65,7 +65,7 @@ export const firebaseProjectId = (env: Env): string | null =>
 /**
  * The default model, pinned to a versioned stable ID so evals and validator pass rates do
  * not drift: `gemini-flash-latest` is an alias Google hot-swaps with every release. `gemini-3.8-flash`
- * is listed as Stable and free of charge on the AI Studio models and pricing pages (checked 20 Nov 2026).
+ * is listed as Stable and free of charge on the AI Studio models and pricing pages.
  */
 export const DEFAULT_GEMINI_MODEL = "gemini-3.8-flash";
 

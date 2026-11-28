@@ -15,7 +15,7 @@ import type { Activity } from "@/domain/rules/activities";
 import type { ActivityPlan } from "@/domain/rules/plan";
 import { daySeries, indexOf } from "../../helpers/air";
 
-// Spec 7.4 worked example: PM2.5 300 at 06:00, 120 at 15:00, 240 in every other hour; Dadaji is
+// Worked example: PM2.5 300 at 06:00, 120 at 15:00, 240 in every other hour; Dadaji is
 // Extra care with a purifier in one room; walk 45 min (0.75 h).
 const PM = Array.from({ length: 24 }, (_, h) => (h === 6 ? 300 : h === 15 ? 120 : 240));
 const purifier = { purifierRoom: true };

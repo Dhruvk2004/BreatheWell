@@ -3,13 +3,13 @@ import { translator, type Lang } from "@/i18n/t";
 import type { DemoData } from "@/view/demoPage";
 import { PlaceFinder } from "../place/PlaceFinder";
 import { btn } from "../ui/styles";
-import { HowItWorks, LandingCards } from "./LandingCards";
+import { CommunityInvite, HowItWorks, LandingCards } from "./LandingCards";
 import { LandingPreview } from "./LandingPreview";
 
 /**
- * Public landing (spec 10.1, design 10.1 mobile and desktop): the question, the two ways in, the
- * city search, how it works in the brief's words, and three cards drawn from the recorded smog
- * morning (`demo`, planned by the page shell). Static: the location and search parts are the only
+ * Public landing: the question, the two ways in, the city search, how it works in the brief's
+ * words, three cards drawn from the recorded smog morning (`demo`, planned by the page shell) and
+ * the community message for a housing society or school. Static: the location and search parts are the only
  * client code.
  */
 export function Landing({ demo, lang }: { demo: DemoData; lang: Lang }) {
@@ -32,6 +32,7 @@ export function Landing({ demo, lang }: { demo: DemoData; lang: Lang }) {
       </div>
       <HowItWorks lang={lang} />
       <LandingCards demo={demo} lang={lang} />
+      <CommunityInvite lang={lang} />
       <p className="m-0 text-center text-sm text-ink-muted">{t("landing.trust")}</p>
     </div>
   );

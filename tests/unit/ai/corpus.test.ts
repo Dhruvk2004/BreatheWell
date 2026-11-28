@@ -18,7 +18,7 @@ function run(c: CorpusCase) {
   return c.rule ? checkPlanItem(c.text, RULES[c.rule], rules) : checkText(c.text, rules);
 }
 
-describe("validator corpus (spec 7.1, 11.4): about 100 sentences in EN, HI and Hinglish", () => {
+describe("validator corpus: about 100 sentences in EN, HI and Hinglish", () => {
   it("has about 50 good and 50 bad sentences", () => {
     expect(GOOD.length).toBeGreaterThanOrEqual(45);
     expect(BAD.length).toBeGreaterThanOrEqual(50);

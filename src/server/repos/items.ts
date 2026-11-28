@@ -26,7 +26,7 @@ export async function checklistFor(db: Db, fid: string, forId: string, date: str
   });
 }
 
-/** The plan keys a person has ticked today (spec 9.1 `progress`). */
+/** The plan keys a person has ticked today (`progress`). */
 export async function tickedKeys(db: Db, fid: string, forId: string, date: string): Promise<string[]> {
   const progress = parsed(progressRecord, await db.get(paths.progress(fid, date, forId)));
   return Object.keys(progress?.done ?? {});

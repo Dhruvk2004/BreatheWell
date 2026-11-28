@@ -36,7 +36,7 @@ export interface TokenisedQuestion {
 /** The id an alias value points to: a member uid, or "dep:<did>" for a dependent. */
 export const aliasTarget = (value: string): string => (value.startsWith("dep:") ? value.slice(4) : value);
 
-/** The alias value stored for a person (spec 9.1 `aliases`). */
+/** The alias value stored for a person in the family's `aliases`. */
 export const aliasValue = (person: Pick<NamedPerson, "id" | "kind">): string =>
   person.kind === "dependent" ? `dep:${person.id}` : person.id;
 

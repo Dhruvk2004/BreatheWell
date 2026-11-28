@@ -3,7 +3,7 @@ import { findTimes, type FoundTime } from "./times";
 import { nfc } from "./text";
 
 /**
- * Does a skip phrase cancel a time? (spec 7.1 contradiction checks). A skip word anywhere in the
+ * Does a skip phrase cancel a time? A skip word anywhere in the
  * sentence is not enough ("Walk at 6:30 am, no worries." recommends 6:30): the phrase must govern
  * the time, in the same clause and close to it. English puts it before the time ("skip the 6:30
  * walk", "instead of 6:30 am", "not at 6:30"); Hindi after it ("6:30 बजे की सैर छोड़ें",

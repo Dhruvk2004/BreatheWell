@@ -17,8 +17,8 @@ import { NOW } from "../../helpers/airDeps";
 import { HOME, HOME_SETUP, joins, sharmaFamily, signUp } from "../../helpers/family";
 import { MemoryDb } from "../../helpers/memoryDb";
 
-/** Stage 7 AUTH-1, AUTH-2, AUTH-3, AUTH-4, AUTH-6 and WEB-6. */
-describe("sign-out and disabled accounts end page reads too (AUTH-1, AUTH-6)", () => {
+/** Account and family hardening: sign-out, disabled accounts, deleted families, copied names and stale ticks. */
+describe("sign-out and disabled accounts end page reads too", () => {
   it("a copied cookie stops loading the family after Sign out everywhere", async () => {
     const app = testApp();
     await sharmaFamily(app);
@@ -61,7 +61,7 @@ describe("sign-out and disabled accounts end page reads too (AUTH-1, AUTH-6)", (
   });
 });
 
-describe("deleting a family closes it at once (AUTH-2)", () => {
+describe("deleting a family closes it at once", () => {
   it("a join that lands before the tree is deleted finds no family, and the joiner can start one", async () => {
     const app = testApp();
     const { code } = await sharmaFamily(app);
@@ -96,7 +96,7 @@ describe("deleting a family closes it at once (AUTH-2)", () => {
   });
 });
 
-describe("names copied into the family pass nameSchema (AUTH-3, WEB-6)", () => {
+describe("names copied into the family pass nameSchema", () => {
   it("a link-like name in the users doc is not copied into the member doc", async () => {
     const app = testApp();
     const { fid, code } = await sharmaFamily(app);
@@ -115,7 +115,7 @@ describe("names copied into the family pass nameSchema (AUTH-3, WEB-6)", () => {
     },
   );
 
-  it.each(["R.K. Laxman", "R.K.", "A. K. Singh", "Dr. Mehta", "दादाजी"])("accepts the Indian name %s (stage 8 QA8-5)", (name) => {
+  it.each(["R.K. Laxman", "R.K.", "A. K. Singh", "Dr. Mehta", "दादाजी"])("accepts the Indian name %s", (name) => {
     expect(nameSchema(30).safeParse(name).success).toBe(true);
   });
 
@@ -123,7 +123,7 @@ describe("names copied into the family pass nameSchema (AUTH-3, WEB-6)", () => {
     expect(nameSchema(30).safeParse(name).success).toBe(false);
   });
 
-  it("keeps an initialled Google name, and shows the family a fallback for an unusable one (QA8-5, QA8-6)", async () => {
+  it("keeps an initialled Google name, and shows the family a fallback for an unusable one", async () => {
     expect((await ensureUser(new MemoryDb(), "u1", "R.K. Laxman", NOW)).name).toBe("R.K.");
     const app = testApp();
     const { fid, code } = await sharmaFamily(app);
@@ -139,7 +139,7 @@ describe("names copied into the family pass nameSchema (AUTH-3, WEB-6)", () => {
   });
 });
 
-describe("a removed member's tick in flight writes nothing (AUTH-4)", () => {
+describe("a removed member's tick in flight writes nothing", () => {
   it("re-checks membership inside the progress transaction", async () => {
     const app = testApp();
     const { fid, code } = await sharmaFamily(app);

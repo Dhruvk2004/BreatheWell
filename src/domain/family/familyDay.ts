@@ -34,7 +34,7 @@ export interface FamilyDay {
   /** The three "At home today" tips for this home and band. */
   readonly homeTips: readonly TipId[];
   readonly airOutAt: number | null;
-  /** A Severe hour is still ahead today: the GRAP note and indoor-first plans (spec 8.3 override 2). */
+  /** A Severe hour is still ahead today: the GRAP note and indoor-first plans. */
   readonly severeDay: boolean;
   readonly together: TogetherAction;
   readonly week: { readonly co2Kg: number; readonly carTrips: number };

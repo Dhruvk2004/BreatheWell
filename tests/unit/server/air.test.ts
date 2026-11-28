@@ -71,7 +71,7 @@ describe("in-memory helpers", () => {
   });
 });
 
-describe("place query (spec 10.2)", () => {
+describe("place query", () => {
   it("accepts rounded coordinates, a place name and a country code", () => {
     expect(parsePlaceQuery({ lat: "18.52", lon: "73.86", place: " Pune ", cc: "IN" })).toEqual({
       lat: 18.52,
@@ -100,7 +100,7 @@ describe("place query (spec 10.2)", () => {
   });
 });
 
-describe("air cache document (spec 9.1 airCache)", () => {
+describe("airCache document", () => {
   it("keys by grid and UTC hour and round-trips through the stored shape", () => {
     expect(hourKey(NOW)).toBe("2024111800");
     expect(cacheDocId("28.6_77.2", NOW)).toBe("28.6_77.2_2024111800");
@@ -119,7 +119,7 @@ describe("air cache document (spec 9.1 airCache)", () => {
   });
 });
 
-describe("loadAir: memory → Firestore → Open-Meteo (spec 11.3)", () => {
+describe("loadAir: memory → Firestore → Open-Meteo", () => {
   it("fetches once per grid cell per hour and writes the cache", async () => {
     const store = memoryStore();
     const d = deps({ store });

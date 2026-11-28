@@ -35,7 +35,7 @@ const LATIN_IN_HINDI = new Set([
   ...TECHNICAL,
 ]);
 
-describe("i18n (spec F17)", () => {
+describe("i18n", () => {
   it("has exactly the same keys in en.json and hi.json", () => {
     expect(Object.keys(hi).sort()).toEqual(Object.keys(en).sort());
   });
@@ -64,7 +64,7 @@ describe("i18n (spec F17)", () => {
     expect([langOf("hi"), langOf("fr"), langOf(["hi"])]).toEqual(["hi", "en", "en"]);
   });
 
-  it("has EN and HI words for every plan note, suggestion, mode and activity (review slice 1, finding 6)", () => {
+  it("has EN and HI words for every plan note, suggestion, mode and activity", () => {
     const keys = [...PLAN_NOTES.map(noteKey), ...SUGGESTIONS.map(suggestionKey), ...MODES.map(modeKey), ...ACTIVITY_TYPES.map(activityKey)];
     for (const key of keys) {
       expect(en, key).toHaveProperty([key]);

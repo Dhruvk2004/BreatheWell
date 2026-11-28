@@ -10,7 +10,7 @@ import { addRiya, joins, sharmaFamily } from "../../helpers/family";
 import { validReply } from "../../helpers/planReply";
 
 /**
- * Spec 6.5, 7.0 and 9.3: no Gemini payload carries a Firebase uid, a dependent id or a name;
+ * No Gemini payload carries a Firebase uid, a dependent id or a name;
  * members and dependents go as `m1`/`d1` tokens, members still setting up are not in it.
  */
 async function sharma() {
@@ -26,7 +26,7 @@ async function sharma() {
   return { app, bundle, riya, check };
 }
 
-describe("pseudonymous ids for Gemini (spec 6.5)", () => {
+describe("pseudonymous ids for Gemini", () => {
   it("maps every member to m1… and every dependent to d1… in the family's stored order", async () => {
     const { check, riya } = await sharma();
     // Rahul's request puts Rahul's row first on screen, but the tokens follow the family's order.

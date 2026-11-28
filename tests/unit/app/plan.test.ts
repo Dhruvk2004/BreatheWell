@@ -8,7 +8,7 @@ import { json, request, testApp } from "../../helpers/appDeps";
 import { addRiya, joins, RIYA, sharmaFamily } from "../../helpers/family";
 import { fakeModel, replyToPrompt } from "../../helpers/planReply";
 
-/** `POST /api/plan` (spec 7.2): generation in the route, the 40 s lock, 3 a day, the global budget. */
+/** `POST /api/plan`: generation in the route, the 40 s lock, 3 a day, the global budget. */
 const DATE = "2024-11-18";
 /** Gemini's quota day for 6:10 am IST on 18 Nov: still 17 Nov in California. */
 const QUOTA_DAY = "2024-11-17";

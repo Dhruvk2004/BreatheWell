@@ -11,7 +11,7 @@ export function TypingIndicator({ lang }: { lang: Lang }) {
         {t("breezy.thinking")}{" "}
         <span aria-hidden="true" className="inline-flex gap-1">
           {[0, 1, 2].map((i) => (
-            <i
+            <span
               key={i}
               className="typing-dot inline-block size-1.5 rounded-full bg-ai motion-reduce:animate-none motion-reduce:opacity-70"
               style={{ animationDelay: `${i * 150}ms` }}

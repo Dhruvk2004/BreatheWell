@@ -83,7 +83,7 @@ describe("api", () => {
   });
 });
 
-describe("pending sign-in state (spec 5.3, 10.4)", () => {
+describe("pending sign-in state", () => {
   it("survives the redirect once, and only ours", () => {
     const store = memoryStore();
     expect(hasPending(store)).toBe(false);
@@ -121,7 +121,7 @@ describe("pending sign-in state (spec 5.3, 10.4)", () => {
   });
 });
 
-describe("in-app browsers (spec 10.4)", () => {
+describe("in-app browsers", () => {
   const ANDROID_IG = "Mozilla/5.0 (Linux; Android 14; Pixel 7) AppleWebKit/537.36 Instagram 300.0.0";
   it("detects WebViews and opens Chrome with an intent on Android", () => {
     expect(isInAppBrowser(ANDROID_IG)).toBe(true);

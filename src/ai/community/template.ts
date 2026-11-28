@@ -6,8 +6,8 @@ import { formatHour, formatWindow, type Lang } from "@/domain/time/format";
 import { t } from "@/i18n/t";
 
 /**
- * The template community message (spec 7.6 "Fallback: a template per band × audience × together
- * action"), labelled "Simple message". Code writes the header numbers and the footer; the body has
+ * The template community message, one per band, audience and together
+ * action, used when there is no Gemini message, labelled "Simple message". Code writes the header numbers and the footer; the body has
  * no air numbers and never a cigarette comparison. The copy lives in the i18n files (`community.t.*`).
  */
 export interface CommunityInput {

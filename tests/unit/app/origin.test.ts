@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { joinUrl } from "@/server/app/invitePages";
 import { envTrust, siteOrigin } from "@/server/app/origin";
 
-/** Links opened elsewhere (QR, WhatsApp) are always absolute (review fix, spec 5.3) and never on a client-chosen host (stage 7 WEB-2, PT-9). */
+/** Links opened elsewhere (QR, WhatsApp) are always absolute and never on a client-chosen host. */
 describe("siteOrigin", () => {
   const h = (init: Record<string, string>) => new Headers(init);
   const vercel = { hosts: ["bw.vercel.app", "bw.app"], forwardedHost: false };

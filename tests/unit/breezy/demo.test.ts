@@ -6,7 +6,7 @@ import { DEMO_CHIPS, demoChips, loadBreezyDemo } from "@/server/demo/demoBreezy"
 import { parkAnswer, templeAnswer } from "@/server/demo/demoAnswers";
 import { recordedDemo } from "@/server/demo/demoPage";
 
-/** Breezy demo mode (spec 7.7.2): chips only, stored answers or the code's Simple answer, nothing written. */
+/** Breezy demo mode: chips only, stored answers or the code's Simple answer, nothing written. */
 describe("Breezy demo", () => {
   it("answers every chip in both languages from code while nothing is stored", () => {
     for (const lang of ["en", "hi"] as const) {

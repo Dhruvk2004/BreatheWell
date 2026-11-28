@@ -6,7 +6,7 @@ import { bandDay, daySeries, indexOf, istClock, joinSeries } from "../../helpers
 
 const smogDay = (date: string) => bandDay(date, "very_poor", { 13: "poor", 14: "moderate", 15: "moderate", 16: "poor" });
 
-describe("family best and worst windows (spec 8.4 step 7)", () => {
+describe("family best and worst windows", () => {
   it("picks the cleanest 2-hour block in 06–21", () => {
     expect(bestWindow(indexOf(smogDay("2024-11-18")), "2024-11-18")).toEqual({ start: 14, end: 16 });
   });
@@ -44,7 +44,7 @@ describe("family best and worst windows (spec 8.4 step 7)", () => {
     expect(worstWindow(indexOf(single), "2024-11-18")).toEqual({ start: 11, end: 13 });
   });
 
-  it("keeps the worst window apart from the best one and worse than it (stage 8)", () => {
+  it("keeps the worst window apart from the best one and worse than it", () => {
     // Lucknow at 6 pm: only 18–22 left, so best and worst came from the same hours.
     const evening = daySeries(
       "2024-11-18",
@@ -78,7 +78,7 @@ describe("family best and worst windows (spec 8.4 step 7)", () => {
   });
 });
 
-describe("5-day outlook from hourly data (spec 8.4 step 10)", () => {
+describe("5-day outlook from hourly data", () => {
   const days = ["2024-11-18", "2024-11-19", "2024-11-20", "2024-11-21", "2024-11-22", "2024-11-23"];
   const series = joinSeries(...days.map((d, i) => (i === 2 ? bandDay(d, "moderate") : smogDay(d))));
 

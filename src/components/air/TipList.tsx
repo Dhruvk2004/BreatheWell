@@ -10,7 +10,7 @@ export const tipText = (id: TipId, airOutAt: number | null, lang: Lang): string 
   tipById(id).text[lang].replace("{time}", airOutAt === null ? "" : formatHour(airOutAt, lang));
 
 /**
- * "At home today" (spec 10.2 item 5a, 10.8 item 3): three numbered tips from the tips library, each
+ * "At home today": three numbered tips from the tips library, each
  * with Why?; on Today a tip shows the family plan's wording when Gemini's passed the checks.
  */
 export function TipList({

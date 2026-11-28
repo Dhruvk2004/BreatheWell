@@ -5,7 +5,7 @@ import { firestoreSweeper } from "@/firebase/firestoreDb";
 import { sweepExpired } from "@/server/cleanup/sweep";
 
 /**
- * The daily clean-up on the emulator (spec 9.4): expired docs go in every group, including nested
+ * The daily clean-up on the emulator: expired docs go in every group, including nested
  * plan sections, while live docs and a family's own `members` docs (no `expireAt`) stay.
  */
 const db = adminFirestore({ FIREBASE_PROJECT_ID: "demo-breathewell", FIRESTORE_EMULATOR_HOST: process.env.FIRESTORE_EMULATOR_HOST });

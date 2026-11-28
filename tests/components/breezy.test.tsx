@@ -6,7 +6,7 @@ import type { BreezyAnswer, BreezyCard } from "@/domain/breezy/answer";
 import type { BreezyPage } from "@/view/breezy";
 import { installDialog } from "../helpers/dom";
 
-// Breezy's page (spec 10.10, design G): thread, cards behind the confirm sheet, the fixed-text states.
+// Breezy's page: thread, cards behind the confirm sheet, the fixed-text states.
 beforeEach(installDialog);
 const PAGE: BreezyPage = {
   viewerId: "neha",

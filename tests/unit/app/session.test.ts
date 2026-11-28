@@ -6,7 +6,7 @@ import { json, request, testApp } from "../../helpers/appDeps";
 
 const signIn = (body: unknown, ip = "198.51.100.1") => request("/api/session", { body, ip });
 
-describe("POST /api/session (spec 10.4, 7.0)", () => {
+describe("POST /api/session", () => {
   it("needs the 18+ tick: without it nothing is stored and no cookie is set", async () => {
     const { deps, db } = testApp();
     for (const body of [{ idToken: "token:u1:Asha" }, { idToken: "token:u1:Asha", adultConfirmed: false }]) {
@@ -75,7 +75,7 @@ describe("DELETE /api/session and the guard", () => {
     auth.validAfter.u2 = new Date(auth.authTime * 1000 + 1000).toISOString();
     const revoked = await authorize(request("/x", { uid: "u2" }), deps, "write");
     expect(revoked.ok).toBe(false);
-    // Reads check revocation too: a copied cookie stops after "Sign out everywhere" (stage 7 AUTH-1).
+    // Reads check revocation too: a copied cookie stops after "Sign out everywhere".
     expect((await authorize(request("/x", { uid: "u2" }), deps, "read")).ok).toBe(false);
     for (let i = 0; i < 60; i++) await authorize(request("/x", { uid: "u3" }), deps, "write");
     const limited = await authorize(request("/x", { uid: "u3" }), deps, "write");

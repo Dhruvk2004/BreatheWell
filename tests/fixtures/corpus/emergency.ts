@@ -1,4 +1,4 @@
-/** Corpus for the breathing-emergency check (spec 5.11, 7.7.5), incl. the review's probes. */
+/** Corpus for the breathing-emergency check, including tricky phrasings and evasions. */
 export const EMERGENCY_POSITIVE = [
   "difficulty breathing",
   "short of breath",
@@ -41,7 +41,7 @@ export const EMERGENCY_POSITIVE = [
   "मुझे चक्कर आ रहे हैं",
   "दम घुट रहा है",
   "breathing stopped",
-  // Stage 7 AI-2: an adverb between the words, and symptoms that were missing.
+  // An adverb between the words, and symptoms that were missing.
   "सांस लेने में बहुत तकलीफ हो रही है",
   "saans lene mein bahut dikkat ho rahi hai",
   "saans lene me problem ho rahi hai",
@@ -58,7 +58,7 @@ export const EMERGENCY_POSITIVE = [
   "dadi ko behoshi aa gayi",
   "chest feels heavy and tight",
   "breathing very fast",
-  // Stage 7 AI-7: zero-width characters (some Indic keyboards insert them) and fullwidth letters.
+  // Zero-width characters (some Indic keyboards insert them) and fullwidth letters.
   "सां\u200dस नहीं आ रही",
   "can\u200bt breathe",
   "brea\u200dthless",

@@ -1,4 +1,4 @@
-/** Family size in v1 (spec 4.1 F6, decision 8): 6 adult accounts plus up to 4 dependents. */
+/** Family size: 6 adult accounts plus up to 4 dependents. */
 export const MAX_ADULTS = 6;
 export const MAX_DEPENDENTS = 4;
 

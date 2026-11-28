@@ -6,7 +6,7 @@ export interface HourlyWeather {
   readonly humidity: readonly (number | null)[];
 }
 
-/** Why mornings are worst (spec 5.1, 10.2 item 6): calm, cold air traps smoke near the ground. */
+/** Why mornings are worst: calm, cold air traps smoke near the ground. */
 export type WeatherWhy = "calm_cold_morning" | "calm_morning" | "windy" | "mild";
 
 /** Wind below this (km/h) counts as calm. */

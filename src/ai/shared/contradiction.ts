@@ -30,7 +30,7 @@ const AVOID = [
   "बाहर नहीं",
 ];
 
-/** Words that name each travel mode (spec 7.1 `switch_mode`: doThis must contain the mode word). */
+/** Words that name each travel mode (a `switch_mode` doThis must contain the mode word). */
 export const MODE_WORDS: Readonly<Record<Mode, readonly string[]>> = {
   metro: ["metro", "मेट्रो"],
   school_bus: ["school bus", "bus", "स्कूल बस", "बस"],
@@ -62,7 +62,7 @@ const keepsUsual = (sentence: string, rule: RuleFacts) =>
 
 /**
  * Avoid at every hour today means no outdoor time today: a clause that names a time without a skip
- * phrase governing it, or "tomorrow", recommends one (design G: "दोपहर 3 बजे की सैर आपके लिए बेहतर है।"
+ * phrase governing it, or "tomorrow", recommends one ("दोपहर 3 बजे की सैर आपके लिए बेहतर है।"
  * is rejected).
  */
 const recommendsTimeToday = (text: string) =>

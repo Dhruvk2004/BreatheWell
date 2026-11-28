@@ -12,7 +12,7 @@ interface LeaveFamilyProps {
   readonly familyName: string;
   readonly dependents: readonly string[];
   readonly disabled: boolean;
-  /** The note saying why Leave is disabled (design round 2, PM-M2). */
+  /** The note saying why Leave is disabled, so screen readers hear the reason. */
   readonly describedBy?: string;
   readonly lang: Lang;
 }

@@ -8,7 +8,7 @@ import { fakeModel } from "../../helpers/planReply";
 import { addRiya, joins, sharmaFamily } from "../../helpers/family";
 
 /**
- * Forged `POST /api/breezy/action` bodies (spec 7.7.4, 9.3): the confirm sheet is client code, so
+ * Forged `POST /api/breezy/action` bodies: the confirm sheet is client code, so
  * every field may be forged. Nothing outside the schema, the family, the fact library, the
  * validator or the rules is ever written.
  */

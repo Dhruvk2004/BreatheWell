@@ -2,9 +2,9 @@ import { devices, expect, test } from "@playwright/test";
 import { BASE_URL, signInWithButton, signInWithRedirect } from "./auth";
 import { family } from "./flows";
 
-// Spec 10.4, 5.3: the real Continue button, popup, AuthClient and afterSignIn run end to end.
+// Sign-in: the real Continue button, popup, AuthClient and afterSignIn run end to end.
 // The web SDK's popup helper still loads gapi from apis.google.com, so a slow network can stall one
-// run: these tests get a longer budget and one retry (recorded in the build log).
+// run: these tests get a longer budget and one retry.
 test.describe.configure({ retries: 1, timeout: 120_000 });
 
 test("Continue with Google signs a new adult in and goes to onboarding", async ({ page }) => {

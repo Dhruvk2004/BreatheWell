@@ -4,7 +4,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { CommunityView } from "@/components/community/CommunityView";
 import { ListenButton } from "@/components/ui/ListenButton";
 
-/** Listen's exact voices and error reset, and the community page's call to action (slice 5 review). */
+/** Listen's exact voices and error reset, and the community page's call to action. */
 afterEach(() => {
   // @ts-expect-error: test doubles only
   delete globalThis.speechSynthesis;

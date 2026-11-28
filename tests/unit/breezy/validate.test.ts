@@ -6,7 +6,7 @@ import { ModelError } from "@/ai/shared/gemini";
 import { asViewer, card, demoContext, reply } from "../../helpers/breezy";
 import { fakeModel } from "../../helpers/planReply";
 
-/** Breezy's validator (spec 7.1, 7.7.7) and its one call (spec 7: 10 s, no retry). */
+/** Breezy's validator and its one call (10 s, no retry). */
 const { check } = demoContext();
 
 describe("validateBreezy", () => {
@@ -43,7 +43,7 @@ describe("validateBreezy", () => {
     expect(validateBreezy(reply("{d2} can walk to school at 7 am as usual."), check)).toBeNull();
   });
 
-  it("rejects a time today for an activity planned indoors (design G corpus, Dadaji on a Severe day)", () => {
+  it("rejects a time today for an activity planned indoors (Dadaji on a Severe day)", () => {
     const severe = asViewer(demoContext("severe-day", "hi").check, "m3");
     expect(validateBreezy(reply("दोपहर 3 बजे की सैर आपके लिए बेहतर है।", [], "hi"), severe)).toBeNull();
     expect(validateBreezy(reply("आज सैर घर के अंदर करें। इनहेलर साथ रखें।", [], "hi"), severe)?.text).toBe(

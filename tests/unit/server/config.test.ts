@@ -51,7 +51,7 @@ describe("environment (setup-steps names)", () => {
   });
 });
 
-describe("content security policy (spec 11.2)", () => {
+describe("content security policy", () => {
   it("allows only our own origin and the listed hosts", () => {
     const policy = csp({ dev: false, firebaseHost: "https://bw-prod.firebaseapp.com" });
     expect(policy).toContain("frame-ancestors 'none'");
@@ -68,10 +68,12 @@ describe("content security policy (spec 11.2)", () => {
     expect(headers["Permissions-Policy"]).toContain("camera=()");
     expect(headers["Cross-Origin-Opener-Policy"]).toBe("same-origin-allow-popups");
     expect(headers["X-Content-Type-Options"]).toBe("nosniff");
+    expect(headers["X-Frame-Options"]).toBe("DENY");
+    expect(Object.fromEntries(AUTH_HELPER_HEADERS)["X-Frame-Options"]).toBe("SAMEORIGIN");
     expect(Object.fromEntries(AUTH_HELPER_HEADERS)["Content-Security-Policy"]).toContain("frame-ancestors 'self'");
   });
 
-  it("proxies only Firebase's auth helper paths, same-origin (spec 10.4)", () => {
+  it("proxies only Firebase's auth helper paths, same-origin", () => {
     const host = firebaseHostOf(" bw-prod ");
     expect(host).toBe("https://bw-prod.firebaseapp.com");
     expect(firebaseHostOf(undefined)).toBe("");

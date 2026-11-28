@@ -7,7 +7,7 @@ import { ForAdults } from "./ForAdults";
 
 /**
  * Pollutant details, collapsed. Inside it, the collapsed "For adults: the
- * numbers" panel is the only place a public page shows the cigarette comparison (spec 6.4 🔒).
+ * numbers" panel is the only place a public page shows the cigarette comparison.
  */
 export function PollutantDetails({
   values,

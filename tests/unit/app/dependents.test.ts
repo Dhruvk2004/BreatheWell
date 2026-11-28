@@ -3,7 +3,7 @@ import { addDependent, deleteDependent, updateDependent } from "@/server/handler
 import { json, request, testApp } from "../../helpers/appDeps";
 import { addRiya, joins, RIYA, sharmaFamily, signUp } from "../../helpers/family";
 
-describe("POST /api/dependent (spec 5.5, 6.2, 9.3)", () => {
+describe("POST /api/dependent", () => {
   it("adds a child with the defaults filled in, the caller as guardian, and marks the plan stale", async () => {
     const app = testApp();
     const { fid } = await sharmaFamily(app);

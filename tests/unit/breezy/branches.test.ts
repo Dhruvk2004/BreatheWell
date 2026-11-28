@@ -74,7 +74,7 @@ describe("addItem", () => {
     });
   });
 
-  it("writes nothing when the adder or the person is no longer in the family (stage 7 AUTH-4)", async () => {
+  it("writes nothing when the adder or the person is no longer in the family", async () => {
     const app = testApp();
     const { fid, code } = await sharmaFamily(app);
     await joins(app, "rahul", "Rahul", code);

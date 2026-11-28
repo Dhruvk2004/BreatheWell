@@ -98,6 +98,7 @@ function Under18({ lang, onBack }: { lang: Lang; onBack: () => void }) {
         {t("auth.under18Title")}
       </h2>
       <p className="m-0">{t("auth.under18Body")}</p>
+      {/* eslint-disable-next-line jsx-a11y/no-autofocus -- the form was replaced by this note; focus moves to its only control */}
       <button type="button" autoFocus onClick={onBack} className={`${btn.secondary} ${btn.small} w-max`}>
         {t("common.back")}
       </button>

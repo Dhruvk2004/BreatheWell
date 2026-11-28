@@ -2,7 +2,7 @@ import { bandRank, type Band } from "../air/bands";
 import type { Bilingual } from "../impact/facts";
 import { hasPurifier, type HomeSetup } from "./homeSetup";
 
-/** A home tip (spec 6.3, 10.2 "At home today"). `{time}` is filled by code with the airing hour. */
+/** A home tip for "At home today". `{time}` is filled by code with the airing hour. */
 export interface Tip {
   readonly id: TipId;
   readonly text: Bilingual;

@@ -21,7 +21,7 @@ const OK = {
   pending: { adultConfirmed: true as const, joinCode: null, next: null },
 };
 
-/** Sign-in failures never leave "Signing in…" on screen (spec 10.4; review fix). */
+/** Sign-in failures never leave "Signing in…" on screen. */
 describe("Sign-in on a phone", () => {
   it("a phone redirect that cannot start says so instead of spinning (review fix)", async () => {
     vi.spyOn(navigator, "userAgent", "get").mockReturnValue("Mozilla/5.0 (Linux; Android 14; Pixel 7) Mobile Chrome/130");

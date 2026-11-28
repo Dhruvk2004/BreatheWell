@@ -50,7 +50,7 @@ const CORE_FACTS = ["morning_inversion", "n95_fit", "metro_exposure"];
 const hhmm = (hour: number): string => `${String(hour).padStart(2, "0")}:00`;
 const windowText = (w: HourWindow | null): string | null => (w ? `${hhmm(w.start)}-${hhmm(w.end)}` : null);
 
-/** Hour bands for the prompt (spec 7.2 `hourBand`). */
+/** Hour bands for the prompt (`hourBand`). */
 export function hourBand(hour: number): PlanInputActivity["hourBand"] {
   if (hour < 7) return "early_morning";
   if (hour < 12) return "morning";

@@ -22,7 +22,7 @@ export const BAND_START: Readonly<Record<TimeBand, string>> = {
   night: "20:00",
 };
 
-/** Defaults per activity (spec 6.1 6a–6c): school and office are fixed; walks, sport and errands move. */
+/** Defaults per activity: school and office are fixed; walks, sport and errands move. */
 export const CHOICE_DEFAULTS: Readonly<Record<AdultChoice, { band: TimeBand; flex: Flex; duration: Duration }>> = {
   morning_walk: { band: "early", flex: "any", duration: "15to60" },
   school_trip: { band: "morning", flex: "fixed", duration: "15to60" },

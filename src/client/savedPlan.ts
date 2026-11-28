@@ -2,7 +2,7 @@ import { useSyncExternalStore } from "react";
 import { z } from "zod";
 
 /**
- * The last Today plan this browser rendered (F24, "Saved plan from 6:05 am"): names, verdicts and
+ * The last Today plan this browser rendered, for the offline view ("Saved plan from 6:05 am"): names, verdicts and
  * the one line per person, with the times already formatted. No health tags, conditions or ids are
  * kept. It lives in this browser's storage only, and every read or write tolerates storage that is
  * blocked or full (private windows): the plan then simply is not saved.

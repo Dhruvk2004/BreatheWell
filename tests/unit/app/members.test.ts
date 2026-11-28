@@ -10,7 +10,7 @@ const leave = (app: ReturnType<typeof testApp>, uid: string) => leaveFamily(requ
 const remove = (app: ReturnType<typeof testApp>, uid: string, target: string) =>
   removeMember(request(`/api/family/members/${target}`, { method: "DELETE", uid }), app.deps, target);
 
-describe("leave and remove (spec 5.9, 5.10)", () => {
+describe("leave and remove", () => {
   it("a member leaves with the children they added; the profile stays", async () => {
     const app = testApp();
     const { fid, code } = await sharmaFamily(app);
@@ -52,7 +52,7 @@ describe("leave and remove (spec 5.9, 5.10)", () => {
     expect(app.db.docs.get("users/rahul")).toMatchObject({ familyId: null, removedFrom: "Sharma family" });
   });
 
-  it("a removed member cannot rejoin with a code made before the removal, only with a new one (QA8-2)", async () => {
+  it("a removed member cannot rejoin with a code made before the removal, only with a new one", async () => {
     const app = testApp();
     const { fid, code } = await sharmaFamily(app);
     await joins(app, "rahul", "Rahul", code);
@@ -72,7 +72,7 @@ describe("leave and remove (spec 5.9, 5.10)", () => {
   });
 });
 
-describe("DELETE /api/account (spec 5.10, 10.15)", () => {
+describe("DELETE /api/account", () => {
   it("erases a member's profile, health, member doc and children, and the Auth user", async () => {
     const app = testApp();
     const { fid, code } = await sharmaFamily(app);
@@ -112,7 +112,7 @@ describe("DELETE /api/account (spec 5.10, 10.15)", () => {
   });
 });
 
-describe("DELETE /api/family (spec 10.14 Danger zone)", () => {
+describe("DELETE /api/family (Danger zone)", () => {
   const del = (app: ReturnType<typeof testApp>, uid: string, confirmName: string) =>
     deleteFamily(request("/api/family", { method: "DELETE", uid, body: { confirmName } }), app.deps);
 

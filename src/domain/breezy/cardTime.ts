@@ -47,7 +47,7 @@ function judgeOf(input: CardTimeInput): Judge {
 const plannable = (hour: number, fromHour: number): boolean => hour >= DAY_FIRST_HOUR && hour <= DAY_LAST_HOUR && hour >= fromHour;
 
 /**
- * A Severe hour still ahead that day makes every non-essential outing Avoid (spec 8.3 override 2),
+ * A Severe hour still ahead that day makes every non-essential outing Avoid,
  * as in the plan; only `travel` (a trip that has to happen) is judged hour by hour.
  */
 const severeDay = (input: CardTimeInput): boolean => input.activity !== "travel" && isSevereDay(input.index, input.date, input.fromHour);

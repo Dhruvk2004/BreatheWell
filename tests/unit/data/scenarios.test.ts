@@ -28,7 +28,7 @@ const FAMILY: [Planned, Activity][] = [
   ],
 ];
 
-describe("recorded demo days (spec 10.3)", () => {
+describe("recorded demo days", () => {
   it.each(SCENARIO_IDS)("%s parses with the live schemas and covers the day before plus 5 days", (id) => {
     const s = recordedScenario(id);
     expect(s.air.time).toHaveLength(6 * 24);

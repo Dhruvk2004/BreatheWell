@@ -4,7 +4,7 @@ import ts from "typescript";
 /**
  * The lines of every `it` / `test` body in a test file (blank and comment-only lines skipped, as
  * ESLint's max-lines-per-function counts them). `describe` callbacks are exempt by design
- * (eslint.config.mjs); single test bodies are not (stage 6 audit B2).
+ * (eslint.config.mjs); single test bodies are not.
  */
 const TEST_CALL = /^(?:it|test)(?:\.(?:each|only|skip|concurrent))?$/u;
 

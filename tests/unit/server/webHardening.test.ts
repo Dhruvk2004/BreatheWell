@@ -13,7 +13,7 @@ import { paths, segment } from "@/server/repos/paths";
 import { request, testApp } from "../../helpers/appDeps";
 import { sharmaFamily } from "../../helpers/family";
 
-/** Stage 7 WEB-1, WEB-3, WEB-7, PT-1, PT-5 to PT-8, PT-10 and PT-11. */
+/** Web hardening: redirects, per-IP keys, body sizes, public names and ids, the auth proxy and 404 caching. */
 const store = () => {
   const data = new Map<string, string>();
   return {
@@ -23,7 +23,7 @@ const store = () => {
   };
 };
 
-describe("no open redirect after sign-in (WEB-1, PT-1)", () => {
+describe("no open redirect after sign-in", () => {
   it.each(["/%09/evil.example/login", "/%0A/evil.example/login", "/%0D/evil.example/login", "/%5C/evil.example", "/%20/evil.example"])(
     "keeps %s on the app origin through the whole sign-in round trip",
     (raw) => {
@@ -43,7 +43,7 @@ describe("no open redirect after sign-in (WEB-1, PT-1)", () => {
   });
 });
 
-describe("per-IP keys come only from addresses the host vouches for (WEB-3, PT-6)", () => {
+describe("per-IP keys come only from addresses the host vouches for", () => {
   const rotate = (make: (i: number) => Record<string, string>, trust = proxyTrust({})) => {
     const limiter = new RateLimiter(10, 60_000, () => 0);
     let allowed = 0;
@@ -69,7 +69,7 @@ describe("per-IP keys come only from addresses the host vouches for (WEB-3, PT-6
   });
 });
 
-describe("oversized bodies are never buffered (WEB-7, PT-5)", () => {
+describe("oversized bodies are never buffered", () => {
   it("refuses a large Content-Length before reading, and stops a stream soon after the limit", async () => {
     let pulled = 0;
     const chunk = new Uint8Array(64 * 1024).fill(0x20);
@@ -95,7 +95,7 @@ describe("oversized bodies are never buffered (WEB-7, PT-5)", () => {
   });
 });
 
-describe("public place names and path ids (PT-7, PT-8)", () => {
+describe("public place names and path ids", () => {
   it("shows coordinates instead of a crafted place with a phone number or a sentence", () => {
     expect(publicPlaceName("Call 9810012345 for free N95")).toBeUndefined();
     expect(publicPlaceName("Green Park, New Delhi")).toBe("Green Park, New Delhi");
@@ -113,7 +113,7 @@ describe("public place names and path ids (PT-7, PT-8)", () => {
   });
 });
 
-describe("the auth helper proxy and 404 caching (PT-10, PT-11)", () => {
+describe("the auth helper proxy and 404 caching", () => {
   it("never forwards cookies or client-address headers to firebaseapp.com", () => {
     const sent = helperRequestHeaders(
       new Headers({ cookie: "__session=x", "x-forwarded-for": "1.2.3.4", accept: "text/html", authorization: "b" }),

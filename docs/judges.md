@@ -8,11 +8,11 @@ Fixed, tested rules decide Go / Go with care / Avoid, the best time and every nu
 
 ## Judge's tour (no sign-in needed)
 
-1. **Landing → Air now.** Pick any Indian city (or allow location). The band card, the 24-hour strip, the 5-day outlook, "At home today" (indoor hacks) and "One swap for the air today" with its CO₂ figure.
+1. **Landing → Air now.** Pick any Indian city (or allow location). The band card, the 24-hour strip, the 5-day outlook, "At home today" (indoor hacks) and "One swap for the air today" with its CO₂ figure. The landing's "For your society or school" card opens the community message.
 2. **Demo family** (`/demo`). The Sharma family in Green Park, Delhi, on a recorded smog morning: one row per person with a verdict chip from the rules. Step the clock (6 am · 12 pm · 4 pm) or switch to the Severe day to see the GRAP note and indoor-first plans.
 3. **Dadaji's plan → Why?** Do this · Picture it · The numbers. Then **Riya's kid card**: a face in the band colour, one instruction per activity, no numbers, no cigarettes.
 4. **Breezy (demo)** (`/demo/ask`). Chips only, so no visitor text ever reaches Gemini. "Plan Dadaji's temple visit" answers with a card whose chip comes from the rules.
-5. **Community message** (`/community?place=…`, linked from Air now). One bilingual, WhatsApp-ready text for a housing society: the header and footer from code, the middle from Gemini (or the "Simple message" template), copy and share buttons.
+5. **Community message** (`/community?place=…`, linked from the landing and Air now). One bilingual, WhatsApp-ready text for a housing society: the header and footer from code, the middle from Gemini (or the "Simple message" template), copy and share buttons.
 6. **Learn** (`/learn`) and **Privacy** (`/privacy`).
 
 What one account can't show (the README has phone screenshots of the public pages): two phones joining by QR, adding Riya and sharing her kid card, Breezy asking "Who do you mean by 'Papa'?" before anything is sent and then adding to Dadaji's checklist with **Send on WhatsApp**, and the Hindi quick set-up for a 60+ adult.
@@ -85,7 +85,7 @@ The Gemini API Additional Terms (effective 23 Mar 2026, checked 20 Nov 2026) say
 
 ## Testing
 
-- **Unit and component tests (Vitest):** about 2,600 tests in 130 files, with 95% coverage thresholds enforced; current coverage is about 99.6% of lines and 98.6% of branches. Every rule (verdicts, best time, outlook, kid-card checks, Gemini output checks) is a pure function with an injected clock, so tests pin any hour of any day.
+- **Unit and component tests (Vitest):** about 2,600 tests in 132 files, with 95% coverage thresholds enforced; current coverage is about 99.6% of lines and 98.6% of branches. Every rule (verdicts, best time, outlook, kid-card checks, Gemini output checks) is a pure function with an injected clock, so tests pin any hour of any day.
 - **Firestore emulator (317 tests):** the security-rule matrix (every role against every path), the plan lock, the air cache, the daily clean-up and a full family journey on a real Firestore.
 - **Browser tests (Playwright + axe):** 72 public tests on phone and desktop in English and Hindi, and 28 signed-in tests on the Firebase Auth emulator: the real "Continue with Google" popup and phone redirect, create family → invite by QR → a second adult joins → the admin removes them, adding a child and their kid card, plan ticks, profile edits, leaving, and deleting an account.
 - **Gemini eval (`npm run eval:gemini`, not in CI):** 10 fixture families through the real model, measuring valid-reply and fallback rates and latency.
@@ -98,7 +98,7 @@ The Gemini API Additional Terms (effective 23 Mar 2026, checked 20 Nov 2026) say
 - Sizes are in `rem`, so the phone's or browser's own text-size setting scales the whole layout; touch targets are at least 44 px.
 - Hindi is server-rendered with `lang="hi"` and a Devanagari font; mixed-language text carries its own `lang`.
 - Motion respects `prefers-reduced-motion`. Kid cards have no numbers, only words and clock times.
-- axe runs on every public page in both languages and on the signed-in pages in CI: zero violations.
+- axe runs on every public page in both languages and on the signed-in pages in CI: zero violations. ESLint enforces the strict `jsx-a11y` rule set; the few deliberate exceptions (a dialog's initial focus, the combobox's options) are commented where they occur.
 
 ## Efficiency
 
@@ -112,7 +112,8 @@ The Gemini API Additional Terms (effective 23 Mar 2026, checked 20 Nov 2026) say
 - **Per-IP rate limits rely on the host's forwarded-for header.** Air now and `/api/air` allow 60 checks per hour per hashed IP and `/api/community` 20, kept in memory. Breezy allows 5 questions a minute per user (in memory, per server instance), and 30 a day per user and 60 per family (Firestore counters, so they hold across instances). The per-minute limits are a first line only; the daily Firestore caps and the Gemini quota split are what bound cost.
 - **Breezy's defences:** emergency words get fixed code text and no Gemini call; names and aliases are swapped for tokens before sending; the question (≤ 300 characters) and the client-held history (≤ 800) are cleaned and fenced; Gemini has no tools; every card's person, fact and time is checked again on the server, and the confirmed action is re-validated before anything is written.
 - **Content Security Policy without nonces.** The policy (`src/server/csp.ts`) limits every source to this app, Firebase, Google sign-in, Open-Meteo and BigDataCloud, blocks framing and inline event handlers. It allows `'unsafe-inline'` scripts for the Next.js bootstrap because the public pages are static; pages render no user-supplied HTML.
-- Other headers: HSTS, `nosniff`, a strict referrer policy, `Permissions-Policy` and `Cross-Origin-Opener-Policy: same-origin-allow-popups`.
+- Other headers: `X-Frame-Options: DENY` (`SAMEORIGIN` on the proxied auth helper), HSTS, `nosniff`, a strict referrer policy, `Permissions-Policy` and `Cross-Origin-Opener-Policy: same-origin-allow-popups`.
+- **Supply chain and reporting:** CI has read-only permissions and actions pinned by commit; Dependabot proposes npm and Actions updates weekly; [SECURITY.md](../SECURITY.md) explains how to report a problem.
 
 ## Data
 

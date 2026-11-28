@@ -15,7 +15,7 @@ const sdk = {
 vi.mock("firebase/app", () => ({ getApps: () => [], initializeApp: vi.fn(() => ({ name: "app" })) }));
 vi.mock("firebase/auth", () => sdk);
 
-describe("Firebase web SDK wrapper (spec 10.4)", () => {
+describe("Firebase web SDK wrapper", () => {
   it("signs in with a popup or a redirect and asks for an account every time", async () => {
     const { loadGoogleSignIn } = await import("@/firebase/client");
     const google = await loadGoogleSignIn({ apiKey: "k", authDomain: "app.test", projectId: "p", appId: "a" });

@@ -30,7 +30,7 @@ const card = z.object({
   why: loose(300),
   factId: z.string().max(40).nullable(),
   action: z.enum(ACTION_TYPES),
-  /** The text added or shared, in both languages (spec 7.7.4 `text {en,hi}`). */
+  /** The text added or shared, in both languages. */
   item: z.object({ en: loose(200), hi: loose(200) }),
 });
 

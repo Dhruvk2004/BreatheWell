@@ -8,14 +8,14 @@ import {
 } from "@/components/dependent/dependentDraft";
 import { joinMessage, problemOf } from "@/components/family/joinMessages";
 import { qrPath } from "@/components/family/qrPath";
-import { accountInitials } from "@/components/shell/AccountMenu";
+import { accountInitials } from "@/components/shell/useAccount";
 import { dayTime } from "@/domain/time/dayTime";
 import { initialDraft, pickActivities, STAY_IN, stepReady, stepsFor, toggleConditions, toInput } from "@/components/onboarding/draft";
 import { PROFILE, RIYA } from "../../helpers/family";
 
 const blank = initialDraft(null, "Ramesh", "hi");
 
-describe("onboarding draft (spec 10.5, 5.6)", () => {
+describe("onboarding draft", () => {
   it("starts from Google's first name and the page language, nothing else assumed", () => {
     expect(blank).toMatchObject({ name: "Ramesh", language: "hi", ageGroup: null, activities: [], stayIn: false, travel: { main: null } });
     expect(initialDraft(PROFILE, "x", "en")).toMatchObject({
@@ -89,7 +89,7 @@ describe("onboarding draft (spec 10.5, 5.6)", () => {
   });
 });
 
-describe("dependent draft (spec 6.2)", () => {
+describe("dependent draft", () => {
   const draft = dependentDraft(null, "hi");
   it("defaults the other ways to School bus + Car and the card to the guardian's language", () => {
     expect(draft).toMatchObject({ others: ["school_bus", "car"], cardLanguage: "hi", picks: [] });

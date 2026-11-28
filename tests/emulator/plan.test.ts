@@ -9,7 +9,7 @@ import { addRiya, joins, sharmaFamily } from "../helpers/family";
 import { fakeModel, replyToPrompt } from "../helpers/planReply";
 
 /**
- * The plan route on real Firestore (spec 7.2, 11.4): the stored plan with Timestamps, a fresh lock
+ * The plan route on real Firestore: the stored plan with Timestamps, a fresh lock
  * that answers "busy" and an expired lock (> 40 s) that the next request takes over. Gemini is a fake.
  */
 const firestore = adminFirestore({ FIREBASE_PROJECT_ID: "demo-breathewell", FIRESTORE_EMULATOR_HOST: process.env.FIRESTORE_EMULATOR_HOST });

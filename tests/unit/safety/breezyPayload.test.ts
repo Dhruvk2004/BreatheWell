@@ -3,7 +3,7 @@ import { leaks, safetyFamily } from "../../helpers/safetyFamily";
 import { card, reply } from "../../helpers/breezy";
 
 /**
- * Adversarial Breezy payloads (spec 7.1, 7.7.7, 7.7.9): names, name words, aliases and Devanagari
+ * Adversarial Breezy payloads: names, name words, aliases and Devanagari
  * names in the question and in every history turn, health ticks and the typed home name never reach
  * Gemini; instructions typed into the question cannot close its fence.
  */

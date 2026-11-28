@@ -3,7 +3,7 @@ import type { HourlyAir } from "@/domain/air/hourly";
 import { airSummary } from "@/domain/air/summary";
 import type { HourlyWeather } from "@/domain/air/weatherWhy";
 
-/** One grid cell's hourly air and weather as fetched at `fetchedAt` (spec F2, 9.1 `airCache`). */
+/** One grid cell's hourly air and weather as fetched at `fetchedAt`, as kept in `airCache`. */
 export interface AirSnapshot {
   readonly gridId: string;
   readonly lat: number;

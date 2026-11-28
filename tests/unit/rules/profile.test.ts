@@ -5,7 +5,7 @@ import { careTagOf, sensitivityGroup } from "@/domain/rules/groups";
 import { isEnclosed, isShared, safestSwitch } from "@/domain/rules/modes";
 import { istClock } from "../../helpers/air";
 
-describe("sensitivity groups (spec 8.2)", () => {
+describe("sensitivity groups", () => {
   it.each([
     ["18to59", [], "everyday"],
     ["18to59", ["prefer_not"], "everyday"],
@@ -27,7 +27,7 @@ describe("sensitivity groups (spec 8.2)", () => {
   });
 });
 
-describe("activity types (spec 8.2)", () => {
+describe("activity types", () => {
   it("rates trips by mode and other activities by effort and length", () => {
     expect(intensityOf("office_trip", "15to60", "metro")).toBe("light");
     expect(intensityOf("school_trip", "15to60", "cycle")).toBe("moderate");
@@ -46,7 +46,7 @@ describe("activity types (spec 8.2)", () => {
   });
 });
 
-describe("modes and the essential-trip order (spec 8.3 override 1)", () => {
+describe("modes and the essential-trip order", () => {
   it("picks shared enclosed modes before the own car", () => {
     expect(safestSwitch("cycle", ["car", "school_bus"])).toBe("school_bus");
     expect(safestSwitch("two_wheeler", ["car", "metro", "carpool"])).toBe("metro");
@@ -55,7 +55,7 @@ describe("modes and the essential-trip order (spec 8.3 override 1)", () => {
     expect(safestSwitch("car", ["carpool", "metro"])).toBe("metro");
   });
 
-  it("ranks every open mode together: no switch between them (review slice 1, finding 2)", () => {
+  it("ranks every open mode together: no switch between them", () => {
     expect(safestSwitch("cycle", ["walk"])).toBeNull();
     expect(safestSwitch("two_wheeler", ["walk"])).toBeNull();
     expect(safestSwitch("walk", ["auto_bus", "auto_van", "cycle"])).toBeNull();
@@ -76,7 +76,7 @@ describe("modes and the essential-trip order (spec 8.3 override 1)", () => {
   });
 });
 
-describe("winter caution (spec 8.3 override 4)", () => {
+describe("winter caution", () => {
   it("covers 1 Nov to the end of February, 29 Feb included", () => {
     expect([10, 11, 12, 1, 2, 3].map(isWinter)).toEqual([false, true, true, true, true, false]);
   });

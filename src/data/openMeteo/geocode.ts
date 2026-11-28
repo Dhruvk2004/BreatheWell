@@ -24,7 +24,7 @@ export function toSuggestions(response: GeocodeResponse): PlaceSuggestion[] {
   }));
 }
 
-/** Typed city search (F1 fallback). Short queries return no suggestions without a request. */
+/** Typed city search, the fallback when location is not shared. Short queries return no suggestions without a request. */
 export async function searchPlaces(name: string, lang: "en" | "hi", options: FetchOptions = {}): Promise<DataResult<PlaceSuggestion[]>> {
   if (name.trim().length < MIN_SEARCH_LENGTH) return { ok: true, value: [] };
   const result = await fetchJson(geocodeUrl(name, lang), geocodeResponse, options);

@@ -11,7 +11,7 @@ import { parsed, userRecord } from "../repos/records";
 
 /**
  * `PUT /api/profile`: onboarding and profile edits. The user's own profile,
- * the private health doc (owner only, spec 6.5) and, in a family, the member doc the family plans
+ * the private health doc (owner only) and, in a family, the member doc the family plans
  * with (tag only, never the conditions). A member change marks today's plan stale.
  */
 export async function saveProfile(request: Request, deps: AppDeps): Promise<Response> {

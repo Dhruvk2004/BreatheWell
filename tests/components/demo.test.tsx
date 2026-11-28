@@ -8,8 +8,8 @@ import { loadDemo, recordedDemo } from "@/server/demo/demoPage";
 import { loadKidPage } from "@/server/demo/kidPage";
 import { deps } from "../helpers/airDeps";
 
-describe("Demo family (spec 10.3)", () => {
-  // F24 (slice 2 M7) is built as the browser's saved plan and tested in offlinePlan.test.tsx; stored plans (H1) in demoStored.test.tsx.
+describe("Demo family", () => {
+  // The offline saved plan is tested in offlinePlan.test.tsx; the demo's stored Gemini plans in demoStored.test.tsx.
 
   it("opens on the Smog morning with the banner, switches, rows, rules caption and Simple plan label", () => {
     render(<DemoFamily data={recordedDemo("smog-morning", 6, "neha")} lang="en" />);
@@ -86,7 +86,7 @@ describe("Demo family (spec 10.3)", () => {
   });
 });
 
-describe("kid card (spec 10.12) 🔒", () => {
+describe("kid card 🔒", () => {
   it("shows a face, one line per activity, no numbers but clock times, and the three actions", async () => {
     const kid = await loadKidPage("riya", { scenario: "smog-morning", time: 6, view: "neha" }, "en", deps());
     if (!kid) throw new Error("no card");

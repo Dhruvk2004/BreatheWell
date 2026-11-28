@@ -9,7 +9,7 @@ interface ConfirmDialogProps {
   readonly trigger: ReactNode;
   readonly triggerClassName?: string;
   readonly triggerLabel?: string;
-  /** The id of the note that says why the button is disabled (design round 2, PM-M2). */
+  /** The id of the note that says why the button is disabled, so screen readers hear the reason. */
   readonly triggerDescribedBy?: string;
   readonly disabled?: boolean;
   readonly title: string;
@@ -96,6 +96,7 @@ interface SheetButtonsProps {
 function SheetButtons({ cancel, confirm, destructive, disabled, onCancel, onConfirm }: SheetButtonsProps) {
   return (
     <div className="mt-4 grid grid-cols-2 gap-2">
+      {/* eslint-disable-next-line jsx-a11y/no-autofocus -- a modal dialog's initial focus goes to the safe choice */}
       <button type="button" autoFocus onClick={onCancel} className={btn.secondary}>
         {cancel}
       </button>

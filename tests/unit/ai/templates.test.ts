@@ -30,7 +30,7 @@ const input = (over: Partial<RowLineInput> = {}): RowLineInput => ({
   ...over,
 });
 
-describe("row line template (spec 7.2 fallback)", () => {
+describe("row line template (the fallback)", () => {
   it("writes the design's lines from the rule result", () => {
     expect(rowLine(input({ plan: plan({ suggestion: "move_time", bestTime: 15 }) }), "en")).toBe("Walk at 3 pm, not 6:30 am.");
     expect(rowLine(input({ plan: plan({ suggestion: "move_time", bestTime: 15 }) }), "hi")).toBe("सैर दोपहर 3 बजे, सुबह 6:30 बजे नहीं।");
@@ -97,7 +97,7 @@ describe("row line template (spec 7.2 fallback)", () => {
   });
 });
 
-describe("community message template (spec 7.6) 🔒", () => {
+describe("community message template 🔒", () => {
   const base = {
     place: "Green Park, Delhi",
     bandWord: "Very poor",

@@ -9,7 +9,7 @@ import type { BreezyCard } from "@/domain/breezy/answer";
 import type { BreezyPage } from "@/view/breezy";
 import { installDialog } from "../helpers/dom";
 
-/** The slice 5 review on the Breezy page: refusals, Picture it, chips and the client wait. */
+/** Breezy page edge cases: refusals, Picture it, chips and the client wait. */
 beforeEach(installDialog);
 afterEach(() => vi.useRealTimers());
 
@@ -84,7 +84,7 @@ describe("refusals and the status node", () => {
   });
 });
 
-describe("Picture it on a card (spec 7.7.3)", () => {
+describe("Picture it on a card", () => {
   it("shows the code's exposure and the cigarette figure on an adult's card", async () => {
     stub({ kind: "reply", text: "3 pm is better.", lang: "en", cards: [TEMPLE], refusal: null });
     render(<BreezyView page={PAGE} />);

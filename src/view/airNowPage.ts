@@ -15,7 +15,7 @@ export interface PlaceView {
   readonly lon: number;
 }
 
-/** What the Air now page renders (spec 10.2 and its states). */
+/** What the Air now page renders, in each of its states. */
 export type AirNowPage =
   | { readonly kind: "no_place" }
   | { readonly kind: "rate_limited" }

@@ -5,7 +5,7 @@ import { findTimes } from "@/ai/shared/times";
 /** Is the time at `index` in the clause cancelled by a skip phrase? */
 const cancelled = (clause: string, index = 0) => isCancelled(clause, findTimes(clause)[index]);
 
-describe("skip phrases govern a time only when they point at it (spec 7.1)", () => {
+describe("skip phrases govern a time only when they point at it", () => {
   it("splits sentences into clauses on commas, semicolons, colons and spaced dashes, not inside times", () => {
     expect(clauses("Walk at 6:30 am, no rush; really: yes – ok")).toEqual(["Walk at 6:30 am", "no rush", "really", "yes", "ok"]);
     expect(clauses("Best 2–4 pm")).toEqual(["Best 2–4 pm"]);

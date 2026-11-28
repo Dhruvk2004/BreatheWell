@@ -112,7 +112,7 @@ describe("Breezy cards and errors", () => {
   });
 });
 
-describe("Breezy demo (spec 7.7.2)", () => {
+describe("Breezy demo", () => {
   it("answers chips only, labels the Simple answer, and shows what a card would do without writing", async () => {
     const fetcher = vi.fn();
     vi.stubGlobal("fetch", fetcher);

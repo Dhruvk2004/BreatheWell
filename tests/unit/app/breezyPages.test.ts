@@ -10,7 +10,7 @@ import { testApp } from "../../helpers/appDeps";
 import { addRiya, joins, sharmaFamily } from "../../helpers/family";
 import { fakeModel } from "../../helpers/planReply";
 
-/** Breezy's page (spec 10.10), Learn's "Your choices today" (10.11) and Today's links (10.8, 10.13). */
+/** Breezy's page, Learn's "Your choices today" (10.11) and Today's links (10.8, 10.13). */
 async function family(over = {}) {
   const app = testApp(over);
   const { code } = await sharmaFamily(app);
@@ -43,7 +43,7 @@ describe("loadBreezy", () => {
   });
 });
 
-describe("Learn: your choices today (spec 10.11)", () => {
+describe("Learn: your choices today", () => {
   it("compares outside all day with the plan for a signed-in adult", async () => {
     const { app, viewer } = await family();
     const day = await loadYourDay(viewer, app.deps);

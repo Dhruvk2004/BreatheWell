@@ -12,7 +12,7 @@ import { PROFILE } from "../../helpers/family";
 
 const NOW = new Date("2026-11-21T12:40:00Z");
 
-describe("join codes (spec 5.3, 11.2)", () => {
+describe("join codes", () => {
   it("draws 8 unambiguous symbols uniformly from secure random bytes", () => {
     fc.assert(
       fc.property(fc.uint8Array({ minLength: 16, maxLength: 16 }), (bytes) => {
@@ -48,7 +48,7 @@ describe("join codes (spec 5.3, 11.2)", () => {
   });
 });
 
-describe("permissions (spec 9.3)", () => {
+describe("permissions", () => {
   const family = { adminUid: "neha", memberUids: ["neha", "rahul"] };
   it("guardian or admin manages a dependent; any member ticks a dependent; deletes by four people", () => {
     expect(isAdmin(family, "neha")).toBe(true);
@@ -66,7 +66,7 @@ describe("permissions (spec 9.3)", () => {
   });
 });
 
-describe("names, home and profiles (spec 6.1, 6.5)", () => {
+describe("names, home and profiles", () => {
   it("makes initials and first names without the full name", () => {
     expect(initialsOf("Neha Sharma")).toBe("NS");
     expect(initialsOf("दादाजी")).toBe("द");

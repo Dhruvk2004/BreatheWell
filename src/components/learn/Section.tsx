@@ -2,7 +2,7 @@ import { ChevronDown } from "lucide-react";
 import type { ReactNode } from "react";
 import { accordion, summaryRow } from "../ui/styles";
 
-/** A collapsible Learn section with its heading in the summary (design 10.11 accordions). */
+/** A collapsible Learn section with its heading in the summary. */
 export function Section({ title, open = false, id, children }: { title: string; open?: boolean; id?: string; children: ReactNode }) {
   return (
     <details id={id} open={open} className={`group ${accordion}`}>

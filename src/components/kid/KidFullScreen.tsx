@@ -33,6 +33,7 @@ export function KidFullScreen({ openLabel, closeLabel, title, lang, children }: 
         className="m-0 h-dvh max-h-none w-screen max-w-none bg-card p-0 text-ink backdrop:bg-[var(--color-scrim)]"
       >
         <div lang={lang} className="relative grid min-h-full content-center justify-items-center gap-4 px-6 pt-16 pb-8 text-center">
+          {/* eslint-disable-next-line jsx-a11y/no-autofocus -- a modal dialog's initial focus (WAI-ARIA dialog pattern) */}
           <button type="button" onClick={close} autoFocus className={`${btn.secondary} ${btn.small} absolute top-4 right-4`}>
             <X className="size-5" aria-hidden="true" />
             {closeLabel}

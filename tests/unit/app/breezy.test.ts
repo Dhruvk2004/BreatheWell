@@ -8,7 +8,7 @@ import { card, reply } from "../../helpers/breezy";
 import { addRiya, joins, sharmaFamily } from "../../helpers/family";
 import { fakeModel } from "../../helpers/planReply";
 
-/** `POST /api/breezy` (spec 7.7, 10.10): fixed text first, the alias question, the caps, one call, the rules again. */
+/** `POST /api/breezy`: fixed text first, the alias question, the caps, one call, the rules again. */
 const OK = reply("{m1}, 3 pm is better than the morning today.", [
   card({ forMemberId: "m1", activityType: "travel", title: "Trip at 3 pm", item: { en: "Trip at 3 pm", hi: "दोपहर 3 बजे सफ़र" } }),
 ]);

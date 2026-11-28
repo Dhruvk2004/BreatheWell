@@ -9,7 +9,7 @@ import { fakeModel, replyToPrompt } from "../../helpers/planReply";
 import { INJECTED_PLACE, leaks, safetyFamily } from "../../helpers/safetyFamily";
 
 /**
- * The plan and community prompts (spec 7.1, 7.2, 7.6): no name, name word, uid, condition name or
+ * The plan and community prompts: no name, name word, uid, condition name or
  * typed place reaches Gemini, a reply that uses a name is never stored as Gemini's words, and the
  * URL's place name (an injected instruction) never reaches the community prompt.
  */

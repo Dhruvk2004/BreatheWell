@@ -26,9 +26,9 @@ service cloud.firestore {
     }
 
     // users/{uid}: the owner reads; every write goes through the server (PUT /api/profile,
-    // PUT /api/aliases), which validates the name's characters and each alias value. Stage 7 fix
-    //: rules cannot check a name's characters reliably or every value of the aliases map,
-    // and an unchecked name was copied into the family on join.
+    // PUT /api/aliases), which validates the name's characters and each alias value. Rules cannot
+    // check a name's characters reliably or every value of the aliases map, and the name is copied
+    // into the family on join, so the client may not write this document directly.
     match /users/{uid} {
       allow read: if signedIn() && request.auth.uid == uid;
 

@@ -13,7 +13,7 @@ import { appDeps } from "@/server/runtime";
 
 export const generateMetadata = async (): Promise<Metadata> => ({ title: t(await currentLang(), "join.metaTitle") });
 
-/** The invite link `/join/K7PM4QXT` (spec 5.3–5.4, 10.7). */
+/** The invite link `/join/K7PM4QXT`. */
 export default function InvitePage(props: PageProps<"/[lang]/join/[code]">) {
   return (
     <Suspense fallback={<PageLoading />}>

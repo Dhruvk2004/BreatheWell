@@ -7,7 +7,7 @@ import { DEFAULT_GEMINI_MODEL } from "@/config/env";
 import { validatePlan } from "@/ai/plan/validate";
 import { fakeModel, validReply } from "../../helpers/planReply";
 
-describe("plan eval harness (spec 11.4, mocked)", () => {
+describe("plan eval harness (mocked)", () => {
   const cases = evalCases();
 
   it("builds all 10 fixture families, incl. two dependents, a 60+ Hindi speaker, 10 people and a Severe day", () => {
@@ -77,7 +77,7 @@ describe("plan eval harness (spec 11.4, mocked)", () => {
     expect(model.calls).toHaveLength(3); // a 429 is never retried
   });
 
-  it("uses its own key and refuses the production one (spec 7.8)", () => {
+  it("uses its own key and refuses the production one", () => {
     expect(evalKey({})).toEqual({ ok: false, reason: "missing" });
     expect(evalKey({ GEMINI_EVAL_API_KEY: "k1", GEMINI_API_KEY: " k1 " })).toEqual({ ok: false, reason: "same_as_production" });
     expect(evalKey({ GEMINI_EVAL_API_KEY: "k2", GEMINI_API_KEY: "k1" })).toMatchObject({

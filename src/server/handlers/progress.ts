@@ -17,7 +17,7 @@ import { readUser } from "../repos/users";
 
 /**
  * `POST /api/progress`: ticks one of today's plan items, or the plan's Swap card
- * (`swap:{altId}`, F13), done or not done. The member ticks their own plan; any member ticks a
+ * (`swap:{altId}`), done or not done. The member ticks their own plan; any member ticks a
  * dependent's. The key must be one of that person's activities or a swap code allows them today;
  * the server recomputes the protected hours, CO₂ and car trips from the rules.
  */

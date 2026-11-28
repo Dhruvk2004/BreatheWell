@@ -6,7 +6,7 @@ import { containsPhrase, replacePhrases, wordsOf } from "@/domain/names/words";
 import { intensityOf } from "@/domain/rules/activities";
 import { isEmergency } from "@/domain/safety/emergency";
 
-describe("dependent defaults (spec 6.2)", () => {
+describe("dependent defaults", () => {
   it.each([
     ["school_trip", "fixed", "15to60"],
     ["tuition", "fixed", "15to60"],
@@ -42,7 +42,7 @@ describe("dependent defaults (spec 6.2)", () => {
   });
 });
 
-describe("kin words and aliases (spec 7.7.9)", () => {
+describe("kin words and aliases", () => {
   it("matches Latin, Hinglish case and Devanagari forms to one key", () => {
     expect(["Dadaji", "dadaji", "दादाजी", "DADA"].map((w) => kinOf(w)?.key)).toEqual(["dadaji", "dadaji", "dadaji", "dadaji"]);
     expect(kinOf("Riya")).toBeUndefined();
@@ -72,7 +72,7 @@ describe("kin words and aliases (spec 7.7.9)", () => {
   });
 });
 
-describe("breathing emergencies (spec 5.11), EN, Devanagari and Hinglish", () => {
+describe("breathing emergencies, EN, Devanagari and Hinglish", () => {
   it.each([
     "Dadaji has chest pain",
     "I can't breathe",
@@ -92,7 +92,7 @@ describe("breathing emergencies (spec 5.11), EN, Devanagari and Hinglish", () =>
   );
 });
 
-describe("location rounding (spec 6.5)", () => {
+describe("location rounding", () => {
   it("rounds homes to 2 decimals and the cache grid to 0.1°", () => {
     expect(round2(28.56789, 77.21234)).toEqual({ lat2: 28.57, lon2: 77.21 });
     expect(gridIdOf(28.56, 77.21)).toBe("28.6_77.2");

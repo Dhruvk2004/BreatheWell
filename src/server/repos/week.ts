@@ -7,8 +7,8 @@ import { parsed, progressRecord } from "./records";
 const WEEK_DAYS = 7;
 
 /**
- * The family's last 7 days of ticked swaps (F21 weekly line): the CO₂ and car trips the
- * server stored on each `progress` doc, summed. One `date in [7 dates]` query (spec 11.3: few reads
+ * The family's last 7 days of ticked swaps (the weekly line): the CO₂ and car trips the
+ * server stored on each `progress` doc, summed. One `date in [7 dates]` query (few reads
  * per Today open); a single-field filter, so no composite index is needed.
  */
 export async function weekTotals(db: Db, fid: string, today: string): Promise<WeekTotals> {

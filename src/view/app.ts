@@ -12,7 +12,7 @@ import type { Verdict } from "@/domain/rules/verdict";
 import type { Lang } from "@/domain/time/format";
 
 /**
- * View models of the signed-in pages (spec 10.4–10.15): plain types the server loaders build and
+ * View models of the signed-in pages: plain types the server loaders build and
  * the components render. Names appear only here and on screen, never in anything sent to Gemini.
  */
 export interface PersonView {
@@ -63,7 +63,7 @@ export interface Words {
 }
 
 /**
- * The plan's words on a page (design G `PlanSourceLine`): Gemini's where they are still
+ * The plan's words on a page: Gemini's where they are still
  * valid, keyed by person and activity id; anything missing shows its template text.
  */
 export interface PlanWords {

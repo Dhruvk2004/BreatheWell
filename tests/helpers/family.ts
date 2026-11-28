@@ -7,7 +7,7 @@ import type { DependentInput } from "@/domain/dependents/schema";
 import { addDependent } from "@/server/handlers/dependent";
 import { json, request, type TestApp } from "./appDeps";
 
-/** Neha's answers (spec 2.1): office trip at 8:30 by scooter, metro as the other way. */
+/** Neha's answers (the main example user): office trip at 8:30 by scooter, metro as the other way. */
 export const PROFILE: ProfileInput = {
   name: "Neha",
   language: "en",

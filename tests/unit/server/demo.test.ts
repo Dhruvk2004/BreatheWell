@@ -7,7 +7,7 @@ import { deps } from "../../helpers/airDeps";
 
 const down = () => deps({ fetchAir: vi.fn(async () => ({ ok: false as const, error: "timeout" as const })) });
 
-describe("demo query (spec 10.3)", () => {
+describe("demo query", () => {
   it("reads the scenario, stepper time and viewer, falling back to Smog morning, 6 am, Neha", () => {
     expect(parseDemoQuery({ scenario: "severe-day", time: "16", view: "dadaji" })).toEqual({
       scenario: "severe-day",
@@ -40,7 +40,7 @@ describe("loadDemo", () => {
   });
 });
 
-describe("demo kid cards (spec 10.12) 🔒", () => {
+describe("demo kid cards 🔒", () => {
   it("builds Riya's card with no numbers but clock times and a share text", async () => {
     const kid = await loadKidPage("riya", { scenario: "smog-morning", time: 6, view: "neha" }, "en", deps());
     if (!kid) throw new Error("no card");

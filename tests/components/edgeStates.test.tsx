@@ -17,7 +17,7 @@ import { airNow } from "@/domain/public/airNow";
 import { recordedDemo } from "@/server/demo/demoPage";
 import { airOf, bandDay, istClock, weatherOf } from "../helpers/air";
 
-/** The rare states each component must still handle (review M5): no headline, unknown people, gaps. */
+/** The rare states each component must still handle: no headline, unknown people, gaps. */
 const demo = recordedDemo("smog-morning", 6, "neha");
 const neha = demo.day.rows.find((r) => r.person.id === "neha");
 if (!neha) throw new Error("demo has no Neha");
@@ -49,7 +49,7 @@ describe("landing with gaps in the recording", () => {
     const today = demo.day.summary.today.map((p, h) => (h === 8 ? null : p));
     const gappy = { ...demo, day: { ...demo.day, rows: [noHeadline], summary: { ...demo.day.summary, today } } };
     const { container } = render(<LandingCards demo={gappy} lang="en" />);
-    expect(container.querySelectorAll('i[style*="height: 0"]').length).toBeGreaterThan(0);
+    expect(container.querySelectorAll('span[style*="height: 0"]').length).toBeGreaterThan(0);
     expect(screen.queryByText("Avoid")).toBeNull();
   });
 

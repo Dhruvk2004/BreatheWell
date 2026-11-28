@@ -17,7 +17,7 @@ const headers = new Headers();
 const ready = async (query: Record<string, string> = { lat: "28.56", lon: "77.21", place: "Green Park, New Delhi", cc: "IN" }, now = NOW) =>
   loadAirNowPage(query, headers, deps({ now: () => now }), new RateLimiter(99, 1000), "en");
 
-describe("Air now (spec 10.2)", () => {
+describe("Air now", () => {
   it("shows the answer first, the day, the advice, the community card and the source", async () => {
     render(<AirNowView page={await ready()} lang="en" />);
     expect(screen.getByRole("heading", { level: 1, name: "Air now in Green Park, New Delhi" })).toBeInTheDocument();
@@ -42,7 +42,7 @@ describe("Air now (spec 10.2)", () => {
     expect(adults?.textContent).toMatch(/cigarettes/);
   });
 
-  it("says old data's time, and shows no band or verdicts on stale data (spec 8.5)", async () => {
+  it("says old data's time, and shows no band or verdicts on stale data", async () => {
     const later = new Date(NOW.getTime() + 5 * 3_600_000);
     const offline = deps({ now: () => later, fetchAir: vi.fn(async () => ({ ok: false as const, error: "http" as const })) });
     offline.lastGood.set("28.6_77.2", snapshot());

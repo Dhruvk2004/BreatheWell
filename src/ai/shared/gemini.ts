@@ -3,7 +3,7 @@ import { FinishReason, GoogleGenAI } from "@google/genai";
 /**
  * The Gemini wrapper: server-side only, `@google/genai` with the free
  * AI Studio key, structured JSON output, thinking off, a hard timeout and no SDK retries. The caller
- * decides the one retry (spec 7: only when time is left, never after a 4xx). Tests inject a fake
+ * decides the one retry (only when time is left, never after a 4xx). Tests inject a fake
  * client; nothing here logs a prompt or a reply.
  */
 export interface JsonRequest {

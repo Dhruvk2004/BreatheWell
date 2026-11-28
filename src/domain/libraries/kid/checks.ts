@@ -64,7 +64,7 @@ const hasStem = (text: string, stems: readonly string[]) => wordsOf(text).some((
 
 /**
  * A number in words that is a duration or count a kid card may not show ("ten minutes", "दस मिनट",
- * "twenty laps": stage 7 AI-5). Small friendly counts from the kid library ("two songs") stay.
+ * "twenty laps"). Small friendly counts from the kid library ("two songs") stay.
  */
 const DURATION = /\d+\s*(?:minutes?|mins?|hours?|hrs?|मिनट|घंटे|घंटा)(?![\p{L}\p{M}])/iu;
 function wordedNumber(text: string): boolean {

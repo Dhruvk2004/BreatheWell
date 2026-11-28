@@ -5,7 +5,7 @@ import { visibleConditions } from "@/server/app/sharedHealth";
 import { loadMember } from "@/server/app/todayPage";
 import { sharmaApp } from "../../helpers/dom";
 
-/** Health sharing (spec 6.4, F8): names only as the member chose; a child's ticks for every adult. */
+/** Health sharing: names only as the member chose; a child's ticks for every adult. */
 describe("shared health condition names", () => {
   const family = { adminUid: "neha" };
 

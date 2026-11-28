@@ -14,7 +14,7 @@ import { planWords } from "@/server/plan/words";
 import { fakeModel, validReply } from "../helpers/planReply";
 
 /**
- * The demo's stored 6 am Gemini plans (spec 10.3; slice 2 release blocker H1). Until a key exists
+ * The demo's stored 6 am Gemini plans. Until a key exists
  * the file is empty and the demo says "Simple plan"; once `npm run demo:record-plans` has run,
  * every stored line is re-checked here against that scenario's rules.
  */

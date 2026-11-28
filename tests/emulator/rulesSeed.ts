@@ -3,7 +3,7 @@ import { initializeTestEnvironment, type RulesTestEnvironment } from "@firebase/
 import { doc, setDoc } from "firebase/firestore";
 
 /**
- * The family every rules test runs against (spec 9.2 matrix): an admin, a member, a guardian (the
+ * The family every rules test runs against (the role × path matrix): an admin, a member, a guardian (the
  * member who added dependent d1), a removed member (still has a profile, no longer in
  * `memberUids`) and a stranger. Seeded with the rules switched off, as the server would write it.
  */

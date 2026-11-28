@@ -2,7 +2,7 @@ import type { Intensity } from "../rules/activities";
 import { isEnclosed, type Mode } from "../rules/modes";
 
 /**
- * Breezy's activity enum (spec 7.7.4 `breezyActivity`), mapped by code to the rule's activity type
+ * Breezy's activity enum (`breezyActivity`), mapped by code to the rule's activity type
  * and a default duration. Gemini only names one of these; anything unknown becomes `other`.
  */
 export const BREEZY_ACTIVITIES = ["walk", "temple_errand", "play", "sport", "travel", "other"] as const;

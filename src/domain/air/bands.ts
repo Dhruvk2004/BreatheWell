@@ -12,7 +12,7 @@ export interface BandInfo {
   readonly band: Band;
   /** Inclusive AQI range of the band. */
   readonly aqi: readonly [number, number];
-  /** Inclusive µg/m³ breakpoints (Severe uses the calculator's upper bound, spec 8.1 footnote). */
+  /** Inclusive µg/m³ breakpoints (Severe uses the calculator's upper bound). */
   readonly pm25: readonly [number, number];
   readonly pm10: readonly [number, number];
   readonly icon: BandIcon;

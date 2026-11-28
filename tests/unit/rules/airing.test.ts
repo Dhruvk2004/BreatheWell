@@ -5,7 +5,7 @@ import { bandDay, daySeries, envFor, indexOf, joinSeries } from "../../helpers/a
 
 const DATE = "2024-11-18";
 
-describe("airing the home (spec 8.4 step 8)", () => {
+describe("airing the home", () => {
   it("airs out at the best hour only when it is at least one band better than the morning", () => {
     const smog = indexOf(bandDay(DATE, "very_poor", { 15: "poor" }));
     expect(airOutHour(smog, DATE, 15)).toBe(15);

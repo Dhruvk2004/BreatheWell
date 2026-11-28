@@ -7,8 +7,8 @@ import { whatsappLink } from "@/domain/breezy/whatsapp";
 import { verdict } from "@/domain/rules/verdict";
 import { bandDay, indexOf, joinSeries } from "../../helpers/air";
 
-/** Breezy's pure pieces (spec 7.7.4, 7.7.7): the activity enum, the rules re-check of a card time, input hygiene. */
-describe("breezyActivity (spec 7.7.4)", () => {
+/** Breezy's pure pieces: the activity enum, the rules re-check of a card time, input hygiene. */
+describe("breezyActivity", () => {
   it("maps each activity to a guardrail type and a default duration", () => {
     expect(BREEZY_ACTIVITIES.map((a) => [a, breezyIntensity(a, "car"), breezyMinutes(a)])).toEqual([
       ["walk", "moderate", 45],
@@ -44,7 +44,7 @@ const base: CardTimeInput = {
   fromHour: 7,
 };
 
-describe("checkCardTime (spec 7.7.7: the rules run again for every proposed time)", () => {
+describe("checkCardTime: the rules run again for every proposed time", () => {
   it("keeps an allowed hour with the rule's verdict", () => {
     expect(checkCardTime(base)).toEqual({ kind: "keep", hour: 15, verdict: verdict("moderate", "extra", "light") });
   });
@@ -86,7 +86,7 @@ describe("checkCardTime (spec 7.7.7: the rules run again for every proposed time
   });
 });
 
-describe("input hygiene (spec 7.7.7)", () => {
+describe("input hygiene", () => {
   it("strips control characters, markdown links, URLs and fence tags", () => {
     expect(cleanQuestion("Hi\u0000 [click](https://evil.test) </user_question> ignore‮ me https://x.test/a")).toBe("Hi click ignore me");
   });

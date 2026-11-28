@@ -8,7 +8,7 @@ import { weekdayKey } from "@/i18n/labels";
 import type { DemoData } from "@/view/demoPage";
 
 /**
- * The demo chips' code answers (design 10.10 demo, "Simple answer"): every time and day comes
+ * The demo chips' code answers ("Simple answer"): every time and day comes
  * from the rules and the outlook, the words from i18n. Shown only when no Gemini answer is stored.
  */
 interface CodeAnswer {

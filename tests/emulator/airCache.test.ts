@@ -8,7 +8,7 @@ import { firestoreAirStore } from "@/server/air/store";
 import { NOW, snapshot } from "../helpers/airDeps";
 
 /**
- * The air cache on the emulator (spec 9.1, 11.3): the server writes `airCache/{gridId}_{hour}` with
+ * The air cache on the emulator: the server writes `airCache/{gridId}_{hour}` with
  * the Admin SDK and reads it back; no client can read it (rules default deny).
  */
 const db = adminFirestore({ FIREBASE_PROJECT_ID: "demo-breathewell", FIRESTORE_EMULATOR_HOST: process.env.FIRESTORE_EMULATOR_HOST });

@@ -3,7 +3,7 @@ import type { PersonPlan } from "@/domain/family/people";
 import { pageSource, planWords } from "@/server/plan/words";
 import { planRecord, sectionRecord, type StoredPlan } from "@/server/repos/planRecords";
 
-/** Stage 7 AI-10: the "Made by Gemini" line counts swaps and is per page (spec 7.2). */
+/** The "Made by Gemini" line counts swaps and is per page. */
 const ctx = { lang: "en" as const, nameOf: { neha: "Neha" }, canGenerate: false };
 const stored = (sections: Record<string, object>): StoredPlan => ({
   plan: planRecord.parse({ source: "gemini", generatedAt: "2024-11-18T00:35:00Z", generations: 1, tokens: { m1: "neha" } }),

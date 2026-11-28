@@ -55,8 +55,8 @@ async function healthRoutineTravel(): Promise<void> {
   await next();
 }
 
-describe("Onboarding (spec 10.5)", () => {
-  it("greets without a name when the Google name could not be used (stage 8 QA8-5)", () => {
+describe("Onboarding", () => {
+  it("greets without a name when the Google name could not be used", () => {
     render(<Onboarding page={{ ...FRESH, googleName: "" }} lang="en" />);
     expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(/^Hi! Are you starting/);
   });
@@ -115,7 +115,7 @@ describe("Onboarding (spec 10.5)", () => {
   });
 });
 
-describe("Create family (spec 10.6)", () => {
+describe("Create family", () => {
   it("needs a name and a home, then saves the rounded place and goes to Invite", async () => {
     const fetcher = vi.fn(
       async (url: string) =>
@@ -142,7 +142,7 @@ describe("Create family (spec 10.6)", () => {
   });
 });
 
-describe("Add a child or teen (spec 10.12)", () => {
+describe("Add a child or teen", () => {
   const page = { familyName: "Sharma family", guardianName: "Neha", id: null, input: null, canDelete: false };
 
   it("fills defaults, shows the guardian note, and saves", async () => {
@@ -177,7 +177,7 @@ describe("Add a child or teen (spec 10.12)", () => {
   });
 });
 
-describe("Profile editor (spec 10.15)", () => {
+describe("Profile editor", () => {
   it("edits with the onboarding editors and saves the full answers", async () => {
     const fetcher = stubFetch();
     render(<ProfileEditor input={{ ...PROFILE, ageGroup: "60plus" }} lang="en" />);

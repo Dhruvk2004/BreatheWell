@@ -19,7 +19,7 @@ async function sharma() {
   return { app, fid, code, riya };
 }
 
-describe("viewer and redirects (spec 9.2: pages verify the session)", () => {
+describe("viewer and redirects: pages verify the session", () => {
   it("knows signed out, not configured, removed and in-family viewers", async () => {
     const { app, fid } = await sharma();
     expect(await loadViewer(null, app.deps)).toEqual({ kind: "signed_out" });
@@ -60,7 +60,7 @@ describe("viewer and redirects (spec 9.2: pages verify the session)", () => {
   });
 });
 
-describe("Today and the member plan (spec 10.8–10.9)", () => {
+describe("Today and the member plan", () => {
   it("plans everyone set up from code, shows Dadaji as setting up and the admin's join cards", async () => {
     const { app, riya } = await sharma();
     const today = await loadToday(await inFamily(app, "neha"), app.deps);

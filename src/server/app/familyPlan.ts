@@ -57,7 +57,7 @@ export function plannedPeople(bundle: FamilyBundle): FamilyPerson[] {
 /**
  * Plans the family for today from code (answer first): the home cell's air through the
  * shared air service (instance memory → Firestore cache → Open-Meteo), the injected clock in the
- * place's time zone, and the one verdict table. Gemini wording arrives in slice 4.
+ * place's time zone, and the one verdict table. Nothing here calls Gemini; the Today page adds its stored words.
  */
 export async function planFamilyToday(bundle: FamilyBundle, viewerUid: string, air: AirDeps): Promise<FamilyPlanDay> {
   const { lat2, lon2, countryCode } = bundle.family.home;

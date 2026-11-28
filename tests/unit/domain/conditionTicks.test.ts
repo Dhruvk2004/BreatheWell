@@ -8,7 +8,7 @@ import { PROFILE, RIYA } from "../../helpers/family";
 
 const ALL: Condition[] = ["asthma", "copd", "heart", "allergies", "pregnant", "not_sure", "none", "prefer_not"];
 
-describe("condition ticks (spec 6.1, 6.2; review fix)", () => {
+describe("condition ticks", () => {
   it("a stand-alone answer is never mixed with real conditions after a toggle", () => {
     fc.assert(
       fc.property(fc.subarray(ALL), fc.constantFrom(...ALL), (before, tick) => {

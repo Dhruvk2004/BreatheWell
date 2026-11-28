@@ -13,10 +13,10 @@ function daytimeBands(index: HourIndex, date: string, fromHour = DAY_FIRST_HOUR)
 }
 
 /**
- * A Severe day (spec 8.3 override 2, 10.3): the model band reaches Severe in an outdoor hour (06–21)
+ * A Severe day: the model band reaches Severe in an outdoor hour (06–21)
  * still ahead, i.e. from `fromHour` (the planner's next full hour) on. Then every non-essential
  * outdoor activity is Avoid with an indoor alternative. Hours already past do not count, so once a
- * Severe morning has cleared the plan follows the hourly verdicts again (review slice 1, finding 5).
+ * Severe morning has cleared the plan follows the hourly verdicts again.
  */
 export function isSevereDay(index: HourIndex, date: string, fromHour = DAY_FIRST_HOUR): boolean {
   return daytimeBands(index, date, fromHour).includes("severe");

@@ -14,7 +14,7 @@ export interface CommunityFor {
 }
 
 /**
- * The Air now community message (spec 7.6, 10.2 item 8) as the template, in the page language: the
+ * The Air now community message as the template, in the page language: the
  * 24-hour average's band, the best window with its day, and the day's together action. Null without
  * a 24-hour average (no numbers to put in the header).
  */

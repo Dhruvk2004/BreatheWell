@@ -14,7 +14,7 @@ const chipsAllowed = (plan: SavedPlan, now: Date): boolean =>
   verdictsAllowed(freshness(new Date(plan.fetchedAt), { now, timeZone: INDIA_TIME_ZONE }));
 
 /**
- * The saved plan shown when the network is gone (F24, design G `PlanSourceLine`): "You're offline.
+ * The saved plan shown when the network is gone: "You're offline.
  * Saved plan from 6:05 am · Updated air 6:00 am", then one line per person. Rows lose their chips
  * once the saved reading is over 12 h old. Nothing renders when no plan was saved.
  */

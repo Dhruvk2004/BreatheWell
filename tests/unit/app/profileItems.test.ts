@@ -5,7 +5,7 @@ import { tickProgress } from "@/server/handlers/progress";
 import { json, request, testApp } from "../../helpers/appDeps";
 import { addRiya, joins, PROFILE, sharmaFamily, signUp } from "../../helpers/family";
 
-describe("PUT /api/profile (spec 6.1, 6.5, 10.5)", () => {
+describe("PUT /api/profile", () => {
   it("keeps condition names in the private health doc; the family sees only the tag", async () => {
     const app = testApp();
     const { fid } = await sharmaFamily(app);
@@ -53,7 +53,7 @@ describe("PUT /api/profile (spec 6.1, 6.5, 10.5)", () => {
   });
 });
 
-describe("PATCH and DELETE /api/items/{id} (spec 9.2–9.3)", () => {
+describe("PATCH and DELETE /api/items/{id}", () => {
   async function withItems() {
     const app = testApp();
     const { fid, code } = await sharmaFamily(app);
@@ -103,7 +103,7 @@ describe("PATCH and DELETE /api/items/{id} (spec 9.2–9.3)", () => {
   });
 });
 
-describe("POST /api/progress (spec 5.7, 9.1)", () => {
+describe("POST /api/progress", () => {
   const tick = (app: ReturnType<typeof testApp>, uid: string, forId: string, key: string, done = true) =>
     tickProgress(request("/api/progress", { uid, body: { forId, key, done } }), app.deps);
 

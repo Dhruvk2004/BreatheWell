@@ -9,13 +9,13 @@ import { request, testApp, type TestApp } from "../../helpers/appDeps";
 import { RIYA, signUp } from "../../helpers/family";
 import { sharmaApp } from "../../helpers/dom";
 
-/** Invite and account page loaders (spec 10.5, 10.7, 10.12, 10.14, 10.15). */
+/** Invite and account page loaders. */
 const viewerOf = async (app: TestApp, uid: string) => (await loadViewer(`session:${uid}`, app.deps)) as SignedIn;
 const inFamily = async (app: TestApp, uid: string) => (await viewerOf(app, uid)) as InFamily;
 const headers = new Headers({ "x-forwarded-for": "198.51.100.20" });
 const sharma = sharmaApp;
 
-describe("invite pages (spec 10.7, 5.4)", () => {
+describe("invite pages", () => {
   it("shows the admin's live code and nothing to others", async () => {
     const { app, code } = await sharma();
     expect(await loadInvite(await inFamily(app, "neha"), app.deps, "https://app.test")).toMatchObject({
@@ -46,7 +46,7 @@ describe("invite pages (spec 10.7, 5.4)", () => {
   });
 });
 
-describe("account pages (spec 10.5, 10.14, 10.15, 10.12)", () => {
+describe("account pages", () => {
   it("prefills onboarding and the profile from the saved answers", async () => {
     const { app, riya } = await sharma();
     expect(await loadOnboarding(await viewerOf(app, "dadaji"), app.deps)).toMatchObject({

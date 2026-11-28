@@ -12,7 +12,7 @@ export function localisedPath(pathname: string, lang: Lang): string | null {
 
 /**
  * The page language for a request: the saved choice, else the browser's first preferred language
- * when it is Hindi, else English (spec 6.1 item 1, "default from the browser").
+ * when it is Hindi, else English.
  */
 export function pickLang(saved: string | undefined, acceptLanguage: string | null): Lang {
   if (isLang(saved)) return saved;

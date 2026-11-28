@@ -17,7 +17,7 @@ import { card, demoContext } from "../../helpers/breezy";
 import { sharmaFamily } from "../../helpers/family";
 import { fakeModel } from "../../helpers/planReply";
 
-/** The smaller branches added by the slice 5 review fixes. */
+/** Breezy's smaller branches: saving paused, card pictures, slot judging, missing air and demo edges. */
 const ctx = demoContext();
 const valid = (over: Parameters<typeof card>[0] = {}): ValidCard => {
   const { forMemberId, ...rest } = card(over);

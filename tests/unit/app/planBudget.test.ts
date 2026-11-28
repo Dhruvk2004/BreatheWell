@@ -9,8 +9,8 @@ import { joins, sharmaFamily } from "../../helpers/family";
 import { fakeModel, replyToPrompt } from "../../helpers/planReply";
 
 /**
- * Review fixes for `POST /api/plan` (spec 7.2): the 25 s budget counts from the request start, a
- * failed save gives the lock and the day's count back; and the Swap card's tick (F13, F21).
+ * Review fixes for `POST /api/plan`: the 25 s budget counts from the request start, a
+ * failed save gives the lock and the day's count back; and the Swap card's tick.
  */
 const DATE = "2024-11-18";
 
@@ -65,7 +65,7 @@ describe("POST /api/plan budget and lock", () => {
   });
 });
 
-describe("Swap card tick (F13, F21)", () => {
+describe("Swap card tick", () => {
   it("accepts a swap code allows today and counts its CO₂ and car trips; refuses any other swap", async () => {
     const { app } = await slowFamily(0, 0);
     const tick = async (key: string, done = true) =>

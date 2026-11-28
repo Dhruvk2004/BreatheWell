@@ -1,7 +1,7 @@
 import { useSyncExternalStore } from "react";
 
 /**
- * Whether the browser says it is online (F24 offline state). Server renders and the first client
+ * Whether the browser says it is online (for the offline state). Server renders and the first client
  * render assume online, so hydration never differs; the `online` / `offline` events update it.
  */
 function subscribe(onChange: () => void): () => void {

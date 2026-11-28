@@ -19,7 +19,7 @@ const base = {
   city: cityAt(28.56, 77.21),
 };
 
-describe("Air now model (spec 10.2), code only", () => {
+describe("Air now model, code only", () => {
   it("gives the reading, advice, tips, swap, weather and the adults-only figure", () => {
     const m = airNow(base);
     expect(m.freshness).toBe("fresh");
@@ -36,7 +36,7 @@ describe("Air now model (spec 10.2), code only", () => {
     expect(m.outsideIndia).toBe(false);
   });
 
-  it("keeps verdicts on old data and drops everything on stale data (spec 8.5)", () => {
+  it("keeps verdicts on old data and drops everything on stale data", () => {
     expect(airNow({ ...base, fetchedAt: new Date(clock.now.getTime() - 5 * 3_600_000) }).freshness).toBe("old");
     const stale = airNow({ ...base, fetchedAt: new Date(clock.now.getTime() - 13 * 3_600_000) });
     expect(stale).toMatchObject({

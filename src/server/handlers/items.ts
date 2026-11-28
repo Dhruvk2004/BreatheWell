@@ -9,7 +9,7 @@ import { paths } from "../repos/paths";
 import { dependentRecord, itemRecord, parsed, type FamilyRecord, type ItemRecord } from "../repos/records";
 
 /**
- * `PATCH /api/items/{id}` ticks a checklist or plan item; `DELETE` removes it (spec 9.2–9.3). A
+ * `PATCH /api/items/{id}` ticks a checklist or plan item; `DELETE` removes it. A
  * member ticks their own items and any dependent's; the target, the adder, the dependent's
  * guardian or the admin may delete. Items are created by Breezy actions.
  */

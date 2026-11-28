@@ -28,14 +28,14 @@ export function HourStrip({ summary, lang }: { summary: AirSummary; lang: Lang }
       <div className="flex flex-wrap gap-x-3.5 gap-y-1.5 text-sm" aria-hidden="true">
         {bandsPresent(summary.today, BANDS).map((band) => (
           <span key={band} className="inline-flex items-center gap-1.5">
-            <i className={`inline-block size-3.5 rounded-[3px] ${BAND_BG[band]}`} />
+            <span className={`inline-block size-3.5 rounded-[3px] ${BAND_BG[band]}`} />
             {t(bandWordKey(band))}
           </span>
         ))}
       </div>
       {now && (
         <p className="m-0 text-[0.9375em]">
-          <b>{t("air.strip.now", { time: formatHour(now.hour, lang) })}</b> {t(bandWordKey(now.band))} · {displayAqi(now.aqi)}
+          <strong>{t("air.strip.now", { time: formatHour(now.hour, lang) })}</strong> {t(bandWordKey(now.band))} · {displayAqi(now.aqi)}
         </p>
       )}
       <HourTable summary={summary} lang={lang} />
@@ -62,7 +62,7 @@ function StripPicture({ summary, lang }: { summary: AirSummary; lang: Lang }) {
       )}
       <div className="grid h-[5.5em] grid-cols-24 items-end gap-0.5 border-b border-rule-strong">
         {summary.today.map((p, h) => (
-          <i
+          <span
             key={h}
             className={`block rounded-t-[3px] ${p ? BAND_BG[p.band] : ""} ${h === summary.hour ? "outline-2 outline-offset-1 outline-ink" : ""}`}
             style={{ height: p ? aqiBarHeight(p.aqi) : 0 }}

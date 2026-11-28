@@ -54,7 +54,7 @@ export const ENGLISH_BAD: CorpusCase[] = [
   { text: "Cycle to school today, slowly.", lang: "en", rule: "schoolSwitch", expect: ["missing_switch_mode"] },
   { text: "Don't go out today.", lang: "en", rule: "goPlan", expect: ["avoid_word_on_go"] },
   { text: "Walk at 3 pm today.", lang: "en", rule: "walkIndoor", expect: ["time_on_indoor"] },
-  // A skip word that does not govern the usual time does not excuse it (review slice 1, finding 1).
+  // A skip word that does not govern the usual time does not excuse it.
   { text: "Enjoy your 6:30 am walk, no worries.", lang: "en", rule: "walkIndoor", expect: ["go_word_on_avoid", "time_on_indoor"] },
   { text: "Walk at 6:30 am, it is not too bad.", lang: "en", rule: "walkIndoor", expect: ["go_word_on_avoid", "time_on_indoor"] },
   { text: "Walk at 6:30 am and again at 3 pm, no rush.", lang: "en", rule: "walkMove", expect: ["usual_time_without_skip"] },

@@ -46,7 +46,7 @@ function useCreateFamily(lang: Lang) {
   return { name, setName, home, setHome, setup, setSetup, tried, busy, error, nameOk, submit };
 }
 
-/** Create family (spec 10.6, 5.2 step 4): name, home area, home set-up → the Invite screen. */
+/** Create family: name, home area, home set-up → the Invite screen. */
 export function CreateFamily({ lang }: { lang: Lang }) {
   const t = translator(lang);
   const form = useCreateFamily(lang);

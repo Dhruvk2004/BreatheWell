@@ -54,7 +54,7 @@ export async function askBreezy(request: Request, deps: AppDeps): Promise<Respon
 
 /**
  * The history as Gemini gets it: every turn cleaned (folded) first, then names and aliases swapped
- * for tokens (spec 7.7.9; stage 7 AI-8: a zero-width or look-alike name is folded before matching).
+ * for tokens (a zero-width or look-alike name is folded before matching).
  */
 export function tokenisedHistory(turns: readonly Turn[], people: readonly NamedPerson[], aliases: Aliases): string {
   return historyText(turns.map((turn) => ({ ...turn, text: tokeniseQuestion(cleanText(turn.text), people, aliases).text })));

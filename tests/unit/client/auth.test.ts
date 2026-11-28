@@ -28,7 +28,7 @@ function google(over: Partial<GoogleSignIn> = {}): GoogleSignIn {
   };
 }
 
-describe("AuthClient (spec 10.4)", () => {
+describe("AuthClient", () => {
   it("exchanges the popup's token with the 18+ tick, then signs the SDK out", async () => {
     const sdk = google();
     const fetcher = reply(200, { onboarded: false, hasFamily: false });
@@ -73,7 +73,7 @@ describe("AuthClient (spec 10.4)", () => {
     await expect(signOut(vi.fn(async () => Promise.reject(new Error("offline"))))).resolves.toBeUndefined();
   });
 
-  it("signs the SDK out even when /api/session refuses the token (review fix)", async () => {
+  it("signs the SDK out even when /api/session refuses the token", async () => {
     const sdk = google();
     const client = new AuthClient(async () => sdk, memoryStore(), reply(403, { error: "adult_required" }));
     expect(await client.popup(PENDING)).toEqual({ ok: false, reason: "failed" });
@@ -83,7 +83,7 @@ describe("AuthClient (spec 10.4)", () => {
     expect(await second.popup(PENDING)).toMatchObject({ ok: true });
   });
 
-  it("reports a failed redirect and drops the saved state (review fix)", async () => {
+  it("reports a failed redirect and drops the saved state", async () => {
     const store = memoryStore();
     const broken = new AuthClient(async () => Promise.reject(new Error("sdk")), store);
     expect(await broken.redirect(PENDING)).toEqual({ ok: false, reason: "failed" });

@@ -14,7 +14,7 @@ const judgeOver = (pm25: (number | null)[], span = 1): Judge => ({
 });
 const j = (hour: number, verdict: HourJudgement["verdict"], worstAqi: number): HourJudgement => ({ hour, verdict, worstAqi });
 
-describe("candidate hours (spec 8.4 step 2)", () => {
+describe("candidate hours", () => {
   it("keeps 06–21 and never the past", () => {
     expect(candidateHours("any", 7, 0)).toEqual([6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]);
     expect(candidateHours("any", 7, 19)).toEqual([19, 20, 21]);
@@ -28,7 +28,7 @@ describe("candidate hours (spec 8.4 step 2)", () => {
   });
 });
 
-describe("judging an hour (spec 8.4 step 3)", () => {
+describe("judging an hour", () => {
   const pm = Array.from({ length: 24 }, (_, h) => (h === 9 ? 200 : 45));
 
   it("judges the worst hour of the activity's span", () => {
@@ -42,7 +42,7 @@ describe("judging an hour (spec 8.4 step 3)", () => {
   });
 });
 
-describe("picking the best hour (spec 8.4 step 4)", () => {
+describe("picking the best hour", () => {
   it("orders by verdict, worst AQI, distance from the usual hour, then hour", () => {
     const pm = Array.from({ length: 24 }, (_, h) => ({ 10: 105, 11: 75, 12: 75, 14: 75 })[h] ?? 200);
     expect(bestHour(judgeOver(pm), DATE, [10, 11, 12, 14], 13)?.hour).toBe(12);
@@ -51,7 +51,7 @@ describe("picking the best hour (spec 8.4 step 4)", () => {
   });
 });
 
-describe("moving only when it helps (spec 8.4 step 5)", () => {
+describe("moving only when it helps", () => {
   it("moves for a better verdict", () => expect(worthMoving(j(15, "care", 182), j(6, "avoid", 368))).toBe(true));
   it("never moves to an Avoid hour or to the same hour", () => {
     expect(worthMoving(j(15, "avoid", 300), j(6, "avoid", 450))).toBe(false);

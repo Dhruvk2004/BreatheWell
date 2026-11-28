@@ -6,7 +6,7 @@ import { card, reply } from "../../helpers/breezy";
 import { addRiya, joins, sharmaFamily } from "../../helpers/family";
 import { fakeModel } from "../../helpers/planReply";
 
-/** The slice 5 review cases on the routes: names in history and in Devanagari, emergency first, refusals, forged actions. */
+/** Edge cases on the Breezy routes: names in history and in Devanagari, emergency first, refusals, forged actions. */
 const TRIP = card({
   forMemberId: "m1",
   activityType: "travel",
@@ -55,7 +55,7 @@ describe("POST /api/breezy: names never reach Gemini", () => {
   });
 });
 
-describe("POST /api/breezy: refusals (spec 7.7.5)", () => {
+describe("POST /api/breezy: refusals", () => {
   it("passes admin_action on with its cards, and drops the cards of off_topic and other", async () => {
     const admin = await setup(() => reply("You can do that in Family settings.", [TRIP], "en", "admin_action"));
     expect(await json(await admin.ask("Remove Rahul"))).toMatchObject({ refusal: "admin_action", cards: [expect.anything()] });

@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from "vitest";
 import { factById } from "@/domain/impact/facts";
 import { EXAMPLE_DAY_PM25, TOP_ACTION_IDS, topActions } from "@/domain/impact/topActions";
 
-describe("Learn's top actions (spec 10.11 item 2)", () => {
+describe("Learn's top actions", () => {
   it("lists every action once, ranked 1–5, each backed by a library fact", () => {
     const list = topActions();
     expect(list.map((a) => a.rank)).toEqual([1, 2, 3, 4, 5]);

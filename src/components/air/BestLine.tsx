@@ -15,7 +15,7 @@ export function BestLine({ summary, lang }: { summary: AirSummary; lang: Lang })
       <Clock className="mt-0.5 size-5 shrink-0 text-brand" aria-hidden="true" />
       {best ? (
         <span>
-          {t(`air.best.${summary.windowDay}`)} <b>{formatWindow(best.start, best.end, lang)}</b>
+          {t(`air.best.${summary.windowDay}`)} <strong>{formatWindow(best.start, best.end, lang)}</strong>
           {worst && ` · ${t("air.worst", { window: formatWindow(worst.start, worst.end, lang) })}`}
         </span>
       ) : (

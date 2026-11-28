@@ -15,7 +15,7 @@ import { DEMO_PLACE, demoPlanCheck, STORED_PLAN_HOUR } from "./demoPlan";
 import { parkAnswer, templeAnswer } from "./demoAnswers";
 
 /**
- * Breezy's demo mode (spec 7.7.2, design 10.10 demo): chips only, no free typing. Each chip shows
+ * Breezy's demo mode: chips only, no free typing. Each chip shows
  * the stored Gemini answer when one was recorded for this scenario and language, otherwise the
  * code's answer from the rules and the facts library ("Simple answer"). Nothing here calls Gemini.
  */

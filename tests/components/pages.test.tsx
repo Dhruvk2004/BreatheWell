@@ -12,7 +12,7 @@ afterEach(() => {
   delete globalThis.SpeechSynthesisUtterance;
 });
 
-describe("Learn, signed out (spec 10.11) 🔒", () => {
+describe("Learn, signed out 🔒", () => {
   it("lists the top five actions with three levels, and keeps cigarettes in the adults panel", () => {
     const { container } = render(<Learn lang="en" />);
     expect(screen.getByRole("heading", { level: 1, name: "What helps most in winter smog" })).toBeInTheDocument();
@@ -26,7 +26,7 @@ describe("Learn, signed out (spec 10.11) 🔒", () => {
   });
 });
 
-describe("Privacy (spec 10.16)", () => {
+describe("Privacy", () => {
   it("covers storage, Gemini, location, who sees what and retention in either language", () => {
     const { unmount } = render(<Privacy lang="en" />);
     for (const name of ["What we store", "Google Gemini", "Your location", "Who sees what", "How long we keep it"]) {
@@ -39,7 +39,7 @@ describe("Privacy (spec 10.16)", () => {
   });
 });
 
-describe("Listen button (F18)", () => {
+describe("Listen button (read aloud)", () => {
   it("is hidden without a matching voice", () => {
     const { container, unmount } = render(<ListenButton text="x" lang="hi" label="सुनें: x" />);
     expect(container).toBeEmptyDOMElement();

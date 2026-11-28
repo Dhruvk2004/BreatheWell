@@ -21,7 +21,7 @@ beforeEach(() => {
   Object.values(router).forEach((f) => f.mockReset());
 });
 
-describe("Today (spec 10.8)", () => {
+describe("Today", () => {
   it("answers first from code: band card, rows in order, setting up with Remind, simple-plan label", async () => {
     const { app, viewer } = await sharmaApp();
     render(<TodayView page={await loadToday(await viewer("neha"), app.deps)} appOrigin="https://app.test" lang="en" />);
@@ -56,7 +56,7 @@ describe("Today (spec 10.8)", () => {
     expect(router.refresh).toHaveBeenCalled();
   });
 
-  it("without air data: no chips, Safe anyway, and the family still listed for actions (spec 8.5)", async () => {
+  it("without air data: no chips, Safe anyway, and the family still listed for actions", async () => {
     const { app, viewer } = await sharmaApp();
     const down = { ...app.deps, air: airDeps({ fetchAir: async () => ({ ok: false as const, error: "timeout" as const }) }) };
     render(<TodayView page={await loadToday(await viewer("rahul"), down)} appOrigin="" lang="hi" />);
@@ -74,7 +74,7 @@ describe("Today (spec 10.8)", () => {
   });
 });
 
-describe("Member plan (spec 10.9)", () => {
+describe("Member plan", () => {
   it("lists timed items with chip, Do this, Why?, Listen and a tick saved through /api/progress", async () => {
     const { app, viewer } = await sharmaApp();
     const page = await loadMember(await viewer("neha"), "neha", app.deps);
@@ -134,7 +134,7 @@ describe("Member plan (spec 10.9)", () => {
   });
 });
 
-describe("Kid card for the family (spec 10.12)", () => {
+describe("Kid card for the family", () => {
   it("speaks the card language with no numbers, cigarettes or air units", async () => {
     const { app, riya, viewer } = await sharmaApp();
     const page = await loadKidCard(await viewer("neha"), riya, app.deps);
@@ -147,7 +147,7 @@ describe("Kid card for the family (spec 10.12)", () => {
     expect(screen.getByText("The kid card comes back when the air data is back.")).toBeInTheDocument();
   });
 
-  it("lets any adult tick the card's lines and checklist items (spec 5.5 step 7)", async () => {
+  it("lets any adult tick the card's lines and checklist items", async () => {
     const { app, fid, riya, viewer } = await sharmaApp();
     app.db.docs.set(`families/${fid}/items/c1`, {
       forId: riya,

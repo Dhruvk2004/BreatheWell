@@ -59,8 +59,8 @@ function targetOf(sentence: string, scope: TimeScope): Target {
 }
 
 /**
- * "at 8", "around 7", "after 6" next to an outing are clock readings too, not small counts (stage
- * 7 AI-1): "Walk at 8 today" may mean 8:00 or 20:00, and the rules judge both.
+ * "at 8", "around 7", "after 6" next to an outing are clock readings too, not small counts:
+ * "Walk at 8 today" may mean 8:00 or 20:00, and the rules judge both.
  */
 const BARE =
   /(?<![\p{L}])(?:at|around|by|after|before|till|until)\s+(\d{1,2})(?![\d:.%]|\s*(?:am|pm|a\.m|p\.m|o['’]?\s?clock|baje|bje|बजे|minutes?|mins?|hours?|hrs?|मिनट|घंटे|in\s+the|this|tonight)(?![\p{L}]))/giu;
@@ -93,7 +93,7 @@ function sentenceRejected(sentence: string, scope: TimeScope): boolean {
 
 /**
  * True when any sentence of the text puts an outing at an hour the rules do not allow. Number words
- * and Devanagari digits count ("eight am", "आठ बजे", "८ बजे": stage 7 AI-1).
+ * and Devanagari digits count ("eight am", "आठ बजे", "८ बजे").
  */
 export const rejectsTime = (text: string, scope: TimeScope): boolean =>
   sentences(normaliseNumbers(nfc(text))).some((s) => sentenceRejected(s, scope));

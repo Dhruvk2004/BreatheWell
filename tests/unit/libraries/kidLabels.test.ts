@@ -16,7 +16,7 @@ const plan = (suggestion: Suggestion, extra: Partial<ActivityPlan> = {}): Activi
   ...extra,
 });
 
-describe("twin activity labels (stage 8 QA8-4)", () => {
+describe("twin activity labels", () => {
   const school = (usualHour: number, suggestion: Suggestion): KidItem => ({
     type: "school_trip",
     plan: plan(suggestion, { usualHour, switchTo: suggestion === "switch_mode" ? "school_bus" : null }),

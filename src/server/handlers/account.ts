@@ -12,7 +12,7 @@ import { paths } from "../repos/paths";
  * `DELETE /api/account`: the profile, private health doc, member doc, the
  * dependents the user added and all their data go at once; an admin alone takes the family with
  * them. The Firebase Auth user is deleted with the Admin SDK and both cookies are cleared.
- * `DELETE /api/family` (spec 10.14 Danger zone): the admin, alone, types the family name.
+ * `DELETE /api/family` (Danger zone): the admin, alone, types the family name.
  */
 export async function deleteAccount(request: Request, deps: AppDeps): Promise<Response> {
   const auth = await authorize(request, deps, "write");

@@ -1,5 +1,5 @@
 /**
- * The daily clean-up (spec 9.4 retention on the free Spark plan, where Firestore TTL policies are
+ * The daily clean-up for data retention (on the free Spark plan, Firestore TTL policies are
  * not available): deletes every document whose `expireAt` has passed, one collection group at a
  * time, in small batches, within a delete and time budget that stays far inside Spark's free
  * 20,000 deletes a day.

@@ -65,7 +65,7 @@ describe("Gemini wrapper (adapted from Utsav)", () => {
   });
 });
 
-describe("plan generation (spec 7.2: 25 s budget, one retry with 10 s left, none after a 4xx)", () => {
+describe("plan generation (25 s budget, one retry with 10 s left, none after a 4xx)", () => {
   let now = 0;
   const clock = { advance: (ms: number) => (now += ms) };
   const deps = (model: ReturnType<typeof fakeModel>, reserve = async () => true) => ({ model, now: () => now, reserve });
@@ -115,7 +115,7 @@ describe("plan generation (spec 7.2: 25 s budget, one retry with 10 s left, none
     expect(await generatePlan(check, deps(model))).toMatchObject({ attempts: 2, outcome: "server_error" });
   });
 
-  it("finishes inside the budget with a realistic 18 s reply (latency budget, spec 11.4)", async () => {
+  it("finishes inside the budget with a realistic 18 s reply", async () => {
     now = 0;
     const out = await generatePlan(check, deps(fakeModel(() => good, clock, 18_000)));
     expect(out.outcome).toBe("ok");

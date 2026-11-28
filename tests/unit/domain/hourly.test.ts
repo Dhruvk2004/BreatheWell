@@ -49,7 +49,7 @@ describe("24-hour average (CPCB style)", () => {
   });
 });
 
-describe("freshness (spec 8.5)", () => {
+describe("freshness", () => {
   const fetched = new Date("2024-11-18T00:30:00Z");
   it.each([
     ["2024-11-18T09:00", "fresh"],

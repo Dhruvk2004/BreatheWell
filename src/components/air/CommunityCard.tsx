@@ -4,7 +4,7 @@ import { translator, type Lang } from "@/i18n/t";
 import { CopyButton } from "../ui/CopyButton";
 import { sourceLine } from "../ui/styles";
 
-/** The community message for this area (spec 7.6, 10.2 item 8), here as the template, labelled "Simple message". */
+/** The community message for this area, here as the template, labelled "Simple message". */
 export function CommunityCard({ message, place, href, lang }: { message: CommunityMessage; place: string; href: string; lang: Lang }) {
   const t = translator(lang);
   const text = [message.header, message.body, message.together, message.footer].join("\n");

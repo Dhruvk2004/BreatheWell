@@ -39,7 +39,7 @@ function headlineOf(items: readonly PlannedActivity[]): PlannedActivity | null {
 }
 
 /**
- * Plans every activity of one person with the rules engine (spec 8.3–8.4). Activities without air
+ * Plans every activity of one person with the rules engine. Activities without air
  * data for their usual hour get no verdict and are left out.
  */
 export function planPerson(person: FamilyPerson, env: PlanEnv): PersonPlan {

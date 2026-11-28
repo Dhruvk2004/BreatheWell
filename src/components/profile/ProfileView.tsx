@@ -60,7 +60,7 @@ function FamilyPart({ page, familyName, lang }: { page: ProfilePage; familyName:
     <>
       <div className="flex flex-wrap items-center justify-between gap-2">
         <span className="grid">
-          <b>{t(page.isAdmin ? "prof.role.admin" : "prof.role.member", { family: familyName })}</b>
+          <strong>{t(page.isAdmin ? "prof.role.admin" : "prof.role.member", { family: familyName })}</strong>
           {leaveNote && (
             <span id="leave-note" className="text-sm text-ink-muted">
               {leaveNote}

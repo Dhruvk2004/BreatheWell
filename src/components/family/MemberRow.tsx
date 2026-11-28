@@ -17,7 +17,7 @@ interface MemberRowProps {
   readonly dependent?: boolean;
   /** A sibling action (Kid card), never nested inside a link. */
   readonly action?: ReactNode;
-  /** The member plan; the whole row is the link's target (design 10.8 chevron), the action sits above it. */
+  /** The member plan; the whole row is the link's target, the action sits above it. */
   readonly href?: string;
   readonly linkLabel?: string;
   /** Today on desktop: each row is its own card in a 2-column grid. */

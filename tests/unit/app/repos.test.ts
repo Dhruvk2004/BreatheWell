@@ -9,7 +9,7 @@ import { NOW } from "../../helpers/airDeps";
 import { sharmaApp } from "../../helpers/dom";
 import { signUp } from "../../helpers/family";
 
-/** The repositories' less common paths: gone or malformed documents, other languages, retention (spec 9.1, 9.4). */
+/** The repositories' less common paths: gone or malformed documents, other languages, retention. */
 const item = (forId: string, text: Record<string, string>, date = "2024-11-18") => ({
   forId,
   date,
@@ -42,14 +42,14 @@ describe("family repository", () => {
     });
   });
 
-  it("flags a stale plan with its 30-day expiry (review fix, spec 9.4)", async () => {
+  it("flags a stale plan with its 30-day expiry", async () => {
     const { app, fid } = await sharmaApp();
     await app.db.transaction(async (tx) => markPlanStale(tx, fid, NOW));
     expect(app.db.docs.get(`families/${fid}/plans/2024-11-18`)).toEqual({ stale: true, expireAt: "2024-12-18T00:00:00.000Z" });
     expect(retainedUntil("2024-12-25")).toBe("2025-01-24T00:00:00.000Z");
   });
 
-  it("collects only the plan sections that exist (review fix: no blind deletes)", async () => {
+  it("collects only the plan sections that exist, so nothing is deleted blindly", async () => {
     const { app, fid, riya } = await sharmaApp();
     app.db.docs.set(`families/${fid}/plans/2024-11-17`, { stale: true });
     app.db.docs.set(`families/${fid}/plans/2024-11-17/members/${riya}`, { items: [] });
@@ -77,7 +77,7 @@ describe("checklist and invite codes", () => {
   });
 });
 
-describe("invite page loaders: the rarer answers (spec 5.4, 5.11)", () => {
+describe("invite page loaders: the rarer answers", () => {
   const headers = new Headers({ "x-forwarded-for": "198.51.100.77" });
 
   it("an admin without a live code gets Make a new code; an expired code with no admin profile names nobody", async () => {

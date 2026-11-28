@@ -1,5 +1,5 @@
 /**
- * Travel modes and the essential-trip order (spec 8.3 override 1).
+ * Travel modes and the essential-trip order.
  * "Auto or bus" (adults) and "Auto or van" (dependents) are open travel.
  */
 export const MODES = ["walk", "cycle", "two_wheeler", "auto_bus", "auto_van", "school_bus", "metro", "carpool", "car", "home"] as const;
@@ -9,8 +9,8 @@ export type Mode = (typeof MODES)[number];
 const ENCLOSED: readonly Mode[] = ["metro", "school_bus", "carpool", "car", "home"];
 
 /**
- * The modes an essential trip may switch to, safest first: shared enclosed modes, then the own car
- * (spec 8.3 override 1). Every open mode (auto, bus, walk, cycle, two-wheeler) is Moderate travel
+ * The modes an essential trip may switch to, safest first: shared enclosed modes, then the own car.
+ * Every open mode (auto, bus, walk, cycle, two-wheeler) is Moderate travel
  * with the same verdict, so they rank together after these and a switch between them is never offered.
  */
 export const SAFEST_ORDER: readonly Mode[] = ["metro", "school_bus", "carpool", "car"];

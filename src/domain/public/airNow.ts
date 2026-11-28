@@ -46,7 +46,7 @@ export interface AirNowModel {
   readonly swap: { readonly mode: Mode; readonly co2Kg: number };
   readonly morning: MorningWeather | null;
   readonly pollutants: readonly PollutantValue[];
-  /** Outside all day today, for the collapsed "For adults: the numbers" panel only (spec 6.4 🔒). */
+  /** Outside all day today, for the collapsed "For adults: the numbers" panel only. */
   readonly cigarettes: CigaretteFigure | null;
   /** Delhi NCR: "Official stations may read higher". */
   readonly stationNote: boolean;

@@ -15,7 +15,7 @@ import { sharmaApp } from "../helpers/dom";
 
 vi.mock("next/navigation", () => ({ useRouter: () => ({ refresh: vi.fn() }), useParams: () => ({ lang: "en" }) }));
 
-/** F24: the last Today plan is kept in this browser and shown, labelled "Saved plan", while offline. */
+/** Offline: the last Today plan is kept in this browser and shown, labelled "Saved plan", while offline. */
 const PLAN: SavedPlan = {
   lang: "en",
   place: "Green Park",
@@ -65,7 +65,7 @@ describe("saved plan on screen", () => {
     expect(screen.getByText("Take the metro today, not the scooter.")).toBeInTheDocument();
   });
 
-  it("drops the chips once the saved reading is over 12 h old (spec 8.5)", () => {
+  it("drops the chips once the saved reading is over 12 h old", () => {
     savePlan({ ...PLAN, lang: "hi" });
     render(<SavedPlanCard now={() => new Date("2024-11-18T13:00:00.000Z")} />);
     expect(screen.getByRole("heading").closest("section")).toHaveAttribute("lang", "hi");
@@ -106,7 +106,7 @@ describe("saved plan on screen", () => {
   });
 });
 
-describe("Today keeps its plan (F24)", () => {
+describe("Today keeps its plan offline", () => {
   it("saves names, verdicts and lines from Today, never a health tag", async () => {
     const { app, viewer, riya } = await sharmaApp();
     const page = await loadToday(await viewer("neha"), app.deps);

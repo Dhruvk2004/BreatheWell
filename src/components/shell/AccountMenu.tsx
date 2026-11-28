@@ -2,18 +2,11 @@
 
 import Link from "next/link";
 import { Lock, Pencil, Users } from "lucide-react";
-import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { useEffect, useRef, useState } from "react";
 import { translator, type Lang } from "@/i18n/t";
 import { SignOutButton } from "../profile/SignOutButton";
+import { useAccountInitials } from "./useAccount";
 
-/** The `bw-acct` cookie holds only initials ("NS"), set with the session (src/server/auth/cookies.ts). */
-export function accountInitials(cookie: string): string | null {
-  const match = /(?:^|;\s*)bw-acct=([^;]*)/.exec(cookie);
-  const value = match ? decodeURIComponent(match[1]) : "";
-  return /^\p{L}{1,2}$/u.test(value) ? value : null;
-}
-
-const noop = () => () => undefined;
 const ITEM = "flex min-h-11 w-full items-center gap-2.5 px-4 font-bold text-ink no-underline hover:bg-brand-tint";
 
 /** Escape closes the open menu and puts focus back on the avatar. */
@@ -32,11 +25,7 @@ function useEscape(open: boolean, close: () => void) {
  */
 export function AccountMenu({ lang }: { lang: Lang }) {
   const t = translator(lang);
-  const initials = useSyncExternalStore(
-    noop,
-    () => accountInitials(document.cookie),
-    () => null,
-  );
+  const initials = useAccountInitials();
   const [open, setOpen] = useState(false);
   const button = useRef<HTMLButtonElement>(null);
   const close = () => {

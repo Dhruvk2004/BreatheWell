@@ -9,14 +9,14 @@ const TOMORROW = "2024-11-22";
 const walk: Activity = { id: "a1", type: "morning_walk", usual: "06:30", flex: "any", duration: "15to60" };
 const dadaji: Planned = { group: "extra", travel: { main: "walk", others: [] } };
 
-// Spec 8.4 worked example: 06–09 Very poor, 14:00 Moderate (≈190), 15:00 Moderate (≈182).
+// Worked example: 06–09 Very poor, 14:00 Moderate (≈190), 15:00 Moderate (≈182).
 const workedDay = daySeries(
   TODAY,
   Array.from({ length: 24 }, (_, h) => (h === 14 ? 87 : h === 15 ? 85 : 225)),
 );
 const workedTwoDays = joinSeries(workedDay, bandDay(TOMORROW, "very_poor", { 15: "satisfactory" }));
 
-describe("the spec 8.4 worked example", () => {
+describe("the worked example", () => {
   it("moves Dadaji's walk to 3 pm with care, and adds the inhaler (no winter caution)", () => {
     const plan = planActivity(dadaji, walk, envFor(workedTwoDays, `${TODAY}T06:00`, "india"));
     expect(plan).toMatchObject({ verdictAtUsual: "avoid", suggestion: "move_time", bestTime: 15, verdictAtBest: "care", date: TODAY });
@@ -30,7 +30,7 @@ describe("the spec 8.4 worked example", () => {
   });
 });
 
-describe("essential trips are never skipped (spec 8.3 override 1)", () => {
+describe("essential trips are never skipped", () => {
   const school: Activity = { id: "s1", type: "school_trip", usual: "07:00", flex: "fixed", duration: "15to60" };
   const riya: Planned = { group: "sensitive", travel: { main: "cycle", others: ["car", "school_bus"] } };
 
@@ -77,7 +77,7 @@ describe("essential trips are never skipped (spec 8.3 override 1)", () => {
   });
 });
 
-describe("Severe day (spec 8.3 override 2)", () => {
+describe("Severe day", () => {
   it("keeps every non-essential activity indoors, even a clean afternoon", () => {
     const day = bandDay(TODAY, "very_poor", { 8: "severe", 15: "satisfactory" });
     const plan = planActivity({ group: "everyday", travel: { main: "walk", others: [] } }, walk, envFor(day, `${TODAY}T06:10`));

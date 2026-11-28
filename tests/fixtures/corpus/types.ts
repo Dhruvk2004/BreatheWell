@@ -1,7 +1,7 @@
 import type { RuleFacts } from "@/ai/shared/contradiction";
 import type { Rejection } from "@/ai/shared/validate";
 
-/** One validator corpus sentence (spec 7.1): good ones must pass; bad ones must fail for these reasons. */
+/** One validator corpus sentence: good ones must pass; bad ones must fail for these reasons. */
 export interface CorpusCase {
   readonly text: string;
   readonly lang: "en" | "hi";

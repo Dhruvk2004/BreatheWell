@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { aliasTarget, aliasValue, tokeniseQuestion, type NamedPerson } from "@/domain/breezy/names";
 
-/** Names and aliases (spec 7.7.9): the tests the spec lists. */
+/** Names and aliases: kin words, aliases and stored names in Latin and Devanagari. */
 const SHARMAS: readonly NamedPerson[] = [
   { id: "neha", kind: "adult", token: "m1", names: ["Neha"] },
   { id: "rahul", kind: "adult", token: "m2", names: ["Rahul"] },
@@ -9,7 +9,7 @@ const SHARMAS: readonly NamedPerson[] = [
   { id: "riya", kind: "dependent", token: "d1", names: ["Riya"] },
 ];
 
-describe("tokeniseQuestion (spec 7.7.9)", () => {
+describe("tokeniseQuestion", () => {
   it("asks first about a kin word with no alias, and changes nothing else", () => {
     expect(tokeniseQuestion("Papa wants to go to the temple at 7 am", SHARMAS, {})).toEqual({
       text: "Papa wants to go to the temple at 7 am",

@@ -4,7 +4,7 @@ import { validateBreezy } from "@/ai/breezy/validate";
 import { asViewer, card, demoContext, reply } from "../../helpers/breezy";
 
 /**
- * The rules on every time in Breezy's free text (review H5, design G), on the demo Smog morning at
+ * The rules on every time in Breezy's free text, on the demo Smog morning at
  * 6 am: Dadaji (m3) and Riya (d2) may not go out in the morning; 3 pm is allowed.
  */
 const { check } = demoContext();

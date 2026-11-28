@@ -34,7 +34,7 @@ export function DemoFamily({ data, lang }: { data: DemoData; lang: Lang }) {
 }
 
 /**
- * "View as Dadaji" (journey 5.1, design 10.3 "as Dadaji in Hindi"): everything below
+ * "View as Dadaji": everything below
  * the controls in the viewer's language at 150%, with one line in the page language saying so.
  */
 function ViewerScope({ data, pageLang }: { data: DemoData; pageLang: Lang }) {

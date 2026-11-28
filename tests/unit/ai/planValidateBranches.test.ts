@@ -6,7 +6,7 @@ import { validReply } from "../../helpers/planReply";
 import { checkOf, sourceOf } from "../../helpers/planSource";
 
 /**
- * The plan validator's field-level fallbacks (spec 7.1): each `why`, fact and swap passes or falls
+ * The plan validator's field-level fallbacks: each `why`, fact and swap passes or falls
  * back on its own, and an item that fails never takes a good item's place.
  */
 const check = checkOf(sourceOf());

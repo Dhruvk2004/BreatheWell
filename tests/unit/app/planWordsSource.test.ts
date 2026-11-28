@@ -10,7 +10,7 @@ const stored = (plan: object, sections: Record<string, object> = {}): StoredPlan
   sections: Object.fromEntries(Object.entries(sections).map(([id, s]) => [id, sectionRecord.parse(s)])),
 });
 
-describe("planWords source (M5)", () => {
+describe("planWords source", () => {
   it("says 'gemini' when only a home tip passed", () => {
     const words = planWords(stored({ home: [{ tipId: "shut_windows", doThis: { en: "Keep windows shut till noon." } }] }), [], ctx);
     expect(words.source).toBe("gemini");
@@ -26,7 +26,7 @@ describe("planWords source (M5)", () => {
     expect(planWords(stored({ home: [{ tipId: "x", doThis: { hi: "खिड़कियाँ बंद रखें।" } }] }), [], ctx).source).toBe("template");
   });
 
-  it("keeps Gemini's why with the fact it explains, and a page shows it only under that fact (M6)", () => {
+  it("keeps Gemini's why with the fact it explains, and a page shows it only under that fact", () => {
     const plan = stored(
       { tokens: { m1: "neha" } },
       { neha: { swap: { altId: "a", doThis: { en: "Swap." }, why: { en: "Why." }, factId: "f1" } } },

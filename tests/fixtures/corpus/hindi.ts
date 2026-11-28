@@ -53,7 +53,7 @@ export const HINDI_BAD: CorpusCase[] = [
   { text: "यह इलाज है।", lang: "hi", expect: ["diagnosis"] },
 ];
 
-/** Hinglish (Hindi typed in Latin script) in a Hindi field fails the Devanagari check (spec 7.1, 12.1). */
+/** Hinglish (Hindi typed in Latin script) in a Hindi field fails the Devanagari check. */
 export const HINGLISH_BAD: CorpusCase[] = [
   "dadaji ko walk kab karni chahiye",
   "aaj bahar mat jao",

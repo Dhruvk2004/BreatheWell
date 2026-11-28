@@ -6,7 +6,7 @@ import { allowedTimes, validatePlan } from "@/ai/plan/validate";
 import { alternativeById } from "@/domain/libraries/alternatives";
 import { validReply } from "../../helpers/planReply";
 
-/** The plan validator (spec 7.1, 7.2, design F caps): any failing field falls back to its template. */
+/** The plan validator and its caps: any failing field falls back to its template. */
 const cases = evalCases();
 const caseOf = (id: string) => {
   const c = cases.find((x) => x.id === id);

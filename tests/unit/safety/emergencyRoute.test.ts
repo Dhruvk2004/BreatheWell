@@ -7,7 +7,7 @@ import { EMERGENCY_POSITIVE } from "../../fixtures/corpus/emergency";
 import { safetyFamily } from "../../helpers/safetyFamily";
 
 /**
- * Every emergency phrasing in the corpus, through the real route (spec 5.11, 7.7.5): the fixed
+ * Every emergency phrasing in the corpus, through the real route: the fixed
  * Call 112 answer, before any limit or family check, and Gemini is never called, even when the
  * per-minute limit and the daily budget are spent, or the words sit inside an injected instruction.
  */
@@ -34,7 +34,7 @@ describe("emergency words through POST /api/breezy", () => {
     expect(family.calls).toHaveLength(0);
   });
 
-  it("checks the whole typed question, not only the 300 characters sent on (stage 7 AI-7)", async () => {
+  it("checks the whole typed question, not only the 300 characters sent on", async () => {
     const family = await safetyFamily(() => {
       throw new Error("Gemini must not be called");
     });
