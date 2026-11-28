@@ -27,7 +27,7 @@
     "eval:gemini": "node scripts/run-ts.mjs scripts/eval-gemini.ts"
   },
   "dependencies": {
-    "@google/genai": "^2.31.0",
+    "@google/genai": "^3.6.1",
     "firebase": "^13.1.0",
     "firebase-admin": "^14.5.0",
     "lucide-react": "1.56.0",
